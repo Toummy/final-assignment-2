@@ -8,10 +8,12 @@ armadilhas espalhadas pelo ambiente. A Figura \ref{fig:spelunky-gameplay}
 ilustra uma partida do jogo.
 
 \begin{figure}[htb!]
-\centering\includegraphics[width=.65\textwidth]{fig/spelunky-pc-screen.png}
-\caption {\label{fig:spelunky-gameplay}Exemplo de partida de spelunky, mostrando
+\centering
+\includegraphics[width=.65\textwidth]{fig/spelunky-pc-screen.png}
+\caption{\label{fig:spelunky-gameplay}Exemplo de partida de spelunky, mostrando
 elementos do jogo como o jogador, a caverna, os inimigos, os tesouros, entre
-outros.} \end{figure}
+outros.}
+\end{figure}
 
 O jogo se enquadra no gênero \textit{platformer}, estilo de jogo que envolve
 guiar um personagem através de plataformas suspensas e obstáculos para obter
@@ -34,8 +36,33 @@ tenha que recomeçar o jogo desde seu início, perdendo todo o progresso obtido
 até então.
 
 \section{\label{section:spelunky-goals}Objetivos}
-% objetivo principal: derrotar Olmec e chegar ao fim do jogo
-% objetivos secundários: tesouro, tempo, abates, salvamentos
+Spelunky é um jogo que baseia a qualidade das partidas utilizando um sistema de
+\textit{high scores}. Para tal, faz uso de uma série de métricas para
+classificar os jogadores ao término de uma partida. Estas métricas são:
+\textbf{quantidade de tesouros}, \textbf{número de abates}, \textbf{número de
+donzelas salvas} e \textbf{tempo total de partida}. A Figura
+\ref{fig:spelunky-scores} mostra um exemplo de pontuação final obtida.
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=.65\textwidth]{fig/spelunky-scores.png}
+\caption{\label{fig:spelunky-scores}Exemplo de pontuação final obtida ao fim de
+uma partida de Spelunky.}
+\end{figure}
+
+Apesar de oferecer 4 pontuações diferentes, a comunidade de jogadores de
+Spelunky não mostra interesse significativo em atingir quantidades elevadas de
+número de abates e número de donzelas salvas, se concentrando em atingir
+pontuações máximas em número de tesouros e em concluir o jogo no menor tempo
+possível\footnote{Comunidade de ranking de jogadores de Spelunky:
+https://mosstier.com}. Pode-se concluir, portanto, que o \textbf{objetivo
+principal} é chegar ao fim do jogo e os \textbf{objetivos secundários} mais
+importantes são a pontuação final e o tempo total da partida.
+
+\section{\label{section:spelunky-structure}Estrutura do jogo}
+% nivel
+% area
+% partida
 
 \section{\label{section:spelunky-controls}Controle do Personagem}
 % possiveis acoes que o jogador pode executar
