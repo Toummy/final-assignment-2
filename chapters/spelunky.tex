@@ -35,13 +35,48 @@ permanente, que faz com que o jogador, ao ter seus pontos de vida esgotados,
 tenha que recomeçar o jogo desde seu início, perdendo todo o progresso obtido
 até então.
 
+
+%----------
 \section{\label{section:spelunky-goals}Objetivos}
-Spelunky é um jogo que baseia a qualidade das partidas utilizando um sistema de
+Apesar de o \textbf{objetivo principal} em Spelunky ser completar todos os
+níveis, o jogo baseia a qualidade das partidas utilizando um sistema de
 \textit{high scores}. Para tal, faz uso de uma série de métricas para
 classificar os jogadores ao término de uma partida. Estas métricas são:
-\textbf{quantidade de tesouros}, \textbf{número de abates}, \textbf{número de
-donzelas salvas} e \textbf{tempo total de partida}. A Figura
-\ref{fig:spelunky-scores} mostra um exemplo de pontuação final obtida.
+
+\begin{itemize}
+	\item \textbf{Tesouros:} Mede a quantidade de tesouros obtido pelo jogador
+	no decorrer da partida. Existem diversos tipos de tesouros, como barras de
+	ouro, pedras preciosas e estatuetas sagradas. Salvas as estatuetas sagradas,
+	que devem ser carregadas até o fim do nível, o jogador precisa simplesmente
+	tocar um tesouro para coletá-lo. Os tesouros se encontram espalhados pelo
+	chão, dentro do terreno, dentro de baús ou são deixados por certos inimigos
+	ao serem abatidos.
+
+	\item \textbf{Tempo:} Mede o tempo que o jogador levou para completar a
+	partida. Começa a contar a partir do momento em que o jogador entra no
+	primeiro nível e pára de contar no fim do último nível. A contagem de tempo
+	é interrompida durante as transições de nível e quando o jogador pausa a
+	partida.
+
+	\item \textbf{Abates:} Quantidade de inimigos abatidos pelo jogador durante
+	a partida. Mortes acidentais de inimigos -- cair de um penhasco, acionar uma
+	armadilha, etc. -- não aumentam este contador.
+
+	\item \textbf{Salvamentos:} Quantidade de donzelas em perigo que foram
+	resgatadas pelo jogador. Geralmente existe uma donzela em perigo por nível,
+	mas existe a possibilidade -- mesmo que pequena -- de uma donzela não
+	aparecer em alguns níveis. Para resgatar uma donzela, o jogador deve
+	carregá-la com vida até a saída do nível.
+\end{itemize}
+
+Embora o jogo ofereça 4 métricas de classificação diferentes, a comunidade de
+jogadores de Spelunky não mostra interesse significativo em atingir quantidades
+elevadas de número de abates e número de salvamentos, se concentrando apenas em
+atingir pontuações máximas em número de tesouros e em concluir o jogo no menor
+tempo possível\footnote{Comunidade de ranking de jogadores de Spelunky:
+https://mosstier.com}. Pode-se concluir, portanto, que os \textbf{objetivos
+secundários} mais importantes são a pontuação final e o tempo de partida. A
+Figura \ref{fig:spelunky-scores} mostra um exemplo de pontuação final obtida.
 
 \begin{figure}[htb!]
 \centering
@@ -50,36 +85,39 @@ donzelas salvas} e \textbf{tempo total de partida}. A Figura
 uma partida de Spelunky.}
 \end{figure}
 
-Apesar de oferecer 4 pontuações diferentes, a comunidade de jogadores de
-Spelunky não mostra interesse significativo em atingir quantidades elevadas de
-número de abates e número de donzelas salvas, se concentrando em atingir
-pontuações máximas em número de tesouros e em concluir o jogo no menor tempo
-possível\footnote{Comunidade de ranking de jogadores de Spelunky:
-https://mosstier.com}. Pode-se concluir, portanto, que o \textbf{objetivo
-principal} é chegar ao fim do jogo e os \textbf{objetivos secundários} mais
-importantes são a pontuação final e o tempo total da partida.
 
+%----------
 \section{\label{section:spelunky-structure}Estrutura do jogo}
 % nivel
 % area
 % partida
 
+
+%----------
 \section{\label{section:spelunky-controls}Controle do Personagem}
 % possiveis acoes que o jogador pode executar
 
+
+%----------
 \section{\label{section:spelunky-procgen}Algoritmo de Geração Procedural de
 Níveis}
 % entrar em detalhes
 
+
+%----------
 \section{\label{section:spelunky-obstacles}Obstáculos}
 % inimigos (listar)
 % armadilhas (listar)
 % ambiente (quedas, lava, etc.)
 
+
+%----------
 \section{\label{section:spelunky-items}Itens}
 % três categorias diferentes: consumíveis, acessórios e armas
 % listar todos e dar breve explicação
 
+
+%----------
 \section{\label{section:spelunky-dev}Desenvolvimento e Distribuição}
 O jogo foi desenvolvido por Derek Yu -- utilizando o motor de desenvolvimento de
 jogos \textit{GameMaker} (Versão 8.0 Pro) -- e lançado gratuitamente para a
