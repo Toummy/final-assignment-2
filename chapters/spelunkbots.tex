@@ -18,11 +18,11 @@ artificial. Para objetos estáticos, uma vez que o jogador visualizou o objeto,
 ele poderá receber informações sobre ele permanentemente. Para objetos
 dinâmicos, o \textit{bot} só poderá receber informações sobre eles se os mesmos
 estiverem sendo visualizados por ele. A figura \ref{fig:spelunkbots-fow} ilustra
-um exemplo de funcionamento do sistema, onde as áreas apresentadas na coloração
-cinza e marcadas com o valor ``1'' representam pontos sobre os quais o
-\textit{bot} não tem conhecimento algum, pois ainda não explorou a área
-que o permite que sejam revelados os elementos do jogo que se encontram
-nesses pontos.
+um exemplo de funcionamento do sistema, onde as áreas marcadas com o valor ``0''
+representam um terreno transponível, enquanto as áreas com o valor ``1''
+representam terreno intransponível. As áreas intransponíveis com o fundo
+acinzentado correspondem ao sistema de \textit{fog of war}, cujas informações
+não estão disponíveis pois tal área ainda não foi explorada pelo \textit{bot}.
 
 \begin{figure}[htb!]
 \centering
@@ -45,13 +45,16 @@ Maker}. (COLOCAR FIGURINHA AQUI)
 A \textit{API} permite uma interação completa com o jogo através do uso
 das variáveis expostas pelo
 \textit{framework}\footnote{http://spelunkbots.com/wp-content/uploads/2015/02/SpelunkBots-API-A-Getting-Started-Tutorial.pdf}.
-Com essas variáveis é possível fazer o controle da movimentação do bot, bem
+Com elas, é possível fazer o controle da movimentação do bot, bem
 como identificar o tipo de terreno em que se está pisando e os inimigos que
 aparecem em seu campo de visão. Além disso, também são disponibilizadas
 informações sobre as armadilhas que podem atrapalhar o jogador. Por fim,
 existem variáveis que permitem um melhor controle das informações relativas ao
 \textit{bot}, como o posicionamento no eixo X e no eixo Y, se o \textit{bot}
-encontra-se virado para a esquerda ou para a direita, entre outros.
+encontra-se virado para a esquerda ou para a direita, entre outros. O uso dessas
+variáveis torna possível a implementação de técnicas de inteligência artificial
+no jogo Spelunky. O apêndice \ref{appendix:spelunkbots-variables} faz um
+detalhamento maior de todas essas variáveis.
 
 \begin{itemize}
     \item Motivação: citar os porquês de ter sido criado (citar o paper do
