@@ -40,7 +40,17 @@ através da linguagem C++, ficando a critério do desenvolvedor a escolha da
 linguagem. A única restrição que existe quanto ao uso de C++ dá-se no fato
 de que a linguagem necessita de um processo de compilação através de uma
 ferramenta externa, não sendo gerenciada diretamente pelo \textit{Game
-Maker}. (COLOCAR FIGURINHA AQUI)
+Maker}. A figura \ref{fig:spelunkbots-usage-diagram} mostra a relação entre
+o jogo, a \textit{API} e as possíveis linguagens de programação para se
+utilizar.
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=.65\textwidth]{fig/spelunkbots-usage-diagram.pdf}
+\caption {\label{fig:spelunkbots-usage-diagram}Diagrama exibindo a relação
+entre o jogo Spelunky, a API SpelunkyBots e as linguagens de programação que
+podem ser usadas para a interação com o jogo.}
+\end{figure}
 
 A \textit{API} permite uma interação completa com o jogo através do uso
 das variáveis expostas pelo
@@ -55,26 +65,3 @@ encontra-se virado para a esquerda ou para a direita, entre outros. O uso dessas
 variáveis torna possível a implementação de técnicas de inteligência artificial
 no jogo Spelunky. O apêndice \ref{appendix:spelunkbots-variables} faz um
 detalhamento maior de todas essas variáveis.
-
-\begin{itemize}
-    \item Motivação: citar os porquês de ter sido criado (citar o paper do
-        Scales e do Thompson \cite{SPELUNKBOTSPAPER}), bem como as possíveis
-        competições que surgem a partir da criação desses (só citar mesmo,
-        entrar em detalhes no capítulo específico).
-    \item Explicar sobre a API e suas características ``interessantes''
-        (\textit{fog war} com figura e explicações)
-    \item Explicar como é feito o uso da API por um desenvolvedor (GML ou
-        C++). Talvez seja interessante explicar alguma coisa das DLLs,
-        para o caso de usar C++ (aqui vai uma figurinha bacana mostrando a
-        ``arquitetura'')
-    \item Interação com o Jogo
-        \footnote{http://spelunkbots.com/wp-content/uploads/2015/02/SpelunkBots-API-A-Getting-Started-Tutorial.pdf}
-    \begin{itemize}
-        \item Explicar as variáveis globais de movimentação
-        \item Explicar as variáveis globais do terreno (talvez vale
-            colocar figuras aqui)
-        \item Explicar as variáveis globais dos obstáculos (inimigos vêm aqui)
-        \item Explicar as variáveis globais referentes aos objetos
-        \item Explicar as variáveis globais referentes ao player
-    \end{itemize}
-\end{itemize}
