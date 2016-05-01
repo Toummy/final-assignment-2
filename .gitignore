@@ -40,7 +40,6 @@
 img/*eps-converted-to.pdf
 pdf/
 *.pdf
-!fig/*pdf
 *.loa
 
 ### User files ###
