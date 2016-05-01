@@ -71,8 +71,8 @@ classificar os jogadores ao término de uma partida. Estas métricas são:
 Embora o jogo ofereça 4 métricas de classificação diferentes, a comunidade de
 jogadores de Spelunky não mostra interesse significativo em atingir quantidades
 elevadas de número de abates e número de salvamentos, se concentrando apenas em
-atingir pontuações máximas em número de tesouros e em concluir o jogo no menor
-tempo possível\footnote{Comunidade de ranking de jogadores de Spelunky:
+atingir pontuações máximas e em concluir o jogo no menor tempo
+possível\footnote{Comunidade de ranking de jogadores de Spelunky:
 https://mosstier.com}. Pode-se concluir, portanto, que os \textbf{objetivos
 secundários} mais importantes são a pontuação final e o tempo de partida. A
 Figura \ref{fig:spelunky-scores} mostra um exemplo de pontuação final obtida.
@@ -87,9 +87,108 @@ uma partida de Spelunky.}
 
 %----------
 \section{\label{section:spelunky-structure}Estrutura do jogo}
-% nivel
-% area
-% partida
+Uma partida de Spelunky é dividida em \textbf{níveis}, cada um sendo
+representado por um mapa diferente. O jogador, ao entrar em um nível, é
+posicionado na parte superior do mapa. Como não é informado ao jogador a posição
+exata da saída, ele deve explorar o nível até encontrá-la. A saída sempre está
+localizada em algum lugar na parte mais inferior do mapa. Ao utilizar a saída, o
+jogador é enviado para o próximo nível e não pode retornar ao nível que acabou
+de completar.
+
+O jogo é dividido em 4 \textbf{áreas} principais: \textbf{As
+Minas} (níveis 1 a 4), \textbf{A Selva} (níveis 5 a 8), \textbf{As Cavernas de
+Gelo} (níveis 9 a 12) e \textbf{O Templo} (níveis 13 a 16). Cada área possui um
+estilo de mapa e aparência única. A dificuldade do jogo também aumenta
+gradativamente conforme o jogador avança pelas áreas, principalmente porque os
+inimigos vão se tornando cada vez mais fortes. O último nível do Templo é o
+\textbf{Covil de Olmec}. onde o jogador deve enfrentar e derrotar
+\textbf{Olmec}. Após derrotar o chefão, o explorador é recompensado com uma
+estatueta gigante feita de ouro e o jogo termina.
+
+
+\subsection{Atalhos}
+É possível, ao iniciar uma partida, burlar este progresso entre áreas e ir
+diretamente para as três ultimas áreas do jogo utilizando atalhos, criados pelo
+personagem conhecido como \textbf{Homem do Túnel}. Para ter acesso a estes
+atalhos, o jogador deve primeiramente auxiliar o Homem do Túnel a criá-los. O
+personagem sempre aparece ao fim do último nível das primeiras três áreas do
+jogo, se oferecendo para criar uma passagem secreta que leva ao início da área
+que o jogador está prestes a chegar. Para criar a passagem, o jogador deve ceder
+três vezes -- em partidas separadas -- ao Homem do Túnel uma mistura de tesouros
+e itens.
+
+Uma vez construídas, estas passagens são permanentes e podem ser acessadas ao
+início de uma partida. Contudo, é importante ressaltar que, ao burlar etapas do
+jogo, a pontuação do jogador não será contada para os \textit{high scores}.
+
+
+\subsection{Áreas Secretas}
+Além das áreas principais, existem duas áreas secretas: \textbf{O Mercado Negro}
+e \textbf{A Cidade de Ouro}. Estas áreas do jogo são fundamentais para se obter
+equipamentos e grandes quantidadeds de tesouros, mas o jogador só obterá acesso
+a elas se respeitar uma série de requisitos impostos pelo jogo.
+
+Para entrar no Mercado Negro, o jogador deve encontrar sua entrada -- que estará
+oculta dentro do terreno do mapa -- enquanto explora a área da selva. O jogador
+pode utilizar um item especial chamado \textbf{Udjat Eye} para ajudá-lo a
+encontrar a entrada da área. O uso do item não é necessário, mas é aconselhável,
+pois é quase impossível de localizar a entrada sem ele. Dentro do mercado negro,
+o jogador encontrará vários comerciantes e terá a oportunidade de trocar seus
+tesouros por equipamentos e itens diversos.
+
+Entrar na Cidade de Ouro é muito mais complexo e é considerado um dos maiores
+desafios do jogo, pois requer que o jogador colete uma série de artefatos
+egípcios e execute uma longa cadeia de ações ao longo da partida. A Cidade de
+Ouro é idêntica a um nível do Templo, mas o terreno é feito de ouro maciço --
+podendo ser destruído com bombas -- e contém muito mais tesouros para coletar.
+Além disso, o nível contém uma estátua dourada gigante feita de ouro e pedras
+preciosas que pode ser destruída pelo jogador. As etapas para entrar na Cidade
+de Ouro são:
+
+\begin{enumerate}
+	\item Coletar o \textbf{Udjat Eye}: O primeiro artefato se encontra dentro
+	de um baú em algum nível da primeira área do jogo, as Minas. O jogador deve
+	localizar a chave deste baú -- que se encontra no mesmo nível -- para poder
+	abrí-lo. O Udjat Eye é capaz de encontrar a localização exata da entrada do
+	Mercado Negro. O artefato pisca e brilha quanto mais próximo da entrada o
+	jogador estiver, facilitando a localização da entrada.
+
+	\item Coletar o \textbf{Ankh}: O segundo artefato se encontra no Mercado
+	Negro e pode ser comprado (ou furtado) de um comerciante específico que
+	vende somente este ítem. O Ankh oferece ao jogador uma segunda vida, caso
+	venha a sucumbir.
+
+	\item Coletar o \textbf{Hedjet}: O terceiro artefato pode ser obtido nas
+	Cavernas de Gelo. Para obtê-lo, o jogador deve localizar um Moai\footnote{
+	Estrutura monolítica com aparência humana. Os Moai foram esculpidos pelos
+	Rapa Nui, habitantes nativos da Ilha de Páscoa.} e se morrer próximo a ele.
+	O Ankh trará o jogador de volta a vida dentro do Moai e permitirá que o
+	jogador colete o Hedjet.
+
+	\item Coletar o \textbf{Cetro}: O quarto e último artefato podde ser obtido
+	na última área do jogo, o Templo. O jogador deve encontrar e derrotar a
+	Múmia, um dos inimigos mais fortes do jogo. Ao morrer, a múmia deixará o
+	Cetro no chão. O Cetro é diferente dos outros itens porque, na verdade, é
+	uma arma. Ele solta raios laser de cor rosa em formato de anel que perseguem
+	e matam o inimigo mais próximo.
+
+	\item Localizar a \textbf{Porta Dourada}: A última etapa do processo é
+	encontrar a entrada da Cidade de Ouro, localizada em algum dos níveis do
+	Templo. O jogador deve abandonar o Cetro e utilizá-lo como chave na Porta
+	Dourada.
+\end{enumerate}
+
+Não é necessário que o jogador acesse as duas áreas secretas do jogo, mas as
+quatro áreas principais devem necessáriamente ser visitadas, a não ser que o
+jogador utilize um atalho. A Figura \ref{fig:spelunky-run} ilustra a relação
+entre as áreas e o progresso de uma partida de Spelunky.
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=.65\textwidth]{fig/spelunky-run.png}
+\caption{\label{fig:spelunky-run}Relação entre as áreas de Spelunky durante uma
+partida do jogo.}
+\end{figure}
 
 
 %----------
