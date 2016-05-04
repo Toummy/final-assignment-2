@@ -4,8 +4,17 @@ jogador incorpora um aventureiro que decide explorar uma caverna misteriosa. O
 local contém tesouros, mas também está repleto de perigos. O objetivo principal
 do jogador é explorar estas cavernas subterrâneas e coletar a maior quantia de
 tesouros possível enquanto evita ser abatido pelos diversos inimigos e
-armadilhas espalhadas pelo ambiente. A Figura \ref{fig:spelunky-gameplay}
-ilustra uma partida do jogo.
+armadilhas espalhadas pelo ambiente.
+
+O jogo se enquadra no gênero \textit{platformer}, estilo de jogo que envolve
+guiar um personagem através de plataformas suspensas e obstáculos para obter
+progresso no jogo, e é fortemente inspirado em alguns dos elementos-chave do
+gênero \textit{roguelike} -- tipo de jogos que se popularizou na década de 80
+caracterizados por sua dificuldade, enfoque em exploração de ambientes e
+narrativa fantasiosa --, como \textbf{geração procedural} e \textbf{morte
+permanente} (Estes elementos são explicados em detalhe nas seções
+\ref{section:spelunky-procgen} e \ref{section:spelunky-structure}). A Figura
+\ref{fig:spelunky-gameplay} ilustra uma partida do jogo.
 
 \begin{figure}[htb!]
 \centering
@@ -14,26 +23,6 @@ ilustra uma partida do jogo.
 elementos do jogo como o jogador, a caverna, os inimigos, os tesouros, entre
 outros.}
 \end{figure}
-
-O jogo se enquadra no gênero \textit{platformer}, estilo de jogo que envolve
-guiar um personagem através de plataformas suspensas e obstáculos para obter
-progresso no jogo. Também faz uso de alguns dos elementos-chave do gênero
-\textit{roguelike} -- tipo de jogos que se popularizou na década de 80
-caracterizados por sua dificuldade, enfoque em exploração de ambientes e
-narrativa fantasiosa --, como \textbf{geração procedural} e \textbf{morte
-permanente}. Os níveis de Spelunky são gerados proceduralmente, ou seja, utiliza
-um algoritmo capaz de gerar automáticamente os elementos que irão compor o
-nível. Isto significa que não existe uma maneira de se memorizar estratégias
-específicas de um mapa em Spelunky, pois ao início de cada partida o mapa é
-gerado de maneira única e os tesouros, itens e obstáculos são dispostos de
-maneira diferente, fazendo com que o jogador tenha que aprender a lidar com os
-elementos do jogo de forma individual, combinar este conhecimento e estabelecer
-uma estratégia para vencer seus obstáculos e ser bem sucedido. A seção
-\ref{section:spelunky-procgen} explica em maiores detalhes o algoritmo utilizado
-para geração procedural. Além disso, o jogo conta com o conceito de morte
-permanente, que faz com que o jogador, ao ter seus pontos de vida esgotados,
-tenha que recomeçar o jogo desde seu início, perdendo todo o progresso obtido
-até então.
 
 
 %----------
@@ -178,9 +167,13 @@ de Ouro são:
 	Dourada.
 \end{enumerate}
 
-Não é necessário que o jogador acesse as duas áreas secretas do jogo, mas as
-quatro áreas principais devem necessáriamente ser visitadas, a não ser que o
-jogador utilize um atalho. A Figura \ref{fig:spelunky-run} ilustra a relação
+Não é necessário que o jogador acesse as duas áreas secretas do jogo durante uma
+partida, mas as quatro áreas principais devem necessáriamente ser visitadas --
+salvo quando o jogador fizer uso de um atalho, abrindo mão da validez de sua
+pontuação. É importante ressaltar que o jogo conta com o conceito de
+\textbf{morte permanente}, que faz com que o jogador, ao ter seus pontos de vida
+esgotados, tenha que recomeçar o jogo desde seu início, perdendo todo o
+progresso obtido até então.  A Figura \ref{fig:spelunky-run} ilustra a relação
 entre as áreas e o progresso de uma partida de Spelunky.
 
 \begin{figure}[htb!]
@@ -222,7 +215,14 @@ coletados e equipados atualmente pelo explorador.
 \section{\label{section:spelunky-procgen}Algoritmo de Geração Procedural de
 Níveis}
 % entrar em detalhes
-
+Os níveis de Spelunky são gerados proceduralmente, ou seja, utiliza
+um algoritmo capaz de gerar automáticamente os elementos que irão compor o
+nível. Isto significa que não existe uma maneira de se memorizar estratégias
+específicas de um mapa em Spelunky, pois ao início de cada partida o mapa é
+gerado de maneira única e os tesouros, itens e obstáculos são dispostos de
+maneira diferente, fazendo com que o jogador tenha que aprender a lidar com os
+elementos do jogo de forma individual, combinar este conhecimento e estabelecer
+uma estratégia para vencer seus obstáculos e ser bem sucedido. 
 
 %----------
 \section{\label{section:spelunky-obstacles}Obstáculos}
