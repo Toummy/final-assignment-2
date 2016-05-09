@@ -224,6 +224,89 @@ maneira diferente, fazendo com que o jogador tenha que aprender a lidar com os
 elementos do jogo de forma individual, combinar este conhecimento e estabelecer
 uma estratégia para vencer seus obstáculos e ser bem sucedido. 
 
+O algoritmo de geração procedural de níveis de Spelunky é dividido em três
+etapas: a \textbf{geração do caminho de solução}, a \textbf{geração de salas} e
+a \textbf{disposição de entidades}. Cada uma destas etapas será explicada em
+profundidade nas seções \ref{section:spelunky-procgen-path},
+\ref{section:spelunky-procgen-rooms} e \ref{section:spelunky-procgen-entities},
+que virão a seguir.
+
+\subsection{\label{section:spelunky-procgen-path}Geração do Caminho de Solução}
+Nesta etapa do algoritmo é escolhido o caminho solução do nível. Cada nível em
+Spelunky é construído a partir de 16 \textbf{salas}, dispostas em uma grade 4
+por 4. Primeiramente, o gerador escolhe uma das quatro salas da parte superior
+para colocar a entrada do nível. Escolhido o local da entrada, o algoritmo gera
+um caminho até a saída através de movimentos aleatórios na grade para a
+esquerda, para a direita e para baixo  -- aleatóriamente ou quando atinge um dos
+extremos da grade. A saída sempre se encontra em uma das quatro salas da parte
+inferior do mapa.
+
+Com a finalidade de informar para as próximas etapas do algoritmo quais salas
+pertencem ao caminho solução e quais não pertencem, elas são identificadas da
+seguinte maneira:
+
+\begin{itemize}
+	\item \textbf{0}: Sala que não foi visitada pelo gerador e que, portanto,
+	não faz parte do caminho solução.
+
+	\item \textbf{1}: Sala que contém saídas na esquerda e na direita. 
+
+	\item \textbf{2}: Sala que contém saídas na esquerda, na direita e embaixo.
+
+	\item \textbf{3}: Sala que contém saídas na esquerda, na direita e em cima.
+\end{itemize}
+
+As salas que fazem parte do caminho solução são transponíveis do início ao fim
+sem o uso de bombas, cordas ou outros equipamentos. Já as salas que não fazem
+parte do caminho solução não possuem esta garantia, podendo ser salas
+completamente seladas somente acessíveis utilizando algum equipamento ou
+destruindo parte do terreno. A Figura \ref{fig:spelunky-procgen-path}
+exemplifica esta etapa do algoritmo.
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=.65\textwidth]{fig/spelunky-procgen-path.png}
+\caption{\label{fig:spelunky-procgen-path}Exemplo de caminho solução gerado na
+primeira etapa do algoritmo de geração procedural de níveis de Spelunky.}
+\end{figure}
+
+\subsection{\label{section:spelunky-procgen-rooms}Geração de Salas}
+Com os tipos de salas definidos, a próxima etapa do algoritmo é gerar
+separadamente as salas que irão compor o nível. Para fazer isto, o gerador se
+baseia em \textbf{modelos} de salas pré-estabelecidos pelo desenvolvedor, sendo
+que cada tipo de sala possui em torno de 6 a 12 modelos. Cada sala em Spelunky é
+representada por uma grade 10 por 8 de \textit{tiles}\footnote{Tipo de
+representação visual muito utilizada por jogos 2D para dispor os elementos de um
+jogo em forma de grade, onde cada elemento se chama \textit{tile}.} e os modelos
+de salas são descritos através de arquivos contendo uma sequência de 80
+caracteres. A Tabela \ref{tab:spelunky-procgen-rooms-tiles} lista os diversos
+tipos de \textit{tiles} que podem ser utilizados.
+
+\begin{table}[htb]
+\begin{center}
+\caption{\label{tab:spelunky-procgen-rooms-tiles}Lista de tipos de
+\textit{tiles} utilizados pelo gerador de níveis de Spelunky.}
+\begin{tabular}{| c | c |}
+\hline
+\textbf{Tipo} & \textbf{Descrição} \\
+\hline
+0 & Espaço vazio \\
+1 & Espaço sólido (100\% de chance) \\
+L & Escada \\
+P & Topo de escada \\
+2 & Espaço sólido (50\% de chance) \\
+5 & Conjunto (aéreo) \\
+6 & Conjunto (terrestre) \\
+7 & Espinhos (33\% de chance) \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\subsection{\label{section:spelunky-procgen-entities}Disposição de Entidades}
+
+
 %----------
 \section{\label{section:spelunky-obstacles}Obstáculos}
 % inimigos (listar)
