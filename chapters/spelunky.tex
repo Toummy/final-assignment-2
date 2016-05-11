@@ -232,55 +232,68 @@ profundidade nas seções \ref{section:spelunky-procgen-path},
 que virão a seguir.
 
 \subsection{\label{section:spelunky-procgen-path}Geração do Caminho de Solução}
-Nesta etapa do algoritmo é escolhido o caminho solução do nível. Cada nível em
-Spelunky é construído a partir de 16 \textbf{salas}, dispostas em uma grade 4
-por 4. Primeiramente, o gerador escolhe uma das quatro salas da parte superior
-para colocar a entrada do nível. Escolhido o local da entrada, o algoritmo gera
-um caminho até a saída através de movimentos aleatórios na grade para a
-esquerda, para a direita e para baixo  -- aleatóriamente ou quando atinge um dos
-extremos da grade. A saída sempre se encontra em uma das quatro salas da parte
-inferior do mapa.
-
-Com a finalidade de informar para as próximas etapas do algoritmo quais salas
-pertencem ao caminho solução e quais não pertencem, elas são identificadas da
-seguinte maneira:
+Cada nível em Spelunky é construído a partir de 16 \textbf{salas}, dispostas em
+uma grade 4 por 4. Nesta etapa do algoritmo é escolhido o \textbf{caminho
+solução} do nível, uma sequência de salas que formam um caminho desobstruído da
+entrada até a saída. Existem quatro tipos diferentes de salas possíveis,
+identificadas por um número de 0 a 3:
 
 \begin{itemize}
-	\item \textbf{0}: Sala que não foi visitada pelo gerador e que, portanto,
-	não faz parte do caminho solução.
-
-	\item \textbf{1}: Sala que contém saídas na esquerda e na direita. 
-
-	\item \textbf{2}: Sala que contém saídas na esquerda, na direita e embaixo.
-
-	\item \textbf{3}: Sala que contém saídas na esquerda, na direita e em cima.
+	\item \textbf{0}: não faz parte do caminho solução.
+	\item \textbf{1}: contém saídas na esquerda e na direita. 
+	\item \textbf{2}: contém saídas na esquerda, na direita e embaixo.
+	\item \textbf{3}: contém saídas na esquerda, na direita e em cima.
 \end{itemize}
+
+Primeiramente, o gerador escolhe uma das quatro salas da parte superior para
+colocar a entrada do nível. Escolhido o local da entrada, o algoritmo gera um
+caminho até a saída através de movimentos aleatórios na grade de salas. Para
+tal, seleciona um número aletório de 1 a 5. Caso o resultado seja 1 ou 2, o
+gerador coloca uma sala à esquerda. Se o resultado for 3 ou 4, o gerador coloca
+uma sala à direita. Por fim, se o resultado for 5, o gerador coloca uma sala
+abaixo da posição atual. Caso o gerador atinja um dos extremos horizontais da
+grade, ele coloca uma sala abaixo e inverte a direção horizontal do movimento
+anterior.
+
+Sempre que uma nova sala é colocada no caminho solução, ela pertence ao tipo 1
+de salas. Assim, se o gerador se movimentar horizontalmente, tem-se a garantia
+de saídas na esquerda e na direita. Contudo, se o gerador desejar se mover para
+baixo, ele primeiramente deve modificar o tipo da sala atual de 1 para 2,
+garantindo uma saída na parte inferior que abrirá passagem para a sala abaixo.
+Logo após esta modificação, a próxima sala será sempre dos tipos 2 ou 3, pois
+somente esses tipos de sala garantem que a conexão vertical se dará da maneira
+correta, além de possuirem saídas horizontais, permitindo a continuidade do
+algoritmo. Caso o algoritmo se encontre na última linha da grade e queira
+colocar uma sala para baixo, ele seleciona aquela sala para conter a saída do
+nível. Assim, a saída sempre se encontrará em uma das quatro salas da parte
+inferior do mapa.
 
 As salas que fazem parte do caminho solução são transponíveis do início ao fim
 sem o uso de bombas, cordas ou outros equipamentos. Já as salas que não fazem
 parte do caminho solução não possuem esta garantia, podendo ser salas
 completamente seladas somente acessíveis utilizando algum equipamento ou
 destruindo parte do terreno. A Figura \ref{fig:spelunky-procgen-path}
-exemplifica esta etapa do algoritmo.
+exemplifica um resultado desta etapa do algoritmo.
 
 \begin{figure}[htb!]
 \centering
 \includegraphics[width=.65\textwidth]{fig/spelunky-procgen-path.png}
 \caption{\label{fig:spelunky-procgen-path}Exemplo de caminho solução gerado na
-primeira etapa do algoritmo de geração procedural de níveis de Spelunky.}
+primeira etapa do algoritmo de geração procedural de níveis de Spelunky. Os
+\textbf{X} representam a entrada (parte superior) e a saída (parte inferior).}
 \end{figure}
 
 \subsection{\label{section:spelunky-procgen-rooms}Geração de Salas}
-Com os tipos de salas definidos, a próxima etapa do algoritmo é gerar
-separadamente as salas que irão compor o nível. Para fazer isto, o gerador se
-baseia em \textbf{modelos} de salas pré-estabelecidos pelo desenvolvedor, sendo
-que cada tipo de sala possui em torno de 6 a 12 modelos. Cada sala em Spelunky é
-representada por uma grade 10 por 8 de \textit{tiles}\footnote{Tipo de
-representação visual muito utilizada por jogos 2D para dispor os elementos de um
-jogo em forma de grade, onde cada elemento se chama \textit{tile}.} e os modelos
-de salas são descritos através de arquivos contendo uma sequência de 80
-caracteres. A Tabela \ref{tab:spelunky-procgen-rooms-tiles} lista os diversos
-tipos de \textit{tiles} que podem ser utilizados.
+A próxima etapa do algoritmo é gerar separadamente as salas que irão compor o
+nível. Para fazer isto, o gerador se baseia em \textbf{modelos} de
+\textit{layouts} de salas pré-estabelecidos pelo desenvolvedor, sendo que cada
+tipo possui em torno de 6 a 12 modelos. Cada sala em Spelunky é representada por
+uma grade 10 por 8 de \textit{tiles}\footnote{Tipo de representação visual muito
+utilizada por jogos 2D para dispor os elementos de um jogo em forma de grade,
+onde cada elemento se chama \textit{tile}.} e os modelos são descritos através
+de arquivos de texto contendo uma sequência de 80 caracteres. A Tabela
+\ref{tab:spelunky-procgen-rooms-tiles} lista os diversos tipos de \textit{tiles}
+que podem ser utilizados.
 
 \begin{table}[htb]
 \begin{center}
@@ -295,14 +308,14 @@ tipos de \textit{tiles} que podem ser utilizados.
 L & Escada \\
 P & Topo de escada \\
 2 & Espaço sólido (50\% de chance) \\
+4 & Bloco de empurrar (25\% de chance) \\
 5 & Conjunto (aéreo) \\
 6 & Conjunto (terrestre) \\
-7 & Espinhos (33\% de chance) \\
+7 & Armadilha de espinhos (33\% de chance) \\
 \hline
 \end{tabular}
 \end{center}
 \end{table}
-
 
 \subsection{\label{section:spelunky-procgen-entities}Disposição de Entidades}
 
