@@ -214,7 +214,6 @@ coletados e equipados atualmente pelo explorador.
 %----------
 \section{\label{section:spelunky-procgen}Algoritmo de Geração Procedural de
 Níveis}
-% entrar em detalhes
 Os níveis de Spelunky são gerados proceduralmente, ou seja, utiliza
 um algoritmo capaz de gerar automáticamente os elementos que irão compor o
 nível. Isto significa que não existe uma maneira de se memorizar estratégias
@@ -270,10 +269,10 @@ inferior do mapa.
 
 As salas que fazem parte do caminho solução são transponíveis do início ao fim
 sem o uso de bombas, cordas ou outros equipamentos. Já as salas que não fazem
-parte do caminho solução não possuem esta garantia, podendo ser salas
-completamente seladas somente acessíveis utilizando algum equipamento ou
-destruindo parte do terreno. A Figura \ref{fig:spelunky-procgen-path}
-exemplifica um resultado desta etapa do algoritmo.
+parte do caminho solução não possuem esta garantia, podendo ser completamente
+seladas e somente acessíveis utilizando algum equipamento ou destruindo parte
+do terreno. A Figura \ref{fig:spelunky-procgen-path} exemplifica um resultado
+desta etapa do algoritmo.
 
 \begin{figure}[htb!]
 \centering
@@ -287,35 +286,67 @@ primeira etapa do algoritmo de geração procedural de níveis de Spelunky. Os
 A próxima etapa do algoritmo é gerar separadamente as salas que irão compor o
 nível. Para fazer isto, o gerador se baseia em \textbf{modelos} de
 \textit{layouts} de salas pré-estabelecidos pelo desenvolvedor, sendo que cada
-tipo possui em torno de 6 a 12 modelos. Cada sala em Spelunky é representada por
-uma grade 10 por 8 de \textit{tiles}\footnote{Tipo de representação visual muito
-utilizada por jogos 2D para dispor os elementos de um jogo em forma de grade,
-onde cada elemento se chama \textit{tile}.} e os modelos são descritos através
-de arquivos de texto contendo uma sequência de 80 caracteres. A Tabela
-\ref{tab:spelunky-procgen-rooms-tiles} lista os diversos tipos de \textit{tiles}
-que podem ser utilizados.
+tipo possui em torno de 6 a 12 modelos. Estes modelos são descritos através de
+arquivos de texto comuns. A Figura \ref{fig:spelunky-procgen-room-template}
+ilustra um exemplo de modelo utilizado pelo gerador.
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=.35\textwidth]{fig/spelunky-procgen-room-template.png}
+\caption{\label{fig:spelunky-procgen-room-template}Exemplo de modelo utilizado
+para gerar uma sala de Spelunky.}
+\end{figure}
+
+Como pode ser observado na Figura \ref{fig:spelunky-procgen-room-template}, são
+utilizados caracteres comuns para realizar a descrição do \textit{layout} de uma
+sala. Cada caractere possui um significado diferente, e informam ao gerador que
+tipo de \textit{tile}\footnote{Tipo de representação visual muito utilizada por
+jogos 2D para dispor os elementos de um jogo em forma de grade, onde cada
+elemento se chama \textit{tile}.} deve ser utilizado em sua posição. Uma sala em
+Spelunky é representada por uma grade 10 por 8 de \textit{tiles}, o que
+significa que cada arquivo de modelo deve conter exatamente 80 caracteres. A
+Tabela \ref{tab:spelunky-procgen-rooms-tiles} lista os caracteres que podem ser
+utilizados para realizar a construção de um modelo, bem como suas descrições.
+Alguns caracteres são \textbf{estáticos}, ou seja, sempre que aparecem, serão
+substituídos por seu \textit{tile} correspondente. Contudo, alguns caracteres
+são \textbf{probabilísticos}, o que significa que, quando aparecem, existe uma
+chance de serem substituídos por seu \textit{tile} correspondente ou serem
+substituídos por um espaço vazio.
 
 \begin{table}[htb]
 \begin{center}
-\caption{\label{tab:spelunky-procgen-rooms-tiles}Lista de tipos de
-\textit{tiles} utilizados pelo gerador de níveis de Spelunky.}
-\begin{tabular}{| c | c |}
+\caption{\label{tab:spelunky-procgen-rooms-tiles}Lista de caracteres que podem
+ser utilizados para descrever um modelo de sala de Spelunky.}
+\begin{tabular}{| c | c | c |}
 \hline
-\textbf{Tipo} & \textbf{Descrição} \\
+\textbf{Caractere} & \textbf{Descrição} \\
 \hline
 0 & Espaço vazio \\
-1 & Espaço sólido (100\% de chance) \\
+1 & Espaço sólido \\
 L & Escada \\
-P & Topo de escada \\
+P & Escada com plataforma auxiliar \\
+5 & Conjunto aéreo \\
+6 & Conjunto terrestre \\
 2 & Espaço sólido (50\% de chance) \\
 4 & Bloco de empurrar (25\% de chance) \\
-5 & Conjunto (aéreo) \\
-6 & Conjunto (terrestre) \\
 7 & Armadilha de espinhos (33\% de chance) \\
 \hline
 \end{tabular}
 \end{center}
 \end{table}
+
+Os conjuntos aéreo e terrestre são um caso especial. Eles não são mapeados para
+um único \textit{tile}, e sim para um conjunto 5 por 3 de \textit{tiles}. Estes
+conjuntos também utilizam modelos pré-definidos, descritos através de um arquivo
+de texto simples, utilizando os mesmos caracteres apresentados na Tabela
+\ref{tab:spelunky-procgen-rooms-tiles} -- com exceção dos caracteres "5" e "6".
+A diferença entre os tipos de conjunto é simples: um conjunto terrestre deve ser
+colocado próximo ao chão e um conjunto aéreo deve ser colocado no ar. 
+
+Com a descrição dos caracteres em mão, podemos realizar uma interpretação do
+modelo ilustrado na Figura \ref{fig:spelunky-procgen-room-template}. O modelo
+descreve uma sala com chão, uma parede à direita e uma escada que leva a uma
+pequena passagem, obstruída por um bloco de empurrar. 
 
 \subsection{\label{section:spelunky-procgen-entities}Disposição de Entidades}
 
