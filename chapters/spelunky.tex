@@ -225,70 +225,53 @@ uma estratégia para vencer seus obstáculos e ser bem sucedido.
 
 O algoritmo de geração procedural de níveis de Spelunky é dividido em três
 etapas: a \textbf{geração do caminho de solução}, a \textbf{geração de salas} e
-a \textbf{disposição de entidades}. Cada uma destas etapas será explicada em
-profundidade nas seções \ref{section:spelunky-procgen-path},
-\ref{section:spelunky-procgen-rooms} e \ref{section:spelunky-procgen-entities},
-que virão a seguir.
+a \textbf{disposição de entidades}.
 
 \subsection{\label{section:spelunky-procgen-path}Geração do Caminho de Solução}
 Cada nível em Spelunky é construído a partir de 16 \textbf{salas}, dispostas em
 uma grade 4 por 4. Nesta etapa do algoritmo é escolhido o \textbf{caminho
 solução} do nível, uma sequência de salas que formam um caminho desobstruído da
-entrada até a saída. Existem quatro tipos diferentes de salas possíveis,
-identificadas por um número de 0 a 3:
-
-\begin{itemize}
-	\item \textbf{0}: não faz parte do caminho solução.
-	\item \textbf{1}: contém saídas na esquerda e na direita. 
-	\item \textbf{2}: contém saídas na esquerda, na direita e embaixo.
-	\item \textbf{3}: contém saídas na esquerda, na direita e em cima.
-\end{itemize}
-
-Primeiramente, o gerador escolhe uma das quatro salas da parte superior para
-colocar a entrada do nível. Escolhido o local da entrada, o algoritmo gera um
-caminho até a saída através de movimentos aleatórios na grade de salas. Para
-tal, seleciona um número aletório de 1 a 5. Caso o resultado seja 1 ou 2, o
-gerador coloca uma sala à esquerda. Se o resultado for 3 ou 4, o gerador coloca
-uma sala à direita. Por fim, se o resultado for 5, o gerador coloca uma sala
-abaixo da posição atual. Caso o gerador atinja um dos extremos horizontais da
-grade, ele coloca uma sala abaixo e inverte a direção horizontal do movimento
-anterior.
-
-Sempre que uma nova sala é colocada no caminho solução, ela pertence ao tipo 1
-de salas. Assim, se o gerador se movimentar horizontalmente, tem-se a garantia
-de saídas na esquerda e na direita. Contudo, se o gerador desejar se mover para
-baixo, ele primeiramente deve modificar o tipo da sala atual de 1 para 2,
-garantindo uma saída na parte inferior que abrirá passagem para a sala abaixo.
-Logo após esta modificação, a próxima sala será sempre dos tipos 2 ou 3, pois
-somente esses tipos de sala garantem que a conexão vertical se dará da maneira
-correta, além de possuirem saídas horizontais, permitindo a continuidade do
-algoritmo. Caso o algoritmo se encontre na última linha da grade e queira
-colocar uma sala para baixo, ele seleciona aquela sala para conter a saída do
-nível. Assim, a saída sempre se encontrará em uma das quatro salas da parte
+entrada até a saída. Primeiramente, o gerador escolhe uma das quatro salas da
+parte superior para colocar a entrada do nível. Escolhido o local da entrada, o
+algoritmo gera um caminho até a saída através de movimentos aleatórios para a
+esquerda, para a direita e para baixo na grade de salas. Caso o gerador atinja
+um dos extremos horizontais da grade, ele se desloca para baixo e inverte a
+direção horizontal do movimento anterior. A saída do nível é colocada quando o
+algoritmo chega na última linha da grade e tenta realizar um movimento para
+baixo. Assim, a saída sempre se encontrará em uma das quatro salas da parte
 inferior do mapa.
 
-As salas que fazem parte do caminho solução são transponíveis do início ao fim
-sem o uso de bombas, cordas ou outros equipamentos. Já as salas que não fazem
-parte do caminho solução não possuem esta garantia, podendo ser completamente
-seladas e somente acessíveis utilizando algum equipamento ou destruindo parte
-do terreno. A Figura \ref{fig:spelunky-procgen-path} exemplifica um resultado
-desta etapa do algoritmo.
+Todas as salas que fazem parte do caminho solução são transponíveis do início ao
+fim sem o uso de bombas, cordas ou outros equipamentos. Além disso, sempre
+possuem aberturas na esquerda e na direita. As salas em que o caminho realiza
+uma descida possuem aberturas embaixo e as salas onde o caminho chega de uma
+descida possuem aberturas em cima. Isto garante que haverá conectividade entre
+todas as salas do caminho principal. Já as salas que não fazem parte do caminho
+solução não possuem esta garantia, podendo ser completamente seladas e somente
+acessíveis utilizando algum equipamento ou destruindo parte do terreno. Estas
+salas fora do caminho solução também podem ser lojas, altares de sacrifício,
+altares de ídolos dourados, entre outras. A Figura
+\ref{fig:spelunky-procgen-path} exemplifica um resultado desta etapa do
+algoritmo.
 
 \begin{figure}[htb!]
 \centering
 \includegraphics[width=.65\textwidth]{fig/spelunky-procgen-path.png}
 \caption{\label{fig:spelunky-procgen-path}Exemplo de caminho solução gerado na
-primeira etapa do algoritmo de geração procedural de níveis de Spelunky. Os
-\textbf{X} representam a entrada (parte superior) e a saída (parte inferior).}
+primeira etapa do algoritmo de geração procedural de níveis de Spelunky.}
 \end{figure}
 
 \subsection{\label{section:spelunky-procgen-rooms}Geração de Salas}
 A próxima etapa do algoritmo é gerar separadamente as salas que irão compor o
-nível. Para fazer isto, o gerador se baseia em \textbf{modelos} de
-\textit{layouts} de salas pré-estabelecidos pelo desenvolvedor, sendo que cada
-tipo possui em torno de 6 a 12 modelos. Estes modelos são descritos através de
-arquivos de texto comuns. A Figura \ref{fig:spelunky-procgen-room-template}
-ilustra um exemplo de modelo utilizado pelo gerador.
+nível. Para fazer isto, o gerador se baseia em \textit{layouts} de salas
+pré-estabelecidos pelo desenvolvedor, sendo que cada tipo possui em torno de 6 a
+12 \textbf{modelos}. Estes modelos são descritos através de sequências de
+caracteres comuns. Uma sala em Spelunky é representada por uma grade 10 por 8 de
+\textit{tiles}\footnote{Tipo de representação visual muito utilizada por jogos
+2D para dispor os elementos de um jogo em forma de grade, onde cada elemento se
+chama \textit{tile}.}, o que significa que cada modelo deve conter exatamente 80
+caracteres. A Figura \ref{fig:spelunky-procgen-room-template} ilustra um exemplo
+de modelo utilizado pelo gerador.
 
 \begin{figure}[htb!]
 \centering
@@ -297,58 +280,58 @@ ilustra um exemplo de modelo utilizado pelo gerador.
 para gerar uma sala de Spelunky.}
 \end{figure}
 
-Como pode ser observado na Figura \ref{fig:spelunky-procgen-room-template}, são
-utilizados caracteres comuns para realizar a descrição do \textit{layout} de uma
-sala. Cada caractere possui um significado diferente, e informam ao gerador que
-tipo de \textit{tile}\footnote{Tipo de representação visual muito utilizada por
-jogos 2D para dispor os elementos de um jogo em forma de grade, onde cada
-elemento se chama \textit{tile}.} deve ser utilizado em sua posição. Uma sala em
-Spelunky é representada por uma grade 10 por 8 de \textit{tiles}, o que
-significa que cada arquivo de modelo deve conter exatamente 80 caracteres. A
-Tabela \ref{tab:spelunky-procgen-rooms-tiles} lista os caracteres que podem ser
-utilizados para realizar a construção de um modelo, bem como suas descrições.
-Alguns caracteres são \textbf{estáticos}, ou seja, sempre que aparecem, serão
-substituídos por seu \textit{tile} correspondente. Contudo, alguns caracteres
-são \textbf{probabilísticos}, o que significa que, quando aparecem, existe uma
-chance de serem substituídos por seu \textit{tile} correspondente ou serem
-substituídos por um espaço vazio.
+Cada caractere possui um significado diferente, informando ao gerador que tipo
+de \textit{tile} deve ser utilizado em sua posição. Eles podem ser
+\textbf{estáticos} ou \textbf{probabilísticos}. Os estáticos sempre são
+substituídos pelo seu \textit{tile} correspondente. Os caracteres "1" (bloco
+sólido), "L" (escada) e "P" (escada com plataforma) são exemplos deste tipo. Já
+os probabilísticos possuem uma chance de serem substituídos pelo seu
+\textit{tile} correspondente ou por um espaço vazio. Os caracteres "2" (50\% de
+chance de ocorrer um bloco sólido) e "4" (25\% de chance de ocorrer um bloco de
+empurrar) são exemplos do segundo tipo.
 
-\begin{table}[htb]
-\begin{center}
-\caption{\label{tab:spelunky-procgen-rooms-tiles}Lista de caracteres que podem
-ser utilizados para descrever um modelo de sala de Spelunky.}
-\begin{tabular}{| c | c | c |}
-\hline
-\textbf{Caractere} & \textbf{Descrição} \\
-\hline
-0 & Espaço vazio \\
-1 & Espaço sólido \\
-L & Escada \\
-P & Escada com plataforma auxiliar \\
-5 & Conjunto aéreo \\
-6 & Conjunto terrestre \\
-2 & Espaço sólido (50\% de chance) \\
-4 & Bloco de empurrar (25\% de chance) \\
-7 & Armadilha de espinhos (33\% de chance) \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
+Os caracteres "5" e "6" possuem uma característica especial. Eles não são
+mapeados para um único \textit{tile}, e sim para um conjunto 5 por 3 de
+\textit{tiles}, chamados de \textbf{obstáculos}. Estes conjuntos também utilizam
+sequências de caracteres pré-definidos para descrever seu \textit{layout}.
+Existem dois tipos de conjuntos, os aéreos e os terrestres. A diferença entre os
+tipos de conjunto é simples: um conjunto terrestre deve ser colocado próximo ao
+chão e um conjunto aéreo deve ser colocado no ar. Quando o gerador está
+realizando a montagem da sala e detecta um caractere de obstáculo, ele realiza
+uma substituição por um dos modelos disponíveis. A Figura
+\ref{fig:spelunky-procgen-room-chunk} exemplifica um modelo de obstáculos.
 
-Os conjuntos aéreo e terrestre são um caso especial. Eles não são mapeados para
-um único \textit{tile}, e sim para um conjunto 5 por 3 de \textit{tiles}. Estes
-conjuntos também utilizam modelos pré-definidos, descritos através de um arquivo
-de texto simples, utilizando os mesmos caracteres apresentados na Tabela
-\ref{tab:spelunky-procgen-rooms-tiles} -- com exceção dos caracteres "5" e "6".
-A diferença entre os tipos de conjunto é simples: um conjunto terrestre deve ser
-colocado próximo ao chão e um conjunto aéreo deve ser colocado no ar. 
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=.15\textwidth]{fig/spelunky-procgen-room-chunk.png}
+\caption{\label{fig:spelunky-procgen-room-chunk}Exemplo de modelo de conjunto de
+\textit{tiles} utilizado para gerar uma sala de Spelunky.}
+\end{figure}
+
+O uso destes conjuntos ajuda a aumentar a aleatoriedade dos \textit{layouts} das
+salas, trazendo a sensação de uma variedade maior, mesmo que o número de modelos
+de salas seja pequeno. O resultado da combinação do modelo da sala da
+representada na Figura \ref{fig:spelunky-procgen-room-template} com o modelo de
+obstáculos representado na Figura \ref{fig:spelunky-procgen-room-chunk} é
+evidenciado na Figura \ref{fig:spelunky-procgen-room-combination}.
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=.35\textwidth]{fig/spelunky-procgen-room-combination.png}
+\caption{\label{fig:spelunky-procgen-room-combination}Exemplo de um modelo de
+sala e um modelo de conjunto de \textit{tiles} utilizados para gerar uma sala de
+Spelunky.}
+\end{figure}
 
 Com a descrição dos caracteres em mão, podemos realizar uma interpretação do
-modelo ilustrado na Figura \ref{fig:spelunky-procgen-room-template}. O modelo
-descreve uma sala com chão, uma parede à direita e uma escada que leva a uma
-pequena passagem, obstruída por um bloco de empurrar. 
+modelo ilustrado na Figura \ref{fig:spelunky-procgen-room-combination}. O modelo
+descreve uma sala com chão, uma parede à direita, uma escada que leva a uma
+pequena passagem, obstruída por um bloco de empurrar, e alguns blocos aéreos que
+o jogador pode utilizar para se movimentar. 
 
 \subsection{\label{section:spelunky-procgen-entities}Disposição de Entidades}
+A última etapa do algoritmo envolve a disposição dos inimigos, tesouros, itens e
+armadilhas.
 
 
 %----------
