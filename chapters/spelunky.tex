@@ -330,8 +330,45 @@ pequena passagem, obstruída por um bloco de empurrar, e alguns blocos aéreos q
 o jogador pode utilizar para se movimentar. 
 
 \subsection{\label{section:spelunky-procgen-entities}Disposição de Entidades}
-A última etapa do algoritmo envolve a disposição dos inimigos, tesouros, itens e
-armadilhas.
+A última etapa do algoritmo envolve a disposição dos inimigos, tesouros e
+armadilhas. O algoritmo percorre todos os \textit{tiles} sólidos do nível a fim
+de decidir se colocará uma entidade naquele local ou em suas proximidades.  Cada
+tipo de entidade possui restrições diferentes:
+
+\begin{enumerate}
+	\item Inimigos: necessitam de espaços vazios acima ou abaixo do
+	\textit{tile} sendo verificado atualmente. Inimigos não são colocados em
+	locais muito apertados, dentro da água ou dentro da sala que contém a
+	entrada do nível.
+
+	\item Tesouros: podem ser gerados acima de qualquer \textit{tile} sólido,
+	mas a chance e valor do tesouro aumentam para locais apertados e em buracos
+	no chão. Não são gerados perto da entrada e da saída.
+
+	\item Armadilhas: necessitam de uma sequência de, no mínimo, 2 espaços
+	vazios para a esquerda ou para a direita. São geradas do início até a metade
+	do nível, não muito próximas da entrada.
+\end{enumerate}
+
+Cada entidade possui uma chance diferente de ocorrer a cada verificação, e as
+probabilidades de ocorrência variam para cada área do jogo. Por exemplo, para
+cada \textit{tile} na área das Cavernas, um morcego possui uma chance de 1.66\%
+de ser gerado e um homem das cavernas possui uma chance de 0.12\% de ser gerado.
+O algoritmo busca, através destas porcentagens, garantir que algumas entidades
+apareçam mais frequentemente que outras, balanceando a dificuldade do jogo.
+
+A Figura \ref{fig:spelunky-procgen-examples} exemplifica alguns níveis gerados
+pelo algoritmo.
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=.35\textwidth]{fig/spelunky-procgen-examples.png}
+\caption{\label{fig:spelunky-procgen-examples} Exemplos do resultado final do
+algoritmo de geração de níveis de Spelunky para a área das Cavernas.}
+\end{figure}
+
+% TODO:usar isto para tirar screenshots dos níveis prontos:
+% https://takenapeveryday.wordpress.com/ 
 
 
 %----------
