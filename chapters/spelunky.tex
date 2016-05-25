@@ -345,9 +345,8 @@ tipo de entidade possui restrições diferentes:
 	mas a chance e valor do tesouro aumentam para locais apertados e em buracos
 	no chão. Não são gerados perto da entrada e da saída.
 
-	\item Armadilhas: necessitam de uma sequência de, no mínimo, 2 espaços
-	vazios para a esquerda ou para a direita. São geradas do início até a metade
-	do nível, não muito próximas da entrada.
+	\item Armadilhas: os requisitos variam muito de acordo com o tipo de
+	armadilha, que podem ser espinhos, lança-flechas, pedregulhos, entre outros.
 \end{enumerate}
 
 Cada entidade possui uma chance diferente de ocorrer a cada verificação, e as
@@ -372,9 +371,66 @@ algoritmo de geração de níveis de Spelunky para a área das Cavernas.}
 
 %----------
 \section{\label{section:spelunky-obstacles}Obstáculos}
-% inimigos (listar)
-% armadilhas (listar)
-% ambiente (quedas, lava, etc.)
+O universo de Spelunky é repleto de obstáculos, cujo único objetivo é impedir
+que o jogador saia vivo de dentro das cavernas que está explorando. Estes
+obstáculos podem ser \textbf{armadilhas} ou \textbf{monstros}. As armadilhas
+são objetos projetados para punir invasores indesejados e os monstros são os
+habitantes da caverna. Existem diversos tipos de armadilhas e monstros, e alguns
+destes inclusive causam a morte instantânea do jogador. A Tabela
+\ref{tab:spelunky-obstacles} apresenta a relação de monstros e armadilhas, bem
+como uma breve descrição de seus comportamentos.
+
+\begin{table}[htb!]
+\centering
+\caption{Objetivos por Iteração}
+\label{tab:spelunky-obstacles}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Obstáculo}	& \textbf{Descrição} \\ \hline
+Espinhos			& TBD \\ \hline
+Lança-flechas		& TBD \\ \hline
+Pedregulho			& TBD \\ \hline
+Armadilha Tiki		& TBD \\ \hline
+Armadilha de salto	& TBD \\ \hline
+Campo de força		& TBD \\ \hline
+Armadilha esmagadora& TBD \\ \hline
+Teto espinhento		& TBD \\ \hline
+Gelo fino			& TBD \\ \hline
+Baú falso			& TBD \\ \hline
+Vaso falso			& TBD \\ \hline
+Cobra				& TBD \\ \hline
+Morçego				& TBD \\ \hline
+Aranha				& TBD \\ \hline
+Aranha gigante		& TBD \\ \hline
+Esqueleto			& TBD \\ \hline
+Homem das Cavernas	& TBD \\ \hline
+Sapo				& TBD \\ \hline
+Sapo flamejante		& TBD \\ \hline
+Planta carnívora	& TBD \\ \hline
+Piranha				& TBD \\ \hline
+Piranha gigante		& TBD \\ \hline
+Macaco				& TBD \\ \hline
+Jiang Shi			& TBD \\ \hline
+Vampiro				& TBD \\ \hline
+Fantasma			& TBD \\ \hline
+Ieti				& TBD \\ \hline
+Ieti rei			& TBD \\ \hline
+Alienígena			& TBD \\ \hline
+OVNI				& TBD \\ \hline
+Alienígena Lorde	& TBD \\ \hline
+Homem Gavião		& TBD \\ \hline
+Homem Magma			& TBD \\ \hline
+Múmia				& TBD \\ \hline
+Olmec				& TBD \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+
+Além das armadilhas e monstros, o jogador também deve ter cuidado com os perigos
+naturais presentes na caverna, como poços de lava e quedas de lugares muito
+altos, pois também pode ser ferido por eles.
 
 \begin{mdframed}[backgroundcolor=green!20]
 \begin{itemize}
