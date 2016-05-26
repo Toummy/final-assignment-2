@@ -1,39 +1,46 @@
-\chapter{\label{chap:project}Projeto}
+\chapter{\label{chap:project}Projeto} 
+Conforme detalhado no capítulo \ref{chap:spelunkbots}, o \textit{SpelunkBots}
+disponibiliza duas opções de linguagem de programação para realizar o
+desenvolvimento dos \textit{bots}: \textit{GML} ou C++. Portanto, a primeira
+etapa para dar início ao projeto é definir a linguagem de programação a ser
+utilizada. O desenvolvimento utilizando a linguagem \textit{GML} é limitado,
+pois deve ocorrer inteiramente dentro do \textit{GameMaker} e o uso de
+bibliotecas externas é extremamente restrito. Além disso, C++ é uma linguagem
+amadurecida e possui bibliotecas que implementam
+\textit{NEAT}\footnote{http://nn.cs.utexas.edu/?neat-c} e \textit{Behavior
+Trees}. O uso de tais bibliotecas salvam muito tempo de desenvolvimento,
+permitindo que o foco do desenvolvimento seja somente nos \textit{bots}, e não
+na arquitetura. Por tais motivos, optamos por realizar o desenvolvimento dos
+\textit{bots} em C++.
 
-A seguir, apresentamos os detalhes de como faremos a implementação de
-\textit{bots} para o jogo Spelunky, explicando as escolhas feitas, além de como
-as técnicas estudadas podem ser aplicadas. Conforme detalhado no capítulo
-\ref{chap:spelunkbots}, GML ou C++ podem ser escolhidas como linguagem de
-programação. Fizemos a escolha da linguagem \textbf{C++} principalmente pelo
-fato dela ser bastante conhecida e muito bem documentada. Além disso, a
-comunidade de usuários da linguagem é bastante ativa e temos várias bibliotecas
-desenvolvidas com ela. Podemos, portanto, fazer o uso dessas bibliotecas para o
-desenvolvimento desse trabalho. A técnica \textit{NEAT}, por exemplo, possui uma
-implementação desenvolvida em C++\footnote{http://nn.cs.utexas.edu/?neat-c}.
+Com a linguagem de programação escolhida, o próximo passo é obter uma cópia do
+projeto \textit{SpelunkBots}, hospedada no \textit{website} de versionamento de
+código
+\textit{GitHub}\footnote{https://www.github.com/GET-TUDA-CHOPPA/SpelunkBots}. O
+projeto conta com o código modificado do \textit{Spelunky} e uma distribuição do
+\textit{GameMaker Pro 8.0}, utilizada para compilar e executar o jogo. Assim,
+podemos dar início ao desenvolvimento dos \textit{bots} utilizando as bibliotecas
+das técnicas de inteligência artificial selecionadas.
 
-Para ser possível o desenvolvimento desse trabalho, precisamos, primeiramente,
-obter uma cópia do projeto SpelunkBots. Essa cópia pode ser obtida no
-\textit{GitHub}\footnote{https://github.com/GET-TUDA-CHOPPA/SpelunkBots}. O
-projeto conta com o código modificado do Spelunky, além de uma distribuição do
-software \textit{Game Maker}, que permite que o jogo seja executado e,
-posteriormente, compilado. Após a obtenção dessa cópia, podemos fazer o
-desenvolvimento dos \textit{bots} em C++, aplicando as técnicas estudadas,
-obtendo as informações do jogo Spelunky e utilizando-as na implementação das
-técnicas.
+Sabendo que a técnica \textit{NEAT} requer que o \textit{bot} receba treinamento
+através de diversas simulações do jogo, optamos pelo uso de um servidor
+dedicado, pois este processo pode ser demorado e executar tal processo em uma
+máquina doméstica -- que está muito mais sujeita a ser desligada acidentalmente
+ou intencionalmente -- é arriscado. O servidor em questão utiliza um sistema
+operacional baseado em \textit{Linux}.
 
-Com os \textit{bots} desenvolvidos, precisamos executá-los diversas vezes, num
-processo que chamamos de \textbf{treinamento}.  Preferencialmente, desejamos
-utilizar um servidor dedicado para essa tarefa.  Principalmente pois esse
-processo pode ser demorado, o que faz com que o uso de uma máquina doméstica
-não seja o mais adequado. Como muitos desses servidores utilizam \textit{Linux}
-como sistema operacional, precisamos fazer algumas adaptações para que o
-treinamento dos \textit{bots} seja possível. Essas adaptações são necessárias
-pois tanto o jogo Spelunky quanto o \textit{Game Maker} funcionam somente na
-plataforma \textit{Windows}.  Portanto, utilizaremos o \textit{software}
-\textit{wine}\footnote{https://www.winehq.org/}, que permite executar programas
-da plataforma \textit{Windows} na plataforma \textit{Linux}.  Além disso, o
-SpelunkBots faz o uso de \textit{DLLs} em seu código fonte. Tais \textit{DLLs}
-também precisam ser compiladas utilizando \textit{Linux}, portanto,
-utilizaremos o \textit{software}
-\textit{MinGW}\footnote{http://www.mingw.org/}, que será responsável por fazer
-a compilação do código C++ e geração das \textit{DLLs}.
+O \textit{GameMaker} é capaz de executar código externo através de
+\textit{Dynamic-link Libraries} (\textit{DLLs}). Portanto, para executar o
+código dos \textit{bots} em C++ é necessário realizar um processo de compilação
+do código em C++, transformando-o em uma \textit{DLL}. Contudo,
+\textit{Spelunky} foi desenvolvido utilizando uma versão muito antiga do
+\textit{GameMaker}, que só pode ser executada no sistema operacional
+\textit{Windows}, e o \textit{SpelunkBots} utiliza um projeto em
+\textit{Visual Studio} -- \textit{IDE} de programação da \textit{Microsoft}
+-- para realizar a compilação do código externo dos \textit{bots}. Como
+nosso servidor é baseado em \textit{Linux}, é necessário realizar algumas
+adaptações no processo de compilação. Assim, utilizaremos o \textit{software}
+\textit{Wine}\footnote{https://winehq.org}, que nos permitirá executar programas
+da plataforma \textit{Windows} dentro do sistema operacional \textit{Linux}, e o
+\textit{software} \textit{MinGW}\footnote{http://www.mingw.org}, que realizará a
+compilação do código C++ e a geração da \textit{DLL}.
