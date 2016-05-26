@@ -43,21 +43,21 @@
 
 Em junho de 2015, o canal do \textit{YouTube}
 SethBling\footnote{https://www.youtube.com/user/sethbling/about} -- conhecido
-por publicar vídeos de modificações de jogos como Mario e Minecraft -- publicou
+por publicar vídeos de modificações de jogos como Mario e Minecraft -- divulgou
 o vídeo \textit{MarI/O - Machine Learning for Video
 Games}\footnote{https://www.youtube.com/watch?v=qv6UVOQ0F44}, que mostra um
-jogador muito habilidoso jogando o jogo \textit{Super Mario World}. É explicado
-então que o jogador em questão não é um jogador humano, mas sim um programa de
-computador.
-O vídeo mostra que é feito o uso de uma técnica chamada
-\textit{\textbf{NEAT}} (\textit{NeuroEvolution of Augmenting
-Topologies})\cite{stanley:ec02}, que consiste em utilizar algoritmos
-genéticos e redes neurais para poder construir uma inteligência artificial
-que melhore o seu desempenho à medida que explora mais situações do jogo. A
-técnica \textit{NEAT} é explicada de forma mais detalhada no capítulo
-\ref{chap:neat}. Combinada com a linguagem de programação \textit{Lua}, a
-técnica é então usada para construir um jogador que é capaz de ir do início ao
-fim de uma fase de \textit{Super Mario World} com sucesso.
+jogador muito habilidoso completando o nível \textit{Donut Plains I} de
+\textit{Super Mario World}. É explicado, então, que o jogador em questão não é
+humano, mas sim um programa de computador. Utilizando um emulador de
+\textit{consoles} chamado \textit{BizHawk}, a linguagem de programação
+\textit{Lua} e uma técnica de inteligência artificial chamada
+\textit{\textbf{N.E.A.T}} (\textit{NeuroEvolution of Augmenting Topologies}), o
+autor programou um \textit{bot} capaz de aprender como jogar o nível em questão
+do início ao fim com sucesso. Como é explicado no vídeo, inicialmente o
+\textit{bot} não conhecia absolutamente nada sobre como jogar \textit{Super
+Mario World}. Contudo, através de várias simulações, o \textit{bot} adquiriu
+o conhecimento necessário para superar todos os obstáculos presentes no
+nível.
 
 \begin{figure}[htb!]
 \centering
@@ -65,16 +65,19 @@ fim de uma fase de \textit{Super Mario World} com sucesso.
 \caption{\label{fig:mar-io-example}Exemplo da visão do jogo \textit{Super
 Mario World} através do projeto \textit{MarI/O}, mostrando elementos de
 controle usados pelo NEAT, como a rede neural, as possíveis ações, as
-gerações, especies, genomas e outros.}
+gerações, as especies, os genomas, entre outros.}
 \end{figure}
 
-O \textit{MarI/O} é especialmente interessante e relevante para este trabalho
-pois traz à tona o uso da técnica \textit{NEAT} para a criação de uma
-inteligência artificial capaz de jogar uma partida de um jogo, sendo este
-um dos objetivos desse trabalho. O que temos de diferente, e que trate-se de um
-desafio a mais, é o fato de que no caso do Spelunky, os níveis, além de serem
-gerados proceduralmente, são dispostos em 16 salas (explicado na seção
-\ref{section:spelunky-procgen}), fazendo com que seja mais difícil de
-medir o quão melhor um jogador é quando comparado à outro. Principalmente
-pois não sabemos o quão perto estamos da saída da caverna sem encontrá-la
-primeiro.
+O \textit{MarI/O} é especialmente interessante e relevante porque tem um
+objetivo muito similar ao deste trabalho: criar uma inteligência artificial
+capaz de jogar uma partida de um jogo. Contudo, existe uma diferença muito
+impactante entre \textit{Super Mario World} e \textit{Spelunky} que dificulta a
+criação de um \textit{bot}. Em \textit{Super Mario World}, o nível é sempre o
+mesmo, o que torna mais fácil medir o desempenho de um \textit{bot}, pois a
+disposição do nível é sempre a mesma e a saída sempre se encontra no mesmo
+lugar. Além disso, os níveis de \textit{Super Mario World} são essencialmente
+horizontais, e movimentar o personagem para a direita quase sempre garante
+alguma forma de progresso. Isto facilita ainda mais o processo de treinamento
+dos \textit{bots}. Em \textit{Spelunky} não é possível saber de antemão onde se
+encontra a saída do nível e o movimento horizontal não garante o progresso,
+visto que os níveis não são essencialmente horizontais.
