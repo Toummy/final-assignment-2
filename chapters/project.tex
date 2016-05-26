@@ -1,5 +1,44 @@
 \chapter{\label{chap:project}Projeto}
 
+A seguir, apresentamos os detalhes de como faremos a implementação de
+\textit{bots} para o jogo Spelunky, explicando as escolhas feitas, além de como
+podemos aplicar as técnicas estudadas. Conforme detalhado no capítulo
+\ref{chap:spelunkbots}, podemos escolher GML ou C++ como linguagem de
+programação. Fizemos a escolha da linguagem \textbf{C++} principalmente pelo
+fato dela ser bastante conhecida e muito bem documentada. Além disso, a
+comunidade de usuários da linguagem é bastante ativa e temos várias bibliotecas
+desenvolvidas com ela. Podemos, portanto, fazer o uso dessas bibliotecas para o
+desenvolvimento desse trabalho. A técnica \textit{NEAT}, por exemplo, possui uma
+implementação desenvolvida em C++\footnote{http://nn.cs.utexas.edu/?neat-c}.
+
+Para ser possível o desenvolvimento desse trabalho, precisamos, primeiramente,
+obter uma cópia do projeto SpelunkBots. Podemos obter essa cópia no
+\textit{GitHub}\footnote{https://github.com/GET-TUDA-CHOPPA/SpelunkBots}. O
+projeto conta com o código modificado do Spelunky, além de uma distribuição do
+software \textit{Game Maker}, que permite que o jogo seja executado e,
+posteriormente, compilado. Após a obtenção dessa cópia, podemos fazer o
+desenvolvimento dos \textit{bots} em C++, aplicando nesse desenvolvimento as
+técnicas estudadas, obtendo as informações do jogo Spelunky e utilizando-as
+na implementação das técnicas.
+
+Com os \textit{bots} desenvolvidos, precisamos fazer com que eles sejam
+executados diversas vezes, num processo que chamamos de \textbf{treinamento}.
+Preferencialmente, desejamos utilizar um servidor dedicado para essa tarefa.
+Principalmente pois esse processo pode ser demorado, o que faz com que o uso de
+uma máquina doméstica não seja o mais adequado. Como muitos desses servidores
+utilizam \textit{Linux} como sistema operacional, precisamos fazer algumas
+adaptações para que seja possível fazer o treinamento dos \textit{bots}. Essas
+adaptações são necessárias pois tanto o jogo Spelunky quanto o \textit{Game
+Maker} funcionam somente na plataforma \textit{Windows}.
+Portanto, utilizaremos o \textit{software}
+\textit{wine}\footnote{https://www.winehq.org/}, que permite executar programas
+da plataforma \textit{Windows} na plataforma \textit{Linux}. Além disso, o
+SpelunkBots faz o uso de \textit{DLLs} em seu código fonte. Tais \textit{DLLs}
+também precisam ser compiladas utilizando \textit{Linux}, portanto,
+utilizaremos o \textit{software}
+\textit{MinGW}\footnote{http://www.mingw.org/}, que será responsável por fazer
+a compilação do código C++ e geração das \textit{DLLs}.
+
 \begin{mdframed}[backgroundcolor=green!20]
 \begin{itemize}
     \item
