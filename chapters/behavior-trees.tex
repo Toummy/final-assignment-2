@@ -1,7 +1,106 @@
 \chapter{\label{chap:behavior-trees}Behavior Trees}
 
+Tomar decisões é uma das tarefas mais importantes na construção de bons
+agentes inteligentes. Em um contexto de jogos digitais, por exemplo, a
+partir de 1990, o uso de inteligência artificial em jogos passou a ser um
+diferencial no momento da compra de um jogo \cite[Cap
+1.]{Millington:2009:AIG:1795711}. Portanto, escolher uma boa técnica para
+o processo de tomada de decisão pode ser um dos fatores de sucesso na
+construção de agentes. Das técnicas mais populares,
+\textit{\textbf{behavior trees}} (árvores de comportamento) é uma das que
+mais se destaca por sua \textbf{simplicidade} e \textbf{extensabilidade}
+\cite[Cap. 4]{Rabin:2013:GAP:2566761}, além de ter sido utilizada na
+indústria em jogos como \textbf{Halo 2} \cite[Cap.
+5]{Millington:2009:AIG:1795711}, por exemplo.
+
+Uma \textit{behavior tree} é uma estrutura de dados baseada em árvore,
+contendo um nodo raíz e vários nodos filhos que representam um
+\textbf{comportamento} (\textit{behavior}). Cada nodo filho pode ter
+outros filhos, formando assim uma árvore. Cada um desses comportamentos
+deve ter uma \textit{pré-condição} e uma \textit{ação}. Caso a
+pré-condição seja satisfeita, o agente poderá executar o comportamento
+descrito pela ação do nodo \cite[Cap 4.]{Rabin:2013:GAP:2566761}. Isso faz
+com que o algoritmo seja bastante simples, partimos do nodo raíz em busca
+do primeiro filho que satisfaça a sua pré-condição. Ao encontrar esse
+filho, é executada a sua ação. É importante ressaltar que
+somente um comportamento é selecionado por vez. Portanto, se um
+comportamento for selecionado, o algoritmo não tentará executar as ações
+dos nodos vizinhos na mesma execução do algoritmo.
+Como este é um formalismo bastante simples, é possível, por exemplo, adicionar
+estruturas de \textbf{controle de fluxo} a ele. Dessa forma, os ramos da
+árvore passam a ser usados para controlar o fluxo de execução, enquanto os
+nodos folhas representam as pré-condições e ações \cite[Cap.
+10]{Rabin:2015:GAP:2821138}. Isso permite que diversos tipos de controle
+de fluxo sejam aplicados. Assim, cada vez que uma ação de um nodo folha é
+executada, é informado ao pai (ramo de controle de fluxo) o estado dessa
+ação, se foi executada com sucesso ou falha ou se ainda está em execução.
+O nodo pai decide então o que fazer com base nessa informação.
+
+A figura
+\ref{fig:bt-eat-dish-washer-agent} representa através de uma
+\textit{behavior tree} com o uso de fluxo de controle um agente que deve
+se alimentar e, após isso, lavar a louça. Caso o agente esteja com fome,
+será possível comer \textit{arroz}. Se essa ação falhar -- o agente não
+gosta de comer arroz, por exemplo -- será possível então comer
+\textit{feijão}. Isso é feito pelo controle de fluxo \textbf{selecionar},
+que testa cada uma das ações e executa a que for possível de ser
+executada.
+No momento em que o agente vai lavar a louça, caso a louça esteja suja,
+será possível lavar os pratos e lavar os talheres de forma sequencial -- não importando se as ações vizinhas podem ou não ser executadas --.
+Isso é feito pelo controle de fluxo \textbf{sequência}.
+
+\begin{figure}[htb!]
+\centering
+\begin{tikzpicture}[
+    rootnode/.style={regular polygon, regular polygon sides=3, draw=black, fill=white, very thick, minimum size=5mm, font=\footnotesize},
+    flow/.style={rounded rectangle, draw=black, fill=white, very thick, minimum size=5mm, font=\footnotesize},
+    precond/.style={rectangle, draw=black, fill=black, text=white, very thick, minimum size=5mm, font=\footnotesize},
+    action/.style={rectangle, draw=black, fill=white, very thick, minimum size=5mm, font=\footnotesize},
+]
+    \node[rootnode]  (root)                          {Raíz};
+
+    \node[flow]      (flow1)  [below left=of root]   {Selecionar};
+    \node[flow]      (flow2)  [below right=of root]  {Sequência};
+    \node[action]    (desc)   [right=of flow2]       {Descansar};
+
+    \node[action]    (arroz)  [below left=of flow1]  {Arroz};
+    \node[precond]   (fome?)  [left=of arroz]        {Fome?};
+    \node[action]    (feijao) [right=of arroz]       {Feijão};
+
+    \node[precond]   (suja?)  [below=of flow2] {Sujeira?};
+
+    \node[action]    (pratos) [right=of suja?]       {Pratos};
+    \node[action]    (talh)   [right=of pratos]       {Talheres};
+
+    \draw[->] (root.south) -- (flow1.north);
+    \draw[->] (root.south) -- (flow2.north);
+    \draw[->] (root.south) -- (desc.north);
+
+    \draw[->] (flow1.south) -- (fome?.north);
+    \draw[->] (flow1.south) -- (arroz.north);
+    \draw[->] (flow1.south) -- (feijao.north);
+
+    \draw[->] (flow2.south) -- (suja?.north);
+    \draw[->] (flow2.south) -- (pratos.north);
+    \draw[->] (flow2.south) -- (talh.north);
+\end{tikzpicture}
+\caption {\label{fig:bt-eat-dish-washer-agent}Exemplo de uma \textit{behaviour tree}
+para representar um agente que deve comer caso esteja com fome, lavar a
+louça caso a mesma esteja suja ou descansar caso contrário}
+\end{figure}
+
 \begin{mdframed}[backgroundcolor=green!20]
 \begin{itemize}
+    \item
+        \begin{itemize}
+            \item
+                Tomada de decisão mais complexas, conforme a complexidade dos
+                jogos vai aumentando
+            \item
+                Diferentemente das FSMs, nas BTs, os "estados" não têm relação
+                uns com os outros, o que resolve o problema de adicionar/remover
+                os estados que ocorrem nas FSMs
+        \end{itemize}
     \item
         Introdução: Escolha da técnica, história, paper (técnica mais simples)
     \item
