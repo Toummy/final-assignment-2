@@ -45,9 +45,10 @@ gosta de comer arroz, por exemplo -- será possível então comer
 \textit{feijão}. Isso é feito pelo controle de fluxo \textbf{selecionar},
 que testa cada uma das ações e executa a que for possível de ser
 executada.
-No momento em que o agente vai lavar a louça, caso a louça esteja suja,
-será possível lavar os pratos e lavar os talheres de forma sequencial -- não importando se as ações vizinhas podem ou não ser executadas --.
-Isso é feito pelo controle de fluxo \textbf{sequência}.
+No momento em que o agente vai lavar a louça, caso a louça esteja suja, será
+possível lavar os pratos e lavar os talheres de forma sequencial -- não
+importando se as ações vizinhas podem ou não ser executadas --.  Isso é feito
+pelo controle de fluxo \textbf{sequência}.
 
 \begin{figure}[htb!]
 \centering
@@ -67,10 +68,10 @@ Isso é feito pelo controle de fluxo \textbf{sequência}.
     \node[precond]   (fome?)  [left=of arroz]        {Fome?};
     \node[action]    (feijao) [right=of arroz]       {Feijão};
 
-    \node[precond]   (suja?)  [below=of flow2] {Sujeira?};
+    \node[precond]   (suja?)  [below=of flow2]       {Sujeira?};
 
     \node[action]    (pratos) [right=of suja?]       {Pratos};
-    \node[action]    (talh)   [right=of pratos]       {Talheres};
+    \node[action]    (talh)   [right=of pratos]      {Talheres};
 
     \draw[->] (root.south) -- (flow1.north);
     \draw[->] (root.south) -- (flow2.north);
@@ -86,29 +87,24 @@ Isso é feito pelo controle de fluxo \textbf{sequência}.
 \end{tikzpicture}
 \caption {\label{fig:bt-eat-dish-washer-agent}Exemplo de uma \textit{behaviour tree}
 para representar um agente que deve comer caso esteja com fome, lavar a
-louça caso a mesma esteja suja ou descansar caso contrário}
+louça caso a mesma esteja suja ou descansar caso contrário.}
 \end{figure}
 
-\begin{mdframed}[backgroundcolor=green!20]
-\begin{itemize}
-    \item
-        \begin{itemize}
-            \item
-                Tomada de decisão mais complexas, conforme a complexidade dos
-                jogos vai aumentando
-            \item
-                Diferentemente das FSMs, nas BTs, os "estados" não têm relação
-                uns com os outros, o que resolve o problema de adicionar/remover
-                os estados que ocorrem nas FSMs
-        \end{itemize}
-    \item
-        Introdução: Escolha da técnica, história, paper (técnica mais simples)
-    \item
-        BTs vs FSMs vs HFSMs vs Planejamento
-    \item
-        Explicação sobre a técnica: detalhamento de como funciona, termos
-        técnicos, exemplos, pedaços de código (se necessário)
-    \item
-        Como será utilizada na construção dos \textit{bots}
-\end{itemize}
-\end{mdframed}
+Existem algumas outras técnicas que resolvem o mesmo problema que as
+\textit{behavior trees}. Por exemplo, as \textbf{\textit{finite state
+machines}} (máquinas de estados finitos) são muito utilizadas em inteligência
+artificial, pois trazem estruturas bastante simples de implementar e muito
+poderosas no momento de sua utilização. Contendo \textit{estados} que são ligados
+através de \textit{transições}, essa estrutura faz com que modelar uma
+inteligência artifical seja bastante simples. O problema dessa abordagem está
+quando precisamos reutilizar estados. Como uma transição liga apenas dois
+estados, é impossível utilizar o mesmo estado sem duplicá-lo. Para resolver
+esse problema, existe uma técnica baseada nessa chamada de
+\textbf{\textit{hierarchical finite state machines}} (máquinas de estados
+finitos hierárquicos). Essa estrutura permite que estados sejam englobados em
+outros estados, resolvendo o problema de reutilização.
+Entretanto, ambas abordagens ainda são de difícil extensão. Como um estado está
+ligado à outro via uma transição, adicionar e remover estados dessa estrutura
+pode ser um problema, principalmente quando o modelo construído inicialmente
+não é adequado para o que estamos resolvendo, sendo necessário realizar muitas
+mudanças de forma a testar outras soluções possíveis.
