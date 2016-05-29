@@ -5,8 +5,7 @@
 % - https://www.youtube.com/watch?v=S9Y_I9vY8Qw 
 
 % Atari DeepMind
-% - http://arxiv.org/pdf/1312.5602v1.pdf 
-% - https://storage.googleapis.com/deepmind-data/assets/papers/DeepMindNature14236Paper.pdf  
+% - http://arxiv.org/pdf/1312.5602v1.pdf  
 
 % NERO
 % - http://nn.cs.utexas.edu/?stanley:ieeetec05 
@@ -46,7 +45,7 @@ SethBling\footnote{https://www.youtube.com/user/sethbling/about} -- conhecido
 por publicar vídeos de modificações de jogos como Mario e Minecraft -- divulgou
 o vídeo \textit{MarI/O - Machine Learning for Video
 Games}\footnote{https://www.youtube.com/watch?v=qv6UVOQ0F44}, que mostra um
-jogador muito habilidoso completando o nível \textit{Donut Plains I} de
+jogador muito habilidoso completando o nível \textit{Donut Plains 1} de
 \textit{Super Mario World}. É explicado, então, que o jogador em questão não é
 humano, mas sim um programa de computador. Utilizando um emulador de
 \textit{consoles} chamado
@@ -57,8 +56,8 @@ programação \textit{Lua} e uma técnica de inteligência artificial chamada
 o autor programou um \textit{bot} capaz de aprender como jogar o nível em
 questão do início ao fim com sucesso. Como é explicado no vídeo, inicialmente o
 \textit{bot} não conhecia absolutamente nada sobre como jogar \textit{Super
-Mario World}. Contudo, através de várias simulações, o \textit{bot} adquiriu o
-conhecimento necessário para superar todos os obstáculos presentes no nível.
+Mario World}. Contudo, através de várias simulações, adquiriu o conhecimento
+necessário para superar todos os obstáculos presentes no nível.
 
 \begin{figure}[htb!]
 \centering
@@ -69,16 +68,35 @@ controle usados pelo NEAT, como a rede neural, as possíveis ações, as
 gerações, as espécies, os genomas, entre outros.}
 \end{figure}
 
+Depois do sucesso no nível \textit{Donut Plains 1}, o autor realizou mais
+experimentos da aplicação da técnica
+\textit{NEAT}\footnote{https://www.youtube.com/watch?v=iakFfOmanJU}
+\footnote{https://www.youtube.com/watch?v=S9Y_I9vY8Qw}. Inicialmente, testou em
+dois outros níveis de \textit{Super Mario World}. Em \textit{Donut Plains 4}, o
+processo de aprendizagem foi complicado, pois para obter progresso no nível era
+necessário que aprendesse a interagir com certos elementos do mapa, e o autor
+decidiu abortar o processo de aprendizagem. Já em \textit{Yoshi's Island 1},
+obteve sucesso e foi capaz de concluir o nível. Com os testes finalizados, o
+autor decidiu aplicar a técnica em outros dois jogos da franquia \textit{Mario}.
+Em \textit{Super Mario Bros}, o \textit{bot} concluiu o primeiro nível e,
+surpreendentemente, foi capaz de descobrir um \textit{glitch} no jogo que o
+permitia passar por um segmento do segundo nível com maior rapidez. Em
+\textit{Super Mario Kart}, depois de receber treinamento, o \textit{bot} foi
+capaz de terminar uma corrida no nível \textit{Mario Circuit 1} em primeiro
+lugar contra outros jogadores controlados pelo computador -- na dificuldade mais
+fácil do jogo.
+
 O \textit{MarI/O} é especialmente interessante e relevante porque tem um
 objetivo muito similar ao deste trabalho: criar uma inteligência artificial
-capaz de jogar uma partida de um jogo. Contudo, existe uma diferença muito
-impactante entre \textit{Super Mario World} e \textit{Spelunky} que dificulta a
-criação de um \textit{bot}. Em \textit{Super Mario World}, o nível é sempre o
-mesmo, o que torna mais fácil medir o desempenho de um \textit{bot}, pois a
-disposição do nível é sempre a mesma e a saída sempre se encontra no mesmo
-lugar. Além disso, os níveis de \textit{Super Mario World} são essencialmente
-horizontais, e movimentar o personagem para a direita quase sempre garante
-alguma forma de progresso. Isto facilita ainda mais o processo de treinamento
-dos \textit{bots}. Em \textit{Spelunky} não é possível saber de antemão onde se
-encontra a saída do nível e o movimento horizontal não garante o progresso,
-visto que os níveis não são essencialmente horizontais.
+capaz de jogar uma partida de um jogo. Contudo, nos jogos escolhidos por
+SethBling, os níveis são sempre os mesmos, o que torna mais fácil medir o
+desempenho de um \textit{bot}, pois a disposição do nível é sempre igual e o
+objetivo final sempre se encontra no mesmo lugar. Este não é o caso em
+\textit{Spelunky}, onde os níveis são gerados proceduralmente. Além disso, os
+níveis de \textit{Super Mario World} e \textit{Super Mario Bros.} são
+essencialmente horizontais, e movimentar o personagem para a direita quase
+sempre garante alguma forma de progresso. Isto facilita ainda mais o processo de
+treinamento dos \textit{bots}. Em \textit{Spelunky} não é possível saber de
+antemão onde se encontra a saída do nível e o movimento horizontal não garante o
+progresso, visto que os níveis não são essencialmente horizontais. Estes fatores
+influenciam na dificuldade de realizar o treinamento dos \textit{bots}.
