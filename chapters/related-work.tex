@@ -24,18 +24,36 @@
 \end{mdframed}
 
 %----------
-\section{Atari DeepMind}
+\section{Playing Atari with Deep Reinforcement Learning}
+O artigo apresenta um modelo de \textit{deep learning} capaz de aprender
+políticas de controle para sete jogos do \textit{console} Atari 2600, criando
+uma inteligência artificial capaz de jogar eficientemente todos os jogos,
+inclusive superando jogadores humanos em alguns deles. O modelo utiliza
+aprendizado por reforço e uma rede neural convolucional treinada com um variante
+de \textit{Q-learning} para criar o agente.
 
-\begin{mdframed}[backgroundcolor=green!20]
-\begin{itemize}
-    \item
-        O que é
-    \item
-        Técnica utilizada (citar paper)
-    \item
-        Relevância com o nosso trabalho
-\end{itemize}
-\end{mdframed}
+Para criar estas políticas de controle, os autores utilizaram uma plataforma de
+testes de inteligência artificial chamada \textit{Arcade Learning Environment}.
+A cada passo de execução, o agente interage com o emulador, recebendo
+informações do estado do jogo e enviando os comandos que deseja executar. As
+informações recebidas eram um vetor dos \textit{pixels} apresentados na tela, o
+conjunto de de ações possíveis para o jogo em questão e um valor de recompensa
+quando a pontuação do jogo era alterada.
+
+Como as informações do estado do jogo eram altamente dimensionais -- 33600
+\textit{pixels} de informação visual --, foi necessário realizar um
+pré-processamento para reduzir a dimensionalidade do estado do jogo -- reduzindo
+para 7600 \textit{pixels}. Mesmo com esta redução, as quantidade de informações
+recebidas ainda era considerável. Por isto, a utilização de \textit{deep
+learning} e redes neurais convolucionais provou ser uma excelente -- e
+necessária -- escolha para realizar o treinamento do agente. Contudo, o
+treinamento do agente utilizando esta técnica é extremamente demorado.
+
+Como a dimensionalidade do estado do jogo fornecido pela ferramenta
+\textit{SpelunkBots} não é tão grande quanto a do trabalho em questão, optamos
+por não fazer uso de \textit{deep learning}, mesmo que a técnica também seja
+muito promissora.
+
 
 %----------
 \section{MarI/O}
@@ -71,7 +89,7 @@ gerações, as espécies, os genomas, entre outros.}
 Depois do sucesso no nível \textit{Donut Plains 1}, o autor realizou mais
 experimentos da aplicação da técnica
 \textit{NEAT}\footnote{https://www.youtube.com/watch?v=iakFfOmanJU}
-\footnote{https://www.youtube.com/watch?v=S9Y_I9vY8Qw}. Inicialmente, testou em
+\footnote{https://www.youtube.com/watch?v=S9Y\_I9vY8Qw}. Inicialmente, testou em
 dois outros níveis de \textit{Super Mario World}. Em \textit{Donut Plains 4}, o
 processo de aprendizagem foi complicado, pois para obter progresso no nível era
 necessário que aprendesse a interagir com certos elementos do mapa, e o autor
