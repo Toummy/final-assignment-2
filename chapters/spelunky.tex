@@ -310,17 +310,19 @@ de modelo utilizado pelo gerador.
 
 \begin{figure}[htb!]
 \centering
-\includegraphics[width=.35\textwidth]{fig/spelunky-procgen-room-template.png}
+\begin{tabular}{c c c c c c c c c c}
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\
+    0 & 0 & 6 & 0 & 0 & 0 & 0 & L & 0 & 4 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & P & 1 & 1 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & L & 1 & 1 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & L & 1 & 1 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\
+    1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+\end{tabular}
 \caption{\label{fig:spelunky-procgen-room-template}Exemplo de modelo utilizado
 para gerar uma sala de Spelunky.}
 \end{figure}
-
-\begin{mdframed}[backgroundcolor=green!20]
-\begin{itemize}
-    \item
-		Desenhar utilizando TikZ
-\end{itemize}
-\end{mdframed}
 
 Cada caractere possui um significado diferente, informando ao gerador que tipo
 de \textit{tile} deve ser utilizado em sua posição. Eles podem ser
@@ -345,17 +347,14 @@ uma substituição por um dos modelos disponíveis. A Figura
 
 \begin{figure}[htb!]
 \centering
-\includegraphics[width=.15\textwidth]{fig/spelunky-procgen-room-chunk.png}
+\begin{tabular}{c c c c c}
+    0 & 1 & 1 & 1 & 0 \\
+    0 & 2 & 2 & 2 & 0 \\
+    0 & 0 & 0 & 0 & 0
+\end{tabular}
 \caption{\label{fig:spelunky-procgen-room-chunk}Exemplo de modelo de conjunto de
 \textit{tiles} utilizado para gerar uma sala de Spelunky.}
 \end{figure}
-
-\begin{mdframed}[backgroundcolor=green!20]
-\begin{itemize}
-    \item
-		Desenhar utilizando TikZ
-\end{itemize}
-\end{mdframed}
 
 O uso destes conjuntos ajuda a aumentar a aleatoriedade dos \textit{layouts} das
 salas, trazendo a sensação de uma variedade maior, mesmo que o número de modelos
@@ -366,18 +365,20 @@ evidenciado na Figura \ref{fig:spelunky-procgen-room-combination}.
 
 \begin{figure}[htb!]
 \centering
-\includegraphics[width=.35\textwidth]{fig/spelunky-procgen-room-combination.png}
+\begin{tabular}{c c c c c c c c c c}
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\
+    0 & 0 & 0 & 1 & 1 & 1 & 0 & L & 0 & 4 \\
+    0 & 0 & 0 & 2 & 2 & 2 & 0 & P & 1 & 1 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & L & 1 & 1 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & L & 1 & 1 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\
+    1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+\end{tabular}
 \caption{\label{fig:spelunky-procgen-room-combination}Exemplo de um modelo de
 sala e um modelo de conjunto de \textit{tiles} utilizados para gerar uma sala de
 Spelunky.}
 \end{figure}
-
-\begin{mdframed}[backgroundcolor=green!20]
-\begin{itemize}
-    \item
-		Desenhar utilizando TikZ
-\end{itemize}
-\end{mdframed}
 
 Com a descrição dos caracteres em mão, podemos realizar uma interpretação do
 modelo ilustrado na Figura \ref{fig:spelunky-procgen-room-combination}. O modelo
