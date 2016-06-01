@@ -1,24 +1,108 @@
 \chapter{\label{chap:spelunkbots}SpelunkBots}
+Em 2014, Daniel Scales e Thomas Thompson, da Universidade de Derby no Reino
+Unido, criaram o \textit{SpelunkBots}\cite{SPELUNKBOTSPAPER}, um
+\textit{framework} que permite a programação de \textit{bots} para o jogo
+Spelunky. Um dos objetivos dos criadores é utilizar a aplicação para criar uma
+competição de inteligência artificial para o jogo. O \textit{framework} foi
+desenvolvido utilizando uma combinação do código-fonte original do jogo
+\textit{Spelunky} -- distribuído gratuítamente no \textit{website}
+oficial\footnote{http://www.spelunkyworld.com/original.htm} --, o motor de
+criação de jogos \textit{GameMaker} e uma solução \textit{DLL} programada com a
+linguagem C++.
 
+
+%----------
+\section{Modo de Uso}
+Apesar de possuir acesso irrestrito ao código-fonte de \textit{Spelunky}, os
+autores reconheceram que a linguagem de programação \textit{GML}, nativa do
+motor \textit{GameMaker}, não é a escolha ideal para realizar a programação de
+uma inteligência artificial complexa. A \textit{GML} foi criada com o intuito de
+fornecer a desenvolvedores de jogos iniciantes uma maneira fácil e rápida de
+programar jogos, mas não é a melhor escolha para programadores mais experientes,
+pois requer que o desenvolvedor se adeque ao \textit{GameMaker} -- os arquivos
+de código em \textit{GML} só podem ser editados de dentro do motor -- e a uma
+linguagem de programação nova.
+
+Sabendo que o \textit{GameMaker} é capaz de executar código externo através de
+\textit{Dynamic-link Libraries} (\textit{DLLS}), os autores desenvolveram um
+projeto em C++ que gera uma solução no formato \textit{DLL} para permitir que os
+usuários possam programar \textit{bots} utilizando a linguagem de programação
+C++. Para programar em C++, portanto,  é necessário fazer uso de uma ferramenta de
+compilação externa para gerar a solução \textit{DLL}. O \textit{SpelunkBots}
+fornece um projeto em \textit{Visual Studio 2013} -- ambiente de programação
+desenvolvido pela \textit{Microsoft} -- para auxiliar neste processo.
+
+Assim, existem duas maneiras de se utilizar o \textit{SpelunkBots} para
+programar uma inteligência artificial para \textit{Spelunky}: internamente,
+através do \textit{GameMaker} e da \textit{GML}, ou externamente, através da
+solução \textit{DLL} em C++. Desta maneira, o \textit{framework} fica acessível
+tanto para programadores iniciantes quanto para programadores experientes.  A
+Figura \ref{fig:spelunkbots-usage-diagram} ilustra a relação entre o
+\textit{Spelunky}, o \textit{SpelunkBots} e as formas disponíveis de se realizar
+a programação dos \textit{bots}.
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=.65\textwidth]{fig/spelunkbots-usage-diagram.png}
+\label{fig:spelunkbots-usage-diagram}
+\caption {Diagrama exibindo a relação
+entre o jogo Spelunky, o \textit{framework} \textit{SpelunkBots} e as opções de
+programação disponíveis ao usuário para realizar a implementação dos
+\textit{bots}.}
+\end{figure}
+
+
+%----------
+\section{Configurações da Ferramenta}
 \begin{mdframed}[backgroundcolor=green!20]
-Reestruturar este capítulo (pegar informações do tutorial e da API):
 \begin{itemize}
     \item
-		Breve descrição
+		Como escolher o bot que vai ser executado (script PlayerChoice)
     \item
-        Como funciona: código-fonte do Spelunky, modos de programar os bots (C++
-		e GML), processo de compilação, modos de execução (Marathon e
-		TestLevel)
-	\item
-		Detalhar envio de comandos para o bot
+		Explicar os tipos de teste (Marathon e TestMaps) e como escolher
+		(script LevelParameters)
+\end{itemize}
+\end{mdframed}
+
+
+%----------
+\section{Recebendo Informações do Jogo}
+\begin{mdframed}[backgroundcolor=green!20]
+Detalhar informações disponibilizadas pelo SpelunkBots
+\begin{itemize}
     \item
-		Detalhar informações disponibilizadas (três categorias: Node Data, Enemy
-		Data e Object Data) e sistema de fog of war
+		Node Data
 	\item
+		Enemy Data
+	\item
+		Object Data
+	\item
+		Explicar sistema de fog of war
+\end{itemize}
+\end{mdframed}
+
+
+%----------
+\section{Enviando Comandos para o \textit{Bot}}
+\begin{mdframed}[backgroundcolor=green!20]
+\begin{itemize}
+    \item
+		Explicar como funciona o envio de comandos para o bot (enviar comandos a
+		cada frame)
+\end{itemize}
+\end{mdframed}
+
+
+%----------
+\section{Esqueleto de um \textit{Bot}}
+\begin{mdframed}[backgroundcolor=green!20]
+\begin{itemize}
+    \item
 		Exemplo de esqueleto de um bot (funções que precisam ser implementadas:
 		Initialise e Update)
 \end{itemize}
 \end{mdframed}
+
 
 Utilizando o código-fonte de Spelunky, Daniel Scales e Thomas Thompson, da
 Universidade de Derby no Reino Unido, criaram o
