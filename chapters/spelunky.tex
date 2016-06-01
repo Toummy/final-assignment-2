@@ -322,17 +322,48 @@ algoritmo.
 
 \begin{figure}[htb!]
 \centering
-\includegraphics[width=.65\textwidth]{fig/spelunky-procgen-path.png}
+\begin{tikzpicture}[
+    box/.style={
+        rectangle,
+        minimum width={2cm},
+        minimum height={2cm},
+        fill=gray!40,
+        font=\small
+    }
+]
+\draw[step=2.5cm, color=gray] (-5.01, -5.01) grid (5, 5);
+\node [box] (b1) at ([xshift=1.25cm,yshift=-1.25cm]-2.5, 5) {Entrada};
+\node [box] (b2) at ([xshift=1.25cm,yshift=-1.25cm]0, 5) {};
+\node [box] (b3) at ([xshift=1.25cm,yshift=-1.25cm]2.5, 5) {};
+
+\node [box] (b4) at ([xshift=1.25cm,yshift=-1.25cm]2.5, 2.5) {};
+\node [box] (b5) at ([xshift=1.25cm,yshift=-1.25cm]0, 2.5) {};
+
+\node [box] (b6) at ([xshift=1.25cm,yshift=-1.25cm]0, 0) {};
+\node [box] (b7) at ([xshift=1.25cm,yshift=-1.25cm]-2.5, 0) {};
+\node [box] (b8) at ([xshift=1.25cm,yshift=-1.25cm]-5, 0) {};
+
+\node [box] (b9) at ([xshift=1.25cm,yshift=-1.25cm]-5, -2.5) {};
+\node [box] (b10) at ([xshift=1.25cm,yshift=-1.25cm]-2.5, -2.5) {};
+\node [box] (b11) at ([xshift=1.25cm,yshift=-1.25cm]0, -2.5) {Saída};
+
+\draw[->,>=latex] (b1.east) -- (b2.west);
+\draw[->,>=latex] (b2.east) -- (b3.west);
+
+\draw[->,>=latex] (b3.south) -- (b4.north);
+\draw[->,>=latex] (b4.west) -- (b5.east);
+\draw[->,>=latex] (b5.south) -- (b6.north);
+
+\draw[->,>=latex] (b6.west) -- (b7.east);
+\draw[->,>=latex] (b7.west) -- (b8.east);
+\draw[->,>=latex] (b8.south) -- (b9.north);
+\draw[->,>=latex] (b9.east) -- (b10.west);
+
+\draw[->,>=latex] (b10.east) -- (b11.west);
+\end{tikzpicture}
 \caption{\label{fig:spelunky-procgen-path}Exemplo de caminho solução gerado na
 primeira etapa do algoritmo de geração procedural de níveis de Spelunky.}
 \end{figure}
-
-\begin{mdframed}[backgroundcolor=green!20]
-\begin{itemize}
-    \item
-		Desenhar utilizando TikZ
-\end{itemize}
-\end{mdframed}
 
 \subsection{\label{section:spelunky-procgen-rooms}Geração de Salas}
 A próxima etapa do algoritmo é gerar separadamente as salas que irão compor o
