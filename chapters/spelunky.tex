@@ -211,18 +211,42 @@ entre as áreas e o progresso de uma partida de Spelunky.
 
 \begin{figure}[htb!]
 \centering
-\includegraphics[width=.65\textwidth]{fig/spelunky-run.png}
+\begin{tikzpicture}[
+    room/.style={
+        regular polygon, regular polygon sides=4,
+        draw=black, fill=white,
+        text width=4.5em, text centered,
+        minimum size=5mm,
+        font=\small
+    }
+]
+\matrix(rooms)[row sep=1cm, column sep=1cm]
+{
+    \node[room] (r1) {As Minas};            &
+    \node[room] (r2) {A Selva};             &
+    \node[room] (r3) {As Cavernas de Gelo}; &
+    \node[room] (r4) {O Templo};            &
+
+    \\
+                                            &
+    \node[room] (r5) {O Mercado Negro};     &
+                                            &
+    \node[room] (r6) {A Cidade de Ouro};    &
+    \\
+};
+\draw[->,>=latex] (r1.east) -- (r2.west);
+\draw[->,>=latex] (r2.east) -- (r3.west);
+\draw[->,>=latex] (r3.east) -- (r4.west);
+
+\draw[->,>=latex] ([xshift=-.5cm]r2.south) -- ([xshift=-.5cm]r5.north);
+\draw[->,>=latex] ([xshift=.5cm]r5.north) -- ([xshift=.5cm]r2.south);
+
+\draw[->,>=latex] ([xshift=-.5cm]r4.south) -- ([xshift=-.5cm]r6.north);
+\draw[->,>=latex] ([xshift=.5cm]r6.north) -- ([xshift=.5cm]r4.south);
+\end{tikzpicture}
 \caption{\label{fig:spelunky-run}Relação entre as áreas de Spelunky durante uma
 partida do jogo.}
 \end{figure}
-
-\begin{mdframed}[backgroundcolor=green!20]
-\begin{itemize}
-    \item
-		Desenhar utilizando TikZ
-\end{itemize}
-\end{mdframed}
-
 
 %----------
 \section{\label{section:spelunky-controls}Controle do Personagem}
