@@ -13,15 +13,16 @@ linguagem C++.
 
 %----------
 \section{Modo de Uso}
-Apesar de possuir acesso irrestrito ao código-fonte de \textit{Spelunky}, os
-autores reconheceram que a linguagem de programação \textit{GML}, nativa do
-motor \textit{GameMaker}, não é a escolha ideal para realizar a programação de
-uma inteligência artificial complexa. A \textit{GML} foi criada com o intuito de
+Como o \textit{framework} possui acesso irrestrito ao código-fonte de
+\textit{Spelunky}, a opção de programar a inteligência artificial utilizando a
+linguagem de programação padrão do \textit{GameMaker}, a \textit{GML}, foi
+incluida pelos criadores do programa. Esta linguagem foi criada com o intuito de
 fornecer a desenvolvedores de jogos iniciantes uma maneira fácil e rápida de
-programar jogos, mas não é a melhor escolha para programadores mais experientes,
-pois requer que o desenvolvedor se adeque ao \textit{GameMaker} -- os arquivos
-de código em \textit{GML} só podem ser editados de dentro do motor -- e a uma
-linguagem de programação nova.
+programar jogos e, justamente por este motivo, apresenta diversas limitações de
+linguagem e não possui muitas bibliotecas auxiliares. Além disso, os arquivos
+\textit{.gml} só podem ser editados dentro do ambiente de programação interno do
+\textit{GameMaker}. Assim, esta opção de desenvolvimento não é adequada a
+programadores mais experientes.
 
 Sabendo que o \textit{GameMaker} é capaz de executar código externo através de
 \textit{Dynamic-link Libraries} (\textit{DLLS}), os autores desenvolveram um
@@ -133,13 +134,7 @@ Detalhar informações disponibilizadas pelo SpelunkBots
 \end{mdframed}
 
 
-Utilizando o código-fonte de Spelunky, Daniel Scales e Thomas Thompson, da
-Universidade de Derby no Reino Unido, criaram o
-\textit{SpelunkBots}\cite{SPELUNKBOTSPAPER}, um
-\textit{framework} que permite a programação de \textit{bots} para o jogo
-Spelunky. Um dos objetivos dos criadores é utilizar a aplicação para criar uma
-competição de inteligência artificial para o jogo.
-
+\section{Texto Velho}
 A \textit{API} possibilita que o desenvolvedor resgate informações de objetos
 estáticos e dinâmicos contidos no ambiente do jogo, como o terreno, a
 posição de tesouros, armadilhas e inimigos. Contudo, o objetivo da \textit{API}
@@ -164,21 +159,6 @@ não estão disponíveis pois tal área ainda não foi explorada pelo \textit{bo
 war} demonstrando a diferença de informação recebida de elementos dentro e fora
 do campo de visão do jogador.}
 \end{figure}
-
-\section{Utilização da \textit{API}}
-
-É possível desenvolver \textit{bots} que fazem uso da \textit{API}
-utilizando a linguagem GML (sigla para \textit{Game Maker Language}) ou
-através da linguagem C++, ficando a critério do desenvolvedor a escolha da
-linguagem. A única restrição que existe quanto ao uso de C++ dá-se no fato
-de que a linguagem necessita de um processo de compilação através de uma
-ferramenta externa, não sendo gerenciada diretamente pelo \textit{Game
-Maker}. A figura \ref{fig:spelunkbots-usage-diagram} mostra a relação entre
-o jogo, a \textit{API} e as possíveis linguagens de programação para se
-utilizar. O código do Spelunky teve de ser modificado de forma a poder
-interagir com o código do SpelunkyBots que, por sua vez, faz o uso de uma
-solução de \textit{DLLs} escritas em C++ para fazer a interação com o jogo
-através de código escrito em C++.
 
 A \textit{API} permite uma interação completa com o jogo através do uso
 das variáveis expostas pelo
