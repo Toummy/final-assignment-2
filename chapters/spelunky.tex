@@ -511,7 +511,7 @@ apareçam mais frequentemente que outras, balanceando a dificuldade do jogo.
 A Figura \ref{fig:spelunky-procgen-examples} exemplifica alguns níveis gerados
 pelo algoritmo.
 
-\begin{figure}[htb!]
+\begin{figure}[H]
 \centering
 	\begin{subfigure}[b]{0.4\textwidth}
 		\includegraphics[width=\textwidth]{fig/spelunky-mines-example.png}
@@ -545,16 +545,30 @@ pelo algoritmo.
 \section{\label{section:spelunky-obstacles}Obstáculos}
 O universo de Spelunky é repleto de obstáculos, cujo único objetivo é impedir
 que o jogador saia vivo de dentro das cavernas que está explorando. Estes
-obstáculos podem ser \textbf{armadilhas} ou \textbf{monstros}. As armadilhas
-são objetos projetados para punir invasores indesejados e os monstros são os
-habitantes da caverna. Existem diversos tipos de armadilhas e monstros, e
-alguns destes inclusive causam a morte instantânea do jogador. O anexo
-\ref{section:spelunky-obstacles} apresenta a relação de monstros e
-armadilhas, bem como uma breve descrição de seus comportamentos.
+obstáculos podem ser \textbf{armadilhas} ou \textbf{monstros}. As armadilhas são
+objetos projetados para punir invasores indesejados e os monstros são os
+habitantes da caverna. Existem diversos tipos de armadilhas e monstros, e alguns
+destes inclusive causam a morte instantânea do jogador. O anexo
+\ref{section:spelunky-obstacles} apresenta a relação de monstros e armadilhas,
+bem como uma breve descrição de seus comportamentos. O jogador também deve ter
+cuidado com os perigos naturais presentes na caverna, como poços de lava e
+quedas de lugares muito altos, pois também pode ser ferido por eles.
 
-Além das armadilhas e monstros, o jogador também deve ter cuidado com os perigos
-naturais presentes na caverna, como poços de lava e quedas de lugares muito
-altos, pois também pode ser ferido por eles.
+\subsection{O Fantasma}
+Além dos monstros, armadilhas e perigos naturais, o explorador deve se preocupar
+com outro obstáculo: o \textbf{fantasma}. É um tipo de inimigo especial que
+persegue incansávelmente o jogador, atravessa paredes, não pode ser abatido e
+mata instantâneamente o explorador ao tocá-lo. Esta entidade aparece 150
+segundos após o início do nível, e serve como mecanismo de prevenção a jogadores
+muito lerdos. A Figura \ref{fig:spelunky-ghost} ilustra o fantasma perseguindo o
+jogador.
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=.65\textwidth]{fig/spelunky-ghost.png}
+\caption{Fantasma perseguindo o jogador após 150 segundos.}
+\label{fig:spelunky-ghost}
+\end{figure}
 
 
 %----------
@@ -596,12 +610,69 @@ itens diferentes, que são divididos nas seguintes categorias:
 O anexo \ref{section:spelunky-obstacles} apresenta a relação de itens presentes
 em \textit{Spelunky}, bem como uma breve descrição de seus comportamentos.
 
-\begin{mdframed}[backgroundcolor=green!20]
-\begin{itemize}
-    \item
-		Falar sobre os Comerciantes
-\end{itemize}
-\end{mdframed}
+
+%----------
+\section{\label{section:spelunky-shops}As Lojas}
+Dentro das cavernas de \textit{Spelunky}, existem diversas lojas, gerenciadas
+por \textbf{comerciantes}, que vendem itens e serviços para o explorador. A
+Figura \ref{fig:spelunky-shop-examples} ilustra um exemplo da aparência de uma
+loja. Existem quatro tipos diferentes de lojas:
+
+\begin{description}
+	\item[Loja Comum]
+		Vende itens comuns, como consumíveis, equipamentos e armas.  São
+		vendidos somente quatro itens por loja, escolhidos aleatóriamente pelo
+		jogo. A loja segue uma linha de produtos de venda -- loja de
+		suprimentos, loja de bombas, loja de armamentos, loja de roupas e loja
+		de especialidades --, comercializando somente itens de cunho parecido.
+	\item[Casa de Apostas]
+		Permite que o jogador aposte tesouros e jogue um jogo de dados, com a
+		chance de ganhar o dobro de tesouros ou itens como premiação.
+	\item[Cabine do Beijo]
+		Contém uma donzela em perigo e um comerciante, que fornece um serviço de
+		beijo ao explorador. Quando o jogador realiza o pagamento, a donzela o
+		beija, concedendo um ponto de vida extra ao jogador.
+	\item[Tenda do Artefato]
+		Tipo especial de loja que somente aparece no Mercado Negro. O
+		comerciante desta loja vende somente um item: o \textit{Ankh}.
+\end{description}
+
+\begin{figure}[htb!]
+\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{fig/spelunky-shop-normal.png}
+		\caption{Loja comum}
+		\label{fig:spelunky-shop-normal}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{fig/spelunky-shop-gamble.png}
+		\caption{Casa de apostas}
+		\label{fig:spelunky-shop-gamble}
+	\end{subfigure}
+
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{fig/spelunky-shop-kiss.png}
+		\caption{Cabine do beijo}
+		\label{fig:spelunky-shop-kiss}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{fig/spelunky-shop-ankh.png}
+		\caption{Tenda do artefato}
+		\label{fig:spelunky-shop-ankh}
+	\end{subfigure}
+	\caption{Exemplos dos tipos de lojas de \textit{Spelunky}.}
+	\label{fig:spelunky-shop-examples}
+\end{figure}
+
+
+Caso o jogador não possua tesouros suficientes para realizar uma compra (o custo
+dos itens e serviços aumentam conforme o progresso no jogo), é possível roubar
+as lojas. Contudo, ao fazer isso, os comerciantes se tornarão extremamente
+agressivos e farão de sua única missão abater o jogador. Isto não é desejável,
+pois são um dos inimigos mais fortes do jogo (possuem vida elevada e sempre
+andam armados com uma espingarda). Além disso, toda vez que o jogador roubar, um
+comerciante aparecerá de guarda na saída do nível aguardando o jogador para
+abatê-lo. 
 
 
 %----------
