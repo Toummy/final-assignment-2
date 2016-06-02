@@ -43,12 +43,41 @@ a programação dos \textit{bots}.
 
 \begin{figure}[htb!]
 \centering
-\includegraphics[width=.65\textwidth]{fig/spelunkbots-usage-diagram.png}
-\label{fig:spelunkbots-usage-diagram}
-\caption {Diagrama exibindo a relação
-entre o jogo Spelunky, o \textit{framework} \textit{SpelunkBots} e as opções de
-programação disponíveis ao usuário para realizar a implementação dos
-\textit{bots}.}
+\begin{tikzpicture}[
+    every node/.style={
+        minimum width=4cm, minimum height=3em,
+        text width=4cm,
+        text centered,
+        font=\small
+    },
+    box/.style={
+        draw, rectangle,
+        minimum width=5.3cm
+    },
+    inner box/.style={
+        draw, rectangle
+    }
+]
+    \matrix[row sep=1cm, column sep=1.5cm] {
+        \node[rectangle] (spl) {Spelunky};                    &
+                                                              &
+        \\
+        \node[inner box] (spb) {SpelunkBots};                 &
+        \node[box]       (gml) {Código em GML};               &
+        \\
+        \node[box]       (dll) {Solução de DLLs do Spelunky}; &
+        \node[box]       (c++) {Código em C++};
+        \\
+    };
+    \node[draw, inner sep=.5cm, fit={(spl) (spb)}] {};
+
+    \draw[->,>=latex] (gml.west) -- (spb.east);
+    \draw[->,>=latex] (dll.north) -- (spb.south);
+    \draw[->,>=latex] (c++.west) -- (dll.east);
+\end{tikzpicture}
+\caption {\label{fig:spelunkbots-usage-diagram}Diagrama exibindo a relação
+entre o jogo Spelunky, a API SpelunkyBots e as linguagens de programação que
+podem ser usadas para a interação com o jogo.}
 \end{figure}
 
 
@@ -150,14 +179,6 @@ utilizar. O código do Spelunky teve de ser modificado de forma a poder
 interagir com o código do SpelunkyBots que, por sua vez, faz o uso de uma
 solução de \textit{DLLs} escritas em C++ para fazer a interação com o jogo
 através de código escrito em C++.
-
-\begin{figure}[htb!]
-\centering
-\includegraphics[width=.65\textwidth]{fig/spelunkbots-usage-diagram.png}
-\caption {\label{fig:spelunkbots-usage-diagram}Diagrama exibindo a relação
-entre o jogo Spelunky, a API SpelunkyBots e as linguagens de programação que
-podem ser usadas para a interação com o jogo.}
-\end{figure}
 
 A \textit{API} permite uma interação completa com o jogo através do uso
 das variáveis expostas pelo
