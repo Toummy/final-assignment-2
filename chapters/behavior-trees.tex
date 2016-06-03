@@ -8,7 +8,7 @@ diferencial no momento da compra de um jogo \cite[Cap
 o processo de tomada de decisão pode ser um dos fatores de sucesso na
 construção de agentes. Das técnicas mais populares,
 \textit{\textbf{behavior trees}} (árvores de comportamento) é uma das que
-mais se destaca por sua \textbf{simplicidade} e \textbf{extensabilidade}
+mais se destaca por sua \textbf{simplicidade} e \textbf{extensibilidade}
 \cite[Cap. 4]{Rabin:2013:GAP:2566761}, além de ter sido utilizada na
 indústria em jogos como \textbf{Halo 2} \cite[Cap.
 5]{Millington:2009:AIG:1795711}, por exemplo.
@@ -26,68 +26,160 @@ filho, é executada a sua ação. É importante ressaltar que
 somente um comportamento é selecionado por vez. Portanto, se um
 comportamento for selecionado, o algoritmo não tentará executar as ações
 dos nodos vizinhos na mesma execução do algoritmo.
+
 Como este é um formalismo bastante simples, é possível, por exemplo, adicionar
 estruturas de \textbf{controle de fluxo} a ele. Dessa forma, os ramos da
 árvore passam a ser usados para controlar o fluxo de execução, enquanto os
 nodos folhas representam as pré-condições e ações \cite[Cap.
 10]{Rabin:2015:GAP:2821138}. Isso permite que diversos tipos de controle
-de fluxo sejam aplicados. Assim, cada vez que uma ação de um nodo folha é
+de fluxo sejam aplicados. Assim, cada vez que a ação de um nodo folha é
 executada, é informado ao pai (ramo de controle de fluxo) o estado dessa
 ação, se foi executada com sucesso ou falha ou se ainda está em execução.
-O nodo pai decide então o que fazer com base nessa informação.
+Existem alguns desenvolvedores que informam ao pai outras informações,
+como por exemplo, o motivo do erro. Isso permite que o pai decida o que
+fazer baseado nessas informações. Existem vários algoritmos para a
+realização do controle de fluxo, dentre os mais comumente utilizados estão
+o algoritmo de \textbf{seleção} e o de \textbf{sequência}. O algoritmo de
+\textbf{seleção} faz a execução do \textbf{primeiro} nodo filho que tiver sua
+pré-condição satisfeita. Um exemplo do algoritmo pode ser visto no algoritmo \ref{alg:behavior-tree-selection}.
 
-A figura
-\ref{fig:bt-eat-dish-washer-agent} representa através de uma
+\begin{algorithm}[H]
+\begin{center}
+	% Um exemplo de algoritmo utilizando a pacote 'algorithmic'
+	%\algsetup{linenosize=\small,linenodelimiter=.}
+	\begin{algorithmic}[1]
+        \STATE filhos $\gets$ lista de nodos filhos
+        \FOR{cada filho em filhos}
+            \IF{filho.executar() == true}
+                \RETURN true
+            \ENDIF
+        \ENDFOR
+        \RETURN false
+    \end{algorithmic}
+\end{center}
+\caption[Algoritmo para execução do controle de fluxo do tipo seleção em
+uma behavior tree.]
+{\label{alg:behavior-tree-selection} Algoritmo para execução do controle
+de fluxo do tipo seleção em uma behavior tree.}
+\end{algorithm}
+
+Diferentemente do algoritmo de seleção, o algoritmo de \textbf{sequência}
+tentará executar todos os nodos que satisfizerem suas pré-condições de forma
+sequencial. Portanto, esse algoritmo tentará tomar a ação descrita pelo
+primeiro nodo, caso isso seja possível, tentará executar a ação do segundo
+nodo, e assim sucessivamente. Sua execução é interrompida quando não for
+possível tomar a ação descrita pelo nodo ou quando não existirem mais
+nodos para se avaliar. O algoritmo é bastante parecido com o algoritmo de
+seleção, sendo exemplificado no algoritmo \ref{alg:behavior-tree-sequence}.
+
+\begin{algorithm}[H]
+\begin{center}
+	% Um exemplo de algoritmo utilizando a pacote 'algorithmic'
+	%\algsetup{linenosize=\small,linenodelimiter=.}
+	\begin{algorithmic}[1]
+        \STATE filhos $\gets$ lista de nodos filhos
+        \FOR{cada filho em filhos}
+            \IF{filho.executar() == false}
+                \RETURN false
+            \ENDIF
+        \ENDFOR
+        \RETURN true
+    \end{algorithmic}
+\end{center}
+\caption[Algoritmo para execução do controle de fluxo do tipo sequência em
+uma behavior tree.]
+{\label{alg:behavior-tree-sequence} Algoritmo para execução do controle
+de fluxo do tipo sequência em uma behavior tree.}
+\end{algorithm}
+
+A figura \ref{fig:behavior-tree-example} representa através de uma
 \textit{behavior tree} com o uso de fluxo de controle um agente que deve
-se alimentar e, após isso, lavar a louça. Caso o agente esteja com fome,
-será possível comer \textit{arroz}. Se essa ação falhar -- o agente não
-gosta de comer arroz, por exemplo -- será possível então comer
-\textit{feijão}. Isso é feito pelo controle de fluxo \textbf{selecionar},
-que testa cada uma das ações e executa a que for possível de ser
-executada.
-No momento em que o agente vai lavar a louça, caso a louça esteja suja, será
-possível lavar os pratos e lavar os talheres de forma sequencial -- não
-importando se as ações vizinhas podem ou não ser executadas --.  Isso é feito
-pelo controle de fluxo \textbf{sequência}.
+recarregar suas energias e, após isso, limpar a casa. Os retângulos de
+fundo branco representam as ações, os retângulos com bordas arredondadas,
+as estruturas de controle e os com fundo preto as pré-condições. Nesse
+exemplo, caso o agente esteja com pouca energia, será possível carregar
+suas baterias através de \textit{energia solar}. Se essa ação falhar -- em
+um dia chuvoso, por exemplo -- será possível então utilizar
+\textit{energia elétrica}. Isso é feito pelo controle de fluxo
+\textbf{selecionar}, que testa cada uma das ações e executa a que for
+possível de ser executada.  No momento em que o agente vai limpar a casa,
+caso a casa esteja suja, o agente limpará a sala e organizará os móveis de
+forma sequencial -- ou seja, é necessário estar com a sala limpa para
+organizar os móveis. Isso é feito pelo controle de fluxo
+\textbf{sequência}.
 
-\begin{figure}[htb!]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[
-    rootnode/.style={regular polygon, regular polygon sides=3, draw=black, fill=white, very thick, minimum size=5mm, font=\footnotesize},
-    flow/.style={rounded rectangle, draw=black, fill=white, very thick, minimum size=5mm, font=\footnotesize},
-    precond/.style={rectangle, draw=black, fill=black, text=white, very thick, minimum size=5mm, font=\footnotesize},
-    action/.style={rectangle, draw=black, fill=white, very thick, minimum size=5mm, font=\footnotesize},
+    every node/.style={
+        font=\footnotesize
+    },
+    composite/.style={
+        minimum width=1.75cm, minimum height=1.2cm,
+        text width=1.75cm,
+        text centered,
+        rounded rectangle,
+        draw
+    },
+    action/.style={
+        minimum width=1.75cm, minimum height=1.2cm,
+        text width=1.75cm,
+        text centered,
+        rectangle,
+        draw
+    },
+    precond/.style={
+        minimum width=1.75cm, minimum height=1.2cm,
+        text width=1.75cm,
+        text centered,
+        rectangle,
+        fill=black,
+        text=white
+    }
 ]
-    \node[rootnode]  (root)                          {Raíz};
+\matrix [row sep=1cm, column sep=0.3cm] {
+                                                &
+                                                &
+                                                &
+    \node (n1)  [action]    {Raíz};             &
+                                                &
+                                                &
+                                                &
+    \\
+                                                &
+    \node (n2)  [composite] {Selecionar};       &
+                                                &
+    \node (n3)  [action]    {Descansar};        &
+                                                &
+    \node (n4)  [composite] {Sequência};        &
+                                                &
+                                                &
+    \\
+    \node (n5)  [precond]   {Pouca Energia?};   &
+    \node (n6)  [action]    {Energia Elétrica}; &
+    \node (n7)  [action]    {Energia Solar};    &
+                                                &
+    \node (n8)  [precond]   {Casa Suja?};       &
+    \node (n9)  [action]    {Limpar Sala};      &
+    \node (n10) [action]    {Organizar Móveis}; &
+    \\
+};
+\draw[->,>=latex] (n1.south) -- (n2.north);
+\draw[->,>=latex] (n1.south) -- (n3.north);
+\draw[->,>=latex] (n1.south) -- (n4.north);
 
-    \node[flow]      (flow1)  [below left=of root]   {Selecionar};
-    \node[flow]      (flow2)  [below right=of root]  {Sequência};
-    \node[action]    (desc)   [right=of flow2]       {Descansar};
+\draw[->,>=latex] (n2.south) -- (n5.north);
+\draw[->,>=latex] (n2.south) -- (n6.north);
+\draw[->,>=latex] (n2.south) -- (n7.north);
 
-    \node[action]    (arroz)  [below left=of flow1]  {Arroz};
-    \node[precond]   (fome?)  [left=of arroz]        {Fome?};
-    \node[action]    (feijao) [right=of arroz]       {Feijão};
-
-    \node[precond]   (suja?)  [below=of flow2]       {Sujeira?};
-
-    \node[action]    (pratos) [right=of suja?]       {Pratos};
-    \node[action]    (talh)   [right=of pratos]      {Talheres};
-
-    \draw[->] (root.south) -- (flow1.north);
-    \draw[->] (root.south) -- (flow2.north);
-    \draw[->] (root.south) -- (desc.north);
-
-    \draw[->] (flow1.south) -- (fome?.north);
-    \draw[->] (flow1.south) -- (arroz.north);
-    \draw[->] (flow1.south) -- (feijao.north);
-
-    \draw[->] (flow2.south) -- (suja?.north);
-    \draw[->] (flow2.south) -- (pratos.north);
-    \draw[->] (flow2.south) -- (talh.north);
+\draw[->,>=latex] (n4.south) -- (n8.north);
+\draw[->,>=latex] (n4.south) -- (n9.north);
+\draw[->,>=latex] (n4.south) -- (n10.north);
 \end{tikzpicture}
-\caption {\label{fig:bt-eat-dish-washer-agent}Exemplo de uma \textit{behaviour tree}
-para representar um agente que deve comer caso esteja com fome, lavar a
-louça caso a mesma esteja suja ou descansar caso contrário.}
+\caption {\label{fig:behavior-tree-example}Exemplo de uma
+\textit{behaviour tree} para representar um agente que deve carregar suas
+baterias caso seja necessário, além de limpar e organizar a casa,
+descansando caso contrário.}
 \end{figure}
 
 Existem algumas outras técnicas que resolvem o mesmo problema que as
