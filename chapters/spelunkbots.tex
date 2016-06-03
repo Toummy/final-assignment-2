@@ -12,7 +12,7 @@ linguagem C++.
 
 
 %----------
-\section{Modo de Uso}
+\section{\label{section:spelunkbots-usage}Modo de Uso}
 Como o \textit{framework} possui acesso irrestrito ao código-fonte de
 \textit{Spelunky}, a opção de programar a inteligência artificial utilizando a
 linguagem de programação padrão do \textit{GameMaker}, a \textit{GML}, foi
@@ -84,92 +84,110 @@ podem ser usadas para a interação com o jogo.}
 
 %----------
 \section{Configurações da Ferramenta}
-\begin{mdframed}[backgroundcolor=green!20]
-\begin{itemize}
-    \item
-		Como escolher o bot que vai ser executado (script PlayerChoice)
-    \item
-		Explicar os tipos de teste (Marathon e TestMaps) e como escolher
-		(script LevelParameters)
-\end{itemize}
-\end{mdframed}
+Antes de tentar executar o \textit{SpelunkBots}, é necessário entender como
+realizar as configurações da ferramenta. As principais configurações que o
+usuário deve modificar são a \textbf{escolha do \textit{bot}} a ser executado e
+o \textbf{tipo de teste} no qual o \textit{bot} vai executar. Estas modificações
+são efetuadas dentro do \textit{GameMaker} no projeto do \textit{framework},
+chamado \textit{spelunkbots.gmk}.
+
+É possível que o usuário sinta a necessidade de desenvolver mais de uma
+inteligência artificial ao mesmo tempo durante o uso da ferramenta.  Por
+exemplo, pode desejar tentar solucionar diversos problemas específicos ou
+realizar outros experimentos sem modificar o código-fonte do \textit{bot}
+principal.  Para escolher o \textit{bot} que será executado, o usuário deve
+modificar o arquivo de \textit{script} \textit{PlayerChoice} para escolher o
+\textit{bot} que deseja testar.
+
+Existem dois modos de execução em \textit{SpelunkBots}: o modo \textbf{TestMaps}
+e o modo \textbf{Marathon}. No primeiro, a ferramenta executa o \textit{bot} em
+uma série de mapas customizados, escolhidos pelo usuário. Este modo é perfeito
+para testar as capacidades do \textit{bot} em cenários específicos ou difíceis
+de encontrar durante uma partida comum. Já no segundo, executa o \textit{bot} em
+uma série de mapas comuns, utilizando uma lista de sementes definidas pelo
+usuário. Como as sementes são repassadas para o gerador de números
+pseudo-aleatórios do algoritmo de geração de níveis, os \textit{layouts} dos
+níveis serão sempre os mesmos -- definidos pelas sementes. Este modo é ótimo
+para testar o \textit{bot} em mapas normais do jogo, mas para ser bem sucedido,
+a inteligência artificial deve estar muito preparada. Para escolher o modo de
+execução (e outros parâmetros relacionados, como número de execuções e tempo
+limite por nível), o usuário deve modificar o arquivo de \textit{script}
+\textit{LevelParameters}.
 
 
 %----------
 \section{Recebendo Informações do Jogo}
-\begin{mdframed}[backgroundcolor=green!20]
-Detalhar informações disponibilizadas pelo SpelunkBots
-\begin{itemize}
-    \item
-		Node Data
-	\item
-		Enemy Data
-	\item
-		Object Data
-	\item
-		Explicar sistema de fog of war
-\end{itemize}
-\end{mdframed}
+Uma das funcionalidades mais importantes da ferramenta é a disponibilização das
+informações do jogo durante sua execução. As informações do jogo são divididas
+em três grupos: \textbf{nodos}, \textbf{inimigos} e \textbf{objetos}:
 
+\begin{description}
+	\item[Nodo]
+		O mapa do nível é dividido em nodos, e cada um destes nodos possui um
+		tipo.  Para receber o tipo de um nodo em específico, a função da
+		\textit{API} \textit{GetNodeState} deve ser chamada. Existe um total de
+		1428 nodos em um mapa de \textit{Spelunky}.
 
-%----------
-\section{Enviando Comandos para o \textit{Bot}}
-\begin{mdframed}[backgroundcolor=green!20]
-\begin{itemize}
-    \item
-		Explicar como funciona o envio de comandos para o bot (enviar comandos a
-		cada frame)
-\end{itemize}
-\end{mdframed}
+	\item[Inimigos]
+		Existem diversos tipos de inimigos em \textit{Spelunky}, e saber a
+		localização deles é extremamente importante. Assim como as informações
+		de nodo, cada inimigo possui um tipo associado a ele. Para determinar se
+		um nodo possui um inimigo em específico, a função da \textit{API}
+		\textit{GetIDOfEnemyInNode} deve ser usada.
 
+	\item[Objetos]
+		Em \textit{Spelunky}, existem diversos objetos com os quais o jogador
+		pode interagir das mais diversas maneiras. Cada objeto possui um tipo
+		associado a ele, para facilitar na distinção. Para determinar se um nodo
+		possui um objeto em específico, a função da \textit{API}
+		\textit{GetIDOfCollectableInNode} deve ser usada.
+\end{description}
 
-%----------
-\section{Esqueleto de um \textit{Bot}}
-\begin{mdframed}[backgroundcolor=green!20]
-\begin{itemize}
-    \item
-		Exemplo de esqueleto de um bot (funções que precisam ser implementadas:
-		Initialise e Update)
-\end{itemize}
-\end{mdframed}
+Além destas informações, o usuário pode receber dados sobre o estado do
+\textit{bot}, como saber suas coordenadas, se ele está no ar, se movendo para a
+direita ou esquerda, se ele está pendurado, entre outras. O apêndice
+\ref{appendix:spelunkbots-variables} detalha os tipos de nodos, inimigos e
+objetos e informações do estado do jogador.
 
+\subsection{Sistema de \textit{Fog of War}}
+Apesar de possibilitar ao desenvolvedor o resgate de informações sobre o jogo,
+como o terreno, a posição de tesouros, armadilhas e inimigos, o objetivo do
+\textit{framework} é fazer com que a informação recebida pelo \textit{bot} se
+assemelhe ao máximo com a percepção de um jogador humano. Para tal, um sistema
+de névoa de batalha (\textit{fog of war}) foi implementado, que serve para
+limitar o conhecimento do ambiente que pode ser obtido pela inteligência
+artificial.
 
-\section{Texto Velho}
-A \textit{API} possibilita que o desenvolvedor resgate informações de objetos
-estáticos e dinâmicos contidos no ambiente do jogo, como o terreno, a
-posição de tesouros, armadilhas e inimigos. Contudo, o objetivo da \textit{API}
-disponibilizada por SpelunkBots é fazer com que a informação recebida pelo
-\textit{bot} se assemelhe ao máximo com a percepção de um jogador humano.  Para
-tal, o \textit{framework} implementa um sistema de \textit{fog of war},
-limitando o conhecimento do ambiente que pode ser obtido pela inteligência
-artificial. Para objetos estáticos, uma vez que o jogador visualizou o objeto,
-ele poderá receber informações sobre ele permanentemente. Para objetos
-dinâmicos, o \textit{bot} só poderá receber informações sobre eles se os mesmos
-estiverem sendo visualizados por ele. A figura \ref{fig:spelunkbots-fow} ilustra
-um exemplo de funcionamento do sistema, onde as áreas marcadas com o valor ``0''
-representam um terreno transponível, enquanto as áreas com o valor ``1''
-representam terreno intransponível. As áreas intransponíveis com o fundo
-acinzentado correspondem ao sistema de \textit{fog of war}, cujas informações
-não estão disponíveis pois tal área ainda não foi explorada pelo \textit{bot}.
+Para objetos estáticos, uma vez que o jogador visualizou o objeto, ele poderá
+receber informações sobre ele permanentemente. Um exemplo de objeto estático é o
+terreno. Já para objetos dinâmicos, o \textit{bot} só receberá informações sobre
+eles se estiverem sendo visualizados (dentro da tela do jogo) naquele momento.
+Um exemplo de objeto dinâmico são os inimigos A Figura \ref{fig:spelunkbots-fow}
+ilustra um exemplo de funcionamento do sistema, onde a área com o fundo nevoado
+corresponde ao sistema de \textit{fog of war}.
 
 \begin{figure}[htb!]
 \centering
 \includegraphics[width=.65\textwidth]{fig/spelunkbots-fow.png}
-\caption {\label{fig:spelunkbots-fow}Visualização do sistema de \textit{fog of
-war} demonstrando a diferença de informação recebida de elementos dentro e fora
-do campo de visão do jogador.}
+\caption {Visualização do sistema de \textit{fog of war} demonstrando a
+diferença de informação recebida de elementos dentro e fora do campo de visão do
+jogador.}
+\label{fig:spelunkbots-fow}
 \end{figure}
 
-A \textit{API} permite uma interação completa com o jogo através do uso
-das variáveis expostas pelo
-\textit{framework}\footnote{http://spelunkbots.com/wp-content/uploads/2015/02/SpelunkBots-API-A-Getting-Started-Tutorial.pdf}.
-Com elas, é possível fazer o controle da movimentação do bot, bem
-como identificar o tipo de terreno em que se está pisando e os inimigos que
-aparecem em seu campo de visão. Além disso, também são disponibilizadas
-informações sobre as armadilhas que podem atrapalhar o jogador. Por fim,
-existem variáveis que permitem um melhor controle das informações relativas ao
-\textit{bot}, como o posicionamento no eixo X e no eixo Y, se o \textit{bot}
-encontra-se virado para a esquerda ou para a direita, entre outros. O uso dessas
-variáveis torna possível a implementação de técnicas de inteligência artificial
-no jogo Spelunky. O apêndice \ref{appendix:spelunkbots-variables} faz um
-detalhamento maior de todas essas variáveis.
+
+%----------
+\section{Enviando Comandos para o \textit{Bot}}
+Outra parte crucial da ferramenta é o envio de comandos para o \textit{bot}
+durante a execução do jogo. Em \textit{SpelunkBots}, o envio de comandos é
+controlado por uma série de variáveis \textit{booleanas} que estão mapeadas, uma
+para uma, para os botões de controle (este mapeamento é apresentado no apêndice
+\ref{appendix:spelunkbots-variables}). A cada etapa de execução, o usuário deve
+modificar tais variáveis para \textit{verdadeiro} ou \textit{falso}, informando
+para o \textit{framework} que comandos executar com o personagem.
+
+O usuário não precisa se preocupar em reiniciar as variáveis de controle a cada
+passo de execução, pois o programa já se encarrega disso: a cada fim de etapa de
+execução, todas as variáveis são reiniciadas para o valor \textit{falso}. Ou
+seja, se o usuário não enviar comandos em \textbf{todas as etapas de execução},
+o \textit{bot} não se movimentará corretamente.
