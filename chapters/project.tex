@@ -1,26 +1,4 @@
-\chapter{\label{chap:project}Projeto} 
-\begin{mdframed}[backgroundcolor=green!20]
-\begin{itemize}
-    \item
-        Falar sobre uma pequena estrutura das pastas/arquivos, explicando onde
-        cada coisa será colocada.
-    \item
-        Falar da estrutura de um Bot, podendo ser colocado código em C++,
-        por exemplo. Caso seja colocado código em C++ na estrutura dos bots
-        no capítulo \ref{chap:spelunkbots}, apenas citar isso.
-    \item
-        Falar do que os bots devem fazer, em um nível bem geral, por exemplo, os
-        bots que utilizem NEAT devem gravar e ler os resultados do treinamento,
-        podemos detalhar um pouco isso.
-    \item
-        Citar algumas estruturas de dados que possivelmente seráo utilizadas,
-        além das bibliotecas (algumas delas já falamos no texto).
-    \item
-        Acho que a grande função desse capítulo é passar para o leitor o
-        que vamos fazer para conseguir desenvolver os bots em questão. Não deve
-        ficar nenhum ponto em aberto, do tipo ``mas como eles farão isso?''.
-\end{itemize}
-\end{mdframed}
+\chapter{\label{chap:project}Projeto}
 Conforme detalhado no capítulo \ref{chap:spelunkbots}, o \textit{SpelunkBots}
 disponibiliza duas opções de linguagem de programação para realizar o
 desenvolvimento dos \textit{bots}: \textit{GML} ou C++. Portanto, a primeira
@@ -66,3 +44,125 @@ adaptações no processo de compilação. Assim, utilizaremos o \textit{software
 da plataforma \textit{Windows} dentro do sistema operacional \textit{Linux}, e o
 \textit{software} \textit{MinGW}\footnote{http://www.mingw.org}, que realizará a
 compilação do código C++ e a geração da \textit{DLL}.
+
+\section{Estrutura do Projeto}
+
+Minimamente, o projeto completo deverá conter o código fonte do Spelunky e do
+SpelunkBots, além de utilizar bibliotecas auxiliares para a implementação de
+NEAT e \textit{behavior trees} que servirão de apoio para o desenvolvimento dos
+\textit{bots}.
+
+O código do SpelunkyBots provê uma interface comum para o desenvolvimento dos
+\textit{bots}, chamada \textbf{IBot.h}, essa interface é responsável por expor
+os métodos e as variáveis que os \textit{bots} poderão utilizar para
+comunicar-se com o Spelunky, portanto, qualquer \textit{bot} desenvolvido
+deverá utilizá-la. Os desenvolvedores, ao fazerem uso dessa interface, deverão,
+minimamente, implementar o método \textbf{Update()}, que será executado a cada
+novo estado do jogo. Um exemplo de utilização dessa interface para a criação
+desse bot pode ser visto nos algoritmos \ref{alg:project-example-bot-header} e
+\ref{alg:project-example-bot-impl}. O algoritmo
+\ref{alg:project-example-bot-header} apresenta a definição de um arquivo de
+\textit{header} -- arquivo que contém declarações dos métodos e variáveis a
+serem utilizados --, enquanto o algoritmo \ref{alg:project-example-bot-impl}
+apresenta um exemplo de implementação utilizando esse \textit{header} para
+desenvolver o \textit{bot}.
+
+\begin{algorithm}[H]
+\lstinputlisting[language=c++]{code/ExampleBot.h}
+\caption[Algoritmo para a definição de métodos e variáveis de um \textit{bot}
+de exemplo.]
+{\label{alg:project-example-bot-header}Algoritmo para a definição de métodos e
+variáveis de um \textit{bot} de exemplo.}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\lstinputlisting[language=c++]{code/ExampleBot.cpp}
+\caption[Algoritmo para a implementação dos métodos e variáveis de um
+\textit{bot} de exemplo.]
+{\label{alg:project-example-bot-impl}Algoritmo para a implementação dos métodos
+e variáveis de um \textit{bot} de exemplo.}
+\end{algorithm}
+
+É importante ressaltar que, devido ao processo de \textbf{treinamento} do
+\textit{bot} que faz uso da técnica \textit{NEAT}, temos a necessidade realizar
+operações de \textbf{leitura} e \textbf{escrita} de arquivos, portanto, é
+interessante definir um tipo de \textit{bot} que comporte tais operações. Dessa
+forma, além do método \textbf{Update()}, precisaremos implementar os métodos
+\textbf{ReadTrainingData()} e \textbf{SaveTrainingData()}.
+
+Podemos ver uma ilustração da estrutura de arquivos do projeto através da
+figura \ref{fig:project-structure}. Na figura, é mostrada a solução de
+\textit{DLLs}, que conterá o código dos \textit{bots} desenvolvidos, além de mostrar
+onde se encontram as bibliotecas utilizadas e o código modificado do Spelunky.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    every node/.style={
+        draw=black,
+        thick,
+        anchor=west,
+        font=\small
+    },
+    grow via three points={one child at (0.5,-0.7) and
+    two children at (0.5,-0.7) and (0.5,-1.4)},
+    edge from parent path={(\tikzparentnode.south) |- (\tikzchildnode.west)}
+]
+    \node {Projeto}
+        child {node {DLL Solution}
+            child {node {Bot}
+                child {node {lib}
+                    child {node {BehaviorTrees}}
+                    child {node {NEAT}}
+                }
+                child [missing] {}
+                child [missing] {}
+                child {node {Spelunkbot}
+                    child {node {IBot.h}}
+                    child {node {IBot.cpp}}
+                    child {node {...}}
+                    child {node {BehaviorTreeBot.cpp}}
+                    child {node {BehaviorTreeBot.h}}
+                    child {node {NEATBot.cpp}}
+                    child {node {NEATBot.h}}
+                }
+            }
+            child [missing] {}
+            child [missing] {}
+            child [missing] {}
+            child [missing] {}
+            child [missing] {}
+            child [missing] {}
+            child [missing] {}
+            child [missing] {}
+            child [missing] {}
+            child [missing] {}
+            child [missing] {}
+            child {
+                node {Spelunkbots}
+            }
+        }
+        child [missing] {}
+        child [missing] {}
+        child [missing] {}
+        child [missing] {}
+        child [missing] {}
+        child [missing] {}
+        child [missing] {}
+        child [missing] {}
+        child [missing] {}
+        child [missing] {}
+        child [missing] {}
+        child [missing] {}
+        child [missing] {}
+        child {node {Game Maker}}
+        child {node {Source}
+            child {node {spelunky\_1\_1}
+                child {node {levels}}
+            }
+        }
+    ;
+\end{tikzpicture}
+\caption {\label{fig:project-structure}Figura ilustrando a estrutura
+de diretórios para o projeto.}
+\end{figure}
