@@ -13,15 +13,15 @@ definidos no capítulo \ref{chap:objectives}:
 \cline{2-16}
 {\bf}                                 & \multicolumn{3}{c|}{{\bf Ago/16}} & \multicolumn{4}{c|}{{\bf Set/16}}     & \multicolumn{4}{c|}{{\bf Out/16}}      & \multicolumn{4}{c|}{{\bf Nov/16}}     \\ \hline
 \multicolumn{1}{|c|}{{\bf Objetivo}}  & {\bf 1} & {\bf 2} & {\bf 3}	      & {\bf 4} & {\bf 5} & {\bf 6} & {\bf 7} & {\bf 8} & {\bf 9} & {\bf 10} & \bf{11} & \bf{12} & \bf{13} & \bf{14} & \bf{15} \\ \hline
-\multicolumn{1}{|c|}{{\bf 1}}         &         &         &               &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 2}}         &         &         &               &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 3}}         &         &         &               &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 4}}         &         &         &               &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 5}}         &         &         &               &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 6}}         &         &         &               &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 7}}         &         &         &               &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 8}}         &         &         &               &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 9}}         &         &         &               &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
+\multicolumn{1}{|c|}{{\bf 1}}         & X       &         &               &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
+\multicolumn{1}{|c|}{{\bf 2}}         & X       &         &               &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
+\multicolumn{1}{|c|}{{\bf 3}}         &         & X       &               &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
+\multicolumn{1}{|c|}{{\bf 4}}         &         &         & X             &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
+\multicolumn{1}{|c|}{{\bf 5}}         &         &         &               & X       & X       & X       &         &         &         &          &         &         &         &         &         \\ \hline
+\multicolumn{1}{|c|}{{\bf 6}}         &         &         &               &         &         &         & X       & X       & X       &          &         &         &         &         &         \\ \hline
+\multicolumn{1}{|c|}{{\bf 7}}         &         &         &               &         &         &         &         &         &         & X        & X       &         &         &         &         \\ \hline
+\multicolumn{1}{|c|}{{\bf 8}}         &         &         &               &         &         &         &         &         &         &          &         & X       & X       &         &         \\ \hline
+\multicolumn{1}{|c|}{{\bf 9}}         &         &         &               &         &         &         &         &         &         &          &         &         &         & X       & X       \\ \hline
 \end{tabular}
 \end{table}
 
@@ -32,11 +32,13 @@ definidos no capítulo \ref{chap:objectives}:
         Obter uma cópia do SpelunkBots
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            TBD
+            Para possibilitar o desenvolvimento desse trabalho, preciamos obter
+            uma cópia do projeto SpelunkyBots, permitindo então que façamos o
+            desenvolvimento de \textit{bots} utilizando esse \textit{framework}.
         \item [Iterações]
-            TBD
+            1
         \item [Período]
-            TBD
+            01/08/2016 - 08/08/2016
     \end{description}
 
     \item
@@ -44,22 +46,28 @@ definidos no capítulo \ref{chap:objectives}:
         plataforma Linux
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            TBD
+            O SpelunkBots não possui uma distribuição para Linux. Como vamos
+            utilizar um servidor para o treinamento dos \textit{bots},
+            precisamos fazer adaptações para que o jogo funcione nessa
+            plataforma.
         \item [Iterações]
-            TBD
+            1
         \item [Período]
-            TBD
+            08/08/2016 - 15/08/2016
     \end{description}
 
     \item
         Buscar por bibliotecas auxiliares para o uso da técnica \textit{NEAT}
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            TBD
+            O uso de bibliotecas acelera o desenvolvimento da aplicação. Dessa
+            forma, devemos buscar uma biblioteca para o uso de \textit{NEAT}.
+            Caso encontremos tal biblioteca, é necessário ver se a mesma pode
+            ser usada no nosso projeto.
         \item [Iterações]
-            TBD
+            2
         \item [Período]
-            TBD
+            15/08/2016 - 22/08/2016
     \end{description}
 
     \item
@@ -67,66 +75,80 @@ definidos no capítulo \ref{chap:objectives}:
         \textit{Behavior Trees}
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            TBD
+            O uso de bibliotecas acelera o desenvolvimento da aplicação. Dessa
+            forma, devemos buscar uma biblioteca para o uso de \textit{behavior
+            trees}.  Caso encontremos tal biblioteca, é necessário ver se a
+            mesma pode
+            ser usada no nosso projeto.
         \item [Iterações]
-            TBD
+            3
         \item [Período]
-            TBD
+            22/08/2016 - 05/09/2016
     \end{description}
 
     \item
         Desenvolver \textit{bots} utilizando \textit{NEAT}
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            TBD
+            De forma a explorar as técnicas que vamos utilizar, devemos fazer
+            o desenvolvimento dos \textit{bots} aplicando a técnica
+            \textit{NEAT}.
         \item [Iterações]
-            TBD
+            4, 5 e 6
         \item [Período]
-            TBD
+            05/09/2016 - 26/09/2016
     \end{description}
 
     \item
         Desenvolver \textit{bots} utilizando \textit{Behavior Trees}
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            TBD
+            De forma a explorar as técnicas que vamos utilizar, devemos fazer
+            o desenvolvimento dos \textit{bots} aplicando a técnica
+            \textit{behavior trees}.
         \item [Iterações]
-            TBD
+            7, 8 e 9
         \item [Período]
-            TBD
+            26/09/2016 - 17/10/2016
     \end{description}
 
     \item
         Aplicar os \textit{bots} desenvolvidos em mapas fixos
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            TBD
+            Com os \textit{bots} desenvolvidos, precisamos realizar a aplicação
+            desses em mapas fixos, avaliando os resultados obtidos e refinando
+            os comportamentos desses \textit{bots}.
         \item [Iterações]
-            TBD
+            10 e 11
         \item [Período]
-            TBD
+            17/10/2016 - 31/10/2016
     \end{description}
 
     \item
         Aplicar os \textit{bots} desenvolvidos em mapas dinâmicos
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            TBD
+            Com os \textit{bots} desenvolvidos, precisamos realizar a aplicação
+            desses em mapas dinâmicos, avaliando os resultados obtidos e
+            refinando os comportamentos desses \textit{bots}.
         \item [Iterações]
-            TBD
+            12 e 13
         \item [Período]
-            TBD
+            31/10/2016 - 14/11/2016
     \end{description}
 
     \item
         Análise dos Resultados
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            TBD
+            Com os \textit{bots} desenvolvidos e em pleno funcionamento,
+            precisamos avaliar o que foi possível fazer e o que não foi, bem
+            com os resultados obtidos e as possibilidades de melhoria.
         \item [Iterações]
-            TBD
+            14 e 15
         \item [Período]
-            TBD
+            14/11/2016 - 28/11/2016
     \end{description}
 
 \end{enumerate}
