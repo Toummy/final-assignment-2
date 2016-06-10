@@ -1,0 +1,230 @@
+\chapter{\label{chap:theory}Fundamentação Teórica}
+\begin{mdframed}[backgroundcolor=green!20]
+\begin{itemize}
+	\item
+		Falar sobre agentes e ambiente
+	\item
+		Falar sobre escolha das técnicas
+	\item
+		Falar sobre Behavior Trees
+	\item
+		Falar sobre NEAT
+\end{itemize}
+\end{mdframed}
+
+%----------
+\section{\label{section:behavior-trees}Behavior Trees}
+Tomar decisões é uma das tarefas mais importantes na construção de bons agentes
+inteligentes. Em um contexto de jogos digitais, por exemplo, a partir de 1990, o
+uso de inteligência artificial em jogos passou a ser um diferencial no momento
+da compra de um jogo \cite[Cap 1.]{Millington:2009:AIG:1795711}. Portanto,
+escolher uma boa técnica para o processo de tomada de decisão pode ser um dos
+fatores de sucesso na construção de agentes. Das técnicas mais populares,
+\textit{\textbf{behavior trees}} (árvores de comportamento) é uma das que mais
+se destaca por sua \textbf{simplicidade} e \textbf{extensibilidade} \cite[Cap.
+4]{Rabin:2013:GAP:2566761}, além de ter sido utilizada na indústria em jogos
+como \textbf{Halo 2} \cite[Cap.  5]{Millington:2009:AIG:1795711}, por exemplo.
+
+Uma \textit{behavior tree} é uma estrutura de dados baseada em árvore, contendo
+um nodo raíz e vários nodos filhos que representam um \textbf{comportamento}
+(\textit{behavior}). Cada nodo filho pode ter outros filhos, formando assim uma
+árvore. Cada um desses comportamentos deve ter uma \textit{pré-condição} e uma
+\textit{ação}. Caso a pré-condição seja satisfeita, o agente poderá executar o
+comportamento descrito pela ação do nodo \cite[Cap 4.]{Rabin:2013:GAP:2566761}.
+Isso faz com que o algoritmo seja bastante simples, partimos do nodo raíz em
+busca do primeiro filho que satisfaça a sua pré-condição. Ao encontrar esse
+filho, é executada a sua ação. É importante ressaltar que somente um
+comportamento é selecionado por vez. Portanto, se um comportamento for
+selecionado, o algoritmo não tentará executar as ações dos nodos vizinhos na
+mesma execução do algoritmo.
+
+Como este é um formalismo bastante simples, é possível, por exemplo, adicionar
+estruturas de \textbf{controle de fluxo} a ele. Dessa forma, os ramos da árvore
+passam a ser usados para controlar o fluxo de execução, enquanto os nodos folhas
+representam as pré-condições e ações \cite[Cap.  10]{Rabin:2015:GAP:2821138}.
+Isso permite que diversos tipos de controle de fluxo sejam aplicados. Assim,
+cada vez que a ação de um nodo folha é executada, é informado ao pai (ramo de
+controle de fluxo) o estado dessa ação, se foi executada com sucesso ou falha ou
+se ainda está em execução.  Existem alguns desenvolvedores que informam ao pai
+outras informações, como por exemplo, o motivo do erro. Isso permite que o pai
+decida o que fazer baseado nessas informações. Existem vários algoritmos para a
+realização do controle de fluxo, dentre os mais comumente utilizados estão o
+algoritmo de \textbf{seleção} e o de \textbf{sequência}. O algoritmo de
+\textbf{seleção} faz a execução do \textbf{primeiro} nodo filho que tiver sua
+pré-condição satisfeita. Um exemplo do algoritmo pode ser visto no algoritmo
+\ref{alg:behavior-tree-selection}.
+
+\begin{algorithm}[H]
+\begin{center}
+	% Um exemplo de algoritmo utilizando a pacote 'algorithmic'
+	%\algsetup{linenosize=\small,linenodelimiter=.}
+	\begin{algorithmic}[1]
+        \STATE filhos $\gets$ lista de nodos filhos
+        \FOR{cada filho em filhos}
+            \IF{filho.executar() == true}
+                \RETURN true
+            \ENDIF
+        \ENDFOR
+        \RETURN false
+    \end{algorithmic}
+\end{center}
+\caption[Algoritmo para execução do controle de fluxo do tipo seleção em uma
+behavior tree.]
+{\label{alg:behavior-tree-selection} Algoritmo para execução do controle de
+fluxo do tipo seleção em uma behavior tree.}
+\end{algorithm}
+
+Diferentemente do algoritmo de seleção, o algoritmo de \textbf{sequência}
+tentará executar todos os nodos que satisfizerem suas pré-condições de forma
+sequencial. Portanto, esse algoritmo tentará tomar a ação descrita pelo primeiro
+nodo, caso isso seja possível, tentará executar a ação do segundo nodo, e assim
+sucessivamente. Sua execução é interrompida quando não for possível tomar a ação
+descrita pelo nodo ou quando não existirem mais nodos para se avaliar. O
+algoritmo é bastante parecido com o algoritmo de seleção, sendo exemplificado no
+algoritmo \ref{alg:behavior-tree-sequence}.
+
+\begin{algorithm}[H]
+\begin{center}
+	% Um exemplo de algoritmo utilizando a pacote 'algorithmic'
+	%\algsetup{linenosize=\small,linenodelimiter=.}
+	\begin{algorithmic}[1]
+        \STATE filhos $\gets$ lista de nodos filhos
+        \FOR{cada filho em filhos}
+            \IF{filho.executar() == false}
+                \RETURN false
+            \ENDIF
+        \ENDFOR
+        \RETURN true
+    \end{algorithmic}
+\end{center}
+\caption[Algoritmo para execução do controle de fluxo do tipo sequência em uma
+behavior tree.]
+{\label{alg:behavior-tree-sequence} Algoritmo para execução do controle de fluxo
+do tipo sequência em uma behavior tree.}
+\end{algorithm}
+
+A figura \ref{fig:behavior-tree-example} representa através de uma
+\textit{behavior tree} com o uso de fluxo de controle um agente que deve
+recarregar suas energias e, após isso, limpar a casa. Os retângulos de fundo
+branco representam as ações, os retângulos com bordas arredondadas, as
+estruturas de controle e os com fundo preto as pré-condições. Nesse exemplo,
+caso o agente esteja com pouca energia, será possível carregar suas baterias
+através de \textit{energia solar}. Se essa ação falhar -- em um dia chuvoso, por
+exemplo -- será possível então utilizar \textit{energia elétrica}. Isso é feito
+pelo controle de fluxo \textbf{selecionar}, que testa cada uma das ações e
+executa a que for possível de ser executada.  No momento em que o agente vai
+limpar a casa, caso a casa esteja suja, o agente limpará a sala e organizará os
+móveis de forma sequencial -- ou seja, é necessário estar com a sala limpa para
+organizar os móveis. Isso é feito pelo controle de fluxo \textbf{sequência}.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    every node/.style={
+        font=\footnotesize
+    },
+    composite/.style={
+        minimum width=1.75cm, minimum height=1.2cm,
+        text width=1.75cm,
+        text centered,
+        rounded rectangle,
+        draw
+    },
+    action/.style={
+        minimum width=1.75cm, minimum height=1.2cm,
+        text width=1.75cm,
+        text centered,
+        rectangle,
+        draw
+    },
+    precond/.style={
+        minimum width=1.75cm, minimum height=1.2cm,
+        text width=1.75cm,
+        text centered,
+        rectangle,
+        fill=black,
+        text=white
+    }
+]
+\matrix [row sep=1cm, column sep=0.3cm] {
+                                                &
+                                                &
+                                                &
+    \node (n1)  [action]    {Raíz};             &
+                                                &
+                                                &
+                                                &
+    \\
+                                                &
+    \node (n2)  [composite] {Selecionar};       &
+                                                &
+    \node (n3)  [action]    {Descansar};        &
+                                                &
+    \node (n4)  [composite] {Sequência};        &
+                                                &
+                                                &
+    \\
+    \node (n5)  [precond]   {Pouca Energia?};   &
+    \node (n6)  [action]    {Energia Elétrica}; &
+    \node (n7)  [action]    {Energia Solar};    &
+                                                &
+    \node (n8)  [precond]   {Casa Suja?};       &
+    \node (n9)  [action]    {Limpar Sala};      &
+    \node (n10) [action]    {Organizar Móveis}; &
+    \\
+};
+\draw[->,>=latex] (n1.south) -- (n2.north);
+\draw[->,>=latex] (n1.south) -- (n3.north);
+\draw[->,>=latex] (n1.south) -- (n4.north);
+
+\draw[->,>=latex] (n2.south) -- (n5.north);
+\draw[->,>=latex] (n2.south) -- (n6.north);
+\draw[->,>=latex] (n2.south) -- (n7.north);
+
+\draw[->,>=latex] (n4.south) -- (n8.north);
+\draw[->,>=latex] (n4.south) -- (n9.north);
+\draw[->,>=latex] (n4.south) -- (n10.north);
+\end{tikzpicture}
+\caption {\label{fig:behavior-tree-example}Exemplo de uma \textit{behaviour
+tree} para representar um agente que deve carregar suas baterias caso seja
+necessário, além de limpar e organizar a casa, descansando caso contrário.}
+\end{figure}
+
+Existem algumas outras técnicas que resolvem o mesmo problema que as
+\textit{behavior trees}. Por exemplo, as \textbf{\textit{finite state machines}}
+(máquinas de estados finitos) são muito utilizadas em inteligência artificial,
+pois trazem estruturas bastante simples de implementar e muito poderosas no
+momento de sua utilização. Contendo \textit{estados} que são ligados através de
+\textit{transições}, essa estrutura faz com que modelar uma inteligência
+artifical seja bastante simples. O problema dessa abordagem está quando
+precisamos reutilizar estados. Como uma transição liga apenas dois estados, é
+impossível utilizar o mesmo estado sem duplicá-lo. Para resolver esse problema,
+existe uma técnica baseada nessa chamada de \textbf{\textit{hierarchical finite
+state machines}} (máquinas de estados finitos hierárquicos). Essa estrutura
+permite que estados sejam englobados em outros estados, resolvendo o problema de
+reutilização.  Entretanto, ambas abordagens ainda são de difícil extensão. Como
+um estado está ligado à outro via uma transição, adicionar e remover estados
+dessa estrutura pode ser um problema, principalmente quando o modelo construído
+inicialmente não é adequado para o que estamos resolvendo, sendo necessário
+realizar muitas mudanças de forma a testar outras soluções possíveis.
+
+
+%----------
+\section{\label{section:neat}NEAT}
+\begin{mdframed}[backgroundcolor=green!20]
+\begin{itemize}
+    \item
+        Introdução: Escolha da técnica, história, paper
+    \item
+        Relação com aprendizado de máquina
+    \item
+        Relação com algoritmos genéticos
+    \item
+        Relação com redes neurais
+    \item
+        Explicação sobre a técnica: detalhamento de como funciona, termos
+        técnicos, exemplos, pedaços de código (se necessário)
+    \item
+        Como será utilizada na construção dos \textit{bots}
+\end{itemize}
+\end{mdframed}
