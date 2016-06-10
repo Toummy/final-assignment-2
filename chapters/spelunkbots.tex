@@ -1,4 +1,89 @@
 \chapter{\label{chap:spelunkbots}SpelunkBots}
+
+\section{\label{section:game-ai-competitions}Competições de Inteligência
+Artificial em Jogos Digitais}
+Existe uma relação mutuamente benéfica entre a área de inteligência artificial
+e jogos digitais.  De um lado, os jogos se beneficiam explorando conceitos,
+técnicas e algoritmos de inteligência artificial com o intuito de enriquecer
+seu conteúdo. O jogo \textbf{Black \&
+White}\footnote{http://aigamedev.com/open/highlights/top-ai-games}, da
+desenvolvedora \textit{Lionhead Studios}, por exemplo, incorporou as técnicas
+de agentes BDI, árvores de decisão e redes neurais para ditar o comportamento
+de alguns seus personagens.  Já o jogo \textbf{F.E.A.R}, da desenvolvedora
+\textit{Monolith Productions}, utilizou os conceitos de planejamento para
+aumentar o realismo das decisões tomadas por seus agentes \cite{FEARPLANNING}.
+Do outro lado, o campo da inteligência artificial se beneficia ao utilizar os
+jogos como plataformas de teste para suas técnicas e algoritmos. Jogos digitais
+são atraentes para pesquisadores da área de inteligência artificial por uma
+série de fatores. Primeiro, eles capturam a complexidade de situações do mundo
+real, são relativamente simples e baratos de desenvolver, podem replicar
+inúmeras situações e ambientes e até mesmo criar cenários impossíveis ou
+impraticáveis no mundo real. Existem diversos gêneros de jogos, variando desde
+jogos educacionais até jogos de tiro em primeira pessoa. Segundo, jogos possuem
+a vantagem de serem programas de computador, o que significa que, por muitas
+vezes, podem acelerar a velocidade na qual testes são executados, ou ainda
+executar múltiplos testes em paralelo. Finalmente, a natureza lúdica dos jogos
+são um ponto importante a ser ressaltado, pois ajudam a motivar os
+pesquisadores, além de resultar na adesão de novos pesquisadores.
+
+Tendo este apanhado de informações em mente, pesquisadores e entusiastas da
+área acabam desenvolvendo \textit{frameworks} de inteligência artificial em
+cima de jogos existentes para servir de plataforma de teste. Um exemplo desses
+frameworks é o \textbf{Brood War API}\footnote{bwapi.github.io}, um
+\textit{framework} para o jogo \textit{StarCraft: Brood War}. Algumas vezes,
+contudo, são criados jogos especificamente para pesquisa e experimentação, como
+foi o caso do projeto \textbf{TORCS, The Open Racing Car
+Simulator}\footnote{http://torcs.sourceforge.net/}, um simulador de corridas de
+carro que permite que desenvolvedores programem a inteligência de carros e
+compitam entre si.
+
+Muitas vezes, os \textit{frameworks} de inteligência artificial desenvolvidos
+abrem espaço para a criação de competições, servindo como base comum para o
+desenvolvimento e aplicação de técnicas de inteligência artificial para os
+concorrentes. Nestas disputas, os competidores são encorajados a resolver
+problemas ou sub-problemas impostos pelo jogo em questão, sendo vencedores os
+candidatos que melhor resolvê-los.
+
+Geralmente, o problema proposto é o de jogar o jogo de maneira mais eficiente.
+Para realizar uma avalição objetiva, são utilizadas métricas estipuladas pelo
+próprio jogo, como pontuação ou tempo. Muitas vezes, os organizadores da
+competição optam por fazer uso de um sistema de \textit{ranking}, expondo os
+resultados obtidos pelos candidatos. A competição \textbf{The General Video
+Game AI Competition}\footnote{gvgai.net}, que explora o problema de criar
+controladores genéricos de jogos, faz uso deste mecanismo.  Às vezes, as
+competições fazem com que os candidatos joguem entre sí para avaliá-los.  Um
+exemplo disso é a competição que gira em torno de
+\textbf{Vindinium}\footnote{vindinium.org}, um jogo para a plataforma
+\textit{web}.
+
+Contudo, a proposta principal da disputa pode ser outra. A competição
+\textbf{Mario AI Competition}, por exemplo, possuia como uma de suas metas a
+criação de níveis interessantes para o jogo\footnote{marioai.org/home}. Já a
+competição \textbf{2K Bot Prize} tinha como objetivo a criação de uma
+inteligência artificial para o jogo \textit{Unreal Tournament 2004} que pudesse
+enganar outros jogadores e fazê-los pensar que era um humano
+jogando\footnote{http://www.aaai.org/Conferences/AIIDE/aiide.php}. Neste tipo
+de torneio, a avaliação se dá de maneira subjetiva, visto que não existe uma
+métrica numérica para determinar diversão, por exemplo.
+
+Os organizadores destas competições costumam, ao término da disputa,
+disponibilizar os códigos-fonte de todos os candidatos. Assim, em versões
+futuras da competição, os competidores terão a oportunidade de investigar quais
+técnicas e algoritmos foram mais eficientes no passado. Competições onde os
+candidatos duelam entre sí tendem a aumentar a competitividade, pois uma
+solução que funcionou em um ano pode vir a não funcionar tão bem ou até mesmo
+falhar no ano seguinte, tendo em vista que o código será dissecado pelos seus
+rivais. Os resultados das competições costumam ser divulgados também em
+conferências como \textit{IEEE Computational Intelligence and
+Games}\footnote{http://www.ieee-cig.org} \textit{(CIG)} e \textit{AAAI
+Artificial Intelligence in Interactive Digital
+Entertainment}\footnote{http://www.aaai.org/Conferences/AIIDE/aiide.php}
+\textit{(AIIDE)}, além de conferências dedicadas a computação evolutiva,
+\textit{game design}, aprendizado de máquina, entre outras.
+
+
+%----------
+\section{\label{section:spelunkbots}O \textit{SpelunkBots}}
 Em 2014, Daniel Scales e Thomas Thompson, da Universidade de Derby no Reino
 Unido, criaram o \textit{SpelunkBots}\cite{SPELUNKBOTSPAPER}, um
 \textit{framework} que permite a programação de \textit{bots} para o jogo
@@ -11,8 +96,7 @@ criação de jogos \textit{GameMaker} e uma solução \textit{DLL} programada co
 linguagem C++.
 
 
-%----------
-\section{\label{section:spelunkbots-usage}Modo de Uso}
+\subsection{\label{section:spelunkbots-usage}Modo de Uso}
 Como o \textit{framework} possui acesso irrestrito ao código-fonte de
 \textit{Spelunky}, a opção de programar a inteligência artificial utilizando a
 linguagem de programação padrão do \textit{GameMaker}, a \textit{GML}, foi
@@ -82,8 +166,7 @@ podem ser usadas para a interação com o jogo.}
 \end{figure}
 
 
-%----------
-\section{Configurações da Ferramenta}
+\subsection{Configurações da Ferramenta}
 Antes de tentar executar o \textit{SpelunkBots}, é necessário entender como
 realizar as configurações da ferramenta. As principais configurações que o
 usuário deve modificar são a \textbf{escolha do \textit{bot}} a ser executado e
@@ -115,8 +198,7 @@ limite por nível), o usuário deve modificar o arquivo de \textit{script}
 \textit{LevelParameters}.
 
 
-%----------
-\section{Recebendo Informações do Jogo}
+\subsection{Recebendo Informações do Jogo}
 Uma das funcionalidades mais importantes da ferramenta é a disponibilização das
 informações do jogo durante sua execução. As informações do jogo são divididas
 em três grupos: \textbf{nodos}, \textbf{inimigos} e \textbf{objetos}:
@@ -149,7 +231,6 @@ direita ou esquerda, se ele está pendurado, entre outras. O apêndice
 \ref{appendix:spelunkbots-variables} detalha os tipos de nodos, inimigos e
 objetos e informações do estado do jogador.
 
-\subsection{Sistema de \textit{Fog of War}}
 Apesar de possibilitar ao desenvolvedor o resgate de informações sobre o jogo,
 como o terreno, a posição de tesouros, armadilhas e inimigos, o objetivo do
 \textit{framework} é fazer com que a informação recebida pelo \textit{bot} se
@@ -176,8 +257,7 @@ jogador.}
 \end{figure}
 
 
-%----------
-\section{Enviando Comandos para o \textit{Bot}}
+\subsection{Enviando Comandos para o \textit{Bot}}
 Outra parte crucial da ferramenta é o envio de comandos para o \textit{bot}
 durante a execução do jogo. Em \textit{SpelunkBots}, o envio de comandos é
 controlado por uma série de variáveis \textit{booleanas} que estão mapeadas, uma
