@@ -44,17 +44,17 @@ concorrentes. Nestas disputas, os competidores são encorajados a resolver
 problemas ou sub-problemas impostos pelo jogo em questão, sendo vencedores os
 candidatos que melhor resolvê-los.
 
-Geralmente, o problema proposto é o de jogar o jogo de maneira mais eficiente.
-Para realizar uma avalição objetiva, são utilizadas métricas estipuladas pelo
-próprio jogo, como pontuação ou tempo. Muitas vezes, os organizadores da
-competição optam por fazer uso de um sistema de \textit{ranking}, expondo os
-resultados obtidos pelos candidatos. A competição \textbf{The General Video
-Game AI Competition}\footnote{gvgai.net}, que explora o problema de criar
-controladores genéricos de jogos, faz uso deste mecanismo.  Às vezes, as
-competições fazem com que os candidatos joguem entre sí para avaliá-los.  Um
-exemplo disso é a competição que gira em torno de
+Geralmente, o problema proposto é o de jogar o jogo da maneira mais eficiente.
+Existem pelo menos duas formas de se realizar uma avaliação objetiva dos
+competidores. A primeira é através das métricas estipuladas pelo próprio jogo,
+como alguma forma de pontuação ou tempo. A segunda é fazer com que os candidatos
+joguem entre sí. Um exmeplo disso é a competição que gira em torno de
 \textbf{Vindinium}\footnote{vindinium.org}, um jogo para a plataforma
-\textit{web}.
+\textit{web}. Muitas vezes, os organizadores da competição optam por fazer uso
+de um sistema de \textit{ranking}, expondo os resultados obtidos pelos
+candidatos. A competição \textbf{The General Video Game AI
+Competition}\footnote{gvgai.net}, que explora o problema de criar controladores
+genéricos de jogos, utiliza este mecanismo.
 
 Contudo, a proposta principal da disputa pode ser outra. A competição
 \textbf{Mario AI Competition}, por exemplo, possuia como uma de suas metas a
@@ -64,19 +64,15 @@ inteligência artificial para o jogo \textit{Unreal Tournament 2004} que pudesse
 enganar outros jogadores e fazê-los pensar que era um humano
 jogando\footnote{http://www.aaai.org/Conferences/AIIDE/aiide.php}. Neste tipo
 de torneio, a avaliação se dá de maneira subjetiva, visto que não existe uma
-métrica numérica para determinar diversão, por exemplo.
+métrica numérica para determinar se um nível é interessante, por exemplo.
 
 Os organizadores destas competições costumam, ao término da disputa,
 disponibilizar os códigos-fonte de todos os candidatos. Assim, em versões
 futuras da competição, os competidores terão a oportunidade de investigar quais
-técnicas e algoritmos foram mais eficientes no passado. Competições onde os
-candidatos duelam entre sí tendem a aumentar a competitividade, pois uma
-solução que funcionou em um ano pode vir a não funcionar tão bem ou até mesmo
-falhar no ano seguinte, tendo em vista que o código será dissecado pelos seus
-rivais. Os resultados das competições costumam ser divulgados também em
-conferências como \textit{IEEE Computational Intelligence and
-Games}\footnote{http://www.ieee-cig.org} \textit{(CIG)} e \textit{AAAI
-Artificial Intelligence in Interactive Digital
+técnicas e algoritmos foram mais eficientes no passado. Os resultados das
+competições costumam ser divulgados também em conferências como \textit{IEEE
+Computational Intelligence and Games}\footnote{http://www.ieee-cig.org}
+\textit{(CIG)} e \textit{AAAI Artificial Intelligence in Interactive Digital
 Entertainment}\footnote{http://www.aaai.org/Conferences/AIIDE/aiide.php}
 \textit{(AIIDE)}, além de conferências dedicadas a computação evolutiva,
 \textit{game design}, aprendizado de máquina, entre outras.
@@ -90,7 +86,7 @@ Unido, criaram o \textit{SpelunkBots}\cite{SPELUNKBOTSPAPER}, um
 Spelunky. Um dos objetivos dos criadores é utilizar a aplicação para criar uma
 competição de inteligência artificial para o jogo. O \textit{framework} foi
 desenvolvido utilizando uma combinação do código-fonte original do jogo
-\textit{Spelunky} -- distribuído gratuítamente no \textit{website}
+\textit{Spelunky} -- distribuído gratuitamente no \textit{website}
 oficial\footnote{http://www.spelunkyworld.com/original.htm} --, o motor de
 criação de jogos \textit{GameMaker} e uma solução \textit{DLL} programada com a
 linguagem C++.
@@ -100,22 +96,21 @@ linguagem C++.
 Como o \textit{framework} possui acesso irrestrito ao código-fonte de
 \textit{Spelunky}, a opção de programar a inteligência artificial utilizando a
 linguagem de programação padrão do \textit{GameMaker}, a \textit{GML}, foi
-incluida pelos criadores do programa. Esta linguagem foi criada com o intuito de
-fornecer a desenvolvedores de jogos iniciantes uma maneira fácil e rápida de
-programar jogos e, justamente por este motivo, apresenta diversas limitações de
-linguagem e não possui muitas bibliotecas auxiliares. Além disso, os arquivos
-\textit{.gml} só podem ser editados dentro do ambiente de programação interno do
-\textit{GameMaker}. Assim, esta opção de desenvolvimento não é adequada a
-programadores mais experientes.
+incluida pelos criadores do programa. Contudo, esta opção de linguagem não é
+adequada a programadores mais experientes, visto que esta linguagem foi criada
+com o intuito de fornecer a desenvolvedores de jogos iniciantes uma maneira
+fácil e rápida de programar jogos e, justamente por este motivo, apresenta
+diversas limitações de linguagem e não possui muitas bibliotecas auxiliares.
+Além disso, os arquivos \textit{.gml} só podem ser editados dentro do ambiente
+de programação interno do \textit{GameMaker}.
 
 Sabendo que o \textit{GameMaker} é capaz de executar código externo através de
 \textit{Dynamic-link Libraries} (\textit{DLLS}), os autores desenvolveram um
 projeto em C++ que gera uma solução no formato \textit{DLL} para permitir que os
 usuários possam programar \textit{bots} utilizando a linguagem de programação
-C++. Para programar em C++, portanto,  é necessário fazer uso de uma ferramenta de
+C++. Para programar em C++, portanto,  é necessário usar uma ferramenta de
 compilação externa para gerar a solução \textit{DLL}. O \textit{SpelunkBots}
-fornece um projeto em \textit{Visual Studio 2013} -- ambiente de programação
-desenvolvido pela \textit{Microsoft} -- para auxiliar neste processo.
+fornece um projeto em \textit{Visual Studio 2013} para auxiliar neste processo.
 
 Assim, existem duas maneiras de se utilizar o \textit{SpelunkBots} para
 programar uma inteligência artificial para \textit{Spelunky}: internamente,
@@ -169,10 +164,10 @@ podem ser usadas para a interação com o jogo.}
 \subsection{Configurações da Ferramenta}
 Antes de tentar executar o \textit{SpelunkBots}, é necessário entender como
 realizar as configurações da ferramenta. As principais configurações que o
-usuário deve modificar são a \textbf{escolha do \textit{bot}} a ser executado e
-o \textbf{tipo de teste} no qual o \textit{bot} vai executar. Estas modificações
-são efetuadas dentro do \textit{GameMaker} no projeto do \textit{framework},
-chamado \textit{spelunkbots.gmk}.
+usuário deve modificar são a \textbf{escolha do \textit{bot}} a ser testado e o
+\textbf{modo de execução} do jogo. Estas modificações são efetuadas dentro do
+\textit{GameMaker} no projeto do \textit{framework}, chamado
+\textit{spelunkbots.gmk}.
 
 É possível que o usuário sinta a necessidade de desenvolver mais de uma
 inteligência artificial ao mesmo tempo durante o uso da ferramenta.  Por
