@@ -1,16 +1,183 @@
 \chapter{\label{chap:theory}Fundamentação Teórica}
+Neste capítulo, apresentaremos a base teórica necessária para compreender o
+funcionamento das técnicas \textit{Behavior Trees} e \textit{NEAT}, escolhidas
+para realizar o desenvolvimento dos agentes inteligentes de \textit{Spelunky}.
+
 \begin{mdframed}[backgroundcolor=green!20]
 \begin{itemize}
 	\item
-		Falar sobre agentes e ambiente
-	\item
-		Falar sobre escolha das técnicas
-	\item
-		Falar sobre Behavior Trees
-	\item
-		Falar sobre NEAT
+		TODO
 \end{itemize}
 \end{mdframed}
+
+
+%----------
+\section{\label{section:environment}Ambientes}
+Todas as percepções e ações executadas por agentes racionais ocorrem no
+\textbf{ambiente} no qual ele está inserido. A quantidade e variedade de
+ambientes encontrados é vasta, mas é possível identificar dimensões (ou
+características) de classificação para realizar uma categorização destes
+ambientes. Estas características irão determinar que tipos de agentes --
+enumerados na seção \ref{section:agents} -- são apropriados para cada ambiente.
+As dimensões utilizadas para categorizar ambientes são:
+
+\begin{description}
+	\item[Observável, Parcialmente Observável ou Não-Observável]
+		Um ambiente é observável se os sensores do agente lhe permitirem acesso
+		completo ao estado do ambiente a cada ponto no tempo. Ambientes
+		observáveis são convenientes, pois o agente não precisa manter um estado
+		interno de conhecimento para se manter informado. O ambiente é
+		parcialmente observável se os sensores do agente possuirem ruído ou não
+		tiverem acesso completo ao ambiente. Se o agente não possuir nenhum tipo
+		de sensor, então o ambiente é não-observável.
+
+	\item[Agente Único ou Multi-Agente]
+		Quando o agente não precisa interagir com nenhum outro agente no
+		ambiente, então trata-se de um ambiente com agente único. Caso ele
+		precise interagir de alguma forma (competição, cooperação ou
+		comunicação) com outros agentes, então o ambiente é multi-agente.
+
+	\item[Determinístico ou Estocástico]
+		Se o próximo estado do ambiente for completamente determinado pela
+		combinação do estado atual com uma ação executada pelo agente, então o
+		ambiente é determinístico. Caso contrário, é estocástico.
+
+	\item[Episódico ou Sequencial]
+		Em ambientes episódicos, a experiência do agente é dividida em episódios
+		atômicos, ou seja, são independentes entre sí. O agente não precisa
+		pensar adiante pois, a cada episódio, recebe informações sensoriais e
+		executa apenas uma ação, e o próximo episódio não será influenciado pela
+		ação anterior. Já em ambientes sequenciais, a ação atual pode
+		influenciar todas as decisões futuras, ou seja, ações a curto prazo
+		podem ter consequências a longo prazo.
+
+	\item[Discreto ou Contínuo]
+		Ambientes discretos são aqueles onde se tem um número contável de ações
+		e percepções possíveis. Em ambientes contínuos, o número de ações e de
+		percepções muitas vezes são baseados em valores contínuos ou não são
+		contáveis.
+
+	\item[Conhecido ou Desconhecido]
+		Esta distinção não se refere ao ambiente em sí, e sim sobre o
+		conhecimento do agente (ou criador do agente) das "leis" de
+		comportamento do ambiente. Em um ambiente conhecido, os resultados (ou
+		probabilidades de resultados) das ações são conhecidos. Quando o
+		ambiente é desconhecido, o agente precisa primeiro aprender como o
+		ambiente funciona para saber fazer escolhas boas para atingir seus
+		objetivos.
+\end{description}
+
+
+%----------
+\section{\label{section:agents}Agentes Racionais}
+Um agente é uma entidade que utiliza seus \textbf{sensores} para perceber o
+ambiente no qual está inserido e interage através de seus \textbf{atuadores},
+direcionando seus esforços para alcançar algum objetivo que se propõe a
+atingir\cite[cap. 2]{RussellNorvig200912}. Um exemplo de agente racional é o ser
+humano, que percebe o ambiente através de seus sentidos (visão, audição, entre
+outros) e executa ações com seu corpo (braços, pernas, etc.). De acordo com
+Russell \& Norvig\cite{RussellNorvig200912}, agentes racionais são agrupados nas
+seguintes categorias: \textbf{agentes reflexivos}, \textbf{agentes baseados em
+modelo}, \textbf{agentes baseados em objetivos} e \textbf{agentes baseados em
+utilidade}.
+
+Os \textbf{agentes reflexivos} são programados para executar ações baseadas em
+algum evento percebido. Um exemplo de agente reflexivo é um agente que realiza
+uma postagem em uma rede social dado que uma outra pessoa fez uma postagem. Fica
+evidente que este tipo de agente simplesmente executa uma ação baseado em suas
+percepções imediatas e não guardam informações sobre suas experiências passadas,
+sendo apenas reativos.
+
+Diferentemente dos agentes reflexivos, \textbf{agentes com memória} são capazes
+de guardar informações sobre suas experiências passadas e sobre seu estado
+atual. Este tipo de agente compreende como suas ações modificam o ambiente onde
+está inserido e como o ambiente se altera independentemente de suas ações,
+efetivamente construíndo um \textbf{modelo} do ambiente. 
+
+podendo usá-las para
+alcançar seus objetivos. A lembrança das experiências passadas fornece ao agente
+uma oportunidade de utilizar melhor os seus recursos, sendo capaz de investí-los
+em ações mais efetivas do que as tomadas em experiências passadas.
+
+Além de ter memória, é necessário que um agente saiba quando obteve sucesso no
+que se propôs a fazer. Com isso, \textbf{agentes baseados em objetivos}
+conseguem tomar suas decisões com base na ação que os deixa mais próximos de
+alcançarem seus objetivos. O desafio desse tipo de agente é saber como alcançar
+esse objetivo, podendo ser usadas técnicas de busca e planejamento para
+determinar as possíveis ações a serem executadas para alcançá-lo.
+
+Para alguns tipos de agente, chegar no objetivo pode não ser suficiente, podendo
+existir outros fatores na busca desse objetivo que possam influenciar no
+resultado final para agente. Por exemplo, um agente que joga um determinado jogo
+pode finalizar a partida com um certo número de pontos, porém, é mais
+satisfatório que termine o jogo com o \textbf{maior} número de pontos possível.
+Estes são os \textbf{agentes baseados em utilidade}, que, de um conjunto de
+ações disponíveis, selecionam e executam a que seja mais vantajosa.
+
+
+%----------
+\section{\label{section:machine-learning}Aprendizado de Máquina}
+O sucesso ou não de um agente depende diretamente das ações que ele toma na
+busca de seus objetivos. Os agentes que vimos realizam as ações as quais foram
+programados a fazer no ambiente onde atuam. Porém, quando não se tem um
+conhecimento total prévio do ambiente, é difícil projetar -- com as técnicas
+que vimos -- um agente que seja assertivo nas suas ações, justamente porque, em
+alguns tipos de ambiente, não é possível garantir que as ações foram executadas
+conforme o esperado, além de não ser possível observar o ambiente após essa
+execução. Isto faz com que seja necessário o uso de alguma outra técnica para o
+desenvolvimento de agentes. Nesse contexto, surge a área de \textbf{aprendizado
+de máquina}, que estuda agentes capazes de aprender através das experiências
+adquiridas na execução de ações no ambiente.
+
+A capacidade de aprender fornece ao agente a oportunidade de se tornar mais
+competente que o permitido pelo seu conhecimento inicial.  Além disso, ajuda a
+contornar problemas como informação incompleta ou inexistente sobre o ambiente,
+pois o agente será capaz de criar um modelo de representação através dos dados
+obtidos ao executar ações no ambiente.
+
+Cabe ressaltar também que diferentes tipos de aprendizado são aplicados
+conforme as características do ambiente e do problema. Quando são fornecidos
+exemplos de execução e resultados esperados, chamamos de \textbf{aprendizado
+supervisionado}. A tarefa, neste tipo de aprendizado, consiste em detectar
+padrões e aprender a mapear entradas para resultados. Por outro lado, quando
+não se tem nenhuma informação inicial sobre resultados esperados e nenhum tipo
+de retorno é fornecido para execuções de ações, chamamos de \textbf{aprendizado
+não-supervisionado}. Este tipo de aprendizado geralmente é empregado quando se
+quer descobrir novas informações sobre um conjunto de dados. A técnica de
+\textbf{aprendizado por reforço} é diferente de aprendizado supervisionado e
+não-supervisionado porque está diretamente relacionada a agentes. Neste tipo de
+aprendizado, é fornecido algum tipo de retorno -- como recompensas e punições
+-- ao agente quando ele executa ações.  Assim, ele saberá se está agindo de
+maneira correta para resolver o problema proposto
+\cite[cap. 18]{RussellNorvig200912}.
+
+Muitos dos problemas interessantes de se resolver servem para solucionar alguma
+necessidade dos seres humanos, como por exemplo, reconhecer um número escrito à
+mão e dizer qual número representa. Trata-se de uma tarefa fácil e rápida para
+o ser humano, que já está acostumado com isso e possui um cérebro evoluído e
+treinado para tarefas desse tipo. Porém, ``ensinar'' um computador a
+reconhecer tais números é uma tarefa bem mais difícil de se expressar
+algoritmicamente. As \textbf{redes neurais}, inspiradas nos neurônios,
+estabelecem modelos capazes de representar aprendizado, facilitando a resolução
+de alguns desses problemas. Já as técnicas de \textbf{deep learning}
+\cite{DBLP:journals/corr/Schmidhuber14} contornam dificuldades de treinamento
+em redes neurais, permitindo modelar problemas complexos, como por exemplo,
+jogar jogos \cite{DBLP:journals/corr/MnihKSGAWR13}.
+
+
+%----------
+\section{\label{section:neural-networks}Redes Neurais}
+
+
+%----------
+\section{\label{section:environment}Algoritmos Genéticos}
+
+% NEAT
+% neuroevolução
+% NEAT evolui os pesos e a rede em sí (TWEANNs)
+% representação genética da rede
+% problemas comuns em TWEANNs que o NEAT resolve
+% (competing conventions, protecting innovation e initial population)
 
 %----------
 \section{\label{section:behavior-trees}Behavior Trees}
