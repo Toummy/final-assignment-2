@@ -113,52 +113,45 @@ capaz de escolher as ações mais vantajosas para ele, aumentando sua performanc
 
 %----------
 \section{\label{section:machine-learning}Aprendizado de Máquina}
-O sucesso ou não de um agente depende diretamente das ações que ele toma na
-busca de seus objetivos. Os agentes que vimos realizam as ações as quais foram
-programados a fazer no ambiente onde atuam. Porém, quando não se tem um
-conhecimento total prévio do ambiente, é difícil projetar -- com as técnicas
-que vimos -- um agente que seja assertivo nas suas ações, justamente porque, em
-alguns tipos de ambiente, não é possível garantir que as ações foram executadas
-conforme o esperado, além de não ser possível observar o ambiente após essa
-execução. Isto faz com que seja necessário o uso de alguma outra técnica para o
-desenvolvimento de agentes. Nesse contexto, surge a área de \textbf{aprendizado
-de máquina}, que estuda agentes capazes de aprender através das experiências
-adquiridas na execução de ações no ambiente.
+Quando queremos resolver um problema através de um programa de computador,
+desenvolvemos um algoritmo que, dado uma entrada, executa uma sequência de
+operações para fornecer uma resposta adequada para a tarefa em questão. Um
+exemplo disso seriam os algoritmos para ordenação de números, onde a entrada é
+um conjunto de números e a resposta é o conjunto ordenado. Para alguns
+problemas, contudo, nem sempre é possível se chegar a um algoritmo que resolve
+satisfatóriamente uma tarefa. Por exemplo, a tarefa de diferenciar
+\textit{e-mails} de \textit{spam} e \textit{e-mails} legítimos é complexa, pois
+os \textit{e-mails} de \textit{spam} estão mudando constantemente, e a
+categorização de \textit{spam} pode variar de indivíduo para indivíduo. Assim,
+criar manualmente um algoritmo para resolver esta tarefa pode ser extremamente
+complexo ou até mesmo impraticável. A partir deste contexto, surgiu a área de
+\textbf{aprendizado de máquina}, que estuda algoritmos que fornecem a programas
+de computador a habilidade de aprender e se aperfeiçoarem, tornando-os capazes
+de resolver tarefas sem serem explicitamente programados.
 
-A capacidade de aprender fornece ao agente a oportunidade de se tornar mais
-competente que o permitido pelo seu conhecimento inicial.  Além disso, ajuda a
-contornar problemas como informação incompleta ou inexistente sobre o ambiente,
-pois o agente será capaz de criar um modelo de representação através dos dados
-obtidos ao executar ações no ambiente.
+Existem três tipos principais de aprendizado de máquina\cite[cap.
+18]{RussellNorvig200912}, que são diferenciados entre sí pelo tipo de
+\textit{feedback} retornado pelo problema. Estas categorias são:
+\textbf{aprendizado supervisionado}, \textbf{aprendizado não-supervisionado} e
+\textbf{aprendizado por reforço}. No aprendizado supervisionado, é fornecido um
+conjunto de dados com exemplos de entrada e resultados esperados para aquelas
+entradas. Assim, a tarefa neste tipo de aprendizado consiste em aprender uma
+função que mapeia entradas para saídas. No aprendizado não-supervisionado, o
+programa recebe um conjunto de dados de entrada mas não recebe informações com o
+tipo de saída esperado. O objetivo deste tipo de aprendizado geralmente é
+detectar padrões em conjuntos de dados.  O último tipo de aprendizado, o
+aprendizado por reforço, é diferente dos demais porque está diretamente ligado
+ao conceito de agentes racionais.  Neste tipo de aprendizado, o agente interage
+com um ambiente dinâmico e deve atingir algum objetivo. Quando o agente executa
+ações no ambiente, é fornecido a ele algum tipo de retorno -- recompensas ou
+punições --, para que ele possa aprender a agir da maneira correta a fim de
+atingir seus objetivos.
 
-Cabe ressaltar também que diferentes tipos de aprendizado são aplicados
-conforme as características do ambiente e do problema. Quando são fornecidos
-exemplos de execução e resultados esperados, chamamos de \textbf{aprendizado
-supervisionado}. A tarefa, neste tipo de aprendizado, consiste em detectar
-padrões e aprender a mapear entradas para resultados. Por outro lado, quando
-não se tem nenhuma informação inicial sobre resultados esperados e nenhum tipo
-de retorno é fornecido para execuções de ações, chamamos de \textbf{aprendizado
-não-supervisionado}. Este tipo de aprendizado geralmente é empregado quando se
-quer descobrir novas informações sobre um conjunto de dados. A técnica de
-\textbf{aprendizado por reforço} é diferente de aprendizado supervisionado e
-não-supervisionado porque está diretamente relacionada a agentes. Neste tipo de
-aprendizado, é fornecido algum tipo de retorno -- como recompensas e punições
--- ao agente quando ele executa ações.  Assim, ele saberá se está agindo de
-maneira correta para resolver o problema proposto
-\cite[cap. 18]{RussellNorvig200912}.
-
-Muitos dos problemas interessantes de se resolver servem para solucionar alguma
-necessidade dos seres humanos, como por exemplo, reconhecer um número escrito à
-mão e dizer qual número representa. Trata-se de uma tarefa fácil e rápida para
-o ser humano, que já está acostumado com isso e possui um cérebro evoluído e
-treinado para tarefas desse tipo. Porém, ``ensinar'' um computador a
-reconhecer tais números é uma tarefa bem mais difícil de se expressar
-algoritmicamente. As \textbf{redes neurais}, inspiradas nos neurônios,
-estabelecem modelos capazes de representar aprendizado, facilitando a resolução
-de alguns desses problemas. Já as técnicas de \textbf{deep learning}
-\cite{DBLP:journals/corr/Schmidhuber14} contornam dificuldades de treinamento
-em redes neurais, permitindo modelar problemas complexos, como por exemplo,
-jogar jogos \cite{DBLP:journals/corr/MnihKSGAWR13}.
+Para agentes racionais, a capacidade de aprender fornece a oportunidade de se
+tornar mais competente que o permitido pelo seu conhecimento inicial do problema
+e do ambiente. Problemas como informação incompleta ou inexistente sobre o
+ambiente são mais facilmente contornados, pois o agente será capaz de criar um
+modelo de representação através do retorno obtido após a execução de ações.
 
 
 %----------
