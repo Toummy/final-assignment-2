@@ -1,43 +1,34 @@
 \chapter{\label{chap:project}Projeto}
-Conforme detalhado no capítulo \ref{chap:spelunkbots}, o \textit{SpelunkBots}
-disponibiliza duas opções de linguagem de programação para realizar o
-desenvolvimento dos \textit{bots}: \textit{GML} ou C++. Portanto, a primeira
-etapa para dar início ao projeto é definir a linguagem de programação a ser
-utilizada. O desenvolvimento utilizando a linguagem \textit{GML} é limitado,
-pois deve ocorrer inteiramente dentro do \textit{GameMaker} e o uso de
-bibliotecas externas é extremamente restrito. Além disso, C++ é uma linguagem
-amadurecida e possui bibliotecas que implementam
-\textit{NEAT}\footnote{http://nn.cs.utexas.edu/?neat-c} e \textit{Behavior
-Trees}. O uso de tais bibliotecas salvam muito tempo de desenvolvimento,
-permitindo que o foco do desenvolvimento seja somente nos \textit{bots}, e não
-na arquitetura. Por tais motivos, optamos por realizar o desenvolvimento dos
-\textit{bots} em C++.
+O primeiro passo para dar início ao desenvolvimento deste projeto é obter uma
+cópia do projeto \textit{SpelunkBots}, hospedada no \textit{website} de
+versionamento de código
+\textit{GitHub}\footnote{https://github.com/GET-TUDA-CHOPPA/SpelunkBots}. O
+\textit{framework} conta com o código modificado do \textit{Spelunky} e uma
+distribuição do \textit{GameMaker Pro 8.0}, utilizada para compilar e executar o
+jogo.
 
-Com a linguagem de programação escolhida, o próximo passo é obter uma cópia do
-projeto \textit{SpelunkBots}, hospedada no \textit{website} de versionamento de
-código
-\textit{GitHub}\footnote{https://www.github.com/GET-TUDA-CHOPPA/SpelunkBots}. O
-projeto conta com o código modificado do \textit{Spelunky} e uma distribuição do
-\textit{GameMaker Pro 8.0}, utilizada para compilar e executar o jogo. Assim,
-podemos dar início ao desenvolvimento dos \textit{bots} utilizando as bibliotecas
-das técnicas de inteligência artificial selecionadas.
+Conforme detalhado na seção \ref{section:spelunkbots}, o \textit{SpelunkBots}
+disponibiliza duas opções de linguagem de programação para realizar o
+desenvolvimento dos \textit{bots}: \textit{GML} ou C++. Portanto, a próxima
+etapa do projeto é definir a linguagem de programação que vamos utilizar. Para
+este projeto, escolhemos a linguagem de programação \textbf{C++}, tendo em vista
+que o desenvolvimento utilizando a linguagem \textit{GML} é limitado. Além
+disso, C++ é uma linguagem amadurecida e possui bibliotecas que implementam
+\textit{NEAT}\footnote{http://nn.cs.utexas.edu/?neat-c} e \textit{Behavior
+Trees}\footnote{COLOCAR LINK DA BIBLIOTECA AQUI}. O uso dessas bibliotecas salva
+tempo de desenvolvimento e permite que o foco do trabalho seja somente nos
+\textit{bots}, e não na arquitetura necessária.
 
 Sabendo que a técnica \textit{NEAT} requer que o \textit{bot} receba treinamento
 através de diversas simulações do jogo, optamos pelo uso de um servidor
-dedicado, pois este processo pode ser demorado e executar tal processo em uma
-máquina doméstica -- que está muito mais sujeita a ser desligada acidentalmente
-ou intencionalmente -- é arriscado. O servidor em questão utiliza um sistema
-operacional baseado em \textit{Linux}.
-
-O \textit{GameMaker} é capaz de executar código externo através de
-\textit{Dynamic-link Libraries} (\textit{DLLs}). Portanto, para executar o
-código dos \textit{bots} em C++ é necessário realizar um processo de compilação
-do código em C++, transformando-o em uma \textit{DLL}. Contudo,
+dedicado, pois este processo pode ser demorado e executar o processo de
+treinamento em uma máquina doméstica -- que está muito mais sujeita a ser
+desligada acidentalmente ou intencionalmente -- é arriscado. O servidor em
+questão utiliza um sistema operacional baseado em \textit{Linux}.  Contudo,
 \textit{Spelunky} foi desenvolvido utilizando uma versão muito antiga do
 \textit{GameMaker}, que só pode ser executada no sistema operacional
-\textit{Windows}, e o \textit{SpelunkBots} utiliza um projeto em
-\textit{Visual Studio} -- \textit{IDE} de programação da \textit{Microsoft}
--- para realizar a compilação do código externo dos \textit{bots}. Como
+\textit{Windows}, e o \textit{SpelunkBots} utiliza um projeto em \textit{Visual
+Studio} para realizar a compilação do código externo dos \textit{bots}. Como
 nosso servidor é baseado em \textit{Linux}, é necessário realizar algumas
 adaptações no processo de compilação. Assim, utilizaremos o \textit{software}
 \textit{Wine}\footnote{https://winehq.org}, que nos permitirá executar programas
@@ -45,55 +36,72 @@ da plataforma \textit{Windows} dentro do sistema operacional \textit{Linux}, e o
 \textit{software} \textit{MinGW}\footnote{http://www.mingw.org}, que realizará a
 compilação do código C++ e a geração da \textit{DLL}.
 
-\section{Estrutura do Projeto}
-
-Minimamente, o projeto completo deverá conter o código fonte do Spelunky e do
-SpelunkBots, além de utilizar bibliotecas auxiliares para a implementação de
-NEAT e \textit{behavior trees} que servirão de apoio para o desenvolvimento dos
+O próximo passo é integrar as bibliotecas de inteligência artificial
+selecionados com o projeto do \textit{SpelunkBots}, para que estejam incluídas
+na solução \textit{DLL}. Ao concluir este passo, as configurações necessárias de
+projeto estarão finalizadas, e daremos início ao desenvolvimento dos
 \textit{bots}.
 
-O código do SpelunkyBots provê uma interface comum para o desenvolvimento dos
-\textit{bots}, chamada \textbf{IBot.h}, essa interface é responsável por expor
-os métodos e as variáveis que os \textit{bots} poderão utilizar para
-comunicar-se com o Spelunky, portanto, qualquer \textit{bot} desenvolvido
-deverá utilizá-la. Os desenvolvedores, ao fazerem uso dessa interface, deverão,
-minimamente, implementar o método \textbf{Update()}, que será executado a cada
-novo estado do jogo. Um exemplo de utilização dessa interface para a criação
-desse bot pode ser visto nos algoritmos \ref{alg:project-example-bot-header} e
-\ref{alg:project-example-bot-impl}. O algoritmo
-\ref{alg:project-example-bot-header} apresenta a definição de um arquivo de
-\textit{header} -- arquivo que contém declarações dos métodos e variáveis a
-serem utilizados --, enquanto o algoritmo \ref{alg:project-example-bot-impl}
-apresenta um exemplo de implementação utilizando esse \textit{header} para
-desenvolver o \textit{bot}.
+
+\section{Desenvolvimento dos \textit{bots}}
+O \textit{framework} \textit{SpelunkBots} provê uma interface comum para o
+desenvolvimento dos \textit{bots} em C++, chamada \textbf{\textit{IBot.h}}. Esta
+interface é responsável por expor os métodos e variáveis que os \textit{bots}
+utilizam para comunicar-se com o jogo. Portanto, qualquer código de \textit{bot}
+desenvolvido deverá partir desta interface. Analisando o arquivo \textit{IBot.h}
+é possível perceber que a interface obriga o desenvolvedor a implementar
+\textbf{pelo menos} o método \textbf{\textit{Update}}, chamado em todas as
+etapas de execução do \textit{bot} para receber informações e enviar comandos ao
+jogo. Existem dois outros métodos que podem ser úteis ao desenvolvedor, mas que
+não possuem obrigatoriedade de implementação:
+
+\begin{itemize}
+	\item
+		\textbf{\textit{Reset}:} chamada no início de todas as etapas de
+		execução do \textit{bot} para reiniciar todas as suas variáveis de
+		controle. Possui uma implementação padrão que reinicia apenas as
+		variáveis essenciais (esquerda, direita, pular e atacar).
+
+	\item
+		\textbf{\textit{NewLevel}:} chamada toda vez que o \textit{bot} entra em
+		um novo nível. Pode ser usada para descartar informações do nível
+		anterior sem que seja necessário reiniciar todas as variáveis do
+		\textit{bot}. Na implementação padrão, não executa nada.
+\end{itemize}
+
+Uma implementação mínima de um \textit{bot} utilizando a interface
+\textit{IBot.h} necessitaria, portanto, de dois arquivos: um arquivo
+\textit{header}, que conterá as declarações dos métodos e variáveis a serem
+utilizadas -- ilustrado na Figura \ref{alg:project-example-bot-header} --, e
+um arquivo de implementação -- ilustrado na Figura
+\ref{alg:project-example-bot-impl} --, que conterá a implementação das funções
+descritas no arquivo \textit{header}.
 
 \begin{algorithm}[H]
 \lstinputlisting[language=c++]{code/ExampleBot.h}
-\caption[Algoritmo para a definição de métodos e variáveis de um \textit{bot}
-de exemplo.]
-{\label{alg:project-example-bot-header}Algoritmo para a definição de métodos e
-variáveis de um \textit{bot} de exemplo.}
+\caption[Definição de métodos e variáveis de um \textit{bot} de exemplo.]
+{\label{alg:project-example-bot-header}Definição de métodos e variáveis de um
+\textit{bot} de exemplo.}
 \end{algorithm}
 
 \begin{algorithm}[H]
 \lstinputlisting[language=c++]{code/ExampleBot.cpp}
-\caption[Algoritmo para a implementação dos métodos e variáveis de um
-\textit{bot} de exemplo.]
-{\label{alg:project-example-bot-impl}Algoritmo para a implementação dos métodos
-e variáveis de um \textit{bot} de exemplo.}
+\caption[Implementação dos métodos e variáveis de um \textit{bot} de exemplo.]
+{\label{alg:project-example-bot-impl}Implementação dos métodos e variáveis de um
+\textit{bot} de exemplo.}
 \end{algorithm}
 
 É importante ressaltar que, devido ao processo de \textbf{treinamento} do
 \textit{bot} que faz uso da técnica \textit{NEAT}, temos a necessidade realizar
 operações de \textbf{leitura} e \textbf{escrita} de arquivos, portanto, é
 interessante definir um tipo de \textit{bot} que comporte tais operações. Dessa
-forma, além do método \textbf{Update()}, precisaremos implementar os métodos
-\textbf{ReadTrainingData()} e \textbf{SaveTrainingData()}.
+forma, além do método \textit{Update}, implementaremos os métodos
+\textbf{\textit{ReadTrainingData}} e \textbf{\textit{SaveTrainingData}}.
 
-Podemos ver uma ilustração da estrutura de arquivos do projeto através da
-figura \ref{fig:project-structure}. Na figura, é mostrada a solução de
-\textit{DLLs}, que conterá o código dos \textit{bots} desenvolvidos, além de mostrar
-onde se encontram as bibliotecas utilizadas e o código modificado do Spelunky.
+Podemos ver uma ilustração da estrutura de arquivos do projeto através da Figura
+\ref{fig:project-structure}. Na Figura, é mostrada a solução de \textit{DLLs},
+que conterá o código dos \textit{bots} desenvolvidos, além de mostrar onde se
+encontram as bibliotecas utilizadas e o código modificado do Spelunky.
 
 \begin{figure}[H]
 \centering
@@ -163,6 +171,6 @@ onde se encontram as bibliotecas utilizadas e o código modificado do Spelunky.
         }
     ;
 \end{tikzpicture}
-\caption {\label{fig:project-structure}Figura ilustrando a estrutura
-de diretórios para o projeto.}
+\caption {\label{fig:project-structure}Estrutura de diretórios para o
+desenvolvimento deste projeto.}
 \end{figure}
