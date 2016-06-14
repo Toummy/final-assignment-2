@@ -1,13 +1,46 @@
 \chapter{\label{chap:related-work}Trabalhos Relacionados}
+As tarefas de criar uma inteligência artificial para personagens em jogos
+digitais e de criar agentes inteligentes capazes de aprender a jogar jogos
+digitais já foram exploradas anteriormente. Neste capítulo, selecionamos três
+trabalhos que se propuseram a resolver estas tarefas, indicando sua relevância e
+similaridade com o projeto presente neste trabalho. 
 
-\begin{mdframed}[backgroundcolor=green!20]
-\begin{itemize}
-	\item
-		Breve descrição deste capítulo
-    \item
-        Encontrar trabalho relacionado sobre Behavior Trees
-\end{itemize}
-\end{mdframed}
+
+%----------
+\section{Handling Complexity in the Halo 2 AI}
+A criação de agentes inteligentes com comportamentos cada vez mais complexos é
+uma busca constante para desenvolvedores de jogos digitais. Criar comportamentos
+complexos, contudo, vem com um preço -- que muitas vezes o desenvolvedor não
+pode pagar --, como a falta de escalabilidade da arquitetura, mais tempo de
+processamento ou até mesmo uma experiência ruim de interação entre jogador e
+agentes inteligentes.
+
+Este artigo é uma tentativa de elaborar um formalismo de inteligência
+artificial, as \textit{Behavior Trees}, para auxiliar na criação de
+comportamentos inteligentes para agentes em jogos digitais que sejam de
+processamento rápido e ao mesmo tempo sofisticados, fáceis de controlar e
+modularizados. As \textit{Behavior Trees} foram utilizadas para desenvolver os
+comportamentos dos agentes no jogo \textit{Halo 2}, da desenvolvedora
+\textit{Bungie}, e apresentaram resultados muito satisfatórios\cite{Halo2AI}.
+
+Uma \textit{Behavior Tree} é uma estrutura de dados baseado em árvore que
+consiste na organização, seleção e execução de de \textbf{comportamentos} que o
+agente pode executar. Cada comportamento possui uma pré-condição para executar e
+uma ação, especificando como o agente atuará para este comportamento. A cada
+etapa de execução, o algoritmo examina as pré-condições dos comportamentos e
+decide qual comportamento é o mais adequado para executar. Esta técnica está em
+rápida ascenção, pois se comparado a máquinas de estados finitos, uma técnica
+muito utilizada pela indústria de jogos, são mais modulares e
+extensíveis\cite{Rabin:2015:GAP:2821138}.
+
+Esta técnica não é utilizada para criação de agentes inteligentes que jogam
+jogos digitais, e sim para criação de comportamentos de agentes. Contudo, não
+deixa de ser interessante para este trabalho porque, se comparado a técnicas de
+inteligência artificial que envolvem treinamento, permite um controle maior
+sobre os comportamentos que a inteligência artificial executa. É possível que,
+se adaptada corretamente, o uso desta técnica resulte no sucesso de criação de
+\textit{bots}, pois a inteligência artificial, em sua síntese, estaria
+executando um comportamento no final das contas.
 
 
 %----------
