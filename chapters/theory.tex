@@ -6,7 +6,7 @@ para realizar o desenvolvimento dos agentes inteligentes de \textit{Spelunky}.
 \begin{mdframed}[backgroundcolor=green!20]
 \begin{itemize}
 	\item
-		TODO
+		Explicar a escolha das técnicas
 \end{itemize}
 \end{mdframed}
 
@@ -156,59 +156,74 @@ modelo de representação através do retorno obtido após a execução de açõ
 
 %----------
 \section{\label{section:neural-networks}Redes Neurais}
+\begin{mdframed}[backgroundcolor=green!20]
+\begin{itemize}
+	\item
+		Explicar
+\end{itemize}
+\end{mdframed}
+
 
 
 %----------
-\section{\label{section:environment}Algoritmos Genéticos}
+\section{\label{section:environment}Algoritmos Evolutivos}
+\begin{mdframed}[backgroundcolor=green!20]
+\begin{itemize}
+	\item
+		Explicar
+\end{itemize}
+\end{mdframed}
 
-% NEAT
-% neuroevolução
-% NEAT evolui os pesos e a rede em sí (TWEANNs)
-% representação genética da rede
-% problemas comuns em TWEANNs que o NEAT resolve
-% (competing conventions, protecting innovation e initial population)
+
 
 %----------
 \section{\label{section:behavior-trees}Behavior Trees}
-Tomar decisões é uma das tarefas mais importantes na construção de bons agentes
-inteligentes. Em um contexto de jogos digitais, por exemplo, a partir de 1990, o
-uso de inteligência artificial em jogos passou a ser um diferencial no momento
-da compra de um jogo \cite[Cap 1.]{Millington:2009:AIG:1795711}. Portanto,
-escolher uma boa técnica para o processo de tomada de decisão pode ser um dos
-fatores de sucesso na construção de agentes. Das técnicas mais populares,
-\textit{\textbf{behavior trees}} (árvores de comportamento) é uma das que mais
-se destaca por sua \textbf{simplicidade} e \textbf{extensibilidade} \cite[Cap.
-4]{Rabin:2013:GAP:2566761}, além de ter sido utilizada na indústria em jogos
-como \textbf{Halo 2} \cite[Cap.  5]{Millington:2009:AIG:1795711}, por exemplo.
+A construção de bons agentes inteligentes depende fortemente da capacidade que
+os agentes têm de tomar boas decisões de comportamento. No contexto de jogos
+digitais, a partir da década de 90, a qualidade da inteligência artificial
+passou a ser um diferencial no momento de compra de um jogo\cite[Cap.
+1]{Millington:2009:AIG:1795711}, aumentando a importância da escolha de uma
+técnica apropriada para desenvolver os agentes inteligentes.Das técnicas mais
+populares, a \textbf{\textit{Behavior Tree}}, ou Árvore de Comportamento, é uma
+das técnicas que mais se destaca, devido a sua \textbf{simplicidade} e
+\textbf{extensibilidade}\cite[Cap.  4]{Rabin:2013:GAP:2566761}, e já foi
+utilizada na indústria em jogos como \textit{Halo 2}\cite[Cap.
+5]{Millington:2009:AIG:1795711} e
+\textit{Spore}\footnote{http://chrishecker.com/My\_liner\_notes\_for\_spore},
+por exemplo.
 
-Uma \textit{behavior tree} é uma estrutura de dados baseada em árvore, contendo
-um nodo raíz e vários nodos filhos que representam um \textbf{comportamento}
-(\textit{behavior}). Cada nodo filho pode ter outros filhos, formando assim uma
-árvore. Cada um desses comportamentos deve ter uma \textit{pré-condição} e uma
-\textit{ação}. Caso a pré-condição seja satisfeita, o agente poderá executar o
-comportamento descrito pela ação do nodo \cite[Cap 4.]{Rabin:2013:GAP:2566761}.
-Isso faz com que o algoritmo seja bastante simples, partimos do nodo raíz em
-busca do primeiro filho que satisfaça a sua pré-condição. Ao encontrar esse
-filho, é executada a sua ação. É importante ressaltar que somente um
+Uma \textit{Behavior Tree} é uma estrutura de dados baseada em árvore que contém
+um nodo \textbf{raíz} (geralmente utilizada para controlar o fluxo inicial de
+execução) e vários nodos filhos que representam os \textbf{comportamentos}. Cada
+comportamento deve possuir uma \textbf{pré-condição} e uma \textbf{ação}. Caso a
+pré-condição seja satisfeita, o agente poderá executar o comportamento descrito
+pela ação do nodo\cite[Cap. 4]{Rabin:2013:GAP:256671}. Isto faz com que o
+algoritmo de execução seja simples: partimos do nodo raíz em busca do primeiro
+filho que satisfaça sua pré-condição (geralmente da esquerda para a direita). Ao
+encontrá-lo, executamos sua ação. É importante ressaltar que somente um
 comportamento é selecionado por vez. Portanto, se um comportamento for
 selecionado, o algoritmo não tentará executar as ações dos nodos vizinhos na
 mesma execução do algoritmo.
 
-Como este é um formalismo bastante simples, é possível, por exemplo, adicionar
-estruturas de \textbf{controle de fluxo} a ele. Dessa forma, os ramos da árvore
-passam a ser usados para controlar o fluxo de execução, enquanto os nodos folhas
-representam as pré-condições e ações \cite[Cap.  10]{Rabin:2015:GAP:2821138}.
-Isso permite que diversos tipos de controle de fluxo sejam aplicados. Assim,
-cada vez que a ação de um nodo folha é executada, é informado ao pai (ramo de
-controle de fluxo) o estado dessa ação, se foi executada com sucesso ou falha ou
-se ainda está em execução.  Existem alguns desenvolvedores que informam ao pai
-outras informações, como por exemplo, o motivo do erro. Isso permite que o pai
-decida o que fazer baseado nessas informações. Existem vários algoritmos para a
-realização do controle de fluxo, dentre os mais comumente utilizados estão o
-algoritmo de \textbf{seleção} e o de \textbf{sequência}. O algoritmo de
-\textbf{seleção} faz a execução do \textbf{primeiro} nodo filho que tiver sua
-pré-condição satisfeita. Um exemplo do algoritmo pode ser visto no algoritmo
-\ref{alg:behavior-tree-selection}.
+É possível adicionar estruturas de \textbf{controle de fluxo} a uma
+\textit{Behavior Tree}. Desta forma, os ramos da árvore passam a ser usados para
+controlar o fluxo de execução, enquanto os nodos-folha representam as
+pré-condições e ações\cite[Cap. 10]{Rabin:2015:GAP:2821138}. Quando uma ação de
+um nodo-folha é executado, ele informa ao seu pai (controlador de fluxo) o
+estado de sua execução -- sucesso, falha ou em andamento. Existem diversos
+tipos de estruturas de controle de fluxo que são utilizadas em \textit{Behavior
+Trees}, mas as mais comuns são os de \textbf{seleção} e de \textbf{sequência}.
+
+O algoritmo do controle de fluxo de seleção -- exemplificado no algoritmo
+\ref{alg:behavior-tree-selection} -- faz a execução do \textbf{primeiro nodo
+filho} que tiver sua pré-condição satisfeita. Quando termina de executar a ação
+selecionada, aborta o procedimento, não visitando as demais ações.
+Diferentemente do algoritmo de seleção, o algoritmo de \textbf{sequência} --
+exemplificado no algoritmo \ref{alg:behavior-tree-sequence} -- tentará executar
+\textbf{todos} os nodos que satisfizerem suas pré-condições de forma
+\textbf{sequencial}. Sua execução só é interrompida quando não for possível
+tomar a ação descrita pelo nodo ou quando não existirem mais nodos para se
+avaliar.
 
 \begin{algorithm}[H]
 \begin{center}
@@ -230,15 +245,6 @@ behavior tree.]
 fluxo do tipo seleção em uma behavior tree.}
 \end{algorithm}
 
-Diferentemente do algoritmo de seleção, o algoritmo de \textbf{sequência}
-tentará executar todos os nodos que satisfizerem suas pré-condições de forma
-sequencial. Portanto, esse algoritmo tentará tomar a ação descrita pelo primeiro
-nodo, caso isso seja possível, tentará executar a ação do segundo nodo, e assim
-sucessivamente. Sua execução é interrompida quando não for possível tomar a ação
-descrita pelo nodo ou quando não existirem mais nodos para se avaliar. O
-algoritmo é bastante parecido com o algoritmo de seleção, sendo exemplificado no
-algoritmo \ref{alg:behavior-tree-sequence}.
-
 \begin{algorithm}[H]
 \begin{center}
 	% Um exemplo de algoritmo utilizando a pacote 'algorithmic'
@@ -259,19 +265,20 @@ behavior tree.]
 do tipo sequência em uma behavior tree.}
 \end{algorithm}
 
-A figura \ref{fig:behavior-tree-example} representa através de uma
-\textit{behavior tree} com o uso de fluxo de controle um agente que deve
-recarregar suas energias e, após isso, limpar a casa. Os retângulos de fundo
-branco representam as ações, os retângulos com bordas arredondadas, as
-estruturas de controle e os com fundo preto as pré-condições. Nesse exemplo,
-caso o agente esteja com pouca energia, será possível carregar suas baterias
-através de \textit{energia solar}. Se essa ação falhar -- em um dia chuvoso, por
-exemplo -- será possível então utilizar \textit{energia elétrica}. Isso é feito
-pelo controle de fluxo \textbf{selecionar}, que testa cada uma das ações e
-executa a que for possível de ser executada.  No momento em que o agente vai
-limpar a casa, caso a casa esteja suja, o agente limpará a sala e organizará os
-móveis de forma sequencial -- ou seja, é necessário estar com a sala limpa para
-organizar os móveis. Isso é feito pelo controle de fluxo \textbf{sequência}.
+Para que fique mais claro como a técnica é utilizada, criamos um cenário
+hipotético onde devemos criar a inteligência artificial de um agente (um robô
+doméstico) que tem uma tarefa muito importante: limpar e organizar os móveis da
+sala de estar de uma casa. Este robô, contudo, é movido à baterias, que não
+duram muito. Então, de tempos em tempos, é necessário que ele recarregue suas
+energias. Existem duas fontes de energia disponíveis para o robô: energia solar
+e energia elétrica. A energia solar é preferível, por ser uma forma de energia
+mais limpa, mas nem sempre é possível utilizá-la (um dia chuvoso, por exemplo).
+A Figura \ref{fig:behavior-tree-example} representa o comportamento deste agente
+através de uma \textit{Behavior Tree}. Para decidir entre as fontes de energia,
+usamos um controle de fluxo do tipo \textbf{seleção}, pois somente um tipo de
+energia deve ser utilizado. Já para executar suas tarefas (limpar e organizar),
+usamos um controle de fluxo do tipo \textbf{sequência}, pois todas as tarefas
+devem ser executadas.
 
 \begin{figure}[H]
 \centering
@@ -347,26 +354,32 @@ necessário, além de limpar e organizar a casa, descansando caso contrário.}
 \end{figure}
 
 Existem algumas outras técnicas que resolvem o mesmo problema que as
-\textit{behavior trees}. Por exemplo, as \textbf{\textit{finite state machines}}
-(máquinas de estados finitos) são muito utilizadas em inteligência artificial,
-pois trazem estruturas bastante simples de implementar e muito poderosas no
-momento de sua utilização. Contendo \textit{estados} que são ligados através de
-\textit{transições}, essa estrutura faz com que modelar uma inteligência
-artifical seja bastante simples. O problema dessa abordagem está quando
-precisamos reutilizar estados. Como uma transição liga apenas dois estados, é
-impossível utilizar o mesmo estado sem duplicá-lo. Para resolver esse problema,
-existe uma técnica baseada nessa chamada de \textbf{\textit{hierarchical finite
-state machines}} (máquinas de estados finitos hierárquicos). Essa estrutura
-permite que estados sejam englobados em outros estados, resolvendo o problema de
-reutilização.  Entretanto, ambas abordagens ainda são de difícil extensão. Como
-um estado está ligado à outro via uma transição, adicionar e remover estados
-dessa estrutura pode ser um problema, principalmente quando o modelo construído
-inicialmente não é adequado para o que estamos resolvendo, sendo necessário
-realizar muitas mudanças de forma a testar outras soluções possíveis.
+\textit{Behavior Trees} como, por exemplo, as \textbf{\textit{Finite State
+Machines}} (máquinas de estados finitos), que são muito utilizadas em
+inteligência artificial para jogos. Uma \textit{FSM} contém \textbf{estados} que
+são ligados através de \textbf{transições}. Contudo, existem diversos problemas
+com esta abordagem. A quantidade de estados e transições cresce
+exponencialmente, os estados não podem ser reutilizados com facilidade e devemos
+nos preocupar constantemente se existem transições inválidas no modelo. As
+\textit{FSMs} possuem, resumidamente, um problema de modularidade.
+
+Outra técnica muito utilizada são as \textbf{\textit{Hierarchical Finite State
+Machines}} (máquinas de estados finitos hierárquicas). O objetivo da criação
+desta técnica foi justamente mitigar alguns dos problemas das \textit{FSMs},
+permitindo o englobamento de estados em uma hierarquia. Entretanto, o problema
+de extensibilidade e praticidade ainda existem, porque ainda é baseada em
+transições.
 
 
 %----------
 \section{\label{section:neat}NEAT}
+% NEAT
+% neuroevolução
+% NEAT evolui os pesos e a rede em sí (TWEANNs)
+% representação genética da rede
+% problemas comuns em TWEANNs que o NEAT resolve
+% (competing conventions, protecting innovation e initial population)
+
 \begin{mdframed}[backgroundcolor=green!20]
 \begin{itemize}
     \item
