@@ -1,14 +1,7 @@
 \chapter{\label{chap:theory}Fundamentação Teórica}
 Neste capítulo, apresentaremos a base teórica necessária para compreender o
-funcionamento das técnicas \textit{Behavior Trees} e \textit{NEAT}, escolhidas
-para realizar o desenvolvimento dos agentes inteligentes de \textit{Spelunky}.
-
-\begin{mdframed}[backgroundcolor=green!20]
-\begin{itemize}
-	\item
-		Explicar a escolha das técnicas
-\end{itemize}
-\end{mdframed}
+funcionamento das técnicas de inteligência artificial escolhidas para realizar o
+desenvolvimento dos agentes inteligentes de \textit{Spelunky}.
 
 
 %----------
@@ -197,7 +190,7 @@ um nodo \textbf{raíz} (geralmente utilizada para controlar o fluxo inicial de
 execução) e vários nodos filhos que representam os \textbf{comportamentos}. Cada
 comportamento deve possuir uma \textbf{pré-condição} e uma \textbf{ação}. Caso a
 pré-condição seja satisfeita, o agente poderá executar o comportamento descrito
-pela ação do nodo\cite[Cap. 4]{Rabin:2013:GAP:256671}. Isto faz com que o
+pela ação do nodo\cite[Cap. 4]{Rabin:2013:GAP:2566761}. Isto faz com que o
 algoritmo de execução seja simples: partimos do nodo raíz em busca do primeiro
 filho que satisfaça sua pré-condição (geralmente da esquerda para a direita). Ao
 encontrá-lo, executamos sua ação. É importante ressaltar que somente um
