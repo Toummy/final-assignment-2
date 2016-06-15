@@ -273,12 +273,14 @@ duram muito. Então, de tempos em tempos, é necessário que ele recarregue suas
 energias. Existem duas fontes de energia disponíveis para o robô: energia solar
 e energia elétrica. A energia solar é preferível, por ser uma forma de energia
 mais limpa, mas nem sempre é possível utilizá-la (um dia chuvoso, por exemplo).
-A Figura \ref{fig:behavior-tree-example} representa o comportamento deste agente
-através de uma \textit{Behavior Tree}. Para decidir entre as fontes de energia,
-usamos um controle de fluxo do tipo \textbf{seleção}, pois somente um tipo de
-energia deve ser utilizado. Já para executar suas tarefas (limpar e organizar),
-usamos um controle de fluxo do tipo \textbf{sequência}, pois todas as tarefas
-devem ser executadas.
+Caso o robô termine suas tarefas e não esteja com níveis baixos de bateria, pode
+descansar, entrando em modo de repouso.  A Figura
+\ref{fig:behavior-tree-example} representa o comportamento deste agente através
+de uma \textit{Behavior Tree}. Para decidir entre as fontes de energia, usamos
+um controle de fluxo do tipo \textbf{seleção}, pois somente um tipo de energia
+deve ser utilizado. Já para executar suas tarefas (limpar e organizar), usamos
+um controle de fluxo do tipo \textbf{sequência}, pois todas as tarefas devem ser
+executadas.
 
 \begin{figure}[H]
 \centering
