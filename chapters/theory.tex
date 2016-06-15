@@ -148,7 +148,39 @@ modelo de representação através do retorno obtido após a execução de açõ
 
 
 %----------
-\section{\label{section:neural-networks}Redes Neurais}
+\section{\label{section:neural-networks}Redes Neurais Artificiais}
+Uma \textbf{rede neural artificial} é um modelo matemático que busca replicar
+computacionalmente (através de aproximações de funções) as capacidades de
+processamento de informações de sistemas nervosos
+biológicos\cite{Rojas:1996:NNS:235222}. Recentemente, redes neurais artificiais
+vem recebendo uma atenção especial, mas esta técnica teve suas origens no início
+da década de 40\cite{RussellNorvig200912}. Esta seção apresenta apenas um resumo
+geral de redes neurais artificiais, pois o assunto é muito complexo e um
+entendimento superficial do funcionamento desta técnica é suficiente para este
+trabalho.
+
+Os elementos mais primitivos das redes neurais são as unidades de processamento
+chamadas \textbf{neurônios} -- ilustrado na Figura
+\ref{fig:neural-networks-neurons}.  Cada neurônio possui canais de
+\textbf{entrada} através dos quais recebe as informações que deverá processar.
+Cada canal de entrada possui um \textbf{peso}, que informa ao neurônio o quão
+relevante a informação advinda daquela conexão é importante. Com estas
+informações em mãos, realiza um processamento interno através de sua
+\textbf{função de ativação}. Depois, envia a informação processada adiante, ou
+para mais processamento em neurônios adicionais, ou como resultado final da
+operação.
+
+Para processar as informações do problema (e, assim, gerar uma função da rede),
+as redes neurais organizam as conexões e localizações de seus neurônios de uma
+maneira específica, formando uma \textbf{topologia} da rede. Basicamente, 
+
+\begin{figure}[H]
+\centering
+\caption {\label{fig:neural-networks-neuron}Ilustração que indica os principais
+componentes de um neurônio de uma rede neural artificial.}
+\end{figure}
+
+
 \begin{mdframed}[backgroundcolor=green!20]
 \begin{itemize}
 	\item
