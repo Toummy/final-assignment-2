@@ -284,25 +284,25 @@ devem ser executadas.
 \centering
 \begin{tikzpicture}[
     every node/.style={
-        font=\footnotesize
+        font=\scriptsize
     },
     composite/.style={
-        minimum width=1.75cm, minimum height=1.2cm,
-        text width=1.75cm,
+        minimum width=1.3cm, minimum height=1.2cm,
+        text width=1.3cm,
         text centered,
         rounded rectangle,
         draw
     },
     action/.style={
-        minimum width=1.75cm, minimum height=1.2cm,
-        text width=1.75cm,
+        minimum width=1.3cm, minimum height=1.2cm,
+        text width=1.3cm,
         text centered,
         rectangle,
         draw
     },
     precond/.style={
-        minimum width=1.75cm, minimum height=1.2cm,
-        text width=1.75cm,
+        minimum width=1.3cm, minimum height=1.2cm,
+        text width=1.3cm,
         text centered,
         rectangle,
         fill=black,
@@ -317,9 +317,12 @@ devem ser executadas.
                                                 &
                                                 &
                                                 &
+                                                &
+                                                &
     \\
                                                 &
     \node (n2)  [composite] {Selecionar};       &
+                                                &
                                                 &
     \node (n4)  [composite] {Sequência};        &
                                                 &
@@ -330,10 +333,12 @@ devem ser executadas.
     \node (n5)  [precond]   {Pouca Energia?};   &
     \node (n7)  [action]    {Energia Solar};    &
     \node (n6)  [action]    {Energia Elétrica}; &
-                                                &
     \node (n8)  [precond]   {Casa Suja?};       &
     \node (n9)  [action]    {Limpar Sala};      &
     \node (n10) [action]    {Organizar Móveis}; &
+                                                &
+                                                &
+                                                &
     \\
 };
 \draw[->,>=latex] (n1.south) -- (n2.north);
