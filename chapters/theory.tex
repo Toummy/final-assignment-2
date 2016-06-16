@@ -151,43 +151,99 @@ modelo de representação através do retorno obtido após a execução de açõ
 \section{\label{section:neural-networks}Redes Neurais Artificiais}
 Uma \textbf{rede neural artificial} é um modelo matemático que busca replicar
 computacionalmente (através de aproximações de funções) as capacidades de
-processamento de informações de sistemas nervosos
-biológicos\cite{Rojas:1996:NNS:235222}. Recentemente, redes neurais artificiais
-vem recebendo uma atenção especial, mas esta técnica teve suas origens no início
-da década de 40\cite{RussellNorvig200912}. Esta seção apresenta apenas um resumo
-geral de redes neurais artificiais, pois o assunto é muito complexo e um
-entendimento superficial do funcionamento desta técnica é suficiente para este
-trabalho.
+processamento de informações de sistemas nervosos biológicos \cite[Cap.
+1]{Rojas:1996:NNS:235222}. É uma técnica de aprendizado de máquina que
+recentemente vem recebendo uma atenção especial, mas que teve suas origens no
+início da década de 40 \cite[Cap. 18]{RussellNorvig200912}. Esta seção apresenta
+apenas um resumo geral de redes neurais artificiais, pois o assunto é muito
+complexo e um entendimento superficial do funcionamento desta técnica é
+suficiente para este trabalho.
 
-Os elementos mais primitivos das redes neurais são as unidades de processamento
-chamadas \textbf{neurônios} -- ilustrado na Figura
-\ref{fig:neural-networks-neurons}.  Cada neurônio possui canais de
-\textbf{entrada} através dos quais recebe as informações que deverá processar.
-Cada canal de entrada possui um \textbf{peso}, que informa ao neurônio o quão
-relevante a informação advinda daquela conexão é importante. Com estas
-informações em mãos, realiza um processamento interno através de sua
-\textbf{função de ativação}. Depois, envia a informação processada adiante, ou
-para mais processamento em neurônios adicionais, ou como resultado final da
-operação.
+Os elementos fundamentais das redes neurais artificiais são as unidades de
+processamento chamadas \textbf{neurônios} (também conhecidas como
+\textit{perceptrons}) -- ilustrado na Figura \ref{fig:neural-networks-neurons}
+\cite[Cap. 3]{Rojas:1996:NNS:235222}.  Cada neurônio possui um ou mais
+\textbf{canais de entrada}, uma \textbf{função de integração}, uma
+\textbf{função de ativação} e um ou mais \textbf{canais de saída}. O
+funcionamento de um neurônio se dá da seguinte maneira: primeiro, a unidade
+recebe as informações que deverá processar através de seus canais de entrada.
+Estes canais possuem um \textbf{peso} atrelado a eles, que informam à unidade o
+quão importante é a informação advinda daquela conexão. A origem das informações
+não é relevante para o neurônio, e podem vir de outros neurônios ou de outras
+classes de unidades de processamento (como a entrada da rede, por exemplo).
+Todas as informações que o neurônio recebe passam por sua função de integração
+(que geralmente é uma função de adição), cujo propósito é reduzir o número de
+informações para apenas uma.  Depois de integrar as informações, o neurônio
+realiza um processamento interno através de sua função de ativação,
+transformando as informações recebidas em outro tipo de informação. Esta função
+de ativação deve ser escolhida pelo desenvolvedor da rede e geralmente é ou uma
+função de limiar (resultado $0$ ou $1$) ou uma função de logística (resultados
+em números reais, como a função \textit{Sigmóide}). Na última etapa, o neurônio
+envia, através de seus canais de saída, a informação que acabou de processar. Os
+canais de saída se ligam com outros neurônios ou com a saída da rede.
 
-Para processar as informações do problema (e, assim, gerar uma função da rede),
-as redes neurais organizam as conexões e localizações de seus neurônios de uma
-maneira específica, formando uma \textbf{topologia} da rede. Basicamente, 
-
+% AIMA: page 728, figure 18.19
 \begin{figure}[H]
 \centering
 \caption {\label{fig:neural-networks-neuron}Ilustração que indica os principais
 componentes de um neurônio de uma rede neural artificial.}
 \end{figure}
 
+Com as unidades de processamento definidas, o próximo passo é entender como elas
+se conectam entre sí para formar a \textbf{topologia} da rede neural. Existem,
+fundamentalmente, dois modelos básicos de topologia: sem realimentação
+(\textit{feed-forward}) e recorrentes \cite[Cap. 18]{RussellNorvig200912}. As
+redes sem realimentação, como o próprio nome sugere, possui conexões em somente
+um sentido (para frente), ou seja, os neurônios processam as informações apenas
+uma vez. Já nas redes recorrentes, um neurônio pode processar informações mais
+de uma vez (realimentação de informações processadas anteriormentes pela rede).
+As redes sem realimentação são mais simples, mas as recorrentes permitem a
+aquisição de memória de curto-prazo. Por fins de simplificação, a explicação
+desta seção se concentrará em redes sem realimentação.
 
-\begin{mdframed}[backgroundcolor=green!20]
-\begin{itemize}
-	\item
-		Explicar
-\end{itemize}
-\end{mdframed}
+As redes neurais artificiais sem realimentação geralmente estão estruturadas em
+\textbf{camadas}, sendo que os neurônios recebem entradas somente de unidades de
+processamento da camada anterior. A topologia da rede é dividida,
+essencialmente, em uma \textbf{camada de entrada}, zero ou mais \textbf{camadas
+escondidas} e uma \textbf{camada de saída}. Quando a rede não possui camadas
+escondidas, ela é chamada de \textbf{camada-única}, e quando possui camadas
+escondidas é chamada de \textbf{multi-camada}. Muitas vezes, não é necessário
+adicionar camadas escondidas, mas existem funções que não podem ser aproximadas
+corretamente com apenas uma camada (a função lógica \textit{XOR}, por exemplo)
+por causa do problema de separabilidade linear (detalhes em \cite[Cap.
+18]{RussellNorvig200912}). As unidades de processamento são conectadas
+(geralmente, todos os neurônios de uma camada possuem conexão com todos os
+neurônios da camada seguinte) e a rede neural se forma. Dependendo do problema,
+a escolha de quantas camadas e unidades de processamento afeta a qualidade dos
+resultados obtidos. Não existe uma ciência exata para definir quantidades de
+camadas e neurônios, ficando a critério do desenvolvedor a análise do problema e
+a experimentação de topologias \cite[Cap. 18]{RussellNorvig200912}. A Figura
+\ref{fig:neural-networks-example} ilustra uma possível topologia de uma rede
+neural artificial sem realimentação.
 
+% Neural Networks: A Systematic Introduction, page 126, figure 6.1
+\begin{figure}[H]
+\centering
+\caption {\label{fig:neural-networks-example}Ilustração de uma possível topologia
+de uma rede neural artificial sem realimentação.}
+\end{figure}
+
+
+O objetivo das redes neurais artificiais, então, é gerar uma \textbf{função de
+rede}, que recebe informações na camada de entrada, realiza processamentos com
+seus neurônios e envia informações através de um ou mais neurônios na camada de
+saída. Esta função de rede deve ser uma aproximação (pois nem sempre atinge
+100\% de precisão) da função que queremos descobrir. A rede neural deve passar,
+portanto, por um processo de \textbf{treinamento}, que tentará ajustar os pesos
+das conexões dos neurônios até encontrar valores adequados. Aqui, o tipo de
+treinamento que a rede recebe depende do tipo de aprendizado que está sendo
+empregado (supervisionado, não-supervisionado ou por reforço). Um exemplo de
+algoritmo de treinamento é o da \textbf{retropropagação}
+(\textit{backpropagation}), muito utilizado para treinar redes neurais
+artificiais em aprendizado supervisionado. Este algoritmo tenta ajustar os pesos
+das conexões através da análise e minimização do erro entre os resultados
+esperados (dados de treinamento) e os resultados obtidos através do uso da
+função aproximada da rede neural \cite[Cap. 7]{Rojas:1996:NNS:235222}.
 
 
 %----------
