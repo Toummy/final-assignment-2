@@ -17,12 +17,11 @@ As dimensões utilizadas para categorizar ambientes são:
 \begin{description}
 	\item[Observável, Parcialmente Observável ou Não-Observável]
 		Um ambiente é observável se os sensores do agente lhe permitirem acesso
-		completo ao estado do ambiente a cada ponto no tempo. Ambientes
-		observáveis são convenientes, pois o agente não precisa manter um estado
-		interno de conhecimento para se manter informado. O ambiente é
-		parcialmente observável se os sensores do agente possuirem ruído ou não
-		tiverem acesso completo ao ambiente. Se o agente não possuir nenhum tipo
-		de sensor, então o ambiente é não-observável.
+		completo ao estado do ambiente a cada ponto no tempo, o que torna este
+		tipo de ambiente muito conveniente. O ambiente é parcialmente observável
+		se os sensores do agente possuirem ruído ou não tiverem acesso completo
+		ao ambiente. Se o agente não possuir nenhum tipo de sensor, então o
+		ambiente é não-observável.
 
 	\item[Agente Único ou Multi-Agente]
 		Quando o agente não precisa interagir com nenhum outro agente no
@@ -31,9 +30,9 @@ As dimensões utilizadas para categorizar ambientes são:
 		comunicação) com outros agentes, então o ambiente é multi-agente.
 
 	\item[Determinístico ou Estocástico]
-		Se o próximo estado do ambiente for completamente determinado pela
-		combinação do estado atual com uma ação executada pelo agente, então o
-		ambiente é determinístico. Caso contrário, é estocástico.
+		Um ambiente é determinístico caso não exista incerteza sobre o estado
+		resultante da execução de uma ação em um determinado estado. Se houver
+		qualquer grau de incerteza, o ambiente é estocástico.
 
 	\item[Episódico ou Sequencial]
 		Em ambientes episódicos, a experiência do agente é dividida em episódios
@@ -65,13 +64,13 @@ As dimensões utilizadas para categorizar ambientes são:
 \section{\label{section:agents}Agentes Racionais}
 Um agente é uma entidade que utiliza seus \textbf{sensores} para perceber o
 ambiente no qual está inserido e interage através de seus \textbf{atuadores},
-direcionando seus esforços para alcançar algum objetivo que se propõe a
-atingir\cite[cap. 2]{RussellNorvig200912}. Um exemplo de agente racional é o ser
+direcionando seus esforços para alcançar algum objetivo que se propõe a atingir
+\cite[cap. 2]{RussellNorvig200912}. Um exemplo de agente racional é o ser
 humano, que percebe o ambiente através de seus sentidos (visão, audição, entre
 outros) e executa ações com seu corpo (braços, pernas, etc.). De acordo com
-Russell \& Norvig\cite{RussellNorvig200912}, agentes racionais são agrupados nas
-seguintes categorias: \textbf{agentes reflexivos}, \textbf{agentes baseados em
-modelo}, \textbf{agentes baseados em objetivos} e \textbf{agentes baseados em
+Russell \& Norvig \cite{RussellNorvig200912}, agentes racionais são agrupados
+nas seguintes categorias: \textbf{agentes reflexivos}, \textbf{agentes baseados
+em modelo}, \textbf{agentes baseados em objetivos} e \textbf{agentes baseados em
 utilidade}.
 
 Os \textbf{agentes reflexivos} são programados para executar ações baseadas em
@@ -85,7 +84,7 @@ estado atual. Este tipo de agente compreende como suas ações modificam o
 ambiente onde está inserido e como o ambiente se altera independentemente de
 suas ações, efetivamente construíndo um \textbf{modelo} do ambiente. 
 
-Às vezes, ter conhecimento sobre o estado atual do ambiente não é suficiente
+As vezes, ter conhecimento sobre o estado atual do ambiente não é suficiente
 para decidir que ação executar. O agente precisa de alguma informação de que
 situações são desejáveis, ou que objetivos desejar cumprir. Este é o caso de
 \textbf{agentes baseados em objetivo}, que combinam um modelo do ambiente com
@@ -109,7 +108,7 @@ capaz de escolher as ações mais vantajosas para ele, aumentando sua performanc
 Quando queremos resolver um problema através de um programa de computador,
 desenvolvemos um algoritmo que, dado uma entrada, executa uma sequência de
 operações para fornecer uma resposta adequada para a tarefa em questão. Um
-exemplo disso seriam os algoritmos para ordenação de números, onde a entrada é
+exemplo disso são os algoritmos para ordenação de números, onde a entrada é
 um conjunto de números e a resposta é o conjunto ordenado. Para alguns
 problemas, contudo, nem sempre é possível se chegar a um algoritmo que resolve
 satisfatóriamente uma tarefa. Por exemplo, a tarefa de diferenciar
@@ -122,23 +121,23 @@ complexo ou até mesmo impraticável. A partir deste contexto, surgiu a área de
 de computador a habilidade de aprender e se aperfeiçoarem, tornando-os capazes
 de resolver tarefas sem serem explicitamente programados.
 
-Existem três tipos principais de aprendizado de máquina\cite[cap.
-18]{RussellNorvig200912}, que são diferenciados entre sí pelo tipo de
-\textit{feedback} retornado pelo problema. Estas categorias são:
-\textbf{aprendizado supervisionado}, \textbf{aprendizado não-supervisionado} e
-\textbf{aprendizado por reforço}. No aprendizado supervisionado, é fornecido um
-conjunto de dados com exemplos de entrada e resultados esperados para aquelas
-entradas. Assim, a tarefa neste tipo de aprendizado consiste em aprender uma
-função que mapeia entradas para saídas. No aprendizado não-supervisionado, o
-programa recebe um conjunto de dados de entrada mas não recebe informações com o
-tipo de saída esperado. O objetivo deste tipo de aprendizado geralmente é
-detectar padrões em conjuntos de dados.  O último tipo de aprendizado, o
-aprendizado por reforço, é diferente dos demais porque está diretamente ligado
-ao conceito de agentes racionais.  Neste tipo de aprendizado, o agente interage
-com um ambiente dinâmico e deve atingir algum objetivo. Quando o agente executa
-ações no ambiente, é fornecido a ele algum tipo de retorno -- recompensas ou
-punições --, para que ele possa aprender a agir da maneira correta a fim de
-atingir seus objetivos.
+Existem três tipos principais de aprendizado de máquina \cite[cap.
+18]{RussellNorvig200912}, que são diferenciados entre sí pela natureza dos dados
+utilizados para aprender. Estas categorias são: \textbf{aprendizado
+supervisionado}, \textbf{aprendizado não-supervisionado} e \textbf{aprendizado
+por reforço}. No aprendizado supervisionado, é fornecido um conjunto de dados
+com exemplos de entrada e resultados esperados para aquelas entradas. Assim, a
+tarefa neste tipo de aprendizado consiste em aprender uma função que mapeia
+entradas para saídas. No aprendizado não-supervisionado, o programa recebe um
+conjunto de dados de entrada mas não recebe informações com o tipo de saída
+esperado. O objetivo deste tipo de aprendizado geralmente é detectar padrões em
+conjuntos de dados.  O último tipo de aprendizado, o aprendizado por reforço, é
+diferente dos demais porque está diretamente ligado ao conceito de agentes
+racionais.  Neste tipo de aprendizado, o agente interage com um ambiente
+dinâmico e deve atingir algum objetivo. Quando o agente executa ações no
+ambiente, é fornecido a ele algum tipo de retorno -- recompensas ou punições --,
+para que ele possa aprender a agir da maneira correta a fim de atingir seus
+objetivos.
 
 Para agentes racionais, a capacidade de aprender fornece a oportunidade de se
 tornar mais competente que o permitido pelo seu conhecimento inicial do problema
@@ -167,7 +166,7 @@ processamento chamadas \textbf{neurônios} (também conhecidas como
 \textbf{função de ativação} e um ou mais \textbf{canais de saída}. O
 funcionamento de um neurônio se dá da seguinte maneira: primeiro, a unidade
 recebe as informações que deverá processar através de seus canais de entrada.
-Estes canais possuem um \textbf{peso} atrelado a eles, que informam à unidade o
+Estes canais possuem um \textbf{peso} atrelado a eles, que informa à unidade o
 quão importante é a informação advinda daquela conexão. A origem das informações
 não é relevante para o neurônio, e podem vir de outros neurônios ou de outras
 classes de unidades de processamento (como a entrada da rede, por exemplo).
@@ -197,9 +196,8 @@ redes sem realimentação, como o próprio nome sugere, possui conexões em some
 um sentido (para frente), ou seja, os neurônios processam as informações apenas
 uma vez. Já nas redes recorrentes, um neurônio pode processar informações mais
 de uma vez (realimentação de informações processadas anteriormentes pela rede).
-As redes sem realimentação são mais simples, mas as recorrentes permitem a
-aquisição de memória de curto-prazo. Por fins de simplificação, a explicação
-desta seção se concentrará em redes sem realimentação.
+Por fins de simplificação, a explicação desta seção se concentrará em redes sem
+realimentação.
 
 As redes neurais artificiais sem realimentação geralmente estão estruturadas em
 \textbf{camadas}, sendo que os neurônios recebem entradas somente de unidades de
@@ -207,19 +205,20 @@ processamento da camada anterior. A topologia da rede é dividida,
 essencialmente, em uma \textbf{camada de entrada}, zero ou mais \textbf{camadas
 escondidas} e uma \textbf{camada de saída}. Quando a rede não possui camadas
 escondidas, ela é chamada de \textbf{camada-única}, e quando possui camadas
-escondidas é chamada de \textbf{multi-camada}. Muitas vezes, não é necessário
-adicionar camadas escondidas, mas existem funções que não podem ser aproximadas
-corretamente com apenas uma camada (a função lógica \textit{XOR}, por exemplo)
-por causa do problema de separabilidade linear (detalhes em \cite[Cap.
-18]{RussellNorvig200912}). As unidades de processamento são conectadas
-(geralmente, todos os neurônios de uma camada possuem conexão com todos os
-neurônios da camada seguinte) e a rede neural se forma. Dependendo do problema,
-a escolha de quantas camadas e unidades de processamento afeta a qualidade dos
-resultados obtidos. Não existe uma ciência exata para definir quantidades de
-camadas e neurônios, ficando a critério do desenvolvedor a análise do problema e
-a experimentação de topologias \cite[Cap. 18]{RussellNorvig200912}. A Figura
-\ref{fig:neural-networks-example} ilustra uma possível topologia de uma rede
-neural artificial sem realimentação.
+escondidas é chamada de \textbf{multi-camada}. Quase sempre é necessário
+adicionar camadas escondidas, pois a maioria das funções não podem ser
+aproximadas corretamente com apenas uma camada (a função lógica \textit{XOR} é
+um exemplo disso). Isto ocorre porque quando se tem apenas uma camada de
+processamento, só é possível aproximar funções linearmente separáveis(detalhes
+em \cite[Cap. 18]{RussellNorvig200912}). As unidades de processamento são
+conectadas (geralmente, todos os neurônios de uma camada possuem conexão com
+todos os neurônios da camada seguinte) e a rede neural se forma. Dependendo do
+problema, a escolha de quantas camadas e unidades de processamento afeta a
+qualidade dos resultados obtidos. Não existe uma ciência exata para definir
+quantidades de camadas e neurônios, ficando a critério do desenvolvedor a
+análise do problema e a experimentação de topologias \cite[Cap.
+18]{RussellNorvig200912}. A Figura \ref{fig:neural-networks-example} ilustra uma
+possível topologia de uma rede neural artificial sem realimentação.
 
 % Neural Networks: A Systematic Introduction, page 126, figure 6.1
 \begin{figure}[H]
