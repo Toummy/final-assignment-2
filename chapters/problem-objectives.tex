@@ -1,4 +1,8 @@
-\chapter{\label{chap:problem}O Problema}
+\chapter{\label{chap:problem-objectives}O Problema e Objetivos do Trabalho}
+
+
+%----------
+\section{\label{section:problem}O Problema}
 A prática de estabelecer a complexidade computacional de jogos -- sejam jogos de
 carta, jogos de tabuleiro ou jogos digitais -- ajuda a compreender  porque
 humanos consideram interessantes os desafios impostos por estes jogos, além de
@@ -18,7 +22,9 @@ pelo menos um caminho transponível do início ao fim -- mesmo que com inimigos 
 armadilhas no caminho --, sem que seja necessário o uso de bombas ou cordas
 para ajudar na desobstrução do caminho e deslocamento. Sabe-se, também, que o
 personagem sempre entra em um nível pela parte superior do mapa, e que a saída
-sempre está localizada na parte inferior do mapa.
+sempre está localizada na parte inferior do mapa. Por fim, cada área em
+\textit{Spelunky} possui diferentes características, como tipo de terreno e
+monstros diferentes.
 
 Em \textit{Spelunky}, os pontos de vida são o recurso mais importante do
 jogador, pois quando esgotados, encerra-se a partida. Existem diversos tipos de
@@ -35,12 +41,13 @@ significa que a inteligência artificial desenvolvida deve estar preparada pra
 lidar com uma gama gigantesca de possibilidades, pois se não houver cautela, a
 execução de uma ação pode gerar resultados inesperados.
 
-Com estes desafios e dificuldades em mente, este trabalho se propõe a
-desenvolver \textit{bots} para o jogo \textit{Spelunky}, que terão como
-\textbf{objetivo principal} o deslocamento do início ao fim de todos os quatro
-níveis de uma das áreas do jogo. Como cada área tem suas peculiaridades -- tais
-como monstros e terrenos diferentes --, escolhemos a área das \textbf{minas},
-por tratar-se da primeira área do jogo, sendo uma das mais fáceis de se jogar.
-Para tal, utilizar-se-á a ferramenta \textit{SpelunkBots} (detalhada no
-captítulo \ref{chap:spelunkbots}), que auxilia no desenvolvimento de uma
-inteligência artificial para o jogo.
+
+%----------
+\section{\label{section:objectives}Objetivos}
+Com os desafios e dificuldades apresentados na seção \ref{section:problem}, o
+\textbf{objetivo principal} deste trabalho é desenvolver \textit{bots} para o
+jogo \textit{Spelunky} que terão como meta se deslocarem do início ao fim de
+todos os quatro níveis da área das Minas. Depois da construção dos agentes
+inteligentes, coletaremos dados de suas execuções em alguns níveis para realizar
+uma análise e comparação aprofundada entre os resultados obtidos por cada
+técnica.
