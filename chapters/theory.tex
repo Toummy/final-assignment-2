@@ -296,7 +296,7 @@ função aproximada da rede neural \cite[Cap. 7]{Rojas:1996:NNS:235222}.
 % offspring
 % mutation
 % generation
-\section{\label{section:environment}Algoritmos Evolutivos}
+\section{\label{section:evolutionary-algorithms}Algoritmos Evolutivos}
 A \textbf{computação evolutiva} é uma área da Ciência da Computação que, como o
 nome sugere, se inspira na ciência da genética e no processo de evolução natural
 descrito por Charles Darwin para construir algoritmos que solucionam problemas
@@ -324,15 +324,56 @@ de seus pais, pois pequenas variações reprodutivas e \textbf{mutações}
 (variações) ocorrem durante a reprodução. Desta forma, variações genotípicas são
 criadas, que são traduzidas para variações fenotípicas. 
 
-Os \textbf{algoritmos evolutivos} se baseiam neste processo biológico 
+Os \textbf{algoritmos evolutivos} se baseiam neste processo biológico para
+resolver problemas computacionais. O esqueleto de um algoritmo evolutivo,
+exemplificado no algoritmo \ref{alg:evolutionary-algorithm-skeleton}, geralmente
+segue o seguinte padrão \cite[Cap. 3]{IntroEvolComputing}: dada uma função que
+deseja ser maximizada (aptidão dos indivíduos), cria-se aleatóriamente uma
+população inicial de invidíduos (candidatos). Em seguida, aplica-se
+repetidamente uma \textbf{função de aptidão} para descobrir quais são os
+melhores candidatos para procriar e dar origem a uma nova \textbf{geração}. Esta
+nova geração de indivíduos é criada através de uma \textbf{recombinação} entre
+os genomas seus pais e de uma \textbf{mutação} em seus genomas.  Este processo é
+repetido diversas vezes, até que atinja um critério de parada pré-estabelecido,
+como o surgimento de um indivíduo com um nível de aptidão aceitável ou um limite
+máximo de iterações computacionais. É importante ressaltar que muitos
+componentes deste processo evolutivo são \textbf{estocásticos}.  Geralmente (e
+eventualmente), os indivíduos com baixa aptidão são escolhidos para serem
+substituídos, mas não há total garantia disso, pois eles podem ser beneficiados
+pela "sorte". Os processos de recombinação e mutação também escolhem os genes a
+serem combinados e substituídos ao acaso.
 
-\begin{mdframed}[backgroundcolor=green!20]
-\begin{itemize}
-	\item
-		Explicar
-\end{itemize}
-\end{mdframed}
+\begin{algorithm}[h]
+\begin{center}
+	\begin{algorithmic}[1]
+        \STATE POPULAÇÃO $\gets$ candidatos gerados aleatóriamente
+		\STATE AVALIAR cada candidato
+		\REPEAT
+			\STATE{SELECIONAR pais adequados}
+			\STATE{RECOMBINAR genomas dos pais}
+			\STATE{MUTACIONAR os descendentes}
+			\STATE{AVALIAR cada novo candidato}
+			\STATE{SELECIONAR indivíduos para a próxima geração}
+		\UNTIL{APTIDÃO mínima atingida \OR ITERAÇÕES esgotadas}
+    \end{algorithmic}
+\end{center}
+\caption[Esquema geral, em pseudocódigo, de um algoritmo evolutivo.]
+{\label{alg:evolutionary-algorithm-skeleton} Esquema geral, em pseudocódigo, de
+um algoritmo evolutivo.}
+\end{algorithm}
 
+Para que se possa utilizar um algoritmo evolutivo a fim de resolver um problema
+computacional, é necessário escolhar uma \textbf{representação genética} para o
+problema \cite[Cap. 4]{IntroEvolComputing}. Este processo envolve a definição de
+um genótipo e o mapeamento entre genótipo e fenótipo, e é fundamental pois
+somente com a representação genética em mãos será possível executar os processos
+evolutivos de recombinação e mutação. Existem diversas maneiras de representar o
+código genético dos indivíduos, como a \textbf{representação binária}, a
+\textbf{representação por inteiros}, a \textbf{representação em árvore}, entre
+outras. O último passo, antes de iniciar o uso de qualquer algoritmo evolutivo,
+é a escolha dos \textbf{parâmetros de execução} \cite[Cap.
+7]{IntroEvolComputing}, que variam desde o tamanho da população até a chance de
+realizar uma operação de mutação, por exemplo.
 
 
 %----------
