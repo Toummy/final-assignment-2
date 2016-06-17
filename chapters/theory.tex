@@ -649,26 +649,27 @@ transições.
 %----------
 \section{\label{section:neat}NEAT}
 A \textbf{neuroevolução} é uma forma de aprendizado de máquina que utiliza
-algoritmos evolutivos para criar e treinar redes neurais artificiais
-\cite{stanley:ec02}. Como a neuroevolução busca por um \textbf{comportamento} ao
-invés de uma função de valor para cada estado, é muito eficaz para problemas com
-espaços de estados contínuos e altamente dimensionais. Este conceito é muito
-utilizado para resolver problemas de otimização em inteligência artificial e em
-jogos digitais \cite{DBLP:journals/corr/RisiT14}. Existem dois elementos que
-podem ser evoluídos em uma rede neural artificial: os \textbf{pesos das
-conexões} e a \textbf{topologia}. Quando ambos são evoluídos em conjunto, as
-redes são chamadas de \textit{Topology and Weight Evolving Neural Networks}, ou
-\textit{TWEANNs}.
+algoritmos evolutivos para criar e treinar redes neurais artificiais \cite[Cap.
+4]{HandbookNeuroevolution}. Como a neuroevolução busca por um
+\textbf{comportamento} ao invés de uma função de valor para cada estado, é muito
+eficaz para problemas com espaços de estados contínuos e altamente dimensionais.
+Este conceito é muito utilizado para resolver problemas de otimização em
+inteligência artificial e em jogos digitais \cite{DBLP:journals/corr/RisiT14}.
+Existem dois elementos que podem ser evoluídos em uma rede neural artificial: os
+\textbf{pesos das conexões} e a \textbf{topologia}. Quando ambos são evoluídos,
+as redes são chamadas de \textit{Topology and Weight Evolving Neural Networks},
+ou \textit{TWEANNs} \cite[Cap. 4]{HandbookNeuroevolution}.
 
 Uma escolha muito importante para evoluir \textit{TWEANNs} é como representar
 eficientemente suas informações genéticas para que os algoritmos evolutivos
-possam operar sobre os genótipos. Existem duas formas de representação: a
-\textbf{representação direta} e a \textbf{representação indireta}. Na
-representação direta (empregada pela maioria das \textit{TWEANNs}), o genótipo
-mapeia diretamente para o fenótipo, ou seja, especificam no genoma todas as
-conexões e nodos da rede. Em contraste, na representação indireta, o genoma é um
-conjunto de regras para construção do fenótipo. A representação direta é muito
-mais simples de implementar, mas a representação indireta é mais compacta.
+possam operar sobre os genótipos \cite[Cap. 4]{HandbookNeuroevolution}. Existem
+duas formas de representação: a \textbf{representação direta} e a
+\textbf{representação indireta}. Na representação direta (empregada pela maioria
+das \textit{TWEANNs}), o genótipo mapeia diretamente para o fenótipo, ou seja,
+especificam no genoma todas as conexões e nodos da rede. Em contraste, na
+representação indireta, o genoma é um conjunto de regras para construção do
+fenótipo. A representação direta é muito mais simples de implementar, mas a
+representação indireta é mais compacta.
 
 \textit{NEAT}, ou \textit{NeuroEvolution of Augmenting Topologies}, é uma
 técnica de inteligência artificial que se baseia na neuroevolução para evoluir
