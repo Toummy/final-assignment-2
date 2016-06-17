@@ -223,6 +223,54 @@ possível topologia de uma rede neural artificial sem realimentação.
 % Neural Networks: A Systematic Introduction, page 126, figure 6.1
 \begin{figure}[H]
 \centering
+\begin{tikzpicture}[x=1.5cm, y=1.5cm, >=stealth]
+\tikzset{%
+  every neuron/.style={
+    circle,
+    draw,
+    minimum size=1cm
+  },
+  neuron missing/.style={
+    draw=none, 
+    scale=4,
+    text height=0.333cm,
+    execute at begin node=\color{black}$\vdots$
+  },
+}
+
+\foreach \m/\l [count=\y] in {1,2,3,missing,4}
+  \node [every neuron/.try, neuron \m/.try] (input-\m) at (0,2.5-\y) {};
+
+\foreach \m [count=\y] in {1,missing,2}
+  \node [every neuron/.try, neuron \m/.try ] (hidden-\m) at (2,2-\y*1.25) {};
+
+\foreach \m [count=\y] in {1,missing,2}
+  \node [every neuron/.try, neuron \m/.try ] (output-\m) at (4,1.5-\y) {};
+
+\foreach \l [count=\i] in {1,2,3,n}
+  \draw [<-] (input-\i) -- ++(-1,0)
+    node [above, midway] {$E_\l$};
+
+\foreach \l [count=\i] in {1,n}
+  \node [above] at (hidden-\i.north) {$I_\l$};
+
+\foreach \l [count=\i] in {1,n}
+  \draw [->] (output-\i) -- ++(1,0)
+    node [above, midway] {$S_\l$};
+
+\foreach \i in {1,...,4}
+  \foreach \j in {1,...,2}
+    \draw [->] (input-\i) -- (hidden-\j);
+
+\foreach \i in {1,...,2}
+  \foreach \j in {1,...,2}
+    \draw [->] (hidden-\i) -- (output-\j);
+
+\node [align=center, above] at (0,2) {Camada de \\ Entrada};
+\node [align=center, above] at (2,2) {Camada \\ Invisível};
+\node [align=center, above] at (4,2) {Camada de \\ Saída};
+
+\end{tikzpicture}
 \caption {\label{fig:neural-networks-example}Ilustração de uma possível topologia
 de uma rede neural artificial sem realimentação.}
 \end{figure}
