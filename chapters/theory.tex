@@ -266,9 +266,9 @@ possível topologia de uma rede neural artificial sem realimentação.
   \foreach \j in {1,...,2}
     \draw [->] (hidden-\i) -- (output-\j);
 
-\node [align=center, above] at (0,2) {Camada de \\ Entrada};
-\node [align=center, above] at (2,2) {Camada \\ Invisível};
-\node [align=center, above] at (4,2) {Camada de \\ Saída};
+\node [align=center, above, font=\scriptsize] at (0,2) {Camada de \\ Entrada};
+\node [align=center, above, font=\scriptsize] at (2,2) {Camadas Intermediárias \\ (Escondidas)};
+\node [align=center, above, font=\scriptsize] at (4,2) {Camada de \\ Saída};
 
 \end{tikzpicture}
 \caption {\label{fig:neural-networks-example}Ilustração de uma possível topologia
