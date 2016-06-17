@@ -184,6 +184,74 @@ canais de saída se ligam com outros neurônios ou com a saída da rede.
 % AIMA: page 728, figure 18.19
 \begin{figure}[H]
 \centering
+\begin{tikzpicture}
+    \def\layersep{4cm}
+    \def\textsep{1.5cm}
+
+    \node (a0) at (0, 2) {$a_0$};
+    \node (a1) at (0, 1) {$a_1$};
+    \node (an) at (0, 0) {$a_n$};
+
+    \node [xshift=-.3cm, minimum width=\textsep, text centered] at (\layersep, 1) (neuron1) {$\sum_{}^{e_j}$};
+    \node [minimum width=\textsep, text centered] at (\layersep + \textsep, 1) (neuron2) {};
+    \node [xshift=.3cm, minimum width=\textsep, text centered, font=\footnotesize] at (\layersep + \textsep * 2, 1) (neuron3) {$a_j$};
+
+    \node [font=\footnotesize] at (\layersep + \textsep, 1.5) {g};
+
+    \draw [thick]
+        (\layersep + \textsep - .5cm, .5)
+            ..
+               controls (\layersep + \textsep + .8, .5) and
+                        (\layersep + \textsep + .4, 1.5)
+            ..
+        (\layersep + \textsep + .5cm, 1.5)
+    ;
+
+    \node (s0) at (\layersep * 2 + \textsep * 2, 2) {$s_0$};
+    \node (s1) at (\layersep * 2 + \textsep * 2, 1) {$s_1$};
+    \node (sn) at (\layersep * 2 + \textsep * 2, 0) {$s_n$};
+
+    \node (p0) at (1, 2) {$p_0$};
+    \node (p1) at (1, 1.2) {$p_1$};
+    \node (pn) at (1, .4) {$p_n$};
+
+    \node (neuron) [shape=ellipse, draw, thick, inner xsep=-.5cm, inner ysep=.5cm, fit={(neuron1) (neuron2) (neuron3)}] {};
+
+    \draw [thick] (neuron.130) -- (neuron.230);
+    \draw [thick] (neuron.50) -- (neuron.310);
+
+    \node [text width=\textsep, font=\scriptsize, text centered]
+        at (.5, -1)
+        {Canais de Entrada}
+    ;
+    \node [xshift=-.3cm, text width=\textsep, font=\scriptsize, text centered]
+        at (\layersep, -1)
+        {Função de Integração}
+    ;
+
+    \node [text width=\textsep, font=\scriptsize, text centered]
+        at (\layersep + \textsep, -1)
+        {Função de Ativação}
+    ;
+
+    \node [xshift=.3cm, text width=\textsep, font=\scriptsize, text centered]
+        at (\layersep + \textsep * 2, -1)
+        {Saída}
+    ;
+
+    \node [text width=\textsep, font=\scriptsize, text centered]
+        at (\layersep * 2.5, -1)
+        {Canais de Saída}
+    ;
+
+    \path[->,>=latex] (a0) edge (neuron);
+    \path[->,>=latex] (a1) edge (neuron);
+    \path[->,>=latex] (an) edge (neuron);
+
+    \path[->,>=latex] (neuron) edge (s0);
+    \path[->,>=latex] (neuron) edge (s1);
+    \path[->,>=latex] (neuron) edge (sn);
+\end{tikzpicture}
 \caption {\label{fig:neural-networks-neuron}Ilustração que indica os principais
 componentes de um neurônio de uma rede neural artificial.}
 \end{figure}
@@ -223,8 +291,8 @@ possível topologia de uma rede neural artificial sem realimentação.
 % Neural Networks: A Systematic Introduction, page 126, figure 6.1
 \begin{figure}[H]
 \centering
-\def\layersep{4cm}
 \begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
+    \def\layersep{4cm}
     \tikzstyle{every node}=[font=\footnotesize]
     \tikzstyle{every pin edge}=[<-,shorten <=1pt]
     \tikzstyle{neuron}=[circle,fill=black!25,minimum size=17pt,inner sep=0pt]
