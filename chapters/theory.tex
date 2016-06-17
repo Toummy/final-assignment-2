@@ -648,7 +648,38 @@ transições.
 
 %----------
 \section{\label{section:neat}NEAT}
-% NEAT
+\textit{NEAT}, ou \textit{NeuroEvolution of Augmenting Topologies}, é uma
+técnica de inteligência artificial que se baseia na neuroevolução para resolver
+problemas complexos de aprendizado por reforço.
+
+
+A neuroevolução é uma forma de aprendizado de máquina que utiliza algoritmos
+evolucionários para criar e treinar redes neurais artificiais. Este conceito é
+muito utilizado para resolver problemas de otimização em inteligência artificial
+e em jogos digitais\cite{DBLP:journals/corr/RisiT14}.
+
+Como vimos anteriormente, na seção \ref{section:neural-networks}, o
+comportamento de uma rede neural é determinado pela arquitetura da rede e a
+força (peso) das conexões entre os neurônios. Um algoritmo básico de
+neuroevolução, então, funciona da seguinte maneira: Uma população de genotipos
+que descrevem redes neurais artificiais é evoluida para encontrar uma
+configuração de pesos e/ou topologia que seja capaz de resolver um problema
+computacional. Cada rede desta população é testada no problema em questão por um
+certo período de tempo. A performance da rede é armazenada e, quando todas as
+redes da população forem testadas, uma nova população é gerada a partir de
+pequenas modificações e combinações (mutação e \textit{cross-over}) nos
+genotipos. Geralmente, os genotipos com as maiores performances são selecionados
+para reprodução, e os genotipos com as menores performances são descartados da
+população, formando uma nova geração.
+
+A neuroevolução busca, portanto, resolver um problema computacional
+através do treinamento de redes neurais artificiais, que se resume a encontrar
+os valores adequados -- e não necessáriamente ótimos -- para seus parâmetros
+(topologia e/ou pesos das conexões).
+
+Uma escolha muito importante na neuroevolução é como representar genéticamente
+as redes neurais para tornar possível sua "manipulação genética". 
+
 % neuroevolução
 % NEAT evolui os pesos e a rede em sí (TWEANNs)
 % representação genética da rede
