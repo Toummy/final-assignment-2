@@ -49,30 +49,41 @@ A metodologia de desenvolvimento adotada para este trabalho é iterativa e
 incremental, particionada em iterações de uma semana, onde serão desenvolvidas
 uma ou mais atividades. A duração das iterações foi escolhida desta forma para
 que coincidisse com as datas de reunião com o orientador deste trabalho. A
-tabela \ref{tab:work-plan} ilustra o cronograma definido para a segunda etapa
+Figura \ref{fig:work-plan} ilustra o cronograma definido para a segunda etapa
 deste trabalho, baseado nas atividades definidas anteriormente.
 
-\begin{table}[H]
+\begin{figure}[htb!]
 \centering
-\caption{Objetivos por Iteração}
-\label{tab:work-plan}
-\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\cline{2-16}
-{\bf}                                 & \multicolumn{3}{c|}{{\bf Ago/16}} & \multicolumn{4}{c|}{{\bf Set/16}}     & \multicolumn{4}{c|}{{\bf Out/16}}      & \multicolumn{4}{c|}{{\bf Nov/16}}     \\ \hline
-\multicolumn{1}{|c|}{{\bf Atividade}} & {\bf 1} & {\bf 2} & {\bf 3}	      & {\bf 4} & {\bf 5} & {\bf 6} & {\bf 7} & {\bf 8} & {\bf 9} & {\bf 10} & \bf{11} & \bf{12} & \bf{13} & \bf{14} & \bf{15} \\ \hline
-\multicolumn{1}{|c|}{{\bf 1}}         & X       &         &               &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 2}}         & X       &         &               &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 3}}         &         & X       &               &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 4}}         &         &         & X             &         &         &         &         &         &         &          &         &         &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 5}}         &         &         &               & X       &         &         &         &         &         &          &         &         &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 6}}         &         &         &               &         & X       & X       & X       &         &         &          &         &         &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 7}}         &         &         &               &         &         &         &         & X       &         &          &         &         &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 8}}         &         &         &               &         &         &         &         &         & X       &          &         &         &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 9}}         &         &         &               &         &         &         &         &         &         & X        & X       & X       &         &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 10}}        &         &         &               &         &         &         &         &         &         &          &         &         & X       &         &         \\ \hline
-\multicolumn{1}{|c|}{{\bf 11}}        &         &         &               &         &         &         &         &         &         &          &         &         &         & X       & X       \\ \hline
-\end{tabular}
-\end{table}
+\begin{ganttchart}[
+    vgrid, hgrid,
+    x unit=.9cm,
+    y unit chart=.8cm,
+    y unit title=.7cm,
+    title height=1,
+    bar top shift=.2,
+    bar height=.6
+    ]{1}{15}
+    \gantttitle{Ago/16}{3}
+    \gantttitle{Set/16}{4}
+    \gantttitle{Out/16}{4}
+    \gantttitle{Nov/16}{4}
+    \\
+    \gantttitlelist{1,...,15}{1}
+    \\
+    \ganttbar{Atividade 1}{1}{1} \\
+    \ganttbar{Atividade 2}{1}{1} \\
+    \ganttbar{Atividade 3}{2}{2} \\
+    \ganttbar{Atividade 4}{3}{3} \\
+    \ganttbar{Atividade 5}{4}{4} \\
+    \ganttbar{Atividade 6}{5}{7} \\
+    \ganttbar{Atividade 7}{8}{8} \\
+    \ganttbar{Atividade 8}{9}{9} \\
+    \ganttbar{Atividade 9}{10}{12} \\
+    \ganttbar{Atividade 10}{13}{13} \\
+    \ganttbar{Atividade 11}{14}{15}
+\end{ganttchart}
+\caption{\label{fig:work-plan}Objetivos por Iteração}
+\end{figure}
 
 \section{Detalhamento das Atividades}
 Esta seção detalha brevemente o que será desenvolvido em cada atividade do
