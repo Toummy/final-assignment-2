@@ -53,6 +53,33 @@ uma análise e comparação aprofundada entre os resultados obtidos por cada
 técnica.
 
 
+%----------
+\section{\label{section:techniques}Técnicas de Inteligência Artificial
+Utilizadas}
+Para implementar os \textit{bots} de \textit{Spelunky}, optamos por utilizar as
+técnicas \textbf{\textit{NEAT}} e \textbf{\textit{Behavior Trees}}. A
+neuroevolução é um modelo de aprendizado de máquina muito utilizado atualmente
+para criar agentes jogadores de jogos digitais \cite{DBLP:journals/corr/RisiT14}
+e, como vimos no capítulo \ref{chap:related-work}, os resultados obtidos até
+agora com este tipo de técnica são muito satisfatórios, muitas vezes superando
+as habilidades de jogadores humanos \cite{NeuroEvolutionAtari}. Com isto em
+mente, a técnica \textit{NEAT} foi uma escolha natural para este trabalho.
+
+As \textit{Behavior Trees} são muito utilizadas para ajudar na criação de
+comportamentos inteligentes para agentes em jogos digitais. Normalmente, esta
+técnica não é utilizada para construir agentes jogadores de jogos, mas nada
+impede que o formalismo atue neste escopo também. As técnicas de criação de
+agentes inteligentes baseadas em aprendizado de máquina são muito poderosas, mas
+ao mesmo tempo podem ser vistas como uma ''caixa preta``, pois muitas vezes é
+difícil de compreender exatamente o que o agente está pensando e aprendendo.
+Optamos por utilizar \textit{Behavior Trees} pois esta técnica permite um ajuste
+refinado do comportamento de agentes inteligentes. Assim, esta técnica servirá
+de \textbf{base de referência} para medirmos a qualidade dos resultados obtidos
+entre uma técnica ''manual`` (\textit{Behavior Trees}) e uma técnica
+''automatizada`` (\textit{NEAT}).
+
+
+%----------
 \section{\label{section:project-details}Detalhamento do Projeto}
 O primeiro passo para dar início ao desenvolvimento deste projeto é obter uma
 cópia do projeto \textit{SpelunkBots}, hospedada no \textit{website} de
@@ -68,7 +95,7 @@ desenvolvimento dos \textit{bots}: \textit{GML} ou C++. Portanto, a próxima
 etapa do projeto é definir a linguagem de programação que vamos utilizar. Para
 este projeto, escolhemos a linguagem de programação \textbf{C++}, tendo em vista
 que o desenvolvimento utilizando a linguagem \textit{GML} é limitado. Além
-disso, C++ é uma linguagem amadurecida e possui bibliotecas que implementam
+disso, C++ é uma linguagem amadurecida e possui diversas bibliotecas que implementam
 \textit{NEAT}\footnote{http://nn.cs.utexas.edu/?neat-c} e \textit{Behavior
 Trees}\footnote{https://github.com/aigamedev/bts}. O uso dessas bibliotecas
 salva tempo de desenvolvimento e permite que o foco do trabalho seja somente nos
@@ -91,14 +118,12 @@ da plataforma \textit{Windows} dentro do sistema operacional \textit{Linux}, e o
 \textit{software} \textit{MinGW}\footnote{http://www.mingw.org}, que realizará a
 compilação do código C++ e a geração da \textit{DLL}.
 
-O próximo passo é integrar as bibliotecas de inteligência artificial
-selecionados com o projeto do \textit{SpelunkBots}, para que estejam incluídas
-na solução \textit{DLL}. Ao concluir este passo, as configurações necessárias de
-projeto estarão finalizadas, e daremos início ao desenvolvimento dos
-\textit{bots}.
+O próximo passo é escolher as bibliotecas de inteligência artificial das
+técnicas \textit{NEAT} e \textit{Behavior Trees} e integrá-las ao projeto do
+\textit{SpelunkBots}, para que estejam incluídas na solução \textit{DLL}. Ao
+concluir este passo, as configurações necessárias de projeto estarão
+finalizadas, e daremos início ao desenvolvimento dos \textit{bots}.
 
-
-\section{Desenvolvimento dos \textit{bots}}
 O \textit{framework} \textit{SpelunkBots} provê uma interface comum para o
 desenvolvimento dos \textit{bots} em C++, chamada \textbf{\textit{IBot.h}}. Esta
 interface é responsável por expor os métodos e variáveis que os \textit{bots}
@@ -138,3 +163,5 @@ operações de \textbf{leitura} e \textbf{escrita} de arquivos, portanto, é
 interessante definir um tipo de \textit{bot} que comporte tais operações. Dessa
 forma, além do método \textit{Update}, implementaremos os métodos
 \textbf{\textit{ReadTrainingData}} e \textbf{\textit{SaveTrainingData}}.
+
+
