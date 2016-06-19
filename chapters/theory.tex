@@ -489,6 +489,26 @@ permite encontrar genes similares em outras redes durante a recombinação).
 % NEAT, figure 2
 \begin{figure}[H]
 \centering
+\begin{tikzpicture}[auto]
+    \node[circle, draw] (4) at (0, 2) {4};
+    \node[circle, draw] (5) at (2, 2) {5};
+    \node[circle, draw] (1) at (4, 0) {1};
+    \node[circle, draw] (2) at (4, 2) {2};
+    \node[circle, draw] (3) at (4, 4) {3};
+
+    \path[draw] (4) -- (1);
+    \path[draw] (4) -- (5);
+    \path[draw, ->, >=latex, out=45] (4) edge (5);
+    \path[draw] (5) -- (1);
+    \path[draw] (5) -- (2);
+    \path[draw] (5) -- (3);
+
+    \path[draw, ->, >=latex] (4) -- (-1, 2);
+
+    \path[draw, ->, >=latex] (5, 0) -- (1);
+    \path[draw, ->, >=latex] (5, 2) -- (2);
+    \path[draw, ->, >=latex] (5, 4) -- (3);
+\end{tikzpicture}
 \caption {\label{fig:neat-genomes}Exemplo de genótipo utilizado no
 \textit{NEAT} e seu mapeamento para fenótipo.}
 \end{figure}
