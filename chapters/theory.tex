@@ -366,17 +366,15 @@ função aproximada da rede neural \cite[Cap. 7]{Rojas:1996:NNS:235222}.
 % generation
 \section{\label{section:evolutionary-algorithms}Algoritmos Evolutivos}
 A \textbf{computação evolutiva} é uma área da Ciência da Computação que, como o
-nome sugere, se inspira na ciência da genética e no processo de evolução natural
-descrito por Charles Darwin para construir algoritmos que solucionam problemas
-computacionais \cite[Cap. 2]{IntroEvolComputing}. 
-
-Todos os seres vivos, ou \textbf{indivíduos}, são uma entidade dupla formados
-por um \textbf{fenótipo} e um \textbf{genótipo}. O fenótipo são as
-características observáveis do indivíduo, como seu comportamento e seu aspecto
-físico. Já o genótipo representa a constituição genética do indivíduo. O
-fenótipo de um indivíduo é descrito por seus \textbf{genes}, unidades funcionais
-de herança genética presentes descritas dentro de seu \textbf{genoma}
-(informação genética completa de um indivíduo).
+nome sugere, se inspira na ciência da genética e no processo de evolução
+natural descrito por Charles Darwin para construir algoritmos que solucionam
+problemas computacionais \cite[Cap. 2]{IntroEvolComputing}. Todos os seres
+vivos, ou \textbf{indivíduos}, são formados por um \textbf{fenótipo} e um
+\textbf{genótipo}. O fenótipo são as características observáveis do indivíduo,
+como seu comportamento e seu aspecto físico. Já o genótipo representa a
+constituição genética do indivíduo e é descrito por seus \textbf{genes},
+unidades funcionais de herança genética presentes dentro de seu \textbf{genoma}
+(informação genética completa de um indivíduo). 
 
 O processo biológico de evolução pode ser resumido da seguinte forma: os
 indivíduos fazem parte de uma \textbf{população} e vivem dentro de um ambiente.
@@ -386,11 +384,11 @@ sobrevivência. Esta aptidão é determinada por seu fenótipo, ou seja, por sua
 características físicas e pela maneira na qual interage com o ambiente e os
 demais indivíduos. Desta forma, o processo de seleção natural tende a favorecer
 indivíduos com boas características fenotípicas.  Quando um indivíduo entra em
-processo de \textbf{reprodução} seja assexuadamente, seja sexuadamente, ele gera
-\textbf{descendentes}. O genoma dos descendentes, contudo, não é o mesmo que o
-de seus pais, pois pequenas variações reprodutivas e \textbf{mutações}
-(variações) ocorrem durante a reprodução. Desta forma, variações genotípicas são
-criadas, que são traduzidas para variações fenotípicas. 
+processo de \textbf{reprodução}, ele gera \textbf{descendentes}. O genoma dos
+descendentes, contudo, não é o mesmo que o de seus pais, pois pequenas variações
+reprodutivas e \textbf{mutações} (variações) ocorrem durante a reprodução. Desta
+forma, variações genotípicas são criadas, que são traduzidas para variações
+fenotípicas. 
 
 Os \textbf{algoritmos evolutivos} se baseiam neste processo biológico para
 resolver problemas computacionais. O esqueleto de um algoritmo evolutivo,
@@ -398,18 +396,17 @@ exemplificado no algoritmo \ref{alg:evolutionary-algorithm-skeleton}, geralmente
 segue o seguinte padrão \cite[Cap. 3]{IntroEvolComputing}: dada uma função que
 deseja ser maximizada (aptidão dos indivíduos), cria-se aleatóriamente uma
 população inicial de invidíduos (candidatos). Em seguida, aplica-se
-repetidamente uma \textbf{função de aptidão} para descobrir quais são os
-melhores candidatos para procriar e dar origem a uma nova \textbf{geração}. Esta
-nova geração de indivíduos é criada através de uma \textbf{recombinação} entre
-os genomas seus pais e de uma \textbf{mutação} em seus genomas.  Este processo é
+repetidamente uma \textbf{função de aptidão} para identificar os melhores
+candidatos para procriar e dar origem a uma nova \textbf{geração}. Esta nova
+geração de indivíduos surge através de uma \textbf{recombinação} entre os
+genomas seus pais e de uma \textbf{mutação} em seus genomas.  Este processo é
 repetido diversas vezes, até que atinja um critério de parada pré-estabelecido,
 como o surgimento de um indivíduo com um nível de aptidão aceitável ou um limite
 máximo de iterações computacionais. É importante ressaltar que muitos
 componentes deste processo evolutivo são \textbf{estocásticos}.  Geralmente (e
 eventualmente), os indivíduos com baixa aptidão são escolhidos para serem
-substituídos, mas não há total garantia disso, pois eles podem ser beneficiados
-pela ``sorte''. Os processos de recombinação e mutação também escolhem os genes a
-serem combinados e substituídos ao acaso.
+substituídos, mas não há total garantia. Os processos de recombinação e mutação
+também escolhem os genes a serem combinados e substituídos ao acaso.
 
 \begin{algorithm}[h]
 \begin{center}
@@ -435,13 +432,10 @@ computacional, é necessário escolhar uma \textbf{representação genética} pa
 problema \cite[Cap. 4]{IntroEvolComputing}. Este processo envolve a definição de
 um genótipo e o mapeamento entre genótipo e fenótipo, e é fundamental pois
 somente com a representação genética em mãos será possível executar os processos
-evolutivos de recombinação e mutação. Existem diversas maneiras de representar o
-código genético dos indivíduos, como a \textbf{representação binária}, a
-\textbf{representação por inteiros}, a \textbf{representação em árvore}, entre
-outras. O último passo, antes de iniciar o uso de qualquer algoritmo evolutivo,
-é a escolha dos \textbf{parâmetros de execução} \cite[Cap.
-7]{IntroEvolComputing}, que variam desde o tamanho da população até a chance de
-realizar uma operação de mutação, por exemplo.
+evolutivos de recombinação e mutação. O último passo, antes de iniciar o uso de
+qualquer algoritmo evolutivo, é a escolha dos \textbf{parâmetros de execução}
+\cite[Cap.  7]{IntroEvolComputing}, que variam desde o tamanho da população até
+a chance de realizar uma operação de mutação, por exemplo.
 
 %----------
 \section{\label{section:neat}NEAT}
@@ -465,29 +459,23 @@ duas formas de representação: a \textbf{representação direta} e a
 das \textit{TWEANNs}), o genótipo mapeia diretamente para o fenótipo, ou seja,
 especificam no genoma todas as conexões e nodos da rede. Em contraste, na
 representação indireta, o genoma é um conjunto de regras para construção do
-fenótipo. A representação direta é muito mais simples de implementar, mas a
-representação indireta é mais compacta.
+fenótipo. 
 
 \textit{NEAT}, ou \textit{NeuroEvolution of Augmenting Topologies}, é uma
 técnica de inteligência artificial que se baseia na neuroevolução para evoluir
 \textit{TWEANNs} e resolver problemas complexos de aprendizado por reforço
-\cite{stanley:ec02}. O verdadeiro potencial desta técnica se dá no fato de que
-ela é capaz de contornar diversos problemas presentes em \textit{TWEANNs}, como
-o \textbf{problema das permutações}, a \textbf{proteção da inovação}, a escolha
-de uma \textbf{população inicial} adequada e a \textbf{inovação topológica}.
-
-A codificação genética do \textit{NEAT} é \textbf{direta}, e foi projetada para
-permitir o alinhamento correto dos genes quando dois genomas se recombinam
-através da reprodução. Os genomas em \textit{NEAT}, ilustrados na Figura
-\ref{fig:neat-genomes} são uma representação linear da conectividade da rede.
-Cada genoma possui uma lista de \textbf{genes de neurônios} e uma lista de
-\textbf{genes de conexão}. Os genes de neurônios fornecem uma lista de neurônios
-de entrada, neurônios escondidos e neurônios de saída que podem ser conectados.
-Um gene de conexão representa a conexão entre dois neurônios. As informações
-guardadas por um gene de conexão são: o nodo de saída, o nodo de entrada, o peso
-da conexão, um \textit{bit} de ativação (para saber se a conexão está ligada ou
-desligada) e um número de inovação (que permite encontrar genes similares em
-outras redes durante a recombinação). 
+\cite{stanley:ec02}. A codificação genética do \textit{NEAT} é \textbf{direta},
+e foi projetada para permitir o alinhamento correto dos genes quando dois
+genomas se recombinam através da reprodução. Os genomas em \textit{NEAT},
+ilustrados na Figura \ref{fig:neat-genomes} são uma representação linear da
+conectividade da rede.  Cada genoma possui uma lista de \textbf{genes de
+neurônios} e uma lista de \textbf{genes de conexão}. Os genes de neurônios
+fornecem uma lista de neurônios de entrada, neurônios escondidos e neurônios de
+saída que podem ser conectados.  Um gene de conexão representa a conexão entre
+dois neurônios. As informações guardadas por um gene de conexão são: o nodo de
+saída, o nodo de entrada, o peso da conexão, um \textit{bit} de ativação (para
+saber se a conexão está ligada ou desligada) e um número de inovação (que
+permite encontrar genes similares em outras redes durante a recombinação). 
 
 % NEAT, figure 2
 \begin{figure}[H]
@@ -517,27 +505,30 @@ minimiza o impacto inicial da mutação, pois afeta muito pouco a função da re
 que podem ocorrer no \textit{NEAT}.}
 \end{figure}
 
-Através da mutação, os genomas do \textit{NEAT} vão gradativamente ficando
-maiores, e genomas de diversos tamanhos acabam surgindo. Outra consequência das
-mutações é que podem ser geradas redes que representam a mesma solução mas com
-codificações genéticas diferentes. A reprodução destas redes, se não for feita
-com cautela, pode gerar resultados catastróficos, pois pode haver perda de
-informação Este é o \textbf{problema da permutação}, que foi resolvido no
-\textit{NEAT} da seguinte maneira: existe uma informação não-explorada na
-evolução que nos permite dizer exatamente quais genes de uma população podem ser
-recombinados. Esta informação é a origem histórica do gene. Dois genes com a
-mesma origem histórica devem representar a mesma estrutura (mesmo que com pesos
-de conexões diferentes), já que possuem um ancestral comum. Assim, basta que o
-sistema saiba as origens históricas dos genes para garantir mutações de sucesso.
-O \textbf{número de inovação}, mencionado anteriormente, é responsável por
-armazenar estas origens históricas. Toda vez que um gene é criado através da
-mutação estrutural, um número global de inovação é incrementado e o gene recebe
-seu valor, representando seu ponto de aparecimento cronológico no sistema.
-Durante o processo de recombinação, ilustrado na Figura
-\ref{fig:neat-innovation-matchup}, os genes de valores de inovação iguais
-(\textit{matching genes}) são pareados e são escolhidos aleatóriamente para
-serem passados adiante. Já os genes que não possuem um par não podem sofrer
-mutações (\textit{disjoint genes} e \textit{excess genes}), e os genes dos pais
+A execução de uma mutação no \textit{NEAT} possui diversas consequências. A
+primeira é que os genomas das soluções dos problemas do \textit{NEAT} vão
+gradativamente aumentando de tamanho, o que também resulta na aparição de
+genomas de tamanhos variados. A segunda consequência é que é possível que surjam
+redes que representam a mesma solução mas com codificações genéticas diferentes.
+A reprodução destas redesm se não for feita com cautela, pode gerar resultados
+ruin, pois pode haver perda de informação. Estas consequências dão origem ao
+\textbf{problema da permutação}, que foi resolvido no \textit{NEAT} da seguinte
+maneira: existe uma informação não-explorada na evolução que nos permite dizer
+exatamente quais genes de uma população podem ser recombinados. Esta informação
+é a origem histórica do gene. Dois genes com a mesma origem histórica devem
+representar a mesma estrutura (mesmo que com pesos de conexões diferentes), já
+que possuem um ancestral comum. Assim, basta que o sistema saiba as origens
+históricas dos genes para garantir mutações de sucesso.  O \textbf{número de
+inovação} é responsável por armazenar estas origens históricas.  Toda vez que um
+gene é criado através da mutação estrutural, um número global de inovação é
+incrementado e o gene recebe seu valor, representando seu ponto de aparecimento
+cronológico no sistema.  Durante o processo de recombinação, ilustrado na Figura
+\ref{fig:neat-innovation-matchup}, os genes de valores de inovação iguais,
+chamados de \textit{matching genes}, são pareados e são escolhidos
+aleatóriamente para serem passados adiante. Já os genes que não possuem um par
+não podem sofrer mutações, chamados de \textit{disjoint genes} (discontinuidade
+no meio da sequência de número de inovação) e \textit{excess genes}
+(discontinuidade no fim da sequência de número de inovação), e os genes dos pais
 mais aptos são enviados para a prole.
 
 % NEAT, figure 4
@@ -549,18 +540,19 @@ genomas que representam diferentes topologias.}
 
 Ao adicionar novos genes na população, o sistema é capaz de formar uma população
 de topologias diversas. Contudo, devido ao fato de que topologias menores são
-otimizadas mais rapidamente que estruturas maiores, a adição de mutações
-geralmente traz consigo um decréscimo do valor de aptidão da rede. Este é o
-\textbf{problema da proteção da inovação}, que prevê que estruturas recentemente
-aumentadas possuem chances pequenas de sobreviver mais do que uma geração, pois
-não recebem tempo suficiente para se desenvolver. Para resolver este problema, o
-\textit{NEAT} optou por utilizar um sistema de \textbf{especiação} da
-população, fazendo com que os indivíduos compitam principalmente com indivíduos
-da mesma espécie. Assim, é dado mais tempo para que inovações topológicas sejam
-otimizadas e surtam efeito. Para saber a quais espécies os indivíduo pertencem,
-é realizado uma comparação, genoma por genoma, para identificar quantos
-\textit{excess genes} e \textit{disjoint genes} existem entre eles. Quanto mais
-diferentes entre sí, menos história evolucionária eles compartilham entre sí.
+otimizadas mais rapidamente que estruturas maiores, a adição de mutações (novos
+neurônios e conexões) geralmente traz consigo um decréscimo do valor de aptidão
+da rede. Este é o \textbf{problema da proteção da inovação}, que prevê que
+estruturas recentemente aumentadas possuem chances pequenas de sobreviver mais
+do que uma geração, pois não recebem tempo suficiente para se desenvolver. Para
+resolver este problema, o \textit{NEAT} optou por utilizar um sistema de
+\textbf{especiação} da população, fazendo com que os indivíduos compitam
+principalmente com indivíduos da mesma espécie. Para saber a quais espécies os
+indivíduos pertencem, é realizado uma comparação, genoma por genoma, para
+identificar quantos \textit{excess genes} e \textit{disjoint genes} existem
+entre eles. Quanto mais diferentes entre sí, menos história evolucionária eles
+compartilham. Assim, é dado mais tampo para que inovações topológicas (novos
+neurônios e conexões) sejam otimizadas e surtam efeito.
 
 Os \textit{TWEANNs} geralmente iniciam com uma população de topologias
 aleatórias para introduzir diversidade logo de início. Em contraste, o
@@ -756,24 +748,22 @@ executadas.
 \end{tikzpicture}
 \caption {\label{fig:behavior-tree-example}Exemplo de uma \textit{behaviour
 tree} para representar um agente que deve carregar suas baterias caso seja
-necessário, além de limpar e organizar a casa, descansando caso contrário.}
+necessário, além de limpar e organizar a casa, descansando caso contrário. Os
+retângulos brancos, pretos e arredondados representam, respectivamente, as
+ações, as pré-condições e os controles de fluxo.}
 \end{figure}
 
 Existem algumas outras técnicas que resolvem o mesmo problema que as
-\textit{Behavior Trees} como, por exemplo, as \textbf{\textit{Finite State
-Machines}} (máquinas de estados finitos), que são muito utilizadas em
-inteligência artificial para jogos. Uma \textit{FSM} contém \textbf{estados} que
-são ligados através de \textbf{transições}. Contudo, existem diversos problemas
-com esta abordagem. A quantidade de estados e transições cresce
-exponencialmente, os estados não podem ser reutilizados com facilidade e devemos
-nos preocupar constantemente se existem transições inválidas no modelo. As
-\textit{FSMs} possuem, resumidamente, um problema de modularidade.
-
-Outra técnica muito utilizada são as \textbf{\textit{Hierarchical Finite State
-Machines}} (máquinas de estados finitos hierárquicas). O objetivo da criação
-desta técnica foi justamente mitigar alguns dos problemas das \textit{FSMs},
+\textit{Behavior Trees} e são muito utilizadas em inteligência artificial para
+jogos como, por exemplo, as \textbf{\textit{Finite State Machines}} (máquinas de
+estados finitos) e as \textbf{\textit{Hierarchical Finite State Machines}}
+(máquinas de estados finitos hierárquicos). As \textit{FSMs} contém
+\textbf{estados} que são ligados através de \textbf{transições}. Existem
+diversos problemas com esta abordagem, como o crescimento exponencial de estados
+e transições, a impossibilidade de fácil reutilização dos estados e a possível
+existência de transições inválidas no modelo. As \textit{FSMs} possuem,
+resumidamente, um problema de modularidade. As \textit{HFSMs} surgiram
+justamente para mitigar alguns dos problemas presentes nas \textit{FSMs},
 permitindo o englobamento de estados em uma hierarquia. Entretanto, o problema
 de extensibilidade e praticidade ainda existem, porque ainda é baseada em
 transições.
-
-
