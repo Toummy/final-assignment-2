@@ -475,9 +475,9 @@ técnica de inteligência artificial que se baseia na neuroevolução para evolu
 \textit{TWEANNs} e resolver problemas complexos de aprendizado por reforço
 \cite{stanley:ec02}. A codificação genética do \textit{NEAT} é \textbf{direta},
 e foi projetada para permitir o alinhamento correto dos genes quando dois
-genomas se recombinam através da reprodução. Os genomas em \textit{NEAT},
-ilustrados na Figura \ref{fig:neat-genomes} são uma representação linear da
-conectividade da rede.  Cada genoma possui uma lista de \textbf{genes de
+genomas se recombinam através da reprodução. Um genoma no \textit{NEAT},
+ilustrado na Figura \ref{fig:neat-encoding-example}, é uma representação linear
+da conectividade da rede. Cada genoma possui uma lista de \textbf{genes de
 neurônios} e uma lista de \textbf{genes de conexão}. Os genes de neurônios
 fornecem uma lista de neurônios de entrada, neurônios escondidos e neurônios de
 saída que podem ser conectados.  Um gene de conexão representa a conexão entre
@@ -489,128 +489,16 @@ permite encontrar genes similares em outras redes durante a recombinação).
 % NEAT, figure 2
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}
-    \tikzstyle{every node}=[font=\scriptsize]
-    \matrix {
-        \node[draw]{
-            \begin{tabular}{l}
-                Nodo 1 \\ Sensor
-            \end{tabular}
-        }; &
-        \node[draw]{
-            \begin{tabular}{l}
-                Nodo 1 \\ Sensor
-            \end{tabular}
-        }; &
-        \node[draw]{
-            \begin{tabular}{l}
-                Nodo 1 \\ Sensor
-            \end{tabular}
-        }; &
-        \node[draw]{
-            \begin{tabular}{l}
-                Nodo 1 \\ Sensor
-            \end{tabular}
-        }; &
-        \node[draw]{
-            \begin{tabular}{l}
-                Nodo 1 \\ Sensor
-            \end{tabular}
-        }; \\
-    };
-\end{tikzpicture}
-\begin{tikzpicture}
-    \tikzstyle{every node}=[font=\scriptsize]
-    \matrix {
-        \node[draw]{
-            \begin{tabular}{l}
-                Entrada 1 \\
-                Saída 4 \\
-                Peso 0.7 \\
-                Habilitado \\
-                Inov 1
-            \end{tabular}
-        }; &
-        \node[draw]{
-            \begin{tabular}{l}
-                Entrada 1 \\
-                Saída 4 \\
-                Peso 0.7 \\
-                Habilitado \\
-                Inov 1
-            \end{tabular}
-        }; &
-        \node[draw]{
-            \begin{tabular}{l}
-                Entrada 1 \\
-                Saída 4 \\
-                Peso 0.7 \\
-                Habilitado \\
-                Inov 1
-            \end{tabular}
-        }; &
-        \node[draw]{
-            \begin{tabular}{l}
-                Entrada 1 \\
-                Saída 4 \\
-                Peso 0.7 \\
-                Habilitado \\
-                Inov 1
-            \end{tabular}
-        }; &
-        \node[draw]{
-            \begin{tabular}{l}
-                Entrada 1 \\
-                Saída 4 \\
-                Peso 0.7 \\
-                Habilitado \\
-                Inov 1
-            \end{tabular}
-        }; &
-        \node[draw]{
-            \begin{tabular}{l}
-                Entrada 1 \\
-                Saída 4 \\
-                Peso 0.7 \\
-                Habilitado \\
-                Inov 1
-            \end{tabular}
-        }; &
-        \node[draw]{
-            \begin{tabular}{l}
-                Entrada 1 \\
-                Saída 4 \\
-                Peso 0.7 \\
-                Habilitado \\
-                Inov 1
-            \end{tabular}
-        }; \\
-    };
-\end{tikzpicture}
-\\
-\begin{tikzpicture}
-    \node[circle, draw] (4) at (4, 2) {4};
-    \node[circle, draw] (5) at (2, 2) {5};
-    \node[circle, draw] (1) at (0, 0) {1};
-    \node[circle, draw] (2) at (0, 2) {2};
-    \node[circle, draw] (3) at (0, 4) {3};
-
-    \path[draw] (4) -- (1);
-    \path[draw] (4) -- (5);
-    \path[draw, ->, >=latex, out=45] (5) edge (4);
-    \path[draw] (5) -- (1);
-    \path[draw] (5) -- (2);
-    \path[draw] (5) -- (3);
-
-    \path[draw, ->, >=latex] (4) -- (5, 2);
-
-    \path[draw, ->, >=latex] (-1, 0) -- (1);
-    \path[draw, ->, >=latex] (-1, 2) -- (2);
-    \path[draw, ->, >=latex] (-1, 4) -- (3);
-\end{tikzpicture}
-\caption {\label{fig:neat-genomes}Exemplo de genótipo utilizado no
-\textit{NEAT} e seu mapeamento para fenótipo.}
+\includegraphics[width=\textwidth]{fig/neat-encoding-example.png}
+\caption{Um exemplo de mapeamento entre genótipo e fenótipo de uma rede neural
+artificial no \textit{NEAT}. Existem três neurônios (nodos) de entrada, um
+escondido e um de saída, e sete conexões (uma recorrente). O segundo gene de
+conexão (entre os nodos 2 e 4) está desabilitado, então não é expressado no
+fenótipo.}
+\label{fig:neat-encoding-example}
 \end{figure}
+
+
 
 A mutação no \textit{NEAT} modifica os pesos das conexões e as estruturas das
 redes. Existe uma chance, a cada geração, de ocorrer uma perturbação nos genes
@@ -629,8 +517,10 @@ minimiza o impacto inicial da mutação, pois afeta muito pouco a função da re
 % NEAT, figure 3
 \begin{figure}[H]
 \centering
-\caption {\label{fig:neat-structural-mutation}Exemplos das mutações estruturais
-que podem ocorrer no \textit{NEAT}.}
+\includegraphics[width=\textwidth]{fig/neat-mutation-examples.png}
+\caption{Exemplos das mutações estruturais (adição de conexões e neurônios) que
+podem ocorrer no \textit{NEAT}.}
+\label{fig:neat-structural-mutation}
 \end{figure}
 
 A execução de uma mutação no \textit{NEAT} possui diversas consequências. A
@@ -662,8 +552,14 @@ mais aptos são enviados para a prole.
 % NEAT, figure 4
 \begin{figure}[H]
 \centering
-\caption {\label{fig:neat-innovation-matchup}Ilustração da recombinação de
-genomas que representam diferentes topologias.}
+\includegraphics[width=\textwidth]{fig/neat-crossover-example.png}
+\caption{Ilustração do alinhamento entre dois genomas de redes neurais
+artificiais diferentes. Mesmo que os pais aparentem ser diferentes, seus números
+de inovações (mostrado no topo de cada gene) nos informam quais genes serão
+herdados. Os \textit{matching genes} são herdados aleatóriamente e os
+\textit{disjoint genes} e \textit{excess genes} são herdados do pai com maior
+aptidão.}
+\label{fig:neat-innovation-matchup}
 \end{figure}
 
 Ao adicionar novos genes na população, o sistema é capaz de formar uma população
