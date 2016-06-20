@@ -683,11 +683,10 @@ do que uma geração, pois não recebem tempo suficiente para se desenvolver. Pa
 resolver este problema, o \textit{NEAT} optou por utilizar um sistema de
 \textbf{especiação} da população, fazendo com que os indivíduos compitam
 principalmente com indivíduos da mesma espécie. Para calcular a diferença
-($\delta$) entre dois genomas -- fórmula expressa no algoritmo
-\ref{eq:neat-species} --, é feita uma combinação linear do número de
-\textit{excess genes} ($E$), \textit{disjoint genes} ($D$) e a diferença entre a
-média dos pesos dos \textit{matching genes} ($\overline{W}$), incluindo genes
-desabilitados:	
+($\delta$) entre dois genomas -- fórmula expressa em \ref{eq:neat-species}
+--, é feita uma combinação linear do número de \textit{excess genes} ($E$),
+\textit{disjoint genes} ($D$) e a diferença entre a média dos pesos dos
+\textit{matching genes} ($\overline{W}$), incluindo genes desabilitados:	
 
 \begin{equation}
 \label{eq:neat-species}
