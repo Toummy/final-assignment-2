@@ -498,6 +498,62 @@ esqueleto de um ciclo de execução de um algoritmo evolutivo.
 \label{alg:evolutionary-algorithm-skeleton}
 \end{algorithm}
 
+A construção de algoritmos que fornecem soluções ótimas para qualquer problema
+computacional nem sempre é possível. Por exemplo, o número de possíveis soluções
+para um determinado problema pode crescer exponencialmente de acordo com o
+número de variáveis consideradas, o que pode impedir seu tratamento em um tempo
+aceitável. Portanto, apesar do constante crescimento de poder computacional, a
+partir de certo ponto é preciso abandonar a busca por soluções ótimas e
+encontrar outros métodos para encontrar soluções boas o suficiente. Os
+algoritmos evolutivos são técnicas de \textbf{otimização de função} baseados em
+\textbf{heurísticas} cujo objetivo é encontrar a \textbf{máxima local} dentro de
+um espaço de estados \cite[Cap. 3]{IntroEvolComputing}. Os indivíduos da
+populacão representam tentativas de encontrar a solução ótima para a função, e a
+busca local dentro do espaço de estados é auxiliada pelos valores de aptidão e
+pelas operações de mutação e recombinação.
+
+Para exemplificar o funcionamento de um algoritmo evolucionário, o cenário
+hipotético de maximizar uma função objetiva unidimensional foi criado. A Figura
+\ref{fig:evolutionary-algorithms-function} ilustra a distribuição dos indivíduos
+da população em três estágios de execução de busca evolutiva. Em um primeiro
+momento, logo após a inicialização, os indivíduos estão espalhados
+aleatóriamente no espaço de busca
+(\ref{fig:evolutionary-algorithms-function-start}). Depois de algumas gerações,
+a distribuição muda: graças ao mecanismo de seleção e aos operadores de
+variação, a população abandona as regiões que oferecem baixa aptidão
+(\ref{fig:evolutionary-algorithms-function-middle}). Ainda depois, toda a
+população está concentrada em alguns picos de aptidão, mesmo que subóptimos
+(\ref{fig:evolutionary-algorithms-function-end}). A princípio, é possível que a
+população escale a colina errada, deixando todos os indivíduos posicionados
+próximos de uma máxima local, e não uma máxima global. É necessário que haja um
+equilíbrio entre \textit{exploration}, a geração de novos indivíduos em regiões
+ainda não testadas do espaço de estados, e \textit{exploitation}, a concentração
+da busca em regiões de boas soluções conhecidas.
+
+\begin{figure}[htb!]
+\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{fig/evolutionary-algorithms-function-start.png}
+		\caption{Início}
+		\label{fig:evolutionary-algorithms-function-start}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{fig/evolutionary-algorithms-function-middle.png}
+		\caption{Meio}
+		\label{fig:evolutionary-algorithms-function-middle}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{fig/evolutionary-algorithms-function-end.png}
+		\caption{Fim}
+		\label{fig:evolutionary-algorithms-function-end}
+	\end{subfigure}
+	\caption{Exemplo do funcionamento de um algoritmo evolucionário para
+	maximizar uma função. O eixo $x$ corresponde ao espaço de busca, o eixo $y$
+	mostra o valor de aptidão correspondente e os pontos representam os
+	indivíduos da populacão.}
+	\label{fig:evolutionary-algorithms-function}
+\end{figure}
+
 
 %----------
 \section{\label{section:neat}NEAT}
