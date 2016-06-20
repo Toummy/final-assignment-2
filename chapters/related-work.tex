@@ -96,22 +96,22 @@ enquanto que os dois últimos evoluem os pesos e a topologia da rede. O único
 algoritmo que utiliza uma representação genética indireta é o \textit{HyperNEAT}
 (os outros representam diretamente).
 
-A representação de estados dos jogos foi feita de três maneiras distintas:
-objetos da tela de jogo, os \textit{pixels} da tela e ruído. A representação de
-objetos é a representação de mais alto nível, pois apresenta uma caracterização
-informativa e clara da informação visual do jogo. A representação por
-\textit{pixels} é uma representação de baixo nível, pois provê as informações
-cruas da tela para o agente. É o tipo de representação mais genérico e o mais
-fácil de ser aplicado para diversos jogos, e imita as informações que um jogador
-humano utilizaria se estivesse jogando.  Foi necessário realizar um
-\textit{downsampling}\footnote{Processo de reduzir a taxa de amostragem de um
-sinal. Geralmente é aplicado para reduzir a taxa e o tamanho dos dados
-recebidos.} dos valores de \textit{pixels} da tela, pois o espaço de estados era
-muito grande. A representação por ruído foi utilizada para servir como base de
-comparação e investigar quanto do aprendizado é baseado na memorização e em
-conceitos gerais.
+Os autores optaram por realizar a representação de estados dos jogos de três
+maneiras distintas: objetos da tela de jogo, os \textit{pixels} da tela e ruído.
+A representação de objetos é a representação de mais alto nível, pois apresenta
+uma caracterização informativa e clara da informação visual do jogo. A
+representação por \textit{pixels} é uma representação de baixo nível, pois provê
+as informações cruas da tela para o agente. É o tipo de representação mais
+genérico e o mais fácil de ser aplicado para diversos jogos, e imita as
+informações que um jogador humano utilizaria se estivesse jogando.  Foi
+necessário realizar um \textit{downsampling}\footnote{Processo de reduzir a taxa
+de amostragem de um sinal. Geralmente é aplicado para reduzir a taxa e o tamanho
+dos dados recebidos.} dos valores de \textit{pixels} da tela, pois o espaço de
+estados era muito grande. A representação por ruído foi utilizada para servir
+como base de comparação e investigar quanto do aprendizado é baseado na
+memorização e em conceitos gerais.
 
-Foi identificado, após análise dos dados coletados, que que os algoritmos
+Após a análise dos dados coletados, os autores identificaram que os algoritmos
 neuroevolutivos que utilizam condificação genética direta tendem a obter
 melhores resultados quando uma representação compacta de estados (objetos da
 tela de jogo) é utilizada, enquanto que os algoritmos neuroevolutivos que
@@ -120,7 +120,7 @@ representação com maior número de dimensões (como os \textit{pixels} da tela
 Os algoritmos com os melhores resultados, em todas as categorias de
 representação de estados, foram o \textit{NEAT} e o \textit{HyperNEAT}.
 
-Os autores descrevem que o uso de neuroevolução ajuda a diminiur os problemas
+De acordo com os autores, o uso de neuroevolução ajuda a diminiur os problemas
 que as abordagens anteriores de criação de agentes jogadores baseadas em
 \textit{Temporal Difference Learning} sofriam, como um grande espaço de estados
 e gradientes de recompensa esparsas (ambos encontrados em jogos de
