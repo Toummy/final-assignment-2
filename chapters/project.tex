@@ -126,7 +126,7 @@ finalizadas, e daremos início ao desenvolvimento dos \textit{bots}. O diagrama
 \ref{fig:project-diagram} ilustra a relação entre os elementos necessários para
 dar início ao desenvolvimento dos \textit{bots}.
 
-\begin{figure}[htb!]
+\begin{figure}[h]
 \centering
 \begin{tikzpicture}
     \tikzstyle{every node}=[font=\footnotesize, text centered]
@@ -178,21 +178,15 @@ desenvolvido deverá partir desta interface. Analisando o arquivo \textit{IBot.h
 \textbf{pelo menos} o método \textbf{\textit{Update}}, chamado em todas as
 etapas de execução do \textit{bot} para receber informações e enviar comandos ao
 jogo. Existem dois outros métodos que podem ser úteis ao desenvolvedor, mas que
-não possuem obrigatoriedade de implementação:
-
-\begin{itemize}
-	\item
-		\textbf{\textit{Reset}:} chamada no início de todas as etapas de
-		execução do \textit{bot} para reiniciar todas as suas variáveis de
-		controle. Possui uma implementação padrão que reinicia apenas as
-		variáveis essenciais (esquerda, direita, pular e atacar).
-
-	\item
-		\textbf{\textit{NewLevel}:} chamada toda vez que o \textit{bot} entra em
-		um novo nível. Pode ser usada para descartar informações do nível
-		anterior sem que seja necessário reiniciar todas as variáveis do
-		\textit{bot}. Na implementação padrão, não executa nada.
-\end{itemize}
+não possuem obrigatoriedade de implementação: o \textbf{\textit{Reset}} e o
+\textbf{\textit{NewLevel}}. O método \textit{Reset} é chamado no início de todas
+as etapas de execução do \textit{bot} para reiniciar suas variáveis de controle.
+Este método possui uma implementação padrão que reinicia apenas as variáveis
+essenciais (esquerda, direita, pular e atacar). O método \textit{NewLevel} é
+chamado toda vez que o \textit{bot} entra em um novo nível, e pode ser usado
+para descartar informações do nível anterior sem que seja necessário reiniciar
+todas as variáveis do \textit{bot}. Em sua implementação padrão, não executa
+nada.
 
 Uma implementação mínima de um \textit{bot} utilizando a interface
 \textit{IBot.h} necessitaria, portanto, de dois arquivos: um arquivo
