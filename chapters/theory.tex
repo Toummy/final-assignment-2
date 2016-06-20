@@ -395,56 +395,109 @@ demais indivíduos. Desta forma, o processo de seleção natural tende a favorec
 indivíduos com boas características fenotípicas.  Quando um indivíduo entra em
 processo de \textbf{reprodução}, ele gera \textbf{descendentes}. O genoma dos
 descendentes, contudo, não é o mesmo que o de seus pais, pois pequenas variações
-reprodutivas e \textbf{mutações} (variações) ocorrem durante a reprodução. Desta
-forma, variações genotípicas são criadas, que são traduzidas para variações
-fenotípicas. 
+genéticas ocorrem durante a reprodução. Desta forma, variações genotípicas são
+criadas, que são traduzidas para variações fenotípicas. 
 
 Os \textbf{algoritmos evolutivos} se baseiam neste processo biológico para
-resolver problemas computacionais. O esqueleto de um algoritmo evolutivo,
-exemplificado no algoritmo \ref{alg:evolutionary-algorithm-skeleton}, geralmente
-segue o seguinte padrão \cite[Cap. 3]{IntroEvolComputing}: dada uma função que
-deseja ser maximizada (aptidão dos indivíduos), cria-se aleatóriamente uma
-população inicial de invidíduos (candidatos). Em seguida, aplica-se
-repetidamente uma \textbf{função de aptidão} para identificar os melhores
-candidatos para procriar e dar origem a uma nova \textbf{geração}. Esta nova
-geração de indivíduos surge através de uma \textbf{recombinação} entre os
-genomas seus pais e de uma \textbf{mutação} em seus genomas.  Este processo é
-repetido diversas vezes, até que atinja um critério de parada pré-estabelecido,
-como o surgimento de um indivíduo com um nível de aptidão aceitável ou um limite
-máximo de iterações computacionais. É importante ressaltar que muitos
-componentes deste processo evolutivo são \textbf{estocásticos}.  Geralmente (e
-eventualmente), os indivíduos com baixa aptidão são escolhidos para serem
-substituídos, mas não há total garantia. Os processos de recombinação e mutação
-também escolhem os genes a serem combinados e substituídos ao acaso.
+resolver problemas computacionais. Para que se possa utilizar um algoritmo
+evolutivo a fim de resolver um problema computacional, é necessário espeficiar
+uma série de componentes, procedimentos e operadores que definirão seu
+funcionamento \cite[Cap. 3]{IntroEvolComputing}. Os componentes mais importantes
+são a \textbf{representação} (definição dos indivíduos), a \textbf{função de
+aptidão}, a \textbf{população}, os \textbf{mecanismos de seleção de pais}, os
+\textbf{operadores de variação} (mutação e recombinação) e o \textbf{mecanismo
+de seleção de sobreviventes} (substituição de indivíduos).
+
+\begin{itemize}
+	\item Representação (definição dos indivíduos)
+	\item Função de aptidão
+	\item População
+	\item Mecanismos de seleção de pais
+	\item Operadores de variação (mutação e recombinação)
+	\item Mecanismo de seleção de sobreviventes (substituição de indivíduos)
+\end{itemize}
+
+O primeiro passo para definir um algoritmo genético é estabelecer uma forma de
+conexão entre o contexto do problema original e o espaço de resolução de
+problemas onde a evolução irá atuar. Esta \textbf{representacão} define o
+mapeamento entre os fenótipos (possíveis soluções dentro do contexto do
+problema) e os genótipos (codificação das soluções dentro do espaço de
+resolução). O processo de mapeamento de fenótipo para genótipo é chamado de
+\textbf{codificação}, e o processo de mapeamento de genótipo para fenótipo é
+chamado de \textbf{decodificação}.
+
+O propósito de uma \textbf{função de apditão} é formar a base para a seleção, ou
+seja, representar os requisitos que a população de indivíduos deve respeitar e
+se adaptar para sobreviver. Geralmente, a função de aptidão é uma função ou
+procedimento que fornece uma medida qualitativa para a performance dos
+indivíduos.
+
+A \textbf{população} é responsável por armazenar um conjunto de genótipos de
+indivíduos a serem testados, e forma a unidade central onde ocorre a evolução.
+Dada uma representação, a definição de uma população pode conter a quantidade de
+indivíduos, uma função de distância entre indivíduos (para dividí-los em
+espécies), entre outros. Em quase todos os algoritmos evolutivos, o tamanho da
+população é constante e não aumenta durante o tempo de execução. Isto ajuda a
+criar um cenário de recursos finitos e competitividade. 
+
+O papel dos \textbf{mecanismos de seleção de pais} é fazer uma distinção entre
+os indivíduos baseados em suas aptidões e permitir que os indivíduos mais aptos
+se tornem os pais da próxima geração. Um indivíduo é classificado como um
+\textbf{pai} se foi escolhido para sofrer variações e criar
+\textbf{descendentes}. A escolha de pais geralmente é probabilística, e os
+indivíduos mais aptos possuem mais chances de se tornar pais.
+
+Os \textbf{operadores de variação} são responsáveis por criar novos indivíduos
+baseados no código genético de outros indivíduos. Existem dois operadores de
+variação: a \textbf{mutação} e a \textbf{recombinação}. A mutação é aplicada em
+um genótipo e a recombinação é aplicada em dois genótipos e ambos criam uma
+versão levemente modificada dos genótipos utilizados. Estes operadores são
+estocásticos, ou seja, a escolha de quais partes dos genótipos serão modificadas
+é aleatória.
+
+De maneira similar, o papel do \textbf{mecanismo de seleção de sobreviventes} é
+distinguir indivíduos baseados em suas aptidões. Contudo, este mecanismo é
+aplicado em outra etapa do ciclo evolucionário. Como a população dos algoritmos
+evolutivos é quase sempre constante, é necessário selecionar quais indivíduos
+irão para a próxima geração. Esta decisão geralmente é baseada nos valores de
+aptidão, favorecendo os indivíduos de maior qualidade, mas também pode ser
+baseado na idade dos indivíduos (quanto tempo estão na população). Em contraste
+ao mecanismo de seleção de pais, a seleção de sobreviventes é quase sempre
+determinístico.
+
+Além de especificar estes componentes básicos, é necessário definir um
+procedimento de \textbf{inicialização} e uma ou mais \textbf{condições de
+parada}. O procedimento de inicialização é responsável por criar a população
+inicial, e a maioria dos algoritmos evolutivos criam uma população inicial
+composta por indivíduos gerados aleatóriamente. Existem dois casos possíveis de
+parada de um algoritmo evolutivo. Se o valor ótimo de aptidão do problema é
+conhecido, a condição de parada ideal é a descoberta de uma solução com esta
+aptidão. Contudo, algoritmos genéticos contém muitos elementos estocásticos e,
+portanto, nunca se tem garantia total de que a condição de parada ideal será
+atingida. Portanto, é necessário extender esta condição de parada para que ela
+com certeza seja atingida. As opções mais comuns são limitar o tempo de
+execução, o número de iterações, o número de avaliações de aptidão, entre
+outros. O algoritmo \ref{alg:evolutionary-algorithm-skeleton} exemplifica o
+esqueleto de um ciclo de execução de um algoritmo evolutivo.
 
 \begin{algorithm}[h]
 \begin{center}
 	\begin{algorithmic}[1]
-        \STATE POPULAÇÃO $\gets$ candidatos gerados aleatóriamente
-		\STATE AVALIAR cada candidato
+        \STATE{POPULAÇÃO $\gets$ candidatos gerados aleatóriamente}
+		\STATE{AVALIAR cada candidato}
 		\REPEAT
 			\STATE{SELECIONAR pais adequados}
 			\STATE{RECOMBINAR genomas dos pais}
 			\STATE{MUTACIONAR os descendentes}
 			\STATE{AVALIAR cada novo candidato}
 			\STATE{SELECIONAR indivíduos para a próxima geração}
-		\UNTIL{APTIDÃO mínima atingida \OR ITERAÇÕES esgotadas}
+		\UNTIL{CRITÉRIO DE PARADA ATINGIDO}
     \end{algorithmic}
 \end{center}
-\caption[Esquema geral, em pseudocódigo, de um algoritmo evolutivo.]
-{\label{alg:evolutionary-algorithm-skeleton} Esquema geral, em pseudocódigo, de
-um algoritmo evolutivo.}
+\caption{Ciclo de execução de um algoritmo evolutivo.}
+\label{alg:evolutionary-algorithm-skeleton}
 \end{algorithm}
 
-Para que se possa utilizar um algoritmo evolutivo a fim de resolver um problema
-computacional, é necessário escolhar uma \textbf{representação genética} para o
-problema \cite[Cap. 4]{IntroEvolComputing}. Este processo envolve a definição de
-um genótipo e o mapeamento entre genótipo e fenótipo, e é fundamental pois
-somente com a representação genética em mãos será possível executar os processos
-evolutivos de recombinação e mutação. O último passo, antes de iniciar o uso de
-qualquer algoritmo evolutivo, é a escolha dos \textbf{parâmetros de execução}
-\cite[Cap.  7]{IntroEvolComputing}, que variam desde o tamanho da população até
-a chance de realizar uma operação de mutação, por exemplo.
 
 %----------
 \section{\label{section:neat}NEAT}
