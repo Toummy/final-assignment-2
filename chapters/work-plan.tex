@@ -13,13 +13,13 @@ atividades são:
 	\item
 		Obter uma cópia do \textit{framework} \textit{SpelunkBots}
 	\item
-		Realizar modificações no \textit{SpelunkBots} para que possa ser
-		executado na plataforma \textit{Linux}
+		Realizar modificações e adaptações no \textit{SpelunkBots} e no
+		\textit{GameMaker} para permitir o desenvolvimento do projeto na
+		plataforma \textit{Linux}
 	\item
-		Buscar por bibliotecas auxiliares para o uso da técnica \textit{NEAT}
+		Buscar bibliotecas auxiliares para a técnica \textit{NEAT}
 	\item
-		Buscar por bibliotecas auxiliares para o uso da técnica \textit{Behavior
-		Trees}
+		Buscar bibliotecas auxiliares para a técnica \textit{Behavior Trees}
 	\item
 		Realizar as configurações da ferramenta \textit{SpelunkBots} para
 		permitir o desenvolvimento de \textit{bots} utilizando \textit{Behavior
@@ -91,12 +91,12 @@ trabalho, bem como a relação de data de início e término.
 
 \begin{enumerate}
     \item
-        Obter uma cópia do SpelunkBots
+        Obter uma cópia do \textit{framework} \textit{SpelunkBots}
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            Para possibilitar o desenvolvimento desse trabalho, preciamos obter
-            uma cópia do projeto SpelunkyBots, permitindo então que façamos o
-            desenvolvimento de \textit{bots} utilizando esse \textit{framework}.
+			Para dar início ao projeto, é necessário obter uma cópia do
+			\textit{framework} \textit{SpelunkBots} e verificar se é possível
+			executar os \textit{bots} de teste disponibilizados.
         \item [Iterações]
             1
         \item [Período]
@@ -104,14 +104,16 @@ trabalho, bem como a relação de data de início e término.
     \end{description}
 
     \item
-		Realizar modificações no \textit{SpelunkBots} para que possa ser
-		executado na plataforma \textit{Linux}
+		Realizar modificações e adaptações no \textit{SpelunkBots} e no
+		\textit{GameMaker} para permitir o desenvolvimento do projeto na
+		plataforma \textit{Linux}
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            O SpelunkBots não possui uma distribuição para Linux. Como vamos
-            utilizar um servidor para o treinamento dos \textit{bots},
-            precisamos fazer adaptações para que o jogo funcione nessa
-            plataforma.
+			O \textit{SpelunkBots} não possui uma solução \textit{DLL} para
+			\textit{Linux} e o \textit{GameMaker} só funciona na plataforma
+			\textit{Windows}. Como vamos utilizar um servidor baseado em
+			\textit{Linux} para o treinamento dos \textit{bots} é necessário
+			fazer modificações e adaptações no projeto.
         \item [Iterações]
             1
         \item [Período]
@@ -119,13 +121,12 @@ trabalho, bem como a relação de data de início e término.
     \end{description}
 
     \item
-        Buscar por bibliotecas auxiliares para o uso da técnica \textit{NEAT}
+        Buscar bibliotecas auxiliares para a técnica \textit{NEAT}
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            O uso de bibliotecas acelera o desenvolvimento da aplicação. Dessa
-            forma, devemos buscar uma biblioteca para o uso de \textit{NEAT}.
-            Caso encontremos tal biblioteca, é necessário ver se a mesma pode
-            ser usada no nosso projeto.
+            O uso de bibliotecas acelera o desenvolvimento da aplicação. Desta
+			forma, buscaremos uma biblioteca para auxiliar o desenvolvimento dos
+			\textit{bots} baseados em \textit{NEAT}.
         \item [Iterações]
             2
         \item [Período]
@@ -133,15 +134,12 @@ trabalho, bem como a relação de data de início e término.
     \end{description}
 
     \item
-        Buscar por bibliotecas auxiliares para o uso da técnica
-        \textit{Behavior Trees}
+        Buscar bibliotecas auxiliares para a técnica \textit{Behavior Trees}
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            O uso de bibliotecas acelera o desenvolvimento da aplicação. Dessa
-            forma, devemos buscar uma biblioteca para o uso de \textit{behavior
-            trees}.  Caso encontremos tal biblioteca, é necessário ver se a
-            mesma pode
-            ser usada no nosso projeto.
+			O uso de bibliotecas acelera o desenvolvimento da aplicação. Desta
+			forma, buscaremos uma biblioteca para auxiliar o desenvolvimento dos
+			\textit{bots} baseados em \textit{Behavior Trees}.
         \item [Iterações]
             3
         \item [Período]
@@ -154,10 +152,9 @@ trabalho, bem como a relação de data de início e término.
 		Trees}
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            Devemos estudar como utilizar as bibliotecas de \textit{Behavior
-            Trees} encontradas para integrá-las ao código do
-            \textit{SpelunkBots}, modificando ou incrementando o código
-            existente.
+			Devemos estudar como utilizar a biblioteca de \textit{Behavior
+			Trees} encontrada para integrá-la ao código do \textit{SpelunkBots},
+			modificando ou incrementando o código existente.
         \item [Iterações]
             4
         \item [Período]
@@ -179,9 +176,8 @@ trabalho, bem como a relação de data de início e término.
 		Trees} em uma série de mapas pré-estabelecidos e aleatórios
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            Coletar dados de execução, exportando os resultados obtidos,
-            permitindo que sejam feitas análises sobre o \textit{bot}
-            utilizando esses dados.
+			Coletar dados de execução para permitir a análise posterior do
+			desempenho do \textit{bot}.
         \item [Iterações]
             8
         \item [Período]
@@ -192,9 +188,9 @@ trabalho, bem como a relação de data de início e término.
 		permitir o desenvolvimento de \textit{bots} utilizando \textit{NEAT}
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            Devemos estudar como utilizar as bibliotecas de textit{NEAT}
-            encontradas para integrá-las ao código do \textit{SpelunkBots},
-            modificando ou incrementando o código existente.
+			Devemos estudar como utilizar a biblioteca de \textit{NEAT}
+			encontrada para integrá-la ao código do \textit{SpelunkBots},
+			modificando ou incrementando o código existente.
         \item [Iterações]
             9
         \item [Período]
@@ -216,9 +212,8 @@ trabalho, bem como a relação de data de início e término.
 		uma série de mapas pré-estabelecidos e aleatórios
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
-            Coletar dados de execução, exportando os resultados obtidos,
-            permitindo que sejam feitas análises sobre o \textit{bot}
-            utilizando esses dados.
+            Coletar dados de execução para permitir a análise posterior do
+			desempenho do \textit{bot}.
         \item [Iterações]
             13
         \item [Período]
@@ -230,7 +225,8 @@ trabalho, bem como a relação de data de início e término.
     \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
         \item [Descrição]
             Devemos analisar o uso das técnicas escolhidas nesse trabalho,
-            verificando o desempenho delas para a solução do problema.
+            verificando o desempenho de cada uma para solucionar o problema
+			proposto.
         \item [Iterações]
             14 e 15
         \item [Período]
