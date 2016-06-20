@@ -164,4 +164,44 @@ interessante definir um tipo de \textit{bot} que comporte tais operações. Dess
 forma, além do método \textit{Update}, implementaremos os métodos
 \textbf{\textit{ReadTrainingData}} e \textbf{\textit{SaveTrainingData}}.
 
+\begin{figure}[htb!]
+\centering
+\begin{tikzpicture}
+    \tikzstyle{every node}=[font=\footnotesize, text centered]
+    \node (gmm) at (0, 0)  {Game Maker};
+    \node (spl) at (0, -2) {Spelunky};
+    \node[draw] (spb) at (0, -4) {SpelunkBots};
 
+    \node[text width=4cm] (conf) at (5, 0)  {Configurações (escolha do bot e parâmetros de nível)};
+    \node (comp) at (5, -4)  {Compilação (MinGW)};
+
+    \node[draw] (neat) at (9, 0) {Biblioteca NEAT};
+    \node[draw] (bt) at (13, 0) {Biblioteca BTs};
+
+    \node (dll) at (11, -2) {Solução DLL};
+
+    \node[draw] (bots) at (11, -4) {Código dos \textit{bots}};
+
+    \node at (0, -6) (wine) {Emulação (WineHQ)};
+
+    \node at (5, -6) (linux) {Servidor Linux};
+
+    \node[draw, inner sep=.25cm, fit={(gmm) (spl) (spb)}] (g2) {};
+    \node[draw, fit={(spl) (spb)}] {};
+
+    \node[draw, fit={(dll) (bots)}] (g1) {};
+
+    \draw[->, >=latex] (neat.south) -- (g1.north);
+    \draw[->, >=latex] (bt.south) -- (g1.north);
+
+    \draw[->, >=latex] (g1.west) -- (comp.east);
+    \draw[->, >=latex] (comp.west) -- (spb.east);
+
+    \draw[->, >=latex, in=0, out=200] (conf.west) to (spb.east);
+
+    \draw[->, >=latex] (g2.south) -- (wine.north);
+    \draw[->, >=latex] (wine.east) -- (linux.west);
+\end{tikzpicture}
+\caption {\label{fig:project-diagram}Diagrama do projeto, contendo
+todos os componentes necessários para o desenvolvimento dos \textit{bots}.}
+\end{figure}
