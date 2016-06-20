@@ -122,7 +122,52 @@ O próximo passo é escolher as bibliotecas de inteligência artificial das
 técnicas \textit{NEAT} e \textit{Behavior Trees} e integrá-las ao projeto do
 \textit{SpelunkBots}, para que estejam incluídas na solução \textit{DLL}. Ao
 concluir este passo, as configurações necessárias de projeto estarão
-finalizadas, e daremos início ao desenvolvimento dos \textit{bots}.
+finalizadas, e daremos início ao desenvolvimento dos \textit{bots}. O diagrama
+\ref{fig:project-diagram} ilustra a relação entre os elementos necessários para
+dar início ao desenvolvimento dos \textit{bots}.
+
+\begin{figure}[htb!]
+\centering
+\begin{tikzpicture}
+    \tikzstyle{every node}=[font=\footnotesize, text centered]
+    \node (gmm) at (0, 0)  {Game Maker};
+    \node (spl) at (0, -2) {Spelunky};
+    \node[draw] (spb) at (0, -4) {SpelunkBots};
+
+    \node[text width=4cm] (conf) at (5, 0)  {Configurações \\(escolha do bot e parâmetros de nível)};
+    \node (comp) at (5, -4)  {Compilação (MinGW)};
+
+    \node[draw] (neat) at (9, 0) {Biblioteca NEAT};
+    \node[draw] (bt) at (13, 0) {Biblioteca BTs};
+
+    \node (dll) at (11, -2) {Solução DLL};
+
+    \node[draw] (bots) at (11, -4) {Código dos \textit{bots}};
+
+    \node at (0, -6) (wine) {Emulação (WineHQ)};
+
+    \node at (5, -6) (linux) {Servidor Linux};
+
+    \node[draw, inner sep=.25cm, fit={(gmm) (spl) (spb)}] (g2) {};
+    \node[draw, fit={(spl) (spb)}] {};
+
+    \node[draw, fit={(dll) (bots)}] (g1) {};
+
+    \draw[->, >=latex] (neat.south) -- (g1.north);
+    \draw[->, >=latex] (bt.south) -- (g1.north);
+
+    \draw[->, >=latex] (g1.west) -- (comp.east);
+    \draw[->, >=latex] (comp.west) -- (spb.east);
+
+    \draw[->, >=latex, in=0, out=200] (conf.west) to (spb.east);
+
+    \draw[->, >=latex] (g2.south) -- (wine.north);
+    \draw[->, >=latex] (wine.east) -- (linux.west);
+\end{tikzpicture}
+\caption {Diagrama do projeto explicando a relação entre os componentes
+necessários para o desenvolvimento dos \textit{bots}.}
+\label{fig:project-diagram}
+\end{figure}
 
 O \textit{framework} \textit{SpelunkBots} provê uma interface comum para o
 desenvolvimento dos \textit{bots} em C++, chamada \textbf{\textit{IBot.h}}. Esta
@@ -156,52 +201,3 @@ utilizadas -- demonstrado no Algoritmo \ref{alg:project-example-bot-header} --,
 e um arquivo de implementação -- demonstrado no Algoritmo
 \ref{alg:project-example-bot-impl} --, que conterá a implementação das funções
 descritas no arquivo \textit{header}.
-
-É importante ressaltar que, devido ao processo de \textbf{treinamento} do
-\textit{bot} que faz uso da técnica \textit{NEAT}, temos a necessidade realizar
-operações de \textbf{leitura} e \textbf{escrita} de arquivos, portanto, é
-interessante definir um tipo de \textit{bot} que comporte tais operações. Dessa
-forma, além do método \textit{Update}, implementaremos os métodos
-\textbf{\textit{ReadTrainingData}} e \textbf{\textit{SaveTrainingData}}.
-
-\begin{figure}[htb!]
-\centering
-\begin{tikzpicture}
-    \tikzstyle{every node}=[font=\footnotesize, text centered]
-    \node (gmm) at (0, 0)  {Game Maker};
-    \node (spl) at (0, -2) {Spelunky};
-    \node[draw] (spb) at (0, -4) {SpelunkBots};
-
-    \node[text width=4cm] (conf) at (5, 0)  {Configurações (escolha do bot e parâmetros de nível)};
-    \node (comp) at (5, -4)  {Compilação (MinGW)};
-
-    \node[draw] (neat) at (9, 0) {Biblioteca NEAT};
-    \node[draw] (bt) at (13, 0) {Biblioteca BTs};
-
-    \node (dll) at (11, -2) {Solução DLL};
-
-    \node[draw] (bots) at (11, -4) {Código dos \textit{bots}};
-
-    \node at (0, -6) (wine) {Emulação (WineHQ)};
-
-    \node at (5, -6) (linux) {Servidor Linux};
-
-    \node[draw, inner sep=.25cm, fit={(gmm) (spl) (spb)}] (g2) {};
-    \node[draw, fit={(spl) (spb)}] {};
-
-    \node[draw, fit={(dll) (bots)}] (g1) {};
-
-    \draw[->, >=latex] (neat.south) -- (g1.north);
-    \draw[->, >=latex] (bt.south) -- (g1.north);
-
-    \draw[->, >=latex] (g1.west) -- (comp.east);
-    \draw[->, >=latex] (comp.west) -- (spb.east);
-
-    \draw[->, >=latex, in=0, out=200] (conf.west) to (spb.east);
-
-    \draw[->, >=latex] (g2.south) -- (wine.north);
-    \draw[->, >=latex] (wine.east) -- (linux.west);
-\end{tikzpicture}
-\caption {\label{fig:project-diagram}Diagrama do projeto, contendo
-todos os componentes necessários para o desenvolvimento dos \textit{bots}.}
-\end{figure}
