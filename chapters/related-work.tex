@@ -54,12 +54,13 @@ reforço e uma rede neural convolucional treinada com uma variante de
 \textit{Q-learning} para criar o agente.
 
 Para criar estas políticas de controle, os autores utilizaram uma plataforma de
-testes de inteligência artificial chamada \textit{Arcade Learning Environment}.
-A cada passo de execução, o agente interage com o emulador, recebendo
-informações do estado do jogo e enviando os comandos que deseja executar. As
-informações recebidas eram um vetor dos \textit{pixels} apresentados na tela, o
-conjunto de de ações possíveis para o jogo em questão e um valor de recompensa
-quando a pontuação do jogo era alterada.
+testes de inteligência artificial chamada \textit{Arcade Learning
+Environment}\footnote{http://www.arcadelearningenvironment.org/}.  A cada passo
+de execução, o agente interage com o emulador, recebendo informações do estado
+do jogo e enviando os comandos que deseja executar. As informações recebidas
+eram um vetor dos \textit{pixels} apresentados na tela, o conjunto de de ações
+possíveis para o jogo em questão e um valor de recompensa quando a pontuação do
+jogo era alterada.
 
 Como as informações do estado do jogo eram altamente dimensionais -- 33600
 \textit{pixels} de informação visual --, foi necessário realizar um
@@ -74,6 +75,61 @@ Como a dimensionalidade do estado do jogo fornecido pela ferramenta
 \textit{SpelunkBots} não é tão grande quanto a do trabalho em questão, optamos
 por não fazer uso de \textit{deep learning}, mesmo que a técnica também seja
 muito promissora.
+
+
+%----------
+\section{A Neuroevolution Approach to General Atari Game Playing}
+Este artigo \cite{NeuroEvolutionAtari} apresenta uma série de abordagens
+neuroevolutivas para realizar a criação de agentes inteligentes capazes de
+aprender a jogar jogos do \textit{console} \textit{Atari 2600} com pouco
+conhecimento específico sobre os domínios dos jogos. Para criar estas políticas
+de controle, os autores utilizaram uma plataforma de testes de inteligência
+artificial chamada \textit{Arcade Learning Environment}.
+
+Os autores realizaram testes com quatro algoritmos neuroevolutivos, que
+descrevem redes neurais artificiais e a evolução de seus componentes:
+\textit{Conventional Neuroevolution}, (CNE) \textit{Covariance Matrix Adaptation
+Evolution Strategy} (CMA-ES), \textit{Neuroevolution of Augmenting Topologies}
+(NEAT) e \textit{Hypercube-based Neuroevolution of Augmenting Topologies}
+(HyperNEAT). Os dois primeiros algoritmos evoluem somente os pesos da rede,
+enquanto que os dois últimos evoluem os pesos e a topologia da rede. O único
+algoritmo que utiliza uma representação genética indireta é o \textit{HyperNEAT}
+(os outros representam diretamente).
+
+A representação de estados dos jogos foi feita de três maneiras distintas:
+objetos da tela de jogo, os \textit{pixels} da tela e ruído. A representação de
+objetos é a representação de mais alto nível, pois apresenta uma caracterização
+informativa e clara da informação visual do jogo. A representação por
+\textit{pixels} é uma representação de baixo nível, pois provê as informações
+cruas da tela para o agente. É o tipo de representação mais genérico e o mais
+fácil de ser aplicado para diversos jogos, e imita as informações que um jogador
+humano utilizaria se estivesse jogando.  Foi necessário realizar um
+\textit{downsampling}\footnote{Processo de reduzir a taxa de amostragem de um
+sinal. Geralmente é aplicado para reduzir a taxa e o tamanho dos dados
+recebidos.} dos valores de \textit{pixels} da tela, pois o espaço de estados era
+muito grande. A representação por ruído foi utilizada para servir como base de
+comparação e investigar quanto do aprendizado é baseado na memorização e em
+conceitos gerais.
+
+Foi identificado, após análise dos dados coletados, que que os algoritmos
+neuroevolutivos que utilizam condificação genética direta tendem a obter
+melhores resultados quando uma representação compacta de estados (objetos da
+tela de jogo) é utilizada, enquanto que os algoritmos neuroevolutivos que
+utilizam codificação genética indireta permitem a utilização de uma
+representação com maior número de dimensões (como os \textit{pixels} da tela).
+Os algoritmos com os melhores resultados, em todas as categorias de
+representação de estados, foram o \textit{NEAT} e o \textit{HyperNEAT}.
+
+Os autores descrevem que o uso de neuroevolução ajuda a diminiur os problemas
+que as abordagens anteriores de criação de agentes jogadores baseadas em
+\textit{Temporal Difference Learning} sofriam, como um grande espaço de estados
+e gradientes de recompensa esparsas (ambos encontrados em jogos de
+\textit{Atari}). Além disso, as políticas de controle evoluídas através de
+algoritmos neuroevolutivos atingem resultados excelentes e, em alguns jogos,
+superam o desempenho de jogadores humanos, sugerindo que a neuroevolução é uma
+abordagem promissora para criação de agentes inteligentes e \textit{general
+video game playing} (criar um agente que seja capaz de jogar diversos jogos
+digitais sem mudanças de parâmetros).
 
 
 %----------
