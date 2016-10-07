@@ -13,7 +13,7 @@
 # (apenas o documento principal). Como alternativa, coloque na
 # linha de comando:
 # make TARGET=exemplo
-TARGET=final-assignment-1
+TARGET=final-assignment-2
 PDFDIR=pdf
 
 RM=rm -f
