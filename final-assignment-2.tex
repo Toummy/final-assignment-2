@@ -10,6 +10,15 @@
 \usepackage{pgfgantt}
 \usepackage{mdframed}
 
+\usepackage[colorinlistoftodos]{todonotes}
+\newcommand\todoin[2][] {
+    \todo[inline, color=green!50, caption={2do}, #1]{
+        \begin{minipage}{\textwidth-4pt}
+            #2
+        \end{minipage}
+    }
+}
+
 \usepackage{listings}
 \lstdefinestyle{customC++}{
 	frame=single,
@@ -68,6 +77,7 @@ develop Artificial Intelligence solutions for creating intelligent agents
 capable of playing autonomously the game \textit{Spelunky}.
 \end{abstract}
 
+\listoftodos
 \listoffigures
 %\listoftables
 \listofalgorithms
@@ -83,6 +93,10 @@ capable of playing autonomously the game \textit{Spelunky}.
 \include{chapters/related-work}
 \include{chapters/project}
 \include{chapters/work-plan}
+\include{chapters/implementation}
+\include{chapters/scenarios}
+\include{chapters/results}
+\include{chapters/conclusion}
 
 \appendix
 \include{appendices/spelunkbots-variables}
