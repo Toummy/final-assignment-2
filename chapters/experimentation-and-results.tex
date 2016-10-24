@@ -16,6 +16,28 @@
     \end{itemize}
 }
 
+Embora o projeto original do \textit{SpelunkBots} tenha todas as ferramentas
+necessárias para executar o jogo, foi necessário alterar alguns elementos do
+projeto para viabilizar ou melhorar o processo de desenvolvimento desse
+trabalho.
+
+\todo{Revisar}
+\subsection{Arquivo de Inicialização}
+
+Para escolher as melhores configurações para a execução, foi necessário
+experimentar diferentes valores para alguns parâmetros do jogo. Porém, o
+projeto original do \textit{SpelunkBots} não permitia esse tipo de
+parametrização, sendo necessário abrir o \textit{Game Maker} e alterar os
+valores utilizando o editor de códigos da ferramenta. Esse processo, além de ser
+algo demorado, é um processo manual e que não permite nenhum tipo de
+automatização.
+
+Com isso, alteramos o código do \textit{SpelunkBots} para permitir a leitura de
+um arquivo de inicialização. Essa alteração faz com que o jogo utilize
+valores dinâmicos para os parâmetros, sendo possível então testar novas
+configurações e alterar a execução do jogo sem a necessidade de abrir o
+\textit{Game Maker}.
+
 \section{\label{section:neat-details}Implementação do NEAT}
 
 \todoin[caption={Implementação do NEAT}] {
