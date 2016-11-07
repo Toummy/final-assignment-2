@@ -30,9 +30,28 @@ sejam executados para desenvolvermos os \textit{bots}. De forma a automatizar
 esse processo, criamos um \textit{script} -- utilizando \textit{shell script}
 -- responsável pelo processo de compilação e movimentação de arquivos.
 
-\subsection{Pular Introdução do Jogo}
+\subsection{Pular Cena Inicial do Jogo}
+
+Originalmente, o \textit{SpelunkBots} conta com uma cena inicial, onde o
+jogador se desloca da superfície para dentro de uma caverna, dando início ao
+jogo. Essa cena é apenas uma forma de introdução ao jogo, não contribuíndo para
+a geração de resultados de execução.
+
+De forma a acelerar a execução dos \textit{bots}, fizemos a remoção dessa cena
+inicial. Portanto, ao executar o jogo, o jogador é levado diretamente ao nível
+escolhido, fazendo sua execução imediatamante.
 
 \subsection{Parar a Execução Quando o \textit{Bot} Está Ocioso}
+
+Caso algum \textit{bot} fique parado por muito tempo, é um indício de que ele
+esteja em um estado não promissor, gastando tempo de execução. Dessa forma, é
+necessário que tenhamos uma forma de parar a execução do \textit{bot} caso o
+mesmo fique ocioso por um tempo determinado.
+
+Com isso, implementamos uma verificação de ociosidade. Caso o \textit{bot}
+fique ocioso por um número determinado de segundos, zeramos o número de pontos
+de vida dele, fazendo com que o \textit{bot} perca uma vida e passe a executar
+novamente.
 
 \subsection{Arquivo de Inicialização}
 
