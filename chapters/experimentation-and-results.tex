@@ -18,6 +18,18 @@
 
 \subsection{\textit{Scripts} de Compilação}
 
+A escolha da linguagem \textit{C++} para a criação dos \textit{bots} requer que
+o código seja compilado e que uma \textit{DLL} seja gerada, para que,
+posteriormente, seja usada pelo \textit{SpelunkBots}. Este processo é feito em
+várias etapas.  Primeiro, compilamos as bibliotecas que utilizamos. Em seguida,
+compilamos o código dos \textit{bots} e geramos a \textit{DLL}. Por fim,
+movemos a \textit{DLL} para o local onde o \textit{SpelunkBots} será executado.
+
+Este processo possui vários passos, e sempre é necessário que todos os passos
+sejam executados para desenvolvermos os \textit{bots}. De forma a automatizar
+esse processo, criamos um \textit{script} -- utilizando \textit{shell script}
+-- responsável pelo processo de compilação e movimentação de arquivos.
+
 \subsection{Pular Introdução do Jogo}
 
 \subsection{Parar a Execução Quando o \textit{Bot} Está Ocioso}
