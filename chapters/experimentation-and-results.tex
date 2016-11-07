@@ -46,14 +46,15 @@ valores, salvamos uma nova versão do jogo e então o executamos. Esse processo 
 manual e custoso, dificultando a escolha dos melhores parâmetros para execução.  
 
 Dessa forma, alteramos o código do \textit{SpelunkBots} para permitir a leitura
-de um arquivo de inicialização\todo{Link}{\footnote{Link para documentação do
-SpelunkBots}}, fazendo com que o jogo utilize valores dinâmicos para os
-parâmetros, sendo possível então testar novas configurações e alterar a
-execução do jogo sem a necessidade de abrirmos o \textit{Game Maker}. Tal
-arquivo tem um formato bastante simples, onde cada elemento tem um nome que o
-identifica e um valor associado. Cada elemento pode estar em uma categoria,
-para facilitar a organização e o uso. O algoritmo ~\ref{alg:ini-file}
-exemplifica um arquivo de inicialização agrupado por categorias:
+de um arquivo de
+inicialização\footnote{https://docs.yoyogames.com/source/dadiospice/002\_reference/file\%20handling/ini\%20files/index.html},
+fazendo com que o jogo utilize valores dinâmicos para os parâmetros, sendo
+possível então testar novas configurações e alterar a execução do jogo sem
+a necessidade de abrirmos o \textit{Game Maker}. Tal arquivo tem um formato
+bastante simples, onde cada elemento tem um nome que o identifica e um
+valor associado. Cada elemento pode estar em uma categoria, para facilitar
+a organização e o uso. O algoritmo ~\ref{alg:ini-file} exemplifica um
+arquivo de inicialização agrupado por categorias:
 
 \begin{algorithm}[H]
 \lstinputlisting[style=customC++]{code/spelunkbots.ini}
