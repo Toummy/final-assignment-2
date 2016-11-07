@@ -16,27 +16,40 @@
     \end{itemize}
 }
 
-Embora o projeto original do \textit{SpelunkBots} tenha todas as ferramentas
-necessárias para executar o jogo, foi necessário alterar alguns elementos do
-projeto para viabilizar ou melhorar o processo de desenvolvimento desse
-trabalho.
+\subsection{\textit{Scripts} de Compilação}
 
-\todo{Revisar}
+\subsection{Pular Introdução do Jogo}
+
+\subsection{Parar a Execução Quando o \textit{Bot} Está Ocioso}
+
 \subsection{Arquivo de Inicialização}
 
-Para escolher as melhores configurações para a execução, foi necessário
-experimentar diferentes valores para alguns parâmetros do jogo. Porém, o
-projeto original do \textit{SpelunkBots} não permitia esse tipo de
-parametrização, sendo necessário abrir o \textit{Game Maker} e alterar os
-valores utilizando o editor de códigos da ferramenta. Esse processo, além de ser
-algo demorado, é um processo manual e que não permite nenhum tipo de
-automatização.
+O processo de escolha das configurações para a execução do jogo requer
+experimentação. É necessário combinar diferentes parâmetros e avaliar sua
+execução, escolhendo então os parâmetros que produzem os melhores resultados.
+No caso do \textit{SpelunkBots}, essa escolha está ligada diretamente à edição
+do código do jogo no \textit{Game Maker}. Sempre que desejamos editar um
+parâmetro de execução, abrimos o \textit{software}, realizamos a edição dos
+valores, salvamos uma nova versão do jogo e então o executamos. Esse processo é
+manual e custoso, dificultando a escolha dos melhores parâmetros para execução.  
 
-Com isso, alteramos o código do \textit{SpelunkBots} para permitir a leitura de
-um arquivo de inicialização. Essa alteração faz com que o jogo utilize
-valores dinâmicos para os parâmetros, sendo possível então testar novas
-configurações e alterar a execução do jogo sem a necessidade de abrir o
-\textit{Game Maker}.
+Dessa forma, alteramos o código do \textit{SpelunkBots} para permitir a leitura
+de um arquivo de inicialização\todo{Link}{\footnote{Link para documentação do
+SpelunkBots}}, fazendo com que o jogo utilize valores dinâmicos para os
+parâmetros, sendo possível então testar novas configurações e alterar a
+execução do jogo sem a necessidade de abrirmos o \textit{Game Maker}. Tal
+arquivo tem um formato bastante simples, onde cada elemento tem um nome que o
+identifica e um valor associado. Cada elemento pode estar em uma categoria,
+para facilitar a organização e o uso. O algoritmo ~\ref{alg:ini-file}
+exemplifica um arquivo de inicialização agrupado por categorias:
+
+\begin{algorithm}[H]
+\lstinputlisting[style=customC++]{code/spelunkbots.ini}
+\caption[Arquivo de inicialização de exemplo.]
+{\label{alg:ini-file}Arquivo de inicialização de exemplo.}
+\end{algorithm}
+
+\subsection{Execução Sem Interface Gráfica}
 
 \section{\label{section:neat-details}Implementação do NEAT}
 
