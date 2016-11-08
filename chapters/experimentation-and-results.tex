@@ -4,18 +4,6 @@
 
 \section{\label{section:modifications}Modificações Realizadas}
 
-\todoin[caption={Modificações}] {
-    Explicar itens como:
-
-    \begin{itemize}
-        \item Melhorias para o desenvolvimento (praticidade/velocidade)[scripts e etc]
-        \item Pular introdução
-        \item ``Matar'' o bot quando \textit{idle}
-        \item INI files
-        \item Rodar \textit{headless}
-    \end{itemize}
-}
-
 \subsection{\textit{Scripts} de Compilação}
 
 A escolha da linguagem \textit{C++} para a criação dos \textit{bots} requer que
@@ -82,6 +70,19 @@ arquivo de inicialização agrupado por categorias:
 \end{algorithm}
 
 \subsection{Execução Sem Interface Gráfica}
+
+O servidor \textit{Linux} que utilizamos para a execução não possui nenhuma
+interface gráfica, além disso, não existe uma forma de executar o
+\textit{Spelunky} ou o \textit{SpelunkBots} sem considerar uso de uma.
+
+Porém, é possível fazer a criação de um \textit{display} virtual, onde
+simulamos uma interface gráfica semelhante a uma real. Nesse caso, fizemos o
+uso do
+\textit{XVFB}\footnote{https://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml},
+criando então uma interface gráfica que recebe a execução do jogo. O uso de uma
+interface gráfica virtual também nos permite que gravemos vídeos do jogo, além
+de permitir a captura de imagens da tela, permitindo que depuremos a execução
+do jogo.
 
 \section{\label{section:neat-details}Implementação do NEAT}
 
