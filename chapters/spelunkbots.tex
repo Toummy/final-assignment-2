@@ -2,37 +2,39 @@
 
 \section{\label{section:game-ai-competitions}Competições de Inteligência
 Artificial em Jogos Digitais}
-Existe uma relação mutuamente benéfica entre a área de inteligência artificial
-e jogos digitais.  De um lado, os jogos se beneficiam explorando conceitos,
-técnicas e algoritmos de inteligência artificial com o intuito de enriquecer
-seu conteúdo. O jogo \textbf{Black \&
+Existe uma relação mutuamente benéfica entre a área de inteligência artificial e
+jogos digitais.  De um lado, os jogos se beneficiam explorando conceitos,
+técnicas e algoritmos de inteligência artificial com o intuito de enriquecer seu
+conteúdo. O jogo \textbf{Black \&
 White}\footnote{http://aigamedev.com/open/highlights/top-ai-games}, da
-desenvolvedora \textit{Lionhead Studios}, por exemplo, incorporou as técnicas
-de agentes BDI, árvores de decisão e redes neurais para ditar o comportamento
-de alguns seus personagens.  Já o jogo \textbf{F.E.A.R}, da desenvolvedora
-\textit{Monolith Productions}, utilizou os conceitos de planejamento para
-aumentar o realismo das decisões tomadas por seus agentes \cite{FEARPLANNING}.
-Do outro lado, o campo da inteligência artificial se beneficia ao utilizar os
-jogos como plataformas de teste para suas técnicas e algoritmos. Jogos digitais
-são atraentes para pesquisadores da área de inteligência artificial por uma
-série de fatores. Primeiro, eles capturam a complexidade de situações do mundo
-real, são relativamente simples e baratos de desenvolver, podem replicar
-inúmeras situações e ambientes e até mesmo criar cenários impossíveis ou
-impraticáveis no mundo real. Existem diversos gêneros de jogos, variando desde
-jogos educacionais até jogos de tiro em primeira pessoa. Segundo, jogos possuem
-a vantagem de serem programas de computador, o que significa que, por muitas
-vezes, podem acelerar a velocidade na qual testes são executados, ou ainda
-executar múltiplos testes em paralelo. Finalmente, a natureza lúdica dos jogos
-são um ponto importante a ser ressaltado, pois ajudam a motivar os
-pesquisadores, além de resultar na adesão de novos pesquisadores.
+desenvolvedora \textit{Lionhead Studios}, por exemplo, incorporou as técnicas de
+agentes BDI\footnote{\textit{Belief-Desire-Intention}, ou
+Crença-Desejo-Intenção}, árvores de decisão e redes neurais para ditar o
+comportamento de alguns dos personagens controlados pelo jogo.  Já o jogo
+\textbf{F.E.A.R}, da desenvolvedora \textit{Monolith Productions}, utilizou os
+conceitos de planejamento automático para aumentar o realismo das decisões
+tomadas por seus agentes \cite{FEARPLANNING}.  Do outro lado, o campo da
+inteligência artificial se beneficia ao utilizar os jogos como plataformas de
+teste para suas técnicas e algoritmos. Jogos digitais são atraentes para
+pesquisadores da área de inteligência artificial por uma série de fatores.
+Primeiro, eles capturam a complexidade de situações do mundo real, são
+relativamente simples e baratos de desenvolver, podem replicar inúmeras
+situações e ambientes e até mesmo criar cenários impossíveis ou impraticáveis no
+mundo real. Existem diversos gêneros de jogos, variando desde jogos educacionais
+até jogos de tiro em primeira pessoa.  Segundo, jogos possuem a vantagem de
+serem programas de computador, o que significa que, por muitas vezes, podem
+acelerar a velocidade na qual testes são executados, ou ainda executar múltiplos
+testes em paralelo. Finalmente, a natureza lúdica dos jogos são um ponto
+importante a ser ressaltado, pois ajudam a motivar os pesquisadores, além de
+resultar na adesão de novos pesquisadores.
 
-Tendo este apanhado de informações em mente, pesquisadores e entusiastas da
-área acabam desenvolvendo \textit{frameworks} de inteligência artificial em
-cima de jogos existentes para servir de plataforma de teste. Um exemplo desses
-frameworks é o \textbf{Brood War API}\footnote{bwapi.github.io}, um
-\textit{framework} para o jogo \textit{StarCraft: Brood War}. Algumas vezes,
-contudo, são criados jogos especificamente para pesquisa e experimentação, como
-foi o caso do projeto \textbf{TORCS, The Open Racing Car
+Tendo este apanhado de informações em mente, pesquisadores e entusiastas da área
+acabam desenvolvendo \textit{frameworks} de inteligência artificial em cima de
+jogos existentes para servir de plataforma de teste. Um exemplo disso é o
+\textbf{Brood War API}\footnote{bwapi.github.io}, um \textit{framework} para o
+jogo \textit{StarCraft: Brood War}. Algumas vezes, contudo, são criados jogos
+especificamente para pesquisa e experimentação, como foi o caso do projeto
+\textbf{TORCS, The Open Racing Car
 Simulator}\footnote{http://torcs.sourceforge.net/}, um simulador de corridas de
 carro que permite que desenvolvedores programem a inteligência de carros e
 compitam entre si.
@@ -48,7 +50,7 @@ Geralmente, o problema proposto é o de jogar o jogo da maneira mais eficiente.
 Existem pelo menos duas formas de se realizar uma avaliação objetiva dos
 competidores. A primeira é através das métricas estipuladas pelo próprio jogo,
 como alguma forma de pontuação ou tempo. A segunda é fazer com que os candidatos
-joguem entre sí. Um exmeplo disso é a competição que gira em torno de
+joguem entre sí. Um exemplo disso é a competição que gira em torno de
 \textbf{Vindinium}\footnote{vindinium.org}, um jogo para a plataforma
 \textit{web}. Muitas vezes, os organizadores da competição optam por fazer uso
 de um sistema de \textit{ranking}, expondo os resultados obtidos pelos
@@ -88,29 +90,29 @@ competição de inteligência artificial para o jogo. O \textit{framework} foi
 desenvolvido utilizando uma combinação do código-fonte original do jogo
 \textit{Spelunky} -- distribuído gratuitamente no \textit{website}
 oficial\footnote{http://www.spelunkyworld.com/original.htm} --, o motor de
-criação de jogos \textit{GameMaker} e uma solução \textit{DLL} programada com a
-linguagem C++.
+criação de jogos \textit{GameMaker} e uma solução \textit{DLL} (ou
+\textit{Dynamic-link Library}) programada com a linguagem C++.
 
 
 \subsection{\label{section:spelunkbots-usage}Modo de Uso}
 Como o \textit{framework} possui acesso irrestrito ao código-fonte de
 \textit{Spelunky}, a opção de programar a inteligência artificial utilizando a
 linguagem de programação padrão do \textit{GameMaker}, a \textit{GML}, foi
-incluida pelos criadores do programa. Contudo, esta opção de linguagem não é
-adequada a programadores mais experientes, visto que esta linguagem foi criada
-com o intuito de fornecer a desenvolvedores de jogos iniciantes uma maneira
-fácil e rápida de programar jogos e, justamente por este motivo, apresenta
-diversas limitações de linguagem e não possui muitas bibliotecas auxiliares.
-Além disso, os arquivos \textit{.gml} só podem ser editados dentro do ambiente
-de programação interno do \textit{GameMaker}.
+incluida pelos criadores do programa. Contudo, esta opção não é adequada a
+programadores mais experientes, visto que esta linguagem foi criada com o
+intuito de fornecer a desenvolvedores de jogos iniciantes uma maneira fácil e
+rápida de programar jogos e, justamente por este motivo, apresenta diversas
+limitações de linguagem e não possui muitas bibliotecas auxiliares.  Além disso,
+os arquivos \textit{.gml} só podem ser editados dentro do ambiente de
+programação interno do \textit{GameMaker}.
 
 Sabendo que o \textit{GameMaker} é capaz de executar código externo através de
-\textit{Dynamic-link Libraries} (\textit{DLLS}), os autores desenvolveram um
-projeto em C++ que gera uma solução no formato \textit{DLL} para permitir que os
-usuários possam programar \textit{bots} utilizando a linguagem de programação
-C++. Para programar em C++, portanto,  é necessário usar uma ferramenta de
-compilação externa para gerar a solução \textit{DLL}. O \textit{SpelunkBots}
-fornece um projeto em \textit{Visual Studio 2013} para auxiliar neste processo.
+\textit{DLLs}, os autores desenvolveram um projeto em C++ que gera uma solução
+no formato \textit{DLL} para permitir que os usuários programem \textit{bots}
+utilizando a linguagem de programação C++. Para programar em C++, portanto,  é
+necessário usar uma ferramenta de compilação externa para gerar a solução
+\textit{DLL}. O \textit{SpelunkBots} fornece um projeto em \textit{Visual Studio
+2013} para auxiliar neste processo.
 
 Assim, existem duas maneiras de se utilizar o \textit{SpelunkBots} para
 programar uma inteligência artificial para \textit{Spelunky}: internamente,
@@ -185,11 +187,11 @@ de encontrar durante uma partida comum. Já no segundo, executa o \textit{bot} e
 uma série de mapas comuns, utilizando uma lista de sementes definidas pelo
 usuário. Como as sementes são repassadas para o gerador de números
 pseudo-aleatórios do algoritmo de geração de níveis, os \textit{layouts} dos
-níveis serão sempre os mesmos -- definidos pelas sementes. Este modo é ótimo
-para testar o \textit{bot} em mapas normais do jogo, mas para ser bem sucedido,
-a inteligência artificial deve estar muito preparada. Para escolher o modo de
-execução (e outros parâmetros relacionados, como número de execuções e tempo
-limite por nível), o usuário deve modificar o arquivo de \textit{script}
+níveis serão sempre os mesmos. Este modo é ótimo para testar o \textit{bot} em
+mapas normais do jogo, mas para ser bem sucedido, a inteligência artificial deve
+estar muito preparada. Para escolher o modo de execução (e outros parâmetros
+relacionados, como nome dos mapas, valores de sementes, número de execuções e
+tempo limite por nível), o usuário deve modificar o arquivo de \textit{script}
 \textit{LevelParameters}.
 
 
@@ -251,6 +253,7 @@ jogador.}
 \label{fig:spelunkbots-fow}
 \end{figure}
 
+\todo[inline]{Dar crédito da foto (SpelunkBots)}
 
 \subsection{Enviando Comandos para o \textit{Bot}}
 Outra parte crucial da ferramenta é o envio de comandos para o \textit{bot}
