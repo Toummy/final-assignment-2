@@ -13,10 +13,10 @@ várias etapas.  Primeiro, compilamos as bibliotecas que utilizamos. Em seguida,
 compilamos o código dos \textit{bots} e geramos a \textit{DLL}. Por fim,
 movemos a \textit{DLL} para o local onde o \textit{SpelunkBots} será executado.
 
-Este processo possui vários passos, e sempre é necessário que todos os passos
-sejam executados para desenvolvermos os \textit{bots}. De forma a automatizar
-esse processo, criamos um \textit{script} -- utilizando \textit{shell script}
--- responsável pelo processo de compilação e movimentação de arquivos.
+É necessário executar com sucesso todas as etapas de compilação para viabilizar
+o desenvolvvimento dos \textit{bots}. De forma a automatizar esse processo,
+criamos um \textit{script} -- utilizando \textit{shell script} -- responsável
+pelo processo de compilação e movimentação de arquivos.
 
 \subsection{Pular Cena Inicial do Jogo}
 
@@ -31,15 +31,20 @@ escolhido, fazendo sua execução imediatamante.
 
 \subsection{Parar a Execução Quando o \textit{Bot} Está Ocioso}
 
-Caso algum \textit{bot} fique parado por muito tempo, é um indício de que ele
-esteja em um estado não promissor, gastando tempo de execução. Dessa forma, é
-necessário que tenhamos uma forma de parar a execução do \textit{bot} caso o
-mesmo fique ocioso por um tempo determinado.
+Caso algum \textit{bot} fique parado por muito tempo, ou fique explorando uma
+mesma posição muitas vezes, temos um indício de que ele esteja em um estado não
+promissor, gastando tempo de execução. Logo, é necessário que tenhamos uma
+forma de parar a execução do \textit{bot} nesses casos.
 
-Com isso, implementamos uma verificação de ociosidade. Caso o \textit{bot}
-fique ocioso por um número determinado de segundos, zeramos o número de pontos
-de vida dele, fazendo com que o \textit{bot} perca uma vida e passe a executar
-novamente.
+Com isso, implementamos uma verificação de ociosidade. A cada ciclo de execução
+do jogo, verificamos se o \textit{bot} está parado, incrementando um contador
+de tempo caso esteja. Zeramos esse contador caso ele se movimente. Após,
+incrementamos o contador que indica o número de vezes que o \textit{bot}
+visitou a posição em que está. Caso ele esteja parado por um determinado número
+de segundos ou tenha visitado o mesmo estado por um determinado número de
+vezes, sabemos que esse é um estado não promissor. Então, zeramos o número de
+pontos de vida dele, fazendo com que o \textit{bot} perca uma vida e passe a
+executar novamente.
 
 \subsection{Arquivo de Inicialização}
 
@@ -59,9 +64,29 @@ fazendo com que o jogo utilize valores dinâmicos para os parâmetros, sendo
 possível então testar novas configurações e alterar a execução do jogo sem
 a necessidade de abrirmos o \textit{Game Maker}. Tal arquivo tem um formato
 bastante simples, onde cada elemento tem um nome que o identifica e um
-valor associado. Cada elemento pode estar em uma categoria, para facilitar
-a organização e o uso. O algoritmo ~\ref{alg:ini-file} exemplifica um
-arquivo de inicialização agrupado por categorias:
+valor associado, podendo estar em uma categoria.
+
+O algoritmo ~\ref{alg:ini-file} apresenta esse arquivo de inicialização. Foram
+utilizadas quatro categorias de valores. \textit{\textbf{[Bot]}} representa as
+informações sobre o \textit{bot} escolhido na execução. A entrada
+\textit{bot\_is\_cpp}, quando com o valor \textbf{1}, indica que se trata de um
+\textit{bot} que foi escrito em \textit{C++}, já a entrada
+\textit{bot\_cpp\_num} idica qual \textit{bot} será executado.  A categoria
+\textit{\textbf{[Test]}} informa dados relativos ao teste que será realizado. O
+tipo de mapa é informado pela entrada \textit{test\_type}. O parâmetro
+\textit{test\_rank} indica ao \textit{SpelunkBots} como classificar a execução
+dos \textit{bots}. Podemos controlar o número \textbf{máximo} de execuções pelo
+valor de \textit{test\_num}. Também é possível limitar o tempo de vida de um
+\textit{bot} pelo parâmetro \textit{test\_time}, que é indicado em segundos.
+Podemos especificar os níveis que serão utilizados pelas entradas da categoria
+\textit{\textbf{[Levels]}}. Primeiro, indicamos a quantidade de níveis pelo
+valor de \textit{level\_num}. Após, para cada nível, indicamos o seu nome em
+uma propriedade específica. No caso do primeiro, usamos a propriedade
+\textit{level0}, para o segundo, \textit{level1}, e assim para todos eles.  Por
+fim, temos a categoria \textit{\textbf{[FAMW]}}, que parametriza a exibição de
+informações de depuração durante a execução do jogo.  O valor de
+\textit{vision\_debug} indica se deverá ser exibida na tela uma janela da visão
+do \textit{bot}, com o tamanho informado por \textit{vision\_size}.
 
 \begin{algorithm}[H]
 \lstinputlisting[style=customC++]{code/spelunkbots.ini}
