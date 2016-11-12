@@ -148,6 +148,8 @@ escolhido, fazendo sua execução imediatamante.
 
 \subsection{Parar a Execução Quando o \textit{Bot} Está Ocioso}
 
+\todo{Detalhar melhor as condições para parar a execução.}
+
 Caso algum \textit{bot} fique parado por muito tempo, ou fique explorando uma
 mesma posição muitas vezes, temos um indício de que ele esteja em um estado não
 promissor, gastando tempo de execução. Logo, é necessário que tenhamos uma
@@ -211,7 +213,7 @@ do \textit{bot}, com o tamanho informado por \textit{vision\_size}.
 {\label{alg:ini-file}Arquivo de inicialização de exemplo.}
 \end{algorithm}
 
-\subsection{Execução Sem Interface Gráfica}
+\subsection{Execução com Display Virtual}
 
 O servidor \textit{Linux} que utilizamos para a execução não possui nenhuma
 interface gráfica, além disso, não existe uma forma de executar o
@@ -236,6 +238,7 @@ do jogo.
         \item Rede neural inicial
             \item Ferramenta para geração da rede inicial
         \item Parâmetros do NEAT
+        \item Armazenamento dos resultados obtidos
     \end{itemize}
 }
 
