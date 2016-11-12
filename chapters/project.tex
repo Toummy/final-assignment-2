@@ -1,5 +1,39 @@
 \chapter{\label{chap:project}Projeto}
 
+\todoin[caption={Melhorias para o capítulo}]
+{
+	\begin{itemize}
+		\item O Problema
+		\begin{itemize}
+			\item Complexidade computacional de jogos
+			\item Spelunky não é um platformer tradicional
+			\begin{itemize}
+				\item Níveis gerados proceduralmente (saída em lugares diferentes)
+				\item Navegação horizontal e vertical
+				\item Terreno destrutível
+			\end{itemize}
+			\item Domínio com diversos problemas a serem tratados
+				\begin{itemize}
+					\item Navegação
+					\item Combate
+					\item Planejamento e Estratégias
+				\end{itemize}
+		\end{itemize}
+
+		\item Objetivos
+		\begin{itemize}
+			\item Detalhar qual problema queremos explorar
+			\item Utilizar técnica NEAT para desenvolver os bots
+			\item Treinar e testar os bots em cenários de testes pré-determinados
+			\item Analisar os resultados obtidos
+			\item Comparar com implementações existentes de bots para Spelunky
+			\item Falar sobre porque não vamos utilizar Behavior Trees mais
+		\end{itemize}
+
+
+
+	\end{itemize}
+}
 
 %----------
 \section{\label{section:problem}O Problema}
@@ -88,47 +122,45 @@ cópia do projeto \textit{SpelunkBots}, hospedada no \textit{website} de
 versionamento de código
 \textit{GitHub}\footnote{https://github.com/GET-TUDA-CHOPPA/SpelunkBots}. O
 \textit{framework} conta com o código modificado do \textit{Spelunky} e uma
-distribuição do \textit{GameMaker Pro 8.0}, utilizada para compilar e executar o
-jogo.
+distribuição do \textit{GameMaker Pro 8.0}, utilizada para compilar e gerar o
+arquivo executável do jogo.
 
 Conforme detalhado na seção \ref{section:spelunkbots}, o \textit{SpelunkBots}
 disponibiliza duas opções de linguagem de programação para realizar o
 desenvolvimento dos \textit{bots}: \textit{GML} ou C++. Portanto, a próxima
 etapa do projeto é definir a linguagem de programação que vamos utilizar. Para
 este projeto, escolhemos a linguagem de programação \textbf{C++}, tendo em vista
-que o desenvolvimento utilizando a linguagem \textit{GML} é limitado. Além
-disso, C++ é uma linguagem amadurecida e possui diversas bibliotecas que implementam
-\textit{NEAT}\footnote{http://nn.cs.utexas.edu/?neat-c} e \textit{Behavior
-Trees}\footnote{https://github.com/aigamedev/bts}. O uso dessas bibliotecas
-salva tempo de desenvolvimento e permite que o foco do trabalho seja somente nos
-\textit{bots}, e não na arquitetura necessária.
-\todo[inline]{Remover citações de Behavior Trees}
+que o desenvolvimento utilizando a linguagem \textit{GML} é extremamente
+limitado. Além disso, é possível encontrar na Internet algumas bibliotecas em
+C++ que implementam a técnica
+\textit{NEAT}\footnote{http://nn.cs.utexas.edu/?neat-c}. O uso de uma biblioteca
+salva tempo de desenvolvimento e permite que o foco do trabalho seja somente no
+desenvolvimento dos \textit{bots}, e não na arquitetura necessária para tal.
 
 Sabendo que a técnica \textit{NEAT} requer que o \textit{bot} receba treinamento
 através de diversas simulações do jogo, optamos pelo uso de um servidor
-dedicado, pois este processo pode ser demorado e executar o processo de
-treinamento em uma máquina doméstica -- que está muito mais sujeita a ser
-desligada acidentalmente ou intencionalmente -- é arriscado. O servidor em
-questão utiliza um sistema operacional baseado em \textit{Linux}.  Contudo,
-\textit{Spelunky} foi desenvolvido utilizando uma versão muito antiga do
-\textit{GameMaker}, que só pode ser executada no sistema operacional
-\textit{Windows}, e o \textit{SpelunkBots} utiliza um projeto em \textit{Visual
-Studio} para realizar a compilação do código externo dos \textit{bots}. Como
-nosso servidor é baseado em \textit{Linux}, é necessário realizar algumas
-adaptações no processo de compilação. Assim, utilizaremos o \textit{software}
-\textit{Wine}\footnote{https://winehq.org}, que nos permitirá executar programas
-da plataforma \textit{Windows} dentro do sistema operacional \textit{Linux}, e o
-\textit{software} \textit{MinGW}\footnote{http://www.mingw.org}, que realizará a
-compilação do código C++ e a geração da \textit{DLL}.
+dedicado, pois este processo pode ser demorado e realizá-lo em uma máquina
+doméstica -- que está muito mais sujeita a ser desligada acidentalmente ou
+intencionalmente -- seria arriscado. O servidor em questão utiliza um sistema
+operacional baseado em \textit{Linux}.  Contudo, \textit{Spelunky} foi
+desenvolvido utilizando uma versão muito antiga do \textit{GameMaker} e a
+compilação do código externo do \textit{SpelunkBots} ocorre através de um
+projeto em \textit{Visual Studio}.  Estas ferramentas só podem ser executadas no
+sistema operacional \textit{Windows}. Como nosso servidor é baseado em
+\textit{Linux}, é necessário realizar algumas adaptações no processo de
+compilação e execução. Assim, utilizaremos os \textit{softwares}
+\textit{MinGW}\footnote{http://www.mingw.org} e
+\textit{Wine}\footnote{https://winehq.org}, que nos permitirão, respectivamente,
+compilar o código C++ e gerar a \textit{DLL} e executar programas da plataforma
+\textit{Windows} dentro do sistema operacional \textit{Linux}.
 
-O próximo passo é escolher as bibliotecas de inteligência artificial das
-técnicas \textit{NEAT} e \textit{Behavior Trees} e integrá-las ao projeto do
-\textit{SpelunkBots}, para que estejam incluídas na solução \textit{DLL}. Ao
-concluir este passo, as configurações necessárias de projeto estarão
-finalizadas, e daremos início ao desenvolvimento dos \textit{bots}. O diagrama
-\ref{fig:project-diagram} ilustra a relação entre os elementos necessários para
-dar início ao desenvolvimento dos \textit{bots}.
-\todo[inline]{Remover citações de Behavior Trees}
+O próximo passo é escolher a biblioteca de inteligência artificial da técnica
+\textit{NEAT} e incluí-la no processo de compilação da \textit{DLL},
+integrando-a ao projeto \textit{SpelunkBots}. Ao concluir este passo, as
+configurações iniciais do projeto estarão finalizadas e daremos início ao
+processo de modelagem e desenvolvimento dos \textit{bots}. O diagrama
+\ref{fig:project-diagram} ilustra a relação entre os elementos de configuração
+do projeto.
 
 \begin{figure}[h]
 \centering
