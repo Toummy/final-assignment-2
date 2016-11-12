@@ -27,11 +27,14 @@
 			\item Treinar e testar os bots em cenários de testes pré-determinados
 			\item Analisar os resultados obtidos
 			\item Comparar com implementações existentes de bots para Spelunky
-			\item Falar sobre porque não vamos utilizar Behavior Trees mais
 		\end{itemize}
 
-
-
+		\item Técnicas de Inteligência Artificial Utilizadas
+		\begin{itemize}
+			\item Por que escolhemos NEAT
+			\item Falar sobre porque não vamos utilizar Behavior Trees mais
+			\item Comparar com outras implementações de bots para Spelunky
+		\end{itemize}
 	\end{itemize}
 }
 
@@ -114,121 +117,3 @@ de \textbf{base de referência} para medirmos a qualidade dos resultados obtidos
 entre uma técnica ''manual`` (\textit{Behavior Trees}) e uma técnica
 ''automatizada`` (\textit{NEAT}).
 
-
-%----------
-\section{\label{section:project-details}Detalhamento do Projeto}
-O primeiro passo para dar início ao desenvolvimento deste projeto é obter uma
-cópia do projeto \textit{SpelunkBots}, hospedada no \textit{website} de
-versionamento de código
-\textit{GitHub}\footnote{https://github.com/GET-TUDA-CHOPPA/SpelunkBots}. O
-\textit{framework} conta com o código modificado do \textit{Spelunky} e uma
-distribuição do \textit{GameMaker Pro 8.0}, utilizada para compilar e gerar o
-arquivo executável do jogo.
-
-Conforme detalhado na seção \ref{section:spelunkbots}, o \textit{SpelunkBots}
-disponibiliza duas opções de linguagem de programação para realizar o
-desenvolvimento dos \textit{bots}: \textit{GML} ou C++. Portanto, a próxima
-etapa do projeto é definir a linguagem de programação que vamos utilizar. Para
-este projeto, escolhemos a linguagem de programação \textbf{C++}, tendo em vista
-que o desenvolvimento utilizando a linguagem \textit{GML} é extremamente
-limitado. Além disso, é possível encontrar na Internet algumas bibliotecas em
-C++ que implementam a técnica
-\textit{NEAT}\footnote{http://nn.cs.utexas.edu/?neat-c}. O uso de uma biblioteca
-salva tempo de desenvolvimento e permite que o foco do trabalho seja somente no
-desenvolvimento dos \textit{bots}, e não na arquitetura necessária para tal.
-
-Sabendo que a técnica \textit{NEAT} requer que o \textit{bot} receba treinamento
-através de diversas simulações do jogo, optamos pelo uso de um servidor
-dedicado, pois este processo pode ser demorado e realizá-lo em uma máquina
-doméstica -- que está muito mais sujeita a ser desligada acidentalmente ou
-intencionalmente -- seria arriscado. O servidor em questão utiliza um sistema
-operacional baseado em \textit{Linux}.  Contudo, \textit{Spelunky} foi
-desenvolvido utilizando uma versão muito antiga do \textit{GameMaker} e a
-compilação do código externo do \textit{SpelunkBots} ocorre através de um
-projeto em \textit{Visual Studio}.  Estas ferramentas só podem ser executadas no
-sistema operacional \textit{Windows}. Como nosso servidor é baseado em
-\textit{Linux}, é necessário realizar algumas adaptações no processo de
-compilação e execução. Assim, utilizaremos os \textit{softwares}
-\textit{MinGW}\footnote{http://www.mingw.org} e
-\textit{Wine}\footnote{https://winehq.org}, que nos permitirão, respectivamente,
-compilar o código C++ e gerar a \textit{DLL} e executar programas da plataforma
-\textit{Windows} dentro do sistema operacional \textit{Linux}.
-
-O próximo passo é escolher a biblioteca de inteligência artificial da técnica
-\textit{NEAT} e incluí-la no processo de compilação da \textit{DLL},
-integrando-a ao projeto \textit{SpelunkBots}. Ao concluir este passo, as
-configurações iniciais do projeto estarão finalizadas e daremos início ao
-processo de modelagem e desenvolvimento dos \textit{bots}. O diagrama
-\ref{fig:project-diagram} ilustra a relação entre os elementos de configuração
-do projeto.
-
-\begin{figure}[h]
-\centering
-\begin{tikzpicture}
-    \tikzstyle{every node}=[font=\footnotesize, text centered]
-    \node (gmm) at (0, 0)  {Game Maker};
-    \node (spl) at (0, -2) {Spelunky};
-    \node[draw] (spb) at (0, -4) {SpelunkBots};
-
-    \node[text width=4cm] (conf) at (5, 0)  {Configurações \\(escolha do bot e parâmetros de nível)};
-    \node (comp) at (5, -4)  {Compilação (MinGW)};
-
-    \node[draw] (neat) at (11, 0) {Biblioteca NEAT};
-
-    \node (dll) at (11, -2) {Solução DLL};
-
-    \node[draw] (bots) at (11, -4) {Código dos \textit{bots}};
-
-    \node at (0, -6) (wine) {Emulação (WineHQ)};
-
-    \node at (5, -6) (linux) {Servidor Linux};
-
-    \node[draw, inner sep=.25cm, fit={(gmm) (spl) (spb)}] (g2) {};
-    \node[draw, fit={(spl) (spb)}] {};
-
-    \node[draw, fit={(dll) (bots)}] (g1) {};
-
-    \draw[->, >=latex] (neat.south) -- (g1.north);
-
-    \draw[->, >=latex] (g1.west) -- (comp.east);
-    \draw[->, >=latex] (comp.west) -- (spb.east);
-
-    \draw[->, >=latex, in=0, out=200] (conf.west) to (spb.east);
-
-    \draw[->, >=latex] (g2.south) -- (wine.north);
-    \draw[->, >=latex] (wine.east) -- (linux.west);
-\end{tikzpicture}
-\caption {Diagrama do projeto explicando a relação entre os componentes
-necessários para o desenvolvimento dos \textit{bots}.
-}
-\label{fig:project-diagram}
-\end{figure}
-
-\todo[inline]{Remover citações de Behavior Trees}
-
-O \textit{framework} \textit{SpelunkBots} provê uma interface comum para o
-desenvolvimento dos \textit{bots} em C++, chamada \textbf{\textit{IBot.h}}. Esta
-interface é responsável por expor os métodos e variáveis que os \textit{bots}
-utilizam para comunicar-se com o jogo. Portanto, qualquer código de \textit{bot}
-desenvolvido deverá partir desta interface. Analisando o arquivo \textit{IBot.h}
-é possível perceber que a interface obriga o desenvolvedor a implementar
-\textbf{pelo menos} o método \textbf{\textit{Update}}, chamado em todas as
-etapas de execução do \textit{bot} para receber informações e enviar comandos ao
-jogo. Existem dois outros métodos que podem ser úteis ao desenvolvedor, mas que
-não possuem obrigatoriedade de implementação: o \textbf{\textit{Reset}} e o
-\textbf{\textit{NewLevel}}. O método \textit{Reset} é chamado no início de todas
-as etapas de execução do \textit{bot} para reiniciar suas variáveis de controle.
-Este método possui uma implementação padrão que reinicia apenas as variáveis
-essenciais (esquerda, direita, pular e atacar). O método \textit{NewLevel} é
-chamado toda vez que o \textit{bot} entra em um novo nível, e pode ser usado
-para descartar informações do nível anterior sem que seja necessário reiniciar
-todas as variáveis do \textit{bot}. Em sua implementação padrão, não executa
-nada.
-
-Uma implementação mínima de um \textit{bot} utilizando a interface
-\textit{IBot.h} necessitaria, portanto, de dois arquivos: um arquivo
-\textit{header}, que conterá as declarações dos métodos e variáveis a serem
-utilizadas -- demonstrado no Algoritmo \ref{alg:project-example-bot-header} --,
-e um arquivo de implementação -- demonstrado no Algoritmo
-\ref{alg:project-example-bot-impl} --, que conterá a implementação das funções
-descritas no arquivo \textit{header}.
