@@ -599,12 +599,9 @@ permite encontrar genes similares em outras redes durante a recombinação).
 artificial no \textit{NEAT}. Existem três neurônios (nodos) de entrada, um
 escondido e um de saída, e sete conexões (uma recorrente). O segundo gene de
 conexão (entre os nodos 2 e 4) está desabilitado, então não é expressado no
-fenótipo.}
+fenótipo. Fonte: \cite{stanley:ec02}}
 \label{fig:neat-encoding-example}
 \end{figure}
-
-\todo[inline]{Dar crédito a foto (NEAT)}
-
 
 A mutação no \textit{NEAT} modifica os pesos das conexões e as estruturas das
 redes. Existe uma chance, a cada geração, de ocorrer uma perturbação nos genes
@@ -625,11 +622,9 @@ minimiza o impacto inicial da mutação, pois afeta muito pouco a função da re
 \centering
 \includegraphics[width=\textwidth]{fig/neat-mutation-examples.pdf}
 \caption{Exemplos das mutações estruturais (adição de conexões e neurônios) que
-podem ocorrer no \textit{NEAT}.}
+podem ocorrer no \textit{NEAT}. Fonte: \cite{stanley:ec02}}
 \label{fig:neat-structural-mutation}
 \end{figure}
-
-\todo[inline]{Dar crédito a foto (NEAT)}
 
 A execução de uma mutação no \textit{NEAT} possui diversas consequências. A
 primeira é que os genomas das soluções dos problemas do \textit{NEAT} vão
@@ -668,11 +663,9 @@ artificiais diferentes. Mesmo que os pais aparentem ser diferentes, seus número
 de inovações (mostrado no topo de cada gene) nos informam quais genes serão
 herdados. Os \textit{matching genes} são herdados aleatóriamente e os
 \textit{disjoint genes} e \textit{excess genes} são herdados do pai com maior
-aptidão.}
+aptidão. Fonte: \cite{stanley:ec02}}
 \label{fig:neat-innovation-matchup}
 \end{figure}
-
-\todo[inline]{Dar crédito a foto (NEAT)}
 
 Ao adicionar novos genes na população, o sistema é capaz de formar uma população
 de topologias diversas. Contudo, devido ao fato de que topologias menores são
