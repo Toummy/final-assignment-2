@@ -129,20 +129,42 @@ compilamos o código dos \textit{bots} e geramos a \textit{DLL}. Por fim,
 movemos a \textit{DLL} para o local onde o \textit{SpelunkBots} será executado.
 
 É necessário executar com sucesso todas as etapas de compilação para viabilizar
-o desenvolvvimento dos \textit{bots}. De forma a automatizar esse processo,
+o desenvolvimento dos \textit{bots}. De forma a automatizar esse processo,
 criamos um \textit{script} -- utilizando \textit{shell script} -- responsável
 pelo processo de compilação e movimentação de arquivos.
 
 \subsection{Pular Cena Inicial do Jogo}
 
-Originalmente, o \textit{SpelunkBots} conta com uma cena inicial, onde o
-jogador se desloca da superfície para dentro de uma caverna, dando início ao
-jogo. Essa cena é apenas uma forma de introdução ao jogo, não contribuíndo para
-a geração de resultados de execução.
+O \textit{Spelunky} conta com uma cena inicial, onde o jogador se desloca da
+superfície para dentro de uma caverna que permite que ele escolha entre fazer o
+tutorial do jogo, iniciar sua aventura ou ver as maiores pontuações. A figura
+\ref{fig:spelunky-introduction} apresenta a cena inicial, onde o jogador entra
+na caverna de escolha.
 
-De forma a acelerar a execução dos \textit{bots}, fizemos a remoção dessa cena
-inicial. Portanto, ao executar o jogo, o jogador é levado diretamente ao nível
-escolhido, fazendo sua execução imediatamante.
+\begin{figure}[H]
+\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{fig/spelunky-intro-screen.pdf}
+		\caption{Entrada para a caverna inicial.}
+		\label{fig:spelunky-intro-screen}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{fig/spelunky-initial-screen.pdf}
+		\caption{Caverna de escolha.}
+		\label{fig:spelunky-initial-screen}
+	\end{subfigure}
+
+    \caption{Cena de introdução do jogo, onde o jogador se desloca da
+    superfície para uma caverna com opções de escolha.}
+	\label{fig:spelunky-introduction}
+\end{figure}
+
+Essas cenas são apenas uma forma de introdução ao jogo, não contribuíndo para a
+geração de resultados de execução. Logo, não necessitamos delas. Nossos
+\textit{bots} devem ser levados diretamente até a opção de iniciar o jogo.
+Assim, utilizamos \textit{GameMaker} para remover essas cenas. Portanto, ao
+executar o jogo, o \textit{bot} é levado diretamente ao nível escolhido,
+executando imediatamante.
 
 \subsection{Parar a Execução Quando o \textit{Bot} Está Ocioso}
 
