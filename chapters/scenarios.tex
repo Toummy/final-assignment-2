@@ -25,11 +25,19 @@ convencionais, categorizados por seu nível de dificuldade.
 O nível \textbf{fácil} explora o deslocamento \textbf{horizontal}, em conjunto
 com a necessidade de \textit{saltar} sobre espinhos e blocos. A figura
 \ref{fig:level1} demonstra o nível fácil, onde o jogador parte da porta de
-entrada -- localizada na esquerda --, saltar sobre alguns blocos, pular sobre
-alguns espinhos e chegar até a porta de saída. Esse nível é interessante pois,
-além de explorar deslocamento e saltos, também conta com espinhos nas
+entrada -- localizada na esquerda --, devendo saltar sobre alguns blocos, pular
+sobre alguns espinhos e chegar até a porta de saída. Esse nível é interessante
+pois, além de explorar deslocamento e saltos, também conta com espinhos nas
 extremidades -- à esquerda da entrada e à direita da saída --, o que faz com
 que o jogador tenha que evitar entrar em contato com essas áreas.
+
+Como este é um nível pouco desafiador, estabelecemos como \textbf{critério de
+parada} para este nível duas condições:
+
+\begin{description}
+    \item [Número de execuções] no máximo \textbf{10000} execuções.
+    \item [Tempo máximo de execução] no máximo \textbf{10 segundos} executando.
+\end{description}
 
 \begin{figure}[H]
 \centering
@@ -53,12 +61,27 @@ esquerda até a saída que se encontra no canto direito e abaixo.
 \label{fig:level2}
 \end{figure}
 
+Para o nível médio, que conta com mais alguns desafios, estabelecemos os
+seguintes \textbf{critérios de parada}:
+
+\begin{description}
+    \item [Número de execuções] no máximo \textbf{10000} execuções.
+    \item [Tempo máximo de execução] no máximo \textbf{20 segundos} executando.
+\end{description}
 
 O nível \textbf{difícil} é um nível gerado aleatóriamente pelo jogo. Mesmo
 sendo um nível gerado, é possível -- conforme a seção
 \ref{section:spelunky-procgen-path} -- atravessar o nível sem a necessidade de
 usar bombas, cordas ou outros equipamentos, sendo esse o desafio mais
 interessante desse trabalho.
+
+Por ser o cenário mais desafiador, estabelecemos os seguintes \textbf{critérios
+de parada}:
+
+\begin{description}
+    \item [Número de execuções] no máximo \textbf{20000} execuções.
+    \item [Tempo máximo de execução] no máximo \textbf{60 segundos} executando.
+\end{description}
 
 \section{Cenários Específicos}
 
@@ -67,6 +90,14 @@ estão presentes em muitos níveis do jogo. Muitos deles requerem que alguns
 botões sejam combinados ou pressionados em alguma sequência específica. Visando
 explorar esses elementos, elaboramos alguns cenários para testes de situações
 específicas.
+
+Por serem cenários simplificados, elaboramos os seguintes \textbf{critérios de
+parada} para todos eles:
+
+\begin{description}
+    \item [Número de execuções] no máximo \textbf{10000} execuções.
+    \item [Tempo máximo de execução] no máximo \textbf{10 segundos} executando.
+\end{description}
 
 O cenário \textbf{extra 1}, exibido na figura \ref{fig:extra1}, conta com uma
 escada que liga a plataforma inferior do jogo à plataforma superior. Portanto,
