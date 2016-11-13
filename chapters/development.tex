@@ -146,22 +146,34 @@ escolhido, fazendo sua execução imediatamante.
 
 \subsection{Parar a Execução Quando o \textit{Bot} Está Ocioso}
 
-\todo{Detalhar melhor as condições para parar a execução.}
+É muito importante conseguirmos definir o momento em que algum \textit{bot}
+esteja em um estado não promissor -- gastanto tempo de execução --. Isso
+permite que descartemos essa execução, acelerando o processo de treinamento.
+Para isso, definimos dois critérios que nos permitem identificar o momento em
+que um \textit{bot} está ocioso:
 
-Caso algum \textit{bot} fique parado por muito tempo, ou fique explorando uma
-mesma posição muitas vezes, temos um indício de que ele esteja em um estado não
-promissor, gastando tempo de execução. Logo, é necessário que tenhamos uma
-forma de parar a execução do \textit{bot} nesses casos.
+\begin{description}
+    \item [Tempo parado] em alguns casos, o \textit{bot} pode escolher ficar
+        parado. Porém, caso ele fique parado por muito tempo, é muito provável
+        que esteja ocioso. Assim, quando identificamos que o \textit{bot} está
+        parado há mais de \textbf{3 segundos}, descartamos sua execução.
+    \item [Número de visitas à um mesmo local] caso o \textit{bot} passe pelo
+        mesmo local por mais de \textbf{10 vezes}, podemos identificar que ele
+        está repetindo suas ações e possivelmente nunca encontrará a porta de
+        saída.
+\end{description}
 
-Com isso, implementamos uma verificação de ociosidade. A cada ciclo de execução
+Com esses critérios de ociosidade, é necessário que tenhamos uma forma de parar
+a execução do \textit{bot} nos casos anteriormente descritos. Assim,
+implementamos uma \textbf{verificação de ociosidade}. A cada ciclo de execução
 do jogo, verificamos se o \textit{bot} está parado, incrementando um contador
 de tempo caso esteja. Zeramos esse contador caso ele se movimente. Após,
 incrementamos o contador que indica o número de vezes que o \textit{bot}
-visitou a posição em que está. Caso ele esteja parado por um determinado número
-de segundos ou tenha visitado o mesmo estado por um determinado número de
-vezes, sabemos que esse é um estado não promissor. Então, zeramos o número de
-pontos de vida dele, fazendo com que o \textit{bot} perca uma vida e passe a
-executar novamente.
+visitou a posição em que está. Caso ele esteja parado pelo determinado número
+de segundos ou tenha visitado o mesmo estado pelo determinado número de vezes,
+sabemos que esse é um estado não promissor. Então, zeramos o número de pontos
+de vida dele, fazendo com que o \textit{bot} perca uma vida e passe a executar
+novamente.
 
 \subsection{Arquivo de Inicialização}
 
