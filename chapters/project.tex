@@ -1,42 +1,5 @@
 \chapter{\label{chap:project}Projeto}
 
-\todoin[caption={Melhorias para o capítulo}]
-{
-	\begin{itemize}
-		\item O Problema
-		\begin{itemize}
-			\item Complexidade computacional de jogos
-			\item Spelunky não é um platformer tradicional
-			\begin{itemize}
-				\item Níveis gerados proceduralmente (saída em lugares diferentes)
-				\item Navegação horizontal e vertical
-				\item Terreno destrutível
-			\end{itemize}
-			\item Domínio com diversos problemas a serem tratados
-				\begin{itemize}
-					\item Navegação
-					\item Combate
-					\item Planejamento e Estratégias
-				\end{itemize}
-		\end{itemize}
-
-		\item Objetivos
-		\begin{itemize}
-			\item Detalhar qual problema queremos explorar
-			\item Utilizar técnica NEAT para desenvolver os bots
-			\item Treinar e testar os bots em cenários de testes pré-determinados
-			\item Analisar os resultados obtidos
-			\item Comparar com implementações existentes de bots para Spelunky
-		\end{itemize}
-
-		\item Técnicas de Inteligência Artificial Utilizadas
-		\begin{itemize}
-			\item Por que escolhemos NEAT
-			\item Falar sobre porque não vamos utilizar Behavior Trees mais
-			\item Comparar com outras implementações de bots para Spelunky
-		\end{itemize}
-	\end{itemize}
-}
 
 %----------
 \section{\label{section:problem}O Problema}
@@ -51,7 +14,7 @@ propuseram a definir a complexidade computacional de diversos jogos como, por
 exemplo, \cite{classic_nintendo_games_hard, playing_games_algorithms,
 computational_complexity_platformers}. Dadas as características e desafios
 presentes em \textit{Spelunky} -- as quais exploramos no Capítulo
-\ref{chap:spelunky}--, \cite{SPELUNKYHARD} concluiu que, computacionalmente
+\ref{chap:spelunky} --, \cite{SPELUNKYHARD} concluiu que, computacionalmente
 falando, o jogo pode ser visto como um problema, no melhor dos casos,
 pertencente ao conjunto \textit{NP-Hard}.
 
@@ -77,11 +40,11 @@ Sem dúvida alguma, existem diversos domínios de problema (área específica de
 desafio) em \textit{Spelunky} a serem tratados como, por exemplo, navegação,
 combate, planejamento de estratégias, entre outros. Tendo em vista a quantidade
 de características dificultadoras exploradas anteriormente, torna-se
-interessante, pois, selecionar e trabalhar com apenas um ou um número reduzido
-de domínios. Assim, selecionamos o \textbf{domínio de navegação} como foco deste
-trabalho, já que é um problema central de \textit{Spelunky}, dado que seu gênero
-de jogo possui, em sua essência, a navegação como forma de obtenção de
-progresso.
+interessante, pois, selecionar e trabalhar com apenas um domínio, ou então pelo
+menos um número reduzido de domínios. Assim, selecionamos o \textbf{domínio de
+navegação} como foco deste trabalho, já que é um problema central de
+\textit{Spelunky}, dado que seu gênero de jogo possui, em sua essência, a
+navegação como forma de obtenção de progresso.
 
 Como vimos anteriormente, durante a apresentação do algoritmo de geração de
 mapas (Seção \ref{section:spelunky-procgen} do Capítulo \ref{chap:spelunky}),
@@ -136,7 +99,7 @@ estudo comparativo dos resultados obtidos com cada técnica. Enquanto que a
 técnica \textit{NEAT} possui uma característica mais autônoma e cria
 comportamentos através de melhorias constantes, as \textit{Behavior Trees}
 permitiriam um ajuste refinado do comportamento dos agentes, pois todas as ações
-que o agente pode executar devem ser descritas anteriormente. A ideia seria,
+que o agente pode executar devem ser descritas previamente. A ideia seria,
 então, comparar o processo de criação e os resultados obtidos entre uma técnica
 ``automática'' e uma ``manual''.
 
