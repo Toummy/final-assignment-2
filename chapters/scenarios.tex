@@ -1,17 +1,11 @@
 \chapter{\label{chap:scenarios}Cenários para Execução}
 
-\todoin[caption={Melhorias nos cenários para execução}] {
-    Para cada um dos cenários, adicionar o \textbf{critério de parada
-    escolhido}.
-}
-
-\textit{Spelunky} é um jogo cheio de desafios para seus jogadores, sendo
-possível realizar muitas ações do início ao fim de um nível. Através do
-capítulo \ref{chap:spelunky}, podemos ter mais detalhes de muitos cenários
-interessantes para este trabalho. Com isso, escolhemos alguns desafios que
-julgamos interessantes para um agente inteligente que seja capaz de jogar
-\textit{Spelunky}, explorando alguns cenários que serão encontrados em muitos
-dos níveis do jogo.
+\textit{Spelunky} é um jogo cheio de desafios para seus jogadores, é possível
+realizar muitas ações do início ao fim de um nível. Através do capítulo
+\ref{chap:spelunky}, temos mais detalhes de muitos cenários interessantes para
+este trabalho. Com isso, escolhemos alguns desafios que julgamos interessantes
+para um agente inteligente que joga \textit{Spelunky}, explorando alguns
+cenários encontrados em muitos dos níveis do jogo.
 
 \section{Cenários Convencionais}
 
@@ -23,16 +17,16 @@ saída. Visando explorar esse deslocamento, elaboramos alguns cenários
 convencionais, categorizados por seu nível de dificuldade.
 
 O nível \textbf{fácil} explora o deslocamento \textbf{horizontal}, em conjunto
-com a necessidade de \textit{saltar} sobre espinhos e blocos. A figura
+com a necessidade de \textbf{saltar} sobre espinhos e blocos. A figura
 \ref{fig:level1} demonstra o nível fácil, onde o jogador parte da porta de
-entrada -- localizada na esquerda --, devendo saltar sobre alguns blocos, pular
-sobre alguns espinhos e chegar até a porta de saída. Esse nível é interessante
-pois, além de explorar deslocamento e saltos, também conta com espinhos nas
-extremidades -- à esquerda da entrada e à direita da saída --, o que faz com
-que o jogador tenha que evitar entrar em contato com essas áreas.
+entrada -- localizada na esquerda --, saltando sobre alguns blocos, pulando
+sobre alguns espinhos e chegando até a porta de saída. Esse nível é
+interessante pois, além de explorar deslocamento e saltos, também conta com
+espinhos nas extremidades -- à esquerda da entrada e à direita da saída --, o
+que faz com que o jogador tenha que evitar entrar em contato com essas áreas.
 
 Como este é um nível pouco desafiador, estabelecemos como \textbf{critério de
-parada} para este nível duas condições:
+parada} as seguintes condições:
 
 \begin{description}
     \item [Número de execuções] no máximo \textbf{10000} execuções.
@@ -47,11 +41,11 @@ parada} para este nível duas condições:
 \end{figure}
 
 O nível \textbf{médio}, além de explorar os elementos do nível \textit{fácil},
-também requer que o jogador se desloque \textbf{verticalmente}. Esse nível é
-mais difícil que o \textit{fácil} pois o jogador precisa \textbf{mudar de
+também requer que o jogador desloque-se \textbf{verticalmente}. Esse nível é
+mais difícil que o \textit{fácil}, pois o jogador precisa \textbf{mudar de
 direção} duas vezes. A figura \ref{fig:level2} mostra o nível médio, onde o
-jogador deve se deslocar da entrada localizada na plataforma mais acima e à
-esquerda até a saída que se encontra no canto direito e abaixo.
+jogador deve partir da entrada localizada na plataforma mais acima e à
+esquerda e chegar até a saída que se encontra no canto direito e abaixo.
 
 \begin{figure}[H]
 \centering
@@ -70,10 +64,10 @@ seguintes \textbf{critérios de parada}:
 \end{description}
 
 O nível \textbf{difícil} é um nível gerado aleatóriamente pelo jogo. Mesmo
-sendo um nível gerado, é possível -- conforme a seção
-\ref{section:spelunky-procgen-path} -- atravessar o nível sem a necessidade de
-usar bombas, cordas ou outros equipamentos, sendo esse o desafio mais
-interessante desse trabalho.
+sendo gerado, é possível -- conforme a seção
+\ref{section:spelunky-procgen-path} -- atravessá-lo sem a necessidade de usar
+bombas, cordas ou outros equipamentos. Esse o desafio mais interessante desse
+trabalho.
 
 Por ser o cenário mais desafiador, estabelecemos os seguintes \textbf{critérios
 de parada}:
@@ -131,7 +125,7 @@ jogador se desloque mais rápido pelo nível. Além disso, quando o jogador corr
 é possível que este tenha uma impulsão maior no momento de saltar, podendo
 passar por um número maior de obstáculos. De forma a explorar a corrida do
 jogador, o nível \textbf{extra 3} -- representado na figura \ref{fig:extra3} --
-só pode ser vencido se o jogador pular os espinhos enquanto estiver correndo.
+só pode ser vencido caso o jogador pule os espinhos enquanto estiver correndo.
 
 \begin{figure}[H]
 \centering
