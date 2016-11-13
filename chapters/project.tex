@@ -40,80 +40,110 @@
 
 %----------
 \section{\label{section:problem}O Problema}
-A prática de estabelecer a complexidade computacional de jogos -- sejam jogos de
-carta, jogos de tabuleiro ou jogos digitais -- ajuda a compreender  porque
-humanos consideram interessantes os desafios impostos por estes jogos, além de
-indicar para pesquisadores da área os desafios propostos vistos de uma
-perspectiva de tarefa de otimização.  Dados os desafios presentes em Spelunky
-concluiu-se que, computacionalmente falando, trata-se de um problema, no melhor
-dos casos, do conjunto \textit{NP-Hard}\cite{SPELUNKYHARD}. O jogo apresenta uma
-série de características -- abordadas em detalhe no capítulo \ref{chap:spelunky}
-que influenciam fortemente na dificuldade imposta pelo jogo.
+Muitos dos jogos de carta, jogos de tabuleiro e jogos digitais são interessantes
+por causa da dificuldade que apresentam para os jogadores, pois normalmente isto
+está diretamente relacionado a inteligência necessária para jogá-los
+eficientemente.  Estabelecer a complexidade computacional destes jogos auxilia
+na identificação de quais são as características de um jogo que o tornam mais ou
+menos difícil em relação aos outros. Esta prática é muito comum no meio
+científico e a comprovação disso é a vasta quantidade de trabalhos que já se
+propuseram a definir a complexidade computacional de diversos jogos como, por
+exemplo, \cite{classic_nintendo_games_hard, playing_games_algorithms,
+computational_complexity_platformers}. Dadas as características e desafios
+presentes em \textit{Spelunky} -- as quais exploramos no Capítulo
+\ref{chap:spelunky}--, \cite{SPELUNKYHARD} concluiu que, computacionalmente
+falando, o jogo pode ser visto como um problema, no melhor dos casos,
+pertencente ao conjunto \textit{NP-Hard}.
 
-Os níveis trazem grandes dificuldades aos jogadores. Em primeiro lugar, o
-ambiente em Spelunky é \textbf{contínuo}, \textbf{parcialmente observável},
-\textbf{dinâmico}, \textbf{estocástico} e \textbf{sequencial}. Em segundo
-lugar, os níveis são gerados proceduralmente, impossibilitanto a memorização do
-mapa.  Contudo, o algoritmo utilizado para gerar os níveis garante que existe
-pelo menos um caminho transponível do início ao fim -- mesmo que com inimigos e
-armadilhas no caminho --, sem que seja necessário o uso de bombas ou cordas
-para ajudar na desobstrução do caminho e deslocamento. Sabe-se, também, que o
-personagem sempre entra em um nível pela parte superior do mapa, e que a saída
-sempre está localizada na parte inferior do mapa. Por fim, cada área em
-\textit{Spelunky} possui diferentes características, como tipo de terreno e
-monstros diferentes.
+Contudo, esta classificação não é a única coisa que o discerne de um jogo
+tradicional do gênero como, por exemplo, \textit{Super Mario Bros.}, pois
+\textit{Spelunky} não é um \textit{platformer} convencional. Primeiramente,
+apesar de a classificação do ambiente de \textit{Spelunky} ser equivalente a
+maioria dos jogos de seu gênero (contínuo, parcialmente observável, dinâmico,
+estocástico e sequencial), os níveis são gerados proceduralmente,
+impossibilitando a memorização do mapa. Em segundo lugar, praticamente todo o
+terreno dos mapas de \textit{Spelunky} é destrutível, o que significa que, a
+qualquer momento (dada a presença dos recursos necessários), o jogador tem a
+capacidade de abrir buracos para pular partes do mapa, descobrir áreas secretas,
+entre outros. Por fim, a movimentação característica da maioria dos
+\textit{platformers} é horizontal com pequenos desvios verticais (através de
+pulos ou plataformas móveis) e o progresso nos níveis geralmente ocorre através
+do deslocamento de uma ponta do mapa até a outra (da esquerda para a direita,
+por exemplo). Em \textit{Spelunky}, a movimentação não é predominantemente
+horizontal e, para obter progresso no nível, o jogador deve navegar tanto
+horizontalmente quanto verticalmente.
 
-Em \textit{Spelunky}, os pontos de vida são o recurso mais importante do
-jogador, pois quando esgotados, encerra-se a partida. Existem diversos tipos de
-inimigos, armadilhas e perigos naturais cujo único objetivo é impedir o
-progresso do jogador.  Somado a isto, depois de 150 segundos em um nível, o
-jogador será perseguido incansávelmente por um fantasma que o elimina com apenas
-um toque, o que impõe um ''limite`` de tempo que o jogador pode permanecer em um
-nível.
+Sem dúvida alguma, existem diversos domínios de problema (área específica de
+desafio) em \textit{Spelunky} a serem tratados como, por exemplo, navegação,
+combate, planejamento de estratégias, entre outros. Tendo em vista a quantidade
+de características dificultadoras exploradas anteriormente, torna-se
+interessante, pois, selecionar e trabalhar com apenas um ou um número reduzido
+de domínios. Assim, selecionamos o \textbf{domínio de navegação} como foco deste
+trabalho, já que é um problema central de \textit{Spelunky}, dado que seu gênero
+de jogo possui, em sua essência, a navegação como forma de obtenção de
+progresso.
 
-O jogo permite que o jogador execute um grande número de ações -- e combinações
-de ações -- a cada etapa de atualização do jogo. Algumas delas são influenciadas
-por itens equipados ou o estado atual do jogador (no ar, pendurado, etc.), o que
-significa que a inteligência artificial desenvolvida deve estar preparada pra
-lidar com uma gama gigantesca de possibilidades, pois se não houver cautela, a
-execução de uma ação pode gerar resultados inesperados.
+Como vimos anteriormente, durante a apresentação do algoritmo de geração de
+mapas (Seção \ref{section:spelunky-procgen} do Capítulo \ref{chap:spelunky}),
+apesar de \textit{Spelunky} gerar os mapas de maneira pseudo-aleatória, o jogo
+oferece uma garantia de que existe pelo menos um caminho transponível do início
+ao fim -- mesmo que com inimigos e armadilhas no caminho --, sem que seja
+necessário fazer uso de bombas ou cordas para ajudar na desobstrução do caminho
+e deslocamento. Sabe-se, também, que o personagem sempre entra em um nível pela
+parte superior do mapa, e que a saída sempre está localizada na parte inferior
+do mapa. É possível, portanto, navegar pelos mapas utilizando apenas a
+movimentação do personagem, mesmo que isto não corresponda a maneira mais rápida
+ou eficiente.
 
 
 %----------
 \section{\label{section:objectives}Objetivos}
-\todo[inline]{Atualizar objetivos para exploracao de mapa}
-Com os desafios e dificuldades apresentados na seção \ref{section:problem}, o
-\textbf{objetivo principal} deste trabalho é desenvolver \textit{bots} para o
-jogo \textit{Spelunky} que terão como meta se deslocarem do início ao fim de
-todos os quatro níveis da área das Minas. Depois da construção dos agentes
-inteligentes, coletaremos dados de suas execuções em alguns níveis para realizar
-uma análise e comparação aprofundada entre os resultados obtidos por cada
-técnica.
+Após delinear os problemas presentes em \textit{Spelunky} na seção
+\ref{section:problem}, definimos que o \textbf{objetivo principal} deste
+trabalho será desenvolver agentes inteligentes para o jogo \textit{Spelunky} que
+terão como meta tratar o domínio de navegação do jogo, se deslocando do início
+ao fim de mapas pré-determinados. Depois da elaboração dos agentes, coletaremos
+dados de suas execuções em cenários de testes nos mapas escolhidos para realizar
+uma análise quantitativa dos resultados obtidos e comparar nossa solução com
+outros trabalhos que se propuseram a tratar o mesmo domínio do jogo.
 
 
 %----------
 \section{\label{section:techniques}Técnicas de Inteligência Artificial
 Utilizadas}
-\todo[inline]{Adequar para a saida de Behavior Trees}
-Para implementar os \textit{bots} de \textit{Spelunky}, optamos por utilizar as
-técnicas \textbf{\textit{NEAT}} e \textbf{\textit{Behavior Trees}}. A
-neuroevolução é um modelo de aprendizado de máquina muito utilizado atualmente
-para criar agentes jogadores de jogos digitais \cite{DBLP:journals/corr/RisiT14}
-e, como vimos no capítulo \ref{chap:related-work}, os resultados obtidos até
-agora com este tipo de técnica são muito satisfatórios, muitas vezes superando
-as habilidades de jogadores humanos \cite{NeuroEvolutionAtari}. Com isto em
-mente, a técnica \textit{NEAT} foi uma escolha natural para este trabalho.
+Para implementar os \textit{agentes inteligentes} jogadores de
+\textit{Spelunky}, optamos por utilizar a técnica \textbf{\textit{NEAT}},
+detalhada no Capítulo \ref{chap:theory}. A neuroevolução é um modelo de
+aprendizado de máquina muito utilizado atualmente para criar agentes jogadores
+de jogos digitais\cite{DBLP:journals/corr/RisiT14} e, como vimos no Capítulo
+\ref{chap:related-work}, os resultados obtidos até agora com este tipo de
+técnica são muito satisfatórios, muitas vezes superando as habilidades de
+jogadores humanos\cite{NeuroEvolutionAtari}. Com isto em mente, a técnica
+\textit{NEAT} foi uma escolha natural para este trabalho.
 
-As \textit{Behavior Trees} são muito utilizadas para ajudar na criação de
-comportamentos inteligentes para agentes em jogos digitais. Normalmente, esta
-técnica não é utilizada para construir agentes jogadores de jogos, mas nada
-impede que o formalismo atue neste escopo também. As técnicas de criação de
-agentes inteligentes baseadas em aprendizado de máquina são muito poderosas, mas
-ao mesmo tempo podem ser vistas como uma ''caixa preta``, pois muitas vezes é
-difícil de compreender exatamente o que o agente está pensando e aprendendo.
-Optamos por utilizar \textit{Behavior Trees} pois esta técnica permite um ajuste
-refinado do comportamento de agentes inteligentes. Assim, esta técnica servirá
-de \textbf{base de referência} para medirmos a qualidade dos resultados obtidos
-entre uma técnica ''manual`` (\textit{Behavior Trees}) e uma técnica
-''automatizada`` (\textit{NEAT}).
+As \textbf{\textit{Behavior Trees}} são frequentemente empregadas para ajudar na
+criação de comportamentos inteligentes para agentes em jogos digitais.
+Normalmente, esta técnica não é adotada para construir agentes jogadores de
+jogos, mas nada impede que o formalismo atue neste escopo também. As técnicas de
+criação de agentes inteligentes baseadas em aprendizado de máquina são muito
+poderosas, mas ao mesmo tempo podem ser vistas como uma ``caixa preta'', pois
+muitas vezes é difícil de compreender exatamente o que o agente está pensando e
+aprendendo.
 
+Inicialmente, o objetivo deste trabalho era criar agentes inteligentes
+utilizando as técnicas \textit{NEAT} e \textit{Behavior Trees} e realizar um
+estudo comparativo dos resultados obtidos com cada técnica. Enquanto que a
+técnica \textit{NEAT} possui uma característica mais autônoma e cria
+comportamentos através de melhorias constantes, as \textit{Behavior Trees}
+permitiriam um ajuste refinado do comportamento dos agentes, pois todas as ações
+que o agente pode executar devem ser descritas anteriormente. A ideia seria,
+então, comparar o processo de criação e os resultados obtidos entre uma técnica
+``automática'' e uma ``manual''.
+
+Contudo, durante o desenvolvimento deste trabalho, percebemos que existe um
+universo gigantesco de possibilidades e experimentos que poderíamos realizar ao
+desenvolver os agentes com a técnica \textit{NEAT}. Desta forma, decidimos
+redirecionar o foco do trabalho e ocuparmo-nos com a implementação e
+experimentação de apenas uma técnica. Para suprir a falta de mecanismo
+comparativo, buscamos outras implementações de agentes inteligentes para
+\textit{Spelunky} para mensurar nossos resultados.
