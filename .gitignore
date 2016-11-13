@@ -39,7 +39,8 @@
 *.tdo
 img/*eps-converted-to.pdf
 pdf/
-#*.pdf
+*.pdf
+!fig/*.pdf
 *.loa
 *.los
 
