@@ -6,7 +6,37 @@ implicações}
 
 \section{\label{section:environment}Ambiente de Execução}
 
-\todoin[caption={Ambiente}]{Detalhes das máquinas, script de instalação}
+O capítulo \ref{chap:development} explica que faremos a execução do jogo em um
+ambiente dedicado, utilizando o sistema operacional \textit{Linux}. Para isso,
+utilizamos a plataforma \textit{Digital
+Ocean}\footnote{https://www.digitalocean.com/}, que facilita a criação de uma
+máquina para uso nesse trabalho. Além disso, essa plataforma permite alterar as
+configurações -- quantidade de memória, número de processadores e quantidade de
+armazenamento -- das máquina a qualquer momento, o que nos permitiu testar
+diferentes configurações para o nosso problema.
+
+Conforme explicado na seção \ref{sub:virtual-display}, fazemos o uso do
+\textit{XVFB} para permitir a execução do jogo em um \textit{display} virtual.
+Isso faz com que seja necessário ter uma quantidade razoável de memória na
+máquina, fazendo com que esse seja o recurso mais importante para nós. Embora
+façamos a gravação de algumas informações em disco, trata-se apenas de arquivos
+de texto, que não ocupam uma grande quantidade de espaço. Tendo isso em
+consideração, optamos por utilizar \textbf{2} máquinas, com as configurações
+exibidas a seguir:
+
+\begin{description}
+    \item [Sistema Operacional] Ubuntu 16.04 - 64 \textit{bits}
+    \item [Número de Processadores] 2
+    \item [Modelo do Processador] Intel(R) Xeon(R) CPU E5-2630L v2 @ 2.40GHz
+    \item [Quantidade de Memória] 2GB
+    \item [Tipo de Disco] SSD
+    \item [Quantidade de Disco] 40GB
+\end{description}
+
+Para automatizar o processo de configuração dessas máquinas, fizemos um
+\textit{script} de instalação\footnote{https://github.com/famw/provisioning} de
+todas as dependências para executar o projeto. Isso permite que seja fácil
+configurar uma nova máquina capaz de executar o jogo.
 
 \section{\label{section:results}Resultados}
 
