@@ -280,3 +280,39 @@ do jogo.
     \end{itemize}
 }
 
+\section{\label{section:analytics}Análise dos Dados}
+
+As execuções do jogo geram uma série de informações -- tais como o valor de
+aptidão e a informação se um organismo foi vencedor ou não -- que são úteis
+para podermos fazer uma análise do desempenho dos \textit{bots}. Elas permitem,
+dentre outras coisas, gerar gráficos que comparam a execução com diferentes
+configurações, identificando, por exemplo, se um \textit{bot} foi mais
+eficiente que outro.
+
+Contudo, essas informações ficam guardadas em um arquivo de texto não tratado,
+ou seja, não é possível utilizar a saída gerada diretamente em algum
+\textit{software} que permite a análise desses dados. O algoritmo
+\ref{alg:neat-output-example} exemplifica esse arquivo de texto.
+
+\begin{algorithm}[H]
+\lstinputlisting[style=customC++]{code/gen_example.pop}
+\caption[Exemplo de arquivo de execução de um \textit{bot}.]
+{\label{alg:neat-output-example}Exemplo de arquivo de execução de um
+    \textit{bot}.}
+\end{algorithm}
+
+Logo, o próximo passo para analisar os dados foi escolher \textbf{o que
+queremos analisar}. Decidimos que o mais interessantes é analisarmos o
+\textbf{número de organismos vencedores ao longo das gerações} e o
+\textbf{valor da função de aptidão ao longo das gerações}. Em seguida,
+escolhemos a ferramenta que utilizamos. Como as nossas comparações são
+representadas por um valor -- ou o número de vencedores, ou um valor de aptidão
+-- em função de um número gerações, utilizamos uma \textbf{representação
+gráfica} que permite analisar esses valores. Portanto, escolhemos o
+\textit{gnuplot}\footnote{http://gnuplot.sourceforge.net/} para essa tarefa.
+Por fim, escolhemos as ferramentas
+\textit{sed}\footnote{https://www.gnu.org/software/sed/} e
+\textit{awk}\footnote{https://www.gnu.org/software/gawk/} em conjunto com
+\textit{scripts}\footnote{https://github.com/famw/analytics} feitos em
+\textit{bash}\footnote{https://www.gnu.org/software/bash/bash.html} para
+extraír os dados e gerá-los em um formato interpretável pelo \textit{gnuplot}.
