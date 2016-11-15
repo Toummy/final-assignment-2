@@ -3,30 +3,29 @@
 \todoin[caption={Experimentos Realizados}, color=cyan!60] {
     Experimentos:
 
-    \begin{itemize}
-        \item Outputs
+	\begin{itemize}
+        \item Inputs: visão, bias
+        \item Outputs:
         \begin{itemize}
             \item convencionais: MOVIMENTACAO, PULO
             \item especificos: MOVIMENTACAO, PULO, EXTRA (depende do cenario)
         \end{itemize}
-        \item Inputs: visao, bias
-        \item Experimento \#1: diferentes valores de fitness. Mapas: \textbf{easy}.
+		\item Experimento \#1:fitness: AM, WAM, HM. Mapas: \textbf{easy}.
         \item Checkpoint: definir a fitness.
-        \item Experimento \#2: tamanho da janela de visão. Mapas: \textbf{medium}.
+		\item Experimento \#2: janela de visão: 5x5, 7x7. Mapas: \textbf{medium}.
         \item Checkpoint: definir o tamanho da janela de visão.
         \item Experimento \#3: configurações de mutação. Mapas: \textbf{medium}.
-        \item Checkpoint: definir configurações do NEAT.
-        \item Experimento \#4: executar os cenários convencionais \textbf{ao
-            menos uma vez}. IMPORTANTE: com o mesmo tamanho de janela, a mesma
-            configuração do NEAT e a mesma função de fitness.
-        \item Checkpoint: Conseguimos passar do \textit{fácil}, mas não do
-            \textit{médio} (local ótimo para o \textit{bot}).
-        \item Experimento \#5: fitness exploratória.
+        \item Checkpoint: definir configurações de mutação do NEAT.
+		\item Não vai funcionar a fitness (local ótimo).
+		\item Experimento \#4: fitness exploratória.
         \item Checkpoint: fitness exploratória não funcionou.
-        \item Experimento \#6: fitness com A*.
-        \item Experimento \#7: experimentos nos cenários específicos.
+		\item Experimento \#5: fitness com A*.
+		\item Checkpoint: selecionar nova fitness (caso ocorra melhoria)
+		\item Experimento \#6: rodar mapa hard com as configurações definidas
+        \item Experimento \#7: experimentos nos cenários especificos.
     \end{itemize}
-}
+	
+    }
 
 \todoin[caption={Detalhes}]{Introdução desse capítulo}
 \todoin[caption={Gráficos}]{Incluír gráficos, explicar resultados e
