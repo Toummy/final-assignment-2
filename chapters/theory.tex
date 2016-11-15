@@ -126,7 +126,7 @@ essenciais:
 \end{itemize}
 
 Estes fatores levam diretamente a definição de um \textbf{agente racional} dada
-por Russell \& Norvig\cite{RussellNorvig200912}:
+por Russell \& Norvig \cite{RussellNorvig200912}:
 
 \begin{directcite}
 	Para cada sequência de percepções possível, um \textbf{agente racional} deve
@@ -824,13 +824,13 @@ em \textit{TWEANNs} e sistemas de neuroevolução de topologia fixa.
 A construção de bons agentes inteligentes depende fortemente da capacidade que
 os agentes têm de tomar boas decisões de comportamento. No contexto de jogos
 digitais, a partir da década de 90, a qualidade da inteligência artificial
-passou a ser um diferencial no momento de compra de um jogo\cite[Cap.
+passou a ser um diferencial no momento de compra de um jogo \cite[Cap.
 1]{Millington:2009:AIG:1795711}, aumentando a importância da escolha de uma
 técnica apropriada para desenvolver os agentes inteligentes.Das técnicas mais
 populares, a \textbf{\textit{Behavior Tree}}, ou Árvore de Comportamento, é uma
 das técnicas que mais se destaca, devido a sua \textbf{simplicidade} e
-\textbf{extensibilidade}\cite[Cap.  4]{Rabin:2013:GAP:2566761}, e já foi
-utilizada na indústria em jogos como \textit{Halo 2}\cite[Cap.
+\textbf{extensibilidade} \cite[Cap.  4]{Rabin:2013:GAP:2566761}, e já foi
+utilizada na indústria em jogos como \textit{Halo 2} \cite[Cap.
 5]{Millington:2009:AIG:1795711} e
 \textit{Spore}\footnote{http://chrishecker.com/My\_liner\_notes\_for\_spore},
 por exemplo.
@@ -840,7 +840,7 @@ um nodo \textbf{raíz} (geralmente utilizada para controlar o fluxo inicial de
 execução) e vários nodos filhos que representam os \textbf{comportamentos}. Cada
 comportamento deve possuir uma \textbf{pré-condição} e uma \textbf{ação}. Caso a
 pré-condição seja satisfeita, o agente poderá executar o comportamento descrito
-pela ação do nodo\cite[Cap. 4]{Rabin:2013:GAP:2566761}. Isto faz com que o
+pela ação do nodo \cite[Cap. 4]{Rabin:2013:GAP:2566761}. Isto faz com que o
 algoritmo de execução seja simples: partimos do nodo raíz em busca do primeiro
 filho que satisfaça sua pré-condição (geralmente da esquerda para a direita). Ao
 encontrá-lo, executamos sua ação. É importante ressaltar que somente um
@@ -851,7 +851,7 @@ mesma execução do algoritmo.
 É possível adicionar estruturas de \textbf{controle de fluxo} a uma
 \textit{Behavior Tree}. Desta forma, os ramos da árvore passam a ser usados para
 controlar o fluxo de execução, enquanto os nodos-folha representam as
-pré-condições e ações\cite[Cap. 10]{Rabin:2015:GAP:2821138}. Quando uma ação de
+pré-condições e ações \cite[Cap. 10]{Rabin:2015:GAP:2821138}. Quando uma ação de
 um nodo-folha é executado, ele informa ao seu pai (controlador de fluxo) o
 estado de sua execução -- sucesso, falha ou em andamento. Existem diversos
 tipos de estruturas de controle de fluxo que são utilizadas em \textit{Behavior
