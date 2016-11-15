@@ -21,7 +21,8 @@ ambientes encontrados é vasta, mas é possível identificar dimensões (ou
 características) de classificação para realizar uma categorização destes
 ambientes. Estas características irão determinar que tipos de agentes --
 enumerados na seção \ref{section:agents} -- são apropriados para cada ambiente.
-As dimensões utilizadas para categorizar ambientes são:
+Para \cite{RussellNorvig200912}, as dimensões utilizadas para categorizar
+ambiente são:
 
 \begin{description}
 	\item[Observável, Parcialmente Observável ou Não-Observável]
@@ -52,6 +53,13 @@ As dimensões utilizadas para categorizar ambientes são:
 		influenciar todas as decisões futuras, ou seja, ações a curto prazo
 		podem ter consequências a longo prazo.
 
+	\item[Estático ou Dinâmico]
+		Quando o estado de um ambiente pode sofrer modificações enquanto um
+		agente está deliberando, então dizemos que este ambiente é dinâmico.
+		Caso contrário, é estático. Se o ambiente não se modifica com o passar
+		do tempo mas a medida de desempenho do agente diminui, o ambiente é
+		considerado semi-dinâmico.
+
 	\item[Discreto ou Contínuo]
 		Ambientes discretos são aqueles onde se tem um número contável de ações
 		e percepções possíveis. Em ambientes contínuos, o número de ações e de
@@ -68,19 +76,116 @@ As dimensões utilizadas para categorizar ambientes são:
 		objetivos.
 \end{description}
 
+Um exemplo de ambiente é uma partida de \textit{poker}. O jogador sabe quais
+cartas possui em sua mão, mas não sabe quais as cartas dos demais jogadores
+(parcialmente observável, multi-agente); é impossível dizer, de antemão, qual
+será o resultado de uma ação do jogador (estocástico); O resultado de cada
+rodada do jogo influencia nas decisões futuras do jogador (sequencial); o jogo
+não avança enquanto o jogador não fizer sua jogada (estático); existe um número
+finito de ações em uma partida do jogo (discreto).
+
 
 %----------
 \section{\label{section:agents}Agentes Racionais}
-Um agente é uma entidade que utiliza seus \textbf{sensores} para perceber o
-ambiente no qual está inserido e interage através de seus \textbf{atuadores},
-direcionando seus esforços para alcançar algum objetivo que se propõe a atingir
-\cite[cap. 2]{RussellNorvig200912}. Um exemplo de agente racional é o ser
-humano, que percebe o ambiente através de seus sentidos (visão, audição, entre
-outros) e executa ações com seu corpo (braços, pernas, etc.). De acordo com
-Russell \& Norvig \cite{RussellNorvig200912}, agentes racionais são agrupados
-nas seguintes categorias: \textbf{agentes reflexivos}, \textbf{agentes baseados
-em modelo}, \textbf{agentes baseados em objetivos} e \textbf{agentes baseados em
-utilidade}.
+De acordo com \cite{RussellNorvig200912}, um \textbf{agente} é uma entidade que
+utiliza seus \textbf{sensores} para perceber o ambiente no qual está inserido e
+interage com o ambiente através de \textbf{atuadores}. A Figura \ref{fig:agent}
+ilustra a arquitetura básica de um agente. Um ser humano é um exemplo de agente,
+pois percebe o ambiente através de seus sentidos (visão, audição, etc.) e
+executa ações com seu corpo (braços, pernas, entre outros). A \textbf{sequência
+de percepções} de um agente representa a história completa de tudo aquilo que
+ele já percebeu. De modo geral, a escolha de ação de um agente, em qualquer
+instante de execução, pode depender de toda a sequência de percepções observada
+até o momento, mas não daquilo que o agente nunca percebeu.
+
+\todo[inline]{Figura sobre agentes (AIMA, 2.1)}
+
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=\textwidth]{example-image}}
+%	\caption{Fluxo de interação entre os componentes de um agente.}
+%	\label{fig:agent-interaction}
+%\end{figure}
+
+Quando uma agente é inserido em um ambiente, ele inicia seu fluxo de exeução,
+gerando uma sequência de ações condizentes com suas percepções e conhecimento
+interno. Esta sequência de ações executadas modifica o ambiente, fazendo-o
+passar por uma sequência de estados. Se esta sequência for desejável, é possível
+dizer que o agente teve um bom desempenho. Esta noção de desejabilidade é
+capturada por uma \textbf{medida de desempenho}, cujo papel é avaliar a
+sequência de estados do ambiente.
+
+O conceito de \textbf{racionalidade} em agentes está ligado a quatro fatores
+essenciais:
+
+\begin{itemize}
+	\item A medida de desempenho, que define os critérios de sucesso;
+	\item O conhecimento prévio que o agente possui sobre o ambiente;
+	\item As ações que o agente pode executar,
+	\item A sequência de percepções do agente até o momento.
+\end{itemize}
+
+Estes fatores levam diretamente a definição de um \textbf{agente racional} dada
+por Russell \& Norvig\cite{RussellNorvig200912}:
+
+\begin{directcite}
+	Para cada sequência de percepções possível, um \textbf{agente racional} deve
+	selecionar uma ação que é esperada para maximizar sua medida de performance,
+	dadas as evidências providas por sua sequência de percepções e qualquer
+	conhecimento embutido que o agente possui.
+\end{directcite}
+
+É importante ressaltar que o conceito de agente racional não está ligado
+diretamente ao conceito de onisciência, pois a racionalidade não deve ser
+encarada como perfeição. A escolha racional depende somente doa sequência de
+percepções \textit{até o momento}. Justamente por este motivo, muitas vezes é
+necessário que o agente racional realize ações para modificar percepções futuras
+(coleta de informações) e aprenda o máximo que puder (através de percepções)
+sobre o ambiente e o resultado de suas ações.
+
+Outro conceito crucial para agentes racionais é o de \textbf{autonomia}. Quando
+um agente depende totalmente do conhecimento prévio provido por seu criador ao
+invés do conhecimento gerado através de suas próprias percepções, o agente não é
+considerado como autônomo. Para ser considerado autônomo, um agente deve ser
+capaz de aprender o que deve fazer para compensar um conhecimento incorreto ou
+parcial. 
+
+\subsection{Tipos de Agente}
+O comportamento de um agente pode ser descrito através de uma abstração
+matemática chamada de \textbf{função de agente} (equação
+\ref{eq:agent-function}), cujo papel é mapear uma sequência de percepções para
+uma ação:
+
+\begin{equation}
+	\label{eq:agent-function}
+	f : P^* \rightarrow A
+\end{equation}
+
+Um \textbf{programa de agente}, por sua vez, é responsável por implementar a
+função de agente. Geralmente, um programa de agente recebe como entrada suas
+percepções e retorna uma ação para seus atuadores. Existe uma diferença sutil
+entre uma função de agente e um programa de agente: enquanto o primeiro recebe
+uma sequência de percepções, o segundo recebe apenas suas percepções atuais. Um
+programa de agente só recebe a percepção atual porque esta é a única informação
+disponível no ambiente, portanto caso as ações do agente dependam de percepções
+passadas, o programa deve armazená-las.
+
+Implementar uma função de agente dentro de um programa de agente é considerado
+como (quase sempre) inviável, pois isso requer a criação de uma tabela que
+mapeie todas as combinações possíveis de sequências de percepção com a ação mais
+adequada a ser executada. O tamanho astronômico destas tabelas implica em quatro
+problemas: nenhum agente é capaz de armazená-las, o criador não tem tempo
+suficiente para construí-las, nenhum agente seria capaz de aprender todas as
+entradas da tabela através de experiência e, por fim, mesmo que o ambiente seja
+simples e, consequentemente, a tabela possua um tamanho moderado, o criador não
+possui nenhuma instrução sobre como preencher estas tabelas.
+
+Portanto, o desafio real é criar programas de agente que, na medida do possível,
+produzam comportamentos considerados racionais através de um programa de tamanho
+reduzido (ao invés de uma tabela). Para \cite{RussellNorvig200912}, programas de
+agentes -- e, portanto, agentes racionais -- são divididos nas seguintes
+categorias: \textbf{agentes reflexivos}, \textbf{agentes baseados em modelo},
+\textbf{agentes baseados em objetivos} e \textbf{agentes baseados em utilidade}.
 
 Os \textbf{agentes reflexivos} são programados para executar ações baseadas em
 algum evento percebido. Fica evidente que este tipo de agente simplesmente
@@ -93,23 +198,23 @@ estado atual. Este tipo de agente compreende como suas ações modificam o
 ambiente onde está inserido e como o ambiente se altera independentemente de
 suas ações, efetivamente construíndo um \textbf{modelo} do ambiente. 
 
-As vezes, ter conhecimento sobre o estado atual do ambiente não é suficiente
-para decidir que ação executar. O agente precisa de alguma informação de que
-situações são desejáveis, ou que objetivos desejar cumprir. Este é o caso de
-\textbf{agentes baseados em objetivo}, que combinam um modelo do ambiente com
-informações de objetivo para escolher as ações que mais o aproximam dos estados
-desejáveis. A escolha de ações baseada em objetivos pode ser simples -- quando,
-por exemplo, o objetivo é antigido com a execução de apenas uma ação -- ou
-complexo -- quando, por exemplo, o agente deve considerar longas cadeias de
-ações para atingir seus objetivos.
+Ter conhecimento sobre o estado atual do ambiente pode não ser suficiente para
+decidir que ação executar. Às vezes, o agente precisa de alguma informação
+externa de que situações são desejáveis ou que objetivos deve cumprir. Este é o
+caso de \textbf{agentes baseados em objetivo}, que combinam um modelo do
+ambiente com informações de objetivo para escolher as ações que mais o aproximam
+dos estados desejáveis. A escolha de ações baseada em objetivos pode ser simples
+(objetivo é antingido com a execução de apenas uma ação) ou complexa (o agente
+deve considerar longas cadeias de ações para atingir seus objetivos).
 
-Em alguns casos, os objetivos não são suficientes para gerar comportamentos de
-alta qualidade. Por exemplo, muitas vezes é possível atingir um objetivo através
-de várias sequências de ações, mas algumas sequências são mais rápidas, mais
-seguras, mais confiáveis ou mais baratas. Os \textbf{agentes baseados em
-utilidade} fazem uso de uma função de utilidade para medir sua performance e,
-assim, distinguir estados mais desejáveis e menos desejáveis. O agente, então, é
-capaz de escolher as ações mais vantajosas para ele, aumentando sua performance.
+Em alguns casos, informar objetivos não é suficiente para gerar comportamentos
+de alta qualidade. Por exemplo, muitas vezes é possível atingir um objetivo
+através de mais de uma sequência de ações, mas algumas sequências são mais
+rápidas, mais seguras, mais confiáveis ou mais baratas. Os \textbf{agentes
+baseados em utilidade} fazem uso de uma função de utilidade para medir seu
+desempenho e, assim, identificar quais são os estados mais e menos desejáveis. O
+agente, então, é capaz de escolher as ações mais vantajosas para ele, aumentando
+sua performance.
 
 
 %----------
