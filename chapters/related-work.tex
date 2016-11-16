@@ -133,6 +133,75 @@ digitais sem mudanças de parâmetros).
 
 
 %----------
+\section{Creating Artificial Intelligence Agents for \textit{Spelunky} using an
+Artificial Neural Network and a Genetic Algorithm}
+Este trabalho \cite{spelunky_ann_genetic} apresenta o desenvolvimento de uma
+inteligência artificial para o jogo \textit{Spelunky}, através da utilização de
+redes neurais e algoritmos genéticos, cujo objetivo era navegar da entrada até a
+saída de cenários de testes estipulados. Para tal, o autor utilizou o
+\textit{framework} de Inteligência Artificial \textit{SpelunkBots}.
+
+A rede neural utilizada era uma simples rede de retroalimentação
+(\textit{feed-forward}) de topologia fixa com as seguintes características:
+
+\begin{itemize}
+	\item \textbf{Entrada:} A rede possuía 4 nodos de entrada: distância do
+		jogador até o objetivo, altura do objetivo em relação ao jogador,
+		direção do objetivo em relação ao jogador e a existência de obstáculos
+		no caminho do jogador.
+
+	
+	\item \textbf{Camadas Escondidas:} Duas camadas escondidas, com 4 nodos
+		cada.
+
+	\item \textbf{Saídas:} 4 nodos de saída, cada um mapeado para uma
+		característica de um nodo de entrada. Por exemplo, um nodo de saída para
+		distância do jogador até o objetivo.
+
+	\item \textbf{Conexões:} Os nodos de uma camada eram conectados
+		todos-para-todos com os nodos da camada seguinte.
+
+	\item \textbf{Pesos:} Os pesos das conexões apresentavam valores entre -1 e
+		1.
+
+	\item \textbf{Função de Ativação:} A função de ativação utilizada era do
+		tipo sigmóide, mais especificamente uma modificação da função
+		\textit{tanh}: $((e^{x} - e^{-x})/2) / ((e^{x} + e^{-x})/2)$. Esta função
+		normaliza os valores, restringindo-os entre -1 e 1.
+\end{itemize}
+
+O algoritmo genético escolhido pelo autor era o de \textit{tournament
+selection}, que ordena a população de organismos por aptidão e, depois, realiza
+mutações e cruzamentos através de probabilidades (60\% de chance de mutação,
+30\% de chance de cruzamento). A função de aptidão escolhida para mensurar a
+qualidade dos agentes era baseada na distância do agente até a saída e o tempo
+necessário para completar o nível. Os valores de distância variavam de 1 a 100 e
+os de tempo de 0 a 1 (normalização entre o tempo necessário e o tempo máximo de
+teste). Quanto mais próximo da saída, mais alta a pontuação e quanto menos
+tempo, menos a penalização. Caso o agente atingisse o fim do mapa, ele receberia
+a pontuação máxima de distância.
+
+Para se comunicar com o jogo, utilizou o \textit{SpelunkBots}. Assim, recebia os
+valores necessários para suas entradas da rede e enviava os comandos de acordo
+com as saídas da rede. Com o objetivo de testar a eficácia das técnicas
+escolhidas, o autor desenvolveu 10 cenários de teste, executou os agentes em
+cada um deles e coletou resultados destas execuções para análise. É importante
+ressaltar que os cenários escolhidos pelo autor eram extremamente simples e não
+correspondem com um mapa gerado proceduralmente pelo jogo.
+
+Apesar de ser capaz de gerar agentes aptos a chegar ao fim de todos os níveis,
+muitas vezes os agentes criados nos mapas mais avançados não eram capazes de
+vencer os mapas mais simples. O autor relata, em suas considerações finais que a
+habilidade do algoritmo genético escolhido de selecionar agentes adequados para
+mutação e reprodução era limitada (a média de aptidão da população ficava sempre
+próxima de 30\% do valor máximo). O autor crê que não era possível identificar
+se esta característica era um ponto negativo ou não porque deve existir um
+\textit{trade-off} entre modificar agentes, pois modificando muito correria o
+risco de perder características boas e modificando pouco poderia ficar com baixa
+diversidade genética. 
+
+
+%----------
 \section{MarI/O}
 Em junho de 2015, o canal do \textit{YouTube}
 SethBling\footnote{https://www.youtube.com/user/sethbling/about} -- conhecido
