@@ -83,15 +83,19 @@ configurar uma nova máquina capaz de executar o jogo.
 
 \subsection{Escolha da Função de Aptidão}
 
-A função de aptidão é o que determina a \textbf{qualidade} da execução de um
-agente inteligente que utiliza algoritmos genéticos. Portanto, é de extrema
-relevância experimentarmos diferentes valores de aptidão para descobrirmos qual
-o que se encaixa melhor no nosso problema.
+\todoin[caption={Citar capítulo de modelagem}] {
+    Citar capítulo de modelagem.
+}
 
-Assim, fizemos a execução do \textit{bot} no cenário \textit{fácil} (figura
+Conforme vimos no capítulo XYZ. A função de aptidão é o que determina a
+\textbf{qualidade} da execução de um agente inteligente que utiliza algoritmos
+genéticos. Portanto, é de extrema relevância experimentarmos diferentes valores
+de aptidão para descobrirmos qual o que se encaixa melhor no nosso problema.
+
+Assim, fizemos a execução do \textit{bot} no cenário \textbf{fácil} (Figura
 \ref{fig:level1}, Capítulo \ref{chap:scenarios}) com três diferentes funções de
-aptidão: \textit{média aritmética}, \textit{média aritmética ponderada},
-\textit{média harmônica}. Obtivemos os resultados apresentados na figura
+aptidão: \textbf{média aritmética}, \textbf{média aritmética ponderada} e
+\textbf{média harmônica}. Obtivemos os resultados apresentados na figura
 \ref{fig:fitness-experiment}.
 
 \begin{figure}[H]
@@ -113,12 +117,15 @@ aptidão: \textit{média aritmética}, \textit{média aritmética ponderada},
 	\label{fig:fitness-experiment}
 \end{figure}
 
-Através dos resultados, podemos ver que a \textit{média harmônica} e a
-\textit{média aritmética ponderada} têm um comportamento muito semelhante, além
-de serem melhores do que a função de \textit{média aritmética}. Porém, para
-termos um maior controle sobre os valores que desejamos atribuír para o
-deslocamento vertical e horizontal, decidimos então utilizar a função de
-\textit{média aritmética ponderada}.
+Através da análise dos resultados, podemos ver que a \textbf{média harmônica} e
+a \textbf{média aritmética ponderada} têm um comportamento muito semelhante,
+além de serem melhores do que a função de \textbf{média aritmética}. Escolhemos
+então a \textbf{média aritmética ponderada} por ser uma função que nos dá
+bastante controle sobre os valores que a compõem. Não escolhemos a média
+harmônica pois ela tem a característica de produzir valores muito baixos quando
+algum dos seus termos apresenta um valor pequeno, ou seja, esse valor acaba
+penalizando os outros. Isso pode fazer com que algumas aptidões apresentem
+valores muito baixos, podendo dificultar alguns treinamentos futuros.
 
 \subsection{Adição de \textit{Input} de Obstáculo}
 
