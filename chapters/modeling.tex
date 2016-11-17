@@ -115,6 +115,33 @@ empírica. Portanto, durante o treinamento dos agentes, realizaremos um
 experimento para testar alguns tamanhos de janela de visão.
 \todo[inline]{Colocar referência da seção aqui}
 
+
+%----------
+\section{\label{section:modelling-outputs}Ações do Agente}
+A ferramenta \textit{SpelunkBots} permite que o agente envie comandos de ação
+para o personagem (detalhado na Seção \ref{section:spelunkbots-commands}). Para
+tal, o agente deve modificar uma série de variáveis que estão mapeadas para os
+botões de ação. Em \textit{Spelunky}, o jogador é capaz de executar um grande
+número de ações -- e combinações de ações -- a cada etapa de atualização do
+jogo. Algumas delas são influenciadas por itens equipados ou o estado atual do
+jogador (no ar, pendurado, etc.), o que significa que o agente deve estar
+preparado para lidar com uma gama gigantesca de possibilidades de ações.
+
+Considerar todas as ações disponíveis não é uma boa ideia por dois motivos.
+Primeiramente, muitas destas ações não são necessárias para navegar pelo mapa, e
+algumas podem inclusive, irônicamente, dificultar a navegação, como colocar
+bombas ou cordas, pois criariam mais problemas do que resolveriam (rotas
+adicionais, lidar com pontos de vida, etc.). Por fim, como mencionamos na seção
+\ref{section:modelling-vision}, devido às limitações do \textit{SpelunkBots}, o
+tamanho da rede neural pode influenciar na performance dos bots. Portanto, é
+interessante eliminar a possibilidade de execução de todas as ações que não
+trarão benefício para a navegação.
+
+Assim, limitamos as ações que os agentes podem executar a \textbf{Movimentação}
+(Esquerda e Direita) e \textbf{Pulo}. Caso algum dos cenários de teste
+desenvolvidos requira ações adicionais, incluiremos conforme necessidade. Desta
+forma, manteremos um controle ainda maior sobre cada caso de teste.
+
 \todoin[caption={Modelagem}] {
 
 \begin{itemize}
