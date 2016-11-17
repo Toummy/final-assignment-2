@@ -81,7 +81,44 @@ configurar uma nova máquina capaz de executar o jogo.
 
 \section{\label{section:experiments}Experimentos Realizados}
 
-\subsection{Escolha da Função de Fitness}
+\subsection{Escolha da Função de Aptidão}
+
+A função de aptidão é o que determina a \textbf{qualidade} da execução de um
+agente inteligente. Ela é um dos pontos mais importantes ao usarmos algoritmos
+genéticos. Portanto, é de extrema relevância experimentarmos diferentes valores
+de aptidão para descobrirmos qual o que se encaixa melhor no nosso problema.
+
+Assim, fizemos a execução do \textit{bot} no cenário \textit{fácil} (figura
+\ref{fig:level1}, Capítulo \ref{chap:scenarios}) com três diferentes funções de
+aptidão: \textit{média aritmética}, \textit{média aritmética ponderada},
+\textit{média harmônica}. Obtivemos os resultados apresentados na figura
+\ref{fig:fitness-experiment}.
+
+\begin{figure}[H]
+\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+        \missingfigure{Figura}
+        \caption{Valor de aptidão em função do número de gerações para as
+        diferentes funções de aptidão escolhidas.}
+		\label{fig:tbd1}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.4\textwidth}
+        \missingfigure{Figura}
+        \caption{Número de organismos vencedores por geração para as diferentes
+        funções de aptidão escolhidas.}
+		\label{fig:tbd1}
+	\end{subfigure}
+
+    \caption{TBD}
+	\label{fig:fitness-experiment}
+\end{figure}
+
+Através dos resultados, podemos ver que a \textit{média harmônica} e a
+\textit{média aritmética ponderada} têm um comportamento muito semelhante, além
+de serem melhores do que a função de \textit{média aritmética}. Porém, para
+termos um maior controle sobre os valores que desejamos atribuír para o
+deslocamento vertical e horizontal, decidimos então utilizar a função de
+\textit{média aritmética ponderada}.
 
 \subsection{Adição de \textit{Input} de Obstáculo}
 
