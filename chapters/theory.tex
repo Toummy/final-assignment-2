@@ -98,14 +98,42 @@ ele já percebeu. De modo geral, a escolha de ação de um agente, em qualquer
 instante de execução, pode depender de toda a sequência de percepções observada
 até o momento, mas não daquilo que o agente nunca percebeu.
 
-\todo[inline]{Figura sobre agentes (AIMA, 2.1)}
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+    \matrix[row sep=.5cm, column sep=1.5cm] (m) {
+        \node (sen) {Sensores};                  &
+        \node[font=\footnotesize,
+              rotate=-36,
+              yshift=-1.3cm]{Percepções};        &
+        \node (env1) {};                         &
+        \\
+        \node[draw, inner sep=.5cm] (?) {?};     &
+                                                 &
+        \node (env) [rotate=-90]{Ambiente};      &
+        \\
+        \node (acs) {Atuadores};                 &
+        \node[font=\footnotesize,
+              rotate=36,
+              yshift=1.3cm] (act) {Ações};       &
+        \node (env2) {};                         &
+        \\
+    };
 
-%\begin{figure}[h]
-%	\centering
-%	\includegraphics[width=\textwidth]{example-image}}
-%	\caption{Fluxo de interação entre os componentes de um agente.}
-%	\label{fig:agent-interaction}
-%\end{figure}
+    \node[draw, inner sep=.5cm, fit={(sen) (acs)}] (agent) {};
+    \node[draw, inner sep=.5cm, fit={(env1) (env) (env2)}] (envf) {};
+
+    \node[above right, font=\footnotesize] at (agent.north west) {Agente};
+
+    \draw[->,>=latex] (acs.east) -- (envf.200);
+    \draw[->,>=latex] (envf.160) -- (sen.east);
+
+    \draw[->,>=latex] (sen.south) -- (?.north);
+    \draw[->,>=latex] (?.south) -- (acs.north);
+\end{tikzpicture}
+\caption{Fluxo de interação entre os componentes de um agente.}
+\label{fig:agent-interaction}
+\end{figure}
 
 Quando uma agente é inserido em um ambiente, ele inicia seu fluxo de exeução,
 gerando uma sequência de ações condizentes com suas percepções e conhecimento
