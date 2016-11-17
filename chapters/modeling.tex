@@ -1,4 +1,119 @@
 \chapter{\label{chap:modeling}Modelagem}
+O objetivo deste capítulo é, com base na fundamentação teórica apresentada no
+Capítulo \ref{chap:theory} e em uma série de limitações impostas pelo
+\textit{framework} \textit{SpelunkBots} (detalhadas na seção
+\ref{section:spelunkbots-limitations}), indicar nossas escolhas de modelagem
+para desenvolver os agentes inteligentes jogadores de \textit{Spelunky}.
+
+\todo[inline]{Listar conteúdo das seções}
+
+
+%----------
+\section{\label{section:spelunkbots-limitations}Limitações do
+\textit{SpelunkBots}}
+Uma das partes centrais de nosso trabalho é o uso do \textit{framework}
+\textit{SpelunkBots} para realizar a comunicação dos agentes inteligentes com o
+jogo \textit{Spelunky}. Contudo, esta ferramenta possui algumas limitações
+importantes de serem ressaltadas, pois elas afetam diretamente umas as outras e
+causam um impacto significativo de performance de execução:
+
+\begin{description}
+	\item[Aceleração de Execução]
+		Apesar de a ferramenta disponibilizar um mecanismo para permitir a
+		aceleração da execução do jogo (através dos botões \textit{PageUp} e
+		\textit{PageDown}), este efeito não pôde ser verificado quando
+		realizamos alguns testes iniciais na ferramenta.
+
+	\item[Contagem de Tempo]
+		A contagem do tempo de execução de um nível é feito no nível do sistema
+		operacional, através de chamadas da função \textit{GetTickCount} do
+		\textit{Windows}. Isto resulta em pelo menos dois efeitos colaterais. O
+		primeiro é que se, por exemplo, pausarmos a execução do jogo e
+		retormarmos a execução após um tempo, este intervalo de tempo será
+		contabilizado como tempo de execução. O segundo é que se, por qualquer
+		motivo, o jogo sofrer uma queda de desempenho momentânea (mais
+		processamento de CPU, por exemplo), a contabilização do tempo continuará
+		igual, o que significa que máquinas com capacidade de processamento
+		inferiores não possuem, realisticamente falando, o mesmo tempo de
+		execução que máquinas mais potentes.
+
+	\item[Chamadas de DLL]
+		Devido às limitações de programação externa oferecidas pelo
+		\textit{GameMaker} como, por exemplo, a compatibilidade de chamada de
+		funções	externas somente com tipo de retorno \textit{double} e
+		\textit{char*}, a ferramenta precisa realizar várias chamadas de
+		\textit{DLL} por etapa de execução para atualizar suas variáveis. Isto
+		afeta a performance, resultando em um péssimo desempenho e código não
+		otimizado.
+
+	\item[Execução com Gráficos]
+		Atualmente, é impossível executar a ferramenta sem janela gráfica, o que
+		significa que, a cada certo período de tempo, é preciso renderizar o
+		jogo. Durante o o treinamento dos agentes, essa função é desnecessária,
+		ou seja, gasta-se tempo e capacidade de processamento para uma
+		funcionalidade que não será utilizada.
+
+	\item[Sistema Operacional]
+		A ferramenta \textit{SpelunkBots} foi desenvolvido inicialmente somente
+		para a plataforma \textit{Windows}, o que significa que, para executá-la
+		em outras plataformas (no nosso caso, \textit{Linux}), é preciso
+		utilizar programas adicionais para realizar a compilação e execução do
+		jogo. Este \textit{overhead} adicional prejudica o desempenho da
+		aplicação.
+\end{description}
+
+
+%----------
+\section{\label{section:modelling-vision}Visão do Agente}
+Conforme detalhado anteriormente na Seção \ref{section:spelunkbots-information},
+É possível receber informações de nodos do mapa, inimigos e objetos durante a
+execução do jogo. Como nosso objetivo é tratar somente o domínio de navegação,
+estamos interessados apenas nas informações de nodos do mapa. Devido ao sistema
+de \textit{fog of war} (Figura \ref{fig:spelunkbots-fow}), não temos acesso
+ilimitado às informações do mapa, restringindo-nos apenas a nodos que o jogador
+já visualizou.
+
+Contudo, seria inviável utilizar toda a visão disponível por três motivos. O
+primeiro motivo é que estamos utilizando uma rede neural com número de entradas
+fixa, então não é possível adicionar novos nodos de entrada durante a execução
+do programa. O segundo motivo é que utilizar um número de entradas muito grande
+resultaria em uma rede com muitas ligações, o que implicaria em uma necessidade
+maior de tempo de processamento. O terceiro e último motivo é que, dadas as
+limitações da ferramenta \textit{SpelunkBots} apresentadas na seção
+\ref{section:spelunkbots-limitations}, identificamos que devemos buscar pela
+simplicidade, pois se não a performance dos agentes será afetada.
+
+Outra questão importante é identificar quais são os tipos de nodos que são
+interessantes para o domínio da navegação. Nodos como, por exemplo, o altar de
+sacrifício, ou armadilhas de flechas não são pertinentes ao problema que
+desejamos tratar inicialmente. Já nodos como o chão escorregadio ou a armadilha
+de lanças apresentam grandes desafios a serem superados, e é provável que não
+seja uma boa ideia considerá-los originalmente.
+
+Optamos, portanto, por limitar a visão do agente em dois aspectos:
+
+\begin{itemize}
+	\item \textbf{Região de Visão:} o agente só será capaz de receber
+		informações de nodos em sua proximidade, em uma região quadrada ao seu
+		redor. A Figura \ref{fig:vision-limitation} ilustra um exemplo de região
+		de visão dos agentes.
+
+	\item \textbf{Tipos de Nodo:} limitamos os tipos de nodo que o agente é
+		capaz de visualizar, permitindo somente nodos dos tipos: vazio, terreno
+		normal, saída, escada e espinho. Caso o agente visualize qualquer outro
+		tipo de nodo durante a execução, ele o interpretará como um nodo do tipo
+		terreno normal. A Figura \ref{fig:vision-nodes} ilustra os nodos que o
+		agente é capaz de enxergar.
+\end{itemize}
+
+\todo[inline]{Colocar imagem da limitação da visão}
+\todo[inline]{Colocar imagem dos tipos de nodos}
+
+Não é possível identificar qual tamanho de visão será o mais adequado para o
+agente sem realizar algum tipo de experimentação para realizar uma validação
+empírica. Portanto, durante o treinamento dos agentes, realizaremos um
+experimento para testar alguns tamanhos de janela de visão.
+\todo[inline]{Colocar referência da seção aqui}
 
 \todoin[caption={Modelagem}] {
 
