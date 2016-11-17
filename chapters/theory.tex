@@ -21,8 +21,8 @@ ambientes encontrados é vasta, mas é possível identificar dimensões (ou
 características) de classificação para realizar uma categorização destes
 ambientes. Estas características irão determinar que tipos de agentes --
 enumerados na seção \ref{section:agents} -- são apropriados para cada ambiente.
-Para \cite{RussellNorvig200912}, as dimensões utilizadas para categorizar
-ambiente são:
+Para Russell \& Norvig \cite{RussellNorvig200912}, as dimensões utilizadas para
+categorizar ambiente são:
 
 \begin{description}
 	\item[Observável, Parcialmente Observável ou Não-Observável]
@@ -89,14 +89,15 @@ finito de ações em uma partida do jogo (discreto).
 \section{\label{section:agents}Agentes Racionais}
 De acordo com \cite{RussellNorvig200912}, um \textbf{agente} é uma entidade que
 utiliza seus \textbf{sensores} para perceber o ambiente no qual está inserido e
-interage com o ambiente através de \textbf{atuadores}. A Figura \ref{fig:agent}
-ilustra a arquitetura básica de um agente. Um ser humano é um exemplo de agente,
-pois percebe o ambiente através de seus sentidos (visão, audição, etc.) e
-executa ações com seu corpo (braços, pernas, entre outros). A \textbf{sequência
-de percepções} de um agente representa a história completa de tudo aquilo que
-ele já percebeu. De modo geral, a escolha de ação de um agente, em qualquer
-instante de execução, pode depender de toda a sequência de percepções observada
-até o momento, mas não daquilo que o agente nunca percebeu.
+interage com o ambiente através de \textbf{atuadores}. A Figura
+\ref{fig:agent-interaction} ilustra a arquitetura básica de um agente. Um ser
+humano é um exemplo de agente, pois percebe o ambiente através de seus sentidos
+(visão, audição, etc.) e executa ações com seu corpo (braços, pernas, entre
+outros). A \textbf{sequência de percepções} de um agente representa a história
+completa de tudo aquilo que ele já percebeu. De modo geral, a escolha de ação de
+um agente, em qualquer instante de execução, pode depender de toda a sequência
+de percepções observada até o momento, mas não daquilo que o agente nunca
+percebeu.
 
 \begin{figure}[h]
 \centering
@@ -165,7 +166,7 @@ por Russell \& Norvig \cite{RussellNorvig200912}:
 
 É importante ressaltar que o conceito de agente racional não está ligado
 diretamente ao conceito de onisciência, pois a racionalidade não deve ser
-encarada como perfeição. A escolha racional depende somente doa sequência de
+encarada como perfeição. A escolha racional depende somente da sequência de
 percepções \textit{até o momento}. Justamente por este motivo, muitas vezes é
 necessário que o agente racional realize ações para modificar percepções futuras
 (coleta de informações) e aprenda o máximo que puder (através de percepções)
@@ -210,10 +211,11 @@ possui nenhuma instrução sobre como preencher estas tabelas.
 
 Portanto, o desafio real é criar programas de agente que, na medida do possível,
 produzam comportamentos considerados racionais através de um programa de tamanho
-reduzido (ao invés de uma tabela). Para \cite{RussellNorvig200912}, programas de
-agentes -- e, portanto, agentes racionais -- são divididos nas seguintes
-categorias: \textbf{agentes reflexivos}, \textbf{agentes baseados em modelo},
-\textbf{agentes baseados em objetivos} e \textbf{agentes baseados em utilidade}.
+reduzido (ao invés de uma tabela). Para Russell \& Norvig
+\cite{RussellNorvig200912}, programas de agentes -- e, portanto, agentes
+racionais -- são divididos nas seguintes categorias: \textbf{agentes
+reflexivos}, \textbf{agentes baseados em modelo}, \textbf{agentes baseados em
+objetivos} e \textbf{agentes baseados em utilidade}.
 
 Os \textbf{agentes reflexivos} são programados para executar ações baseadas em
 algum evento percebido. Fica evidente que este tipo de agente simplesmente
