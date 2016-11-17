@@ -145,36 +145,52 @@ forma, manteremos um controle ainda maior sobre cada caso de teste.
 
 %----------
 \section{\label{section:modelling-network}Configurações da Rede Neural}
+\todo[inline]{Escrever seção de configurações da rede neural}
+% neurônios:
+%	função de integração: adição (NEAT)
+%	função de ativação: logística (NEAT) entre 0 e 1
+
+% topologia:
+%	sem realimentação (feed-forward)
+%	camada de entrada:
+%		visao
+%		bias
+%	camadas escondidas: não possui inicialmente (NEAT)
+%	camada de saída:
+%		movimentacao
+%		pulo
+%		extras (caso cenário necessite)
+
+% processo de treinamento é feito pelo algoritmo genético
+
+
+%----------
+\section{\label{section:modelling-genetic}Configurações do Algoritmo Genético}
+\todo[inline]{Escrever seção de configurações do algoritmo genético}
+% organismo: uma execução de agente
+
+% componentes do algoritmo evolutivo:
+%	representação (NEAT: direta)
+%	seleção de pais (NEAT)
+%	operadores de variação (NEAT)
+%	seleção de sobreviventes (NEAT)
+%	população: 100
+%	função de aptidão (próxima seção)
+
+% inicialização: input conectado a output com pesos aleatórios (NEAT)
+% condições de parada: varia de acordo com o cenário de teste
+
+% evoluir pesos e topologia das redes
 
 
 %----------
 \section{\label{section:modelling-fitness}Funções de Aptidão}
+\todo[inline]{Escrever seção de funções de aptidão}
 
 
 \todoin[caption={Modelagem}] {
 
 \begin{itemize}
-	\item Limitações impostas
-		\begin{itemize}
-			\item Campo de visão do bot
-				\begin{itemize}
-					\item Motivos para limitar
-					\item Citar o que exatamente o bot ``enxerga''
-					\item Falar sobre a indefinição do tamanho desse campo, sendo necessário experimentação
-					\item Ilustração de exemplo
-				\end{itemize}
-			\item Comandos de execução disponíveis para o bot
-				\begin{itemize}
-					\item Motivos para limitar
-					\item Citar os comandos disponíveis
-				\end{itemize}
-		\end{itemize}
-
-	\item Modelagem da rede neural
-		\begin{itemize}
-			\item Mapeamento inputs (campo de visão) e outputs (comandos) na rede
-		\end{itemize}
-
 	\item Função de fitness
 		\begin{itemize}
 			\item Avaliar distância percorrida e tempo

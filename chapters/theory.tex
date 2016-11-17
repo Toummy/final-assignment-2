@@ -320,10 +320,11 @@ informações para apenas uma.  Depois de integrar as informações, o neurônio
 realiza um processamento interno através de sua função de ativação,
 transformando as informações recebidas em outro tipo de informação. Esta função
 de ativação deve ser escolhida pelo desenvolvedor da rede e geralmente é ou uma
-função de limiar (resultado $0$ ou $1$) ou uma função de logística (resultados
-em números reais, como a função \textit{Sigmóide}). Na última etapa, o neurônio
-envia, através de seus canais de saída, a informação que acabou de processar. Os
-canais de saída se ligam com outros neurônios ou com a saída da rede.
+função de limiar (resultado binário de $0$ ou $1$) ou uma função do tipo
+sigmóide (resultados em número reais, geralmente normalizados). Na última etapa,
+o neurônio envia, através de seus canais de saída, a informação que acabou de
+processar. Os canais de saída se ligam com outros neurônios ou com a saída da
+rede.
 
 % AIMA: page 728, figure 18.19
 \begin{figure}[H]
