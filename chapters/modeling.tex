@@ -9,7 +9,9 @@ impostas pelo \textit{framework SpelunkBots} que encontramos ao longo do
 desenvolvimento deste trabalho. Em seguida, nas seções
 \ref{section:modelling-vision} e \ref{section:modelling-outputs}, destacamos as
 restrições de visão e ações disponíveis que escolhemos para facilitar o
-treinamento dos agentes. Após, na seção \ref{section:modelling-network}, 
+treinamento dos agentes.
+
+%Após, na seção \ref{section:modelling-network}, 
 
 %\ref{section:modelling-genetic},
 %\ref{section:modelling-fitness},
@@ -154,23 +156,97 @@ forma, manteremos um controle ainda maior sobre cada caso de teste.
 
 %----------
 \section{\label{section:modelling-network}Configurações da Rede Neural}
-\todo[inline]{Escrever seção de configurações da rede neural}
-% neurônios:
-%	função de integração: adição (NEAT)
-%	função de ativação: logística (NEAT) entre 0 e 1
+Todos os agentes realizam a tomada de decisão de quais ações tomar baseados em
+uma rede neural. Portanto, é importante detalhar como decidimos configurá-las
+para execução. Esta configuração foi baseada em nosso levantamento de material
+teórico, localizado no Capítulo \ref{chap:theory}. Existem duas partes
+fundamentais de nossas redes neurais que devem ser inspecionadas: os
+\textbf{neurônios} e a \textbf{topologia}.
 
-% topologia:
-%	sem realimentação (feed-forward)
-%	camada de entrada:
-%		visao
-%		bias
-%	camadas escondidas: não possui inicialmente (NEAT)
-%	camada de saída:
-%		movimentacao
-%		pulo
-%		extras (caso cenário necessite)
+Existem três pontos significativos de configuração dos neurônios da rede neural,
+que são os intervalos de pesos de conexões, encarregados de informar aos
+neurônios o quao importante é a informação, a função de integração, responsável
+por unificar os dados que estão entrando no neurônio, e a função de ativação,
+cujo papel é processar o resultado da função de integração. Como estamos
+utilizando uma biblioteca de \textit{NEAT}, estas configurações estão
+pré-estabelecidas, e são as seguintes: o intervalo de valores de pesos é entre
+$-8$ e $8$; a função de integração é uma simples adição; a função de ativação é
+do tipo sigmóide, mais especificamente, a função logística, que mantém os
+valores normalizados entre $0$ e $1$:
 
-% processo de treinamento é feito pelo algoritmo genético
+\begin{equation}
+	\label{eq:neat-activation}
+	f(x) = \frac{1}{1+e^{-k*m}}
+\end{equation}
+
+onde $e$ é o número de \textit{Euler} (2.71828), $k$ é a inclinatura da curva
+(4.924273) e $m$ é o valor de soma atual dentro do neurônio.
+
+As especificações de topologia inicial também são determinadas pelo
+\textit{NEAT}, conforme vimos na seção \ref{section:neat}. Apear de possuirmos a
+opção de incluir recorrência na rede, optamos por deixar a rede o mais simples
+possível (sem realimentação), porque este processamento extra poderia levar a um
+gargalo de execução, afetando a pontuação dos agentes devido a uma perda de
+tempo. Na camada de entrada, colocamos um nodo de \textit{bias} e  fizemos a
+conexão dos dados de visão recebidos pelo \textit{SpelunkBots}, conforme citado
+na seção \ref{section:modelling-vision}. Ou seja, caso o tamanho do campo de
+visão de um agente for de uma área de 5 por 5, a rede teria 25 nodos de visão e
+1 nodo de \textit{bias}, totalizando em 26 nodos de entrada. A técnica
+\textit{NEAT} também especifica que, inicialmente, não devem existir camadas
+escondidas na rede, para que a evolução possa acontecer somente conforme
+necessidade. Portanto, nossas redes neurais não possuem, inicialmente, nenhuma
+camada escondida. Nas saídas da rede, fizemos o mapeamento, um para um, das
+ações que desejamos executar (listadas na seção \ref{section:modelling-outputs}.
+Ou seja, se um agente pode executar duas ações, existirão dois nodos de saída na
+rede.
+
+Durante o início do desenvolvimento deste trabalho, a ação de movimentação
+estava separada em dois nodos, um para esquerda e outro para a direita. Contudo,
+como desejávamos diminuir ao máximo o tamanho da rede para diminuir o
+processamento necessário, decidimos unir estes dois nodos em um só. Caso o valor
+de saída do nodo de movimentação esteja entre $0$ e $0.4$, o agente ativará a
+ação de caminhar para a esquerda. Se o valor estiver entre $0.4$ e $0.6$, o
+agente não executará nenhuma ação de movimentação (zona morta). Por fim, caso o
+valor esteja entre $0.6$ e $1$, o agente executará a ação de caminhar para a
+direita.
+
+Na primeira etapa de execução, os neurônios da camada de entrada estão ligados,
+todos para todos, com os neurônios da camada de saída. Portanto, para calcular o
+número inicial de conexões da rede, basta utiliarmos a fórmula:
+
+\begin{equation}
+	\label{eq:network-connections}
+	C = N_e * N_s
+\end{equation}
+
+onde $N_e$ é o número de neurônios na camada de entrada e $N_s$ corresponde ao
+número de neurônios na camada de saída. Sem a modificação citada acima, um
+neurônio de \textit{bias} e um tamanho de área de visão de 5 por 5, nossa rede
+neural possuiria $78$ conexões.  Com esta pequena modificação, o número de
+conexões cai para $52$. A diferença parece ser insignificante, mas este é apenas
+o número de conexões na primeira etapa de execução. Conforme o algoritmo
+executa, mais nodos e conexões surgirão, portanto diminuir o número de conexões
+iniciais pode ter um impacto significante com o passar do tempo. A Figura
+\ref{fig:modelling-network-example} ilustra uma configuração inicial de rede
+neural utilizada neste trabalho.
+
+\todo[inline]{Colocar figura aqui}
+\begin{figure}[htb!]
+	\centering
+	\missingfigure{Figura}
+	\caption{Exemplo de configuração inical de uma rede neural com campo de
+	visão $5x5$, um nodo de \textit{bias} e duas ações na camada de saída.}
+	\label{fig:modelling-network-example}
+\end{figure}
+
+Conforme mencionado na seção \ref{section:modelling-outputs}, adicionaremos
+neurônios na camada de saída conforme necessidade, ou seja, caso algum cenário
+de teste exija do agente alguma ação a mais, esta ação será inserida na rede
+inicial.
+
+É importante lembrar que o processo de treinamento destas redes neurais, através
+da mutação de pesos, adição de neurônios e conexões e cruzamento entre redes é
+feito através da aplicação do algoritmo genético do \textit{NEAT}.
 
 
 %----------
