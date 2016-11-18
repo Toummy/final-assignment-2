@@ -25,34 +25,79 @@ digitais para atingir este objetivo é o uso de técnicas sofisticadas de
 inteligência artificial para criar conteúdos complexos e engajar ainda mais os
 jogadores \cite{PanoramaAIGames}.
 
-Paralelamente, a área de inteligência artificial também se beneficia ao se
+Paralelamente, a área de Inteligência Artificial também se beneficia ao se
 relacionar com jogos digitais. Jogos podem ser utilizados como plataformas de
 testes para seus algoritmos e técnicas, pois são muito acessíveis, são capazes
 de reproduzir cenários reais em ambientes virtuais e seu uso torna o processo
 mais barato e rápido que, por exemplo, realizar testes no mundo real com objetos
 físicos\footnote{http://togelius.blogspot.com/2016/01/why-videogames-are-essential-for.html}.
-Diversas competições de inteligência artificial foram criadas recentemente
-utilizando jogos digitais como plataforma de teste \cite{GameAiCompetition}.
-Estas competições geralmente possuem como objetivo principal a criação de
-agentes inteligentes capazes de jogar o jogo proposto da maneira mais eficiente
+Diversas competições de Inteligência Artificial que utilizam jogos digitais como
+plataforma de teste surgiram recentemente \cite{GameAiCompetition}.  Estas
+competições geralmente possuem como objetivo principal a criação de agentes
+inteligentes capazes de jogar o jogo proposto da maneira mais eficiente
 possível, seja por pontuação, seja por tempo. Uma destas competições, baseada no
 jogo de computador \textit{Spelunky}, se chama \textit{SpelunkBots}. Os
 criadores desta competição desenvolveram uma aplicação de inteligência
 artificial que facilita a criação de agentes inteligentes para o jogo.
 
-\textit{Spelunky} é um jogo de computador considerado fácil de aprender mas
-extremamente difícil de dominar, pois requer que o jogador possua reações
-rápidas para perigos iminentes e, ao mesmo tempo, pense em táticas e estratégias
-de longo prazo para ser bem-sucedido. Ao todo, são 26 inimigos, 14 armadilhas e
-43 itens diferentes\footnote{Dados extraídos da Spelunky Wiki
-(http://spelunky.wikia.com/wiki/Spelunky\_Wiki).}. O jogador, ao iniciar uma
-partida, sempre se depara com um nível completamente diferente, pois o jogo faz
-uso de um algoritmo complexo para gerar níveis. Estes fatores fazem com que
-\textit{Spelunky} seja um jogo com desafios interessantes para a pesquisa em
-inteligência artificial.
+Muitos dos jogos de carta, jogos de tabuleiro e jogos digitais são interessantes
+por causa da dificuldade que apresentam para os jogadores, pois normalmente isto
+está diretamente relacionado a inteligência necessária para jogá-los
+eficientemente.  Estabelecer a complexidade computacional destes jogos auxilia
+na identificação de quais são as características de um jogo que o tornam mais ou
+menos difícil em relação aos outros. Esta prática é muito comum no meio
+científico e a comprovação disso é a vasta quantidade de trabalhos que já se
+propuseram a definir a complexidade computacional de diversos jogos como, por
+exemplo, franquias clássicas da Nintendo (Mario, Donkey Kong, Legend of Zelda,
+entre outras) \cite{classic_nintendo_games_hard}, Tetris e Sokoban (e muitos
+outros) \cite{playing_games_algorithms} e jogos do gênero \textit{platformer}
+\cite{computational_complexity_platformers}. Dadas as características e desafios
+presentes em \textit{Spelunky} -- as quais exploramos no Capítulo
+\ref{chap:spelunky} --, Thompson \cite{SPELUNKYHARD} concluiu que,
+computacionalmente falando, o jogo pertence ao conjunto de problemas
+\textit{NP-Hard}.
 
-Este trabalho apresenta o desenvolvimento de um agente inteligente capaz de
-jogar de maneira autônoma o jogo de computador \textit{Spelunky}. Para tal,
+Contudo, esta classificação não é a única coisa que o discerne de um jogo
+tradicional do gênero como, por exemplo, \textit{Super Mario Bros.}, pois
+\textit{Spelunky} não é um \textit{platformer} convencional. Primeiramente, os
+níveis do jogo são gerados proceduralmente, impossibilitando a memorização do
+mapa. Em segundo lugar, praticamente todo o terreno dos mapas de
+\textit{Spelunky} é destrutível, o que significa que, a qualquer momento (dada a
+presença dos recursos necessários), o jogador tem a capacidade de criar novas
+rotas, pular partes do mapa, descobrir áreas secretas, entre outros. Por fim, a
+movimentação característica da maioria dos \textit{platformers} é horizontal com
+pequenos desvios verticais (através de pulos ou plataformas móveis) e o
+progresso nos níveis geralmente ocorre através do deslocamento de uma ponta do
+mapa até a outra (da esquerda para a direita, por exemplo). Em
+\textit{Spelunky}, a movimentação não é predominantemente horizontal e, para
+obter progresso no nível, o jogador deve navegar tanto horizontalmente quanto
+verticalmente.
+
+Sem dúvida alguma, existem diversos domínios de problema (área específica de
+desafio) em \textit{Spelunky} a serem tratados como, por exemplo, navegação,
+combate, planejamento de estratégias, entre outros. Isto faz de
+\textit{Spelunky} um jogo com desafios interessantes para a pesquisa em
+Inteligência Artificial.
+
+Inicialmente, o objetivo deste trabalho era criar agentes inteligentes
+utilizando as técnicas \textit{NEAT} e \textit{Behavior Trees} e realizar um
+estudo comparativo dos resultados obtidos com cada técnica. Enquanto que a
+técnica \textit{NEAT} possui uma característica mais autônoma e cria
+comportamentos através de melhorias constantes, as \textit{Behavior Trees}
+permitiriam um ajuste refinado do comportamento dos agentes, pois todas as ações
+que o agente pode executar devem ser descritas previamente. A ideia era, então,
+comparar o processo de criação e os resultados obtidos entre uma técnica
+``automática'' e uma ``manual''. Porém, durante o desenvolvimento deste
+trabalho, percebemos que existe um universo gigantesco de possibilidades e
+experimentos que deveríamos realizar ao desenvolver os agentes com a técnica
+\textit{NEAT}. Desta forma, decidimos redirecionar o foco do trabalho e
+ocuparmo-nos com a implementação e experimentação de apenas uma técnica. Para
+suprir a falta de mecanismo comparativo, buscamos outras implementações de
+agentes inteligentes para \textit{Spelunky} para mensurar nossos resultados.
+
+Tendo isto em mente, este trabalho apresenta o desenvolvimento de um agente
+inteligente capaz de jogar de maneira autônoma o jogo de computador
+\textit{Spelunky} para solucionar o domínio de navegação do jogo. Para tal,
 utilizamos o \textit{framework} de inteligência artificial \textit{SpelunkBots}
 e a técnica \textit{NeuroEvolution of Augmenting Topologies} (\textit{NEAT})
 para auxiliar na criação dos agentes jogadores. Criamos dois conjuntos de
