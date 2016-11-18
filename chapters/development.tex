@@ -126,12 +126,12 @@ modificações que fizemos, de forma a facilitar ou viabilizar o desenvolvimento
 
 \subsection{\textit{Scripts} de Compilação}
 
-A escolha da linguagem \textit{C++} para a criação dos \textit{bots} requer que
-o código seja compilado e que uma \textit{DLL} seja gerada, para que,
-posteriormente, seja usada pelo \textit{SpelunkBots}. Este processo é feito em
-várias etapas.  Primeiro, compilamos as bibliotecas que utilizamos. Em seguida,
-compilamos o código dos \textit{bots} e geramos a \textit{DLL}. Por fim,
-movemos a \textit{DLL} para o local onde o \textit{SpelunkBots} será executado.
+A escolha da linguagem \textit{C++} para a criação dos \textit{bots} requer a
+compilação e geração de uma \textit{DLL} para que, posteriormente o
+\textit{SpelunkBots} utilize-a. Este processo é feito em várias etapas.
+Primeiro, compilamos as bibliotecas que utilizamos. Em seguida, compilamos o
+código dos \textit{bots} e geramos a \textit{DLL}. Por fim, movemos a
+\textit{DLL} para o local onde o \textit{SpelunkBots} será executado.
 
 É necessário executar com sucesso todas as etapas de compilação para viabilizar
 o desenvolvimento dos \textit{bots}. De forma a automatizar esse processo,
@@ -140,11 +140,12 @@ pelo processo de compilação e movimentação de arquivos.
 
 \subsection{Pular Cena Inicial do Jogo}
 
-O \textit{Spelunky} conta com uma cena inicial, onde o jogador se desloca da
-superfície para dentro de uma caverna que permite que ele escolha entre fazer o
-tutorial do jogo, iniciar sua aventura ou ver as maiores pontuações. A figura
-\ref{fig:spelunky-introduction} apresenta a cena inicial, onde o jogador entra
-na caverna de escolha.
+O \textit{Spelunky} conta com uma cena inicial onde o jogador se desloca da
+superfície para dentro de uma caverna. Esta caverna serve como menu principal do
+jogo permitindo que o jogador escolhe entre fazer o tutorial do jogo, inciar sua
+aventura, ver as maiores pontuações, entre outros. A Figura
+\ref{fig:spelunky-introduction} apresenta a cena inicial e a caverna de menu
+principal.
 
 \begin{figure}[H]
 \centering
@@ -160,110 +161,118 @@ na caverna de escolha.
 	\end{subfigure}
 
     \caption{Cena de introdução do jogo, onde o jogador se desloca da
-    superfície para uma caverna com opções de escolha.}
+    superfície para uma caverna com opções de interação.}
 	\label{fig:spelunky-introduction}
 \end{figure}
 
-Essas cenas são apenas uma forma de introdução ao jogo, não contribuíndo para a
+Estas cenas são apenas uma forma de introdução ao jogo, não contribuíndo para a
 geração de resultados de execução. Logo, não necessitamos delas. Nossos
-\textit{bots} devem ser levados diretamente até a opção de iniciar o jogo.
-Assim, utilizamos \textit{GameMaker} para remover essas cenas. Portanto, ao
-executar o jogo, o \textit{bot} é levado diretamente ao nível escolhido,
-executando imediatamante.
+\textit{bots} devem ser levados diretamente até a opção de iniciar o jogo nos
+mapas customizados que geramos.  Assim, utilizamos \textit{GameMaker} para
+remover essas cenas. Portanto, ao executar o jogo, o \textit{bot} é levado
+diretamente ao nível escolhido, executando imediatamante.
 
-\subsection{Parar a Execução Quando o \textit{Bot} Está Ocioso}
+\subsection{Interrupção da Execução de Agentes não Promissores}
 
-É muito importante conseguirmos definir o momento em que algum \textit{bot}
-esteja em um estado não promissor -- gastanto tempo de execução --. Isso
-permite que descartemos essa execução, acelerando o processo de treinamento.
-Para isso, definimos dois critérios que nos permitem identificar o momento em
-que um \textit{bot} está ocioso:
+Devido às limitações apresentadas anteriormente na seção
+\ref{section:spelunkbots-limitations}, é muito importante conseguirmos definir o
+momento em que algum \textit{bot} esteja em um estado não promissor -- gastanto
+tempo de execução --. Isso permite que interrompamos a execução, acelerando o
+processo de treinamento.  Para isso, definimos dois critérios que nos concedem a
+capacidade de identificar o momento em que um \textit{bot} está ocioso:
 
 \begin{description}
-    \item [Tempo parado] em alguns casos, o \textit{bot} pode escolher ficar
-        parado. Porém, caso ele fique parado por muito tempo, é muito provável
-        que esteja ocioso. Assim, quando identificamos que o \textit{bot} está
-        parado há mais de \textbf{3 segundos}, descartamos sua execução.
-    \item [Número de visitas à um mesmo local] caso o \textit{bot} passe pelo
-        mesmo local por mais de \textbf{10 vezes}, podemos identificar que ele
-        está repetindo suas ações e possivelmente nunca encontrará a porta de
-        saída.
+	\item [Tempo parado] em alguns casos, o \textit{bot} pode escolher ficar
+		parado. Porém, caso ele fique ocioso por muito tempo, é muito provável
+		que nada de diferente ocorrerá até o fim da execução, dado que não
+		existem elementos dinâmicos em nossos testes. Assim, quando
+		identificamos que o \textit{bot} está parado há mais de \textbf{3
+		segundos}, interrompemos sua execução, sinalizando sua ociosidade para
+		aa função de aptidão.
+
+	\item [Estados repetidos] o único elemento dinâmico em nossos testes é a
+		posição do jogador no mapa. Portanto, podemos considerar que o estado do
+		jogo depende das coordenadas do jogador. Caso o agente visite o mesmo
+		estado mais de \textbf{10 vezes}, é possível identificar que ele está
+		repetindo excessivamente suas ações e, possivelmente, não sairá de uma
+		mesma região, não encontrando a porta de saída. Se este for o caso,
+		interrompemos sua execução, sinalizando sua repetição de estados para a
+		função de aptidão.
 \end{description}
 
-Com esses critérios de ociosidade, é necessário que tenhamos uma forma de parar
-a execução do \textit{bot} nos casos anteriormente descritos. Assim,
-implementamos uma \textbf{verificação de ociosidade}. A cada ciclo de execução
-do jogo, verificamos se o \textit{bot} está parado, incrementando um contador
-de tempo caso esteja. Zeramos esse contador caso ele se movimente. Após,
-incrementamos o contador que indica o número de vezes que o \textit{bot}
-visitou a posição em que está. Caso ele esteja parado pelo determinado número
-de segundos ou tenha visitado o mesmo estado pelo determinado número de vezes,
-sabemos que esse é um estado não promissor. Então, zeramos o número de pontos
-de vida dele, fazendo com que o \textit{bot} perca uma vida e passe a executar
-novamente.
+Com estes critérios de interrupção definidos, é necessário que tenhamos uma
+forma de parar a execução do agente caso um dos cenários descritos acima ocorra.
+Assim, implementamos uma função de \textbf{verificação de ociosidade} e uma
+variável \textit{booleana} de suicídio no código do \textit{bot}. A cada ciclo
+de execução do jogo, averiguamos se o \textit{bot} está parado e, caso esteja,
+incrementamos um contador de tempo (este contador é zerado caso haja
+movimentação). Após, incrementamos o contador que indica o número de vezes que o
+\textit{bot} visitou a posição em que se encontra atualmente. Caso ele esteja
+parado pelo determinado número de segundos ou tenha visitado o mesmo estado pelo
+determinado número de vezes, sabemos que esse é um estado não promissor. Então,
+ativamos a variável de suicídio cujo propósito é zerar o número de pontos de
+vida do jogador, fazendo com que o \textit{bot} reinicie sua execução.
 
 \subsection{Arquivo de Inicialização}
 
 O processo de escolha das configurações para a execução do jogo requer
 experimentação. É necessário combinar diferentes parâmetros e avaliar sua
 execução, escolhendo então os parâmetros que produzem os melhores resultados.
-No caso do \textit{SpelunkBots}, essa escolha está ligada diretamente à edição
+No caso do \textit{SpelunkBots}, esta escolha está ligada diretamente à edição
 do código do jogo no \textit{Game Maker}. Sempre que desejamos editar um
 parâmetro de execução, abrimos o \textit{software}, realizamos a edição dos
 valores, salvamos uma nova versão do jogo e então o executamos. Esse processo é
 manual e custoso, dificultando a escolha dos melhores parâmetros para execução.  
 
 Dessa forma, alteramos o código do \textit{SpelunkBots} para permitir a leitura
-de um arquivo de
-inicialização\footnote{https://docs.yoyogames.com/source/dadiospice/002\_reference/file\%20handling/ini\%20files/index.html},
-fazendo com que o jogo utilize valores dinâmicos para os parâmetros, sendo
-possível então testar novas configurações e alterar a execução do jogo sem
-a necessidade de abrirmos o \textit{Game Maker}. Tal arquivo tem um formato
-bastante simples, onde cada elemento tem um nome que o identifica e um
-valor associado, podendo estar em uma categoria.
+de um arquivo de inicialização
+(\textit{.INI})\footnote{https://docs.yoyogames.com/source/dadiospice/002\_reference/file\%20handling/ini\%20files/index.html}.
+Assim, podemos alterar os valores dos parâmetros de execução sem abrir o
+\textit{GameMaker} para recompilar o código e gerar um novo arquivo executável.
+Um arquivo \textit{.INI} é dividido em \textbf{seções} e cada seção possui
+\textbf{pares} de chave para valor associado.
 
-O algoritmo ~\ref{alg:ini-file} apresenta esse arquivo de inicialização. Foram
-utilizadas quatro categorias de valores. \textit{\textbf{[Bot]}} representa as
-informações sobre o \textit{bot} escolhido na execução. A entrada
-\textit{bot\_is\_cpp}, quando com o valor \textbf{1}, indica que se trata de um
-\textit{bot} que foi escrito em \textit{C++}, já a entrada
-\textit{bot\_cpp\_num} idica qual \textit{bot} será executado.  A categoria
-\textit{\textbf{[Test]}} informa dados relativos ao teste que será realizado. O
-tipo de mapa é informado pela entrada \textit{test\_type}. O parâmetro
-\textit{test\_rank} indica ao \textit{SpelunkBots} como classificar a execução
-dos \textit{bots}. Podemos controlar o número \textbf{máximo} de execuções pelo
-valor de \textit{test\_num}. Também é possível limitar o tempo de vida de um
-\textit{bot} pelo parâmetro \textit{test\_time}, que é indicado em segundos.
-Podemos especificar os níveis que serão utilizados pelas entradas da categoria
-\textit{\textbf{[Levels]}}. Primeiro, indicamos a quantidade de níveis pelo
-valor de \textit{level\_num}. Após, para cada nível, indicamos o seu nome em
-uma propriedade específica. No caso do primeiro, usamos a propriedade
-\textit{level0}, para o segundo, \textit{level1}, e assim para todos eles.  Por
-fim, temos a categoria \textit{\textbf{[FAMW]}}, que parametriza a exibição de
-informações de depuração durante a execução do jogo.  O valor de
+O Algoritmo \ref{alg:ini-file} apresenta um exemplo de arquivo de inicialização.
+Utilizamos quatro seções distintas para diferenciar o propósito dos pares de
+valor. \textit{\textbf{[Bot]}} representa as informações sobre o \textit{bot}
+escolhido na execução. A entrada \textit{bot\_is\_cpp}, quando com o valor
+\textbf{1}, indica que se trata de um \textit{bot} que foi escrito em
+\textit{C++}, já a entrada \textit{bot\_cpp\_num} idica qual \textit{bot} será
+executado.  A seção \textit{\textbf{[Test]}} informa dados relativos ao teste
+que será realizado. O tipo de mapa é informado pela entrada \textit{test\_type}.
+O parâmetro \textit{test\_rank} indica ao \textit{SpelunkBots} como classificar
+a execução dos \textit{bots}. Podemos controlar o número \textbf{máximo} de
+execuções pelo valor de \textit{test\_num}. Também é possível limitar o tempo de
+vida de um \textit{bot} pelo parâmetro \textit{test\_time}, que é indicado em
+segundos.  É possível especificar os níveis que queremos utilizar para testar os
+agentes através da seção \textit{\textbf{[Levels]}}. Primeiro, indicamos a
+quantidade de níveis pelo valor de \textit{level\_num}. Após, para cada nível,
+indicamos o seu nome em uma propriedade específica. No caso do primeiro, usamos
+a propriedade \textit{level0}, para o segundo, \textit{level1}, e assim para
+todos eles.  Por fim, temos a seção \textit{\textbf{[FAMW]}}, que parametriza a
+exibição de informações de depuração durante a execução do jogo.  O valor de
 \textit{vision\_debug} indica se deverá ser exibida na tela uma janela da visão
 do \textit{bot}, com o tamanho informado por \textit{vision\_size}.
 
 \begin{algorithm}[H]
 \lstinputlisting[style=customC++]{code/spelunkbots.ini}
-\caption[Arquivo de inicialização de exemplo.]
+	\caption[Exemplo de um arquivo de inicialização \textit{.INI}.]
 {\label{alg:ini-file}Arquivo de inicialização de exemplo.}
 \end{algorithm}
 
 \subsection{\label{sub:virtual-display}Execução com Display Virtual}
 
-O servidor \textit{Linux} que utilizamos para a execução não possui nenhuma
-interface gráfica, além disso, não existe uma forma de executar o
-\textit{Spelunky} ou o \textit{SpelunkBots} sem considerar uso de uma.
-
-Porém, é possível fazer a criação de um \textit{display} virtual, onde
-simulamos uma interface gráfica semelhante a uma real. Nesse caso, fizemos o
-uso do
+Como vimos anteriormente, na seção \ref{section:spelunkbots-limitations}, não é
+possível executar o jogo sem janela gráfica. Isto é um problema, pois o servidor
+\textit{Linux} que utilizamos para a execução dos testes não possui nenhuma
+interface gráfica.  Porém, é possível superar esta limitação através da
+utilização de um \textit{display} virtual, onde simulamos uma interface gráfica
+semelhante a uma real. Nesse caso, fizemos o uso do
 \textit{XVFB}\footnote{https://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml},
 criando então uma interface gráfica que recebe a execução do jogo. O uso de uma
-interface gráfica virtual também nos permite que gravemos vídeos do jogo, além
-de permitir a captura de imagens da tela, permitindo que depuremos a execução
-do jogo.
+interface gráfica virtual também nos permitiu realizar conexões remotas para o
+servidor, concedendo-nos a capacidade de acompanhar o processo de treinamento em
+tempo real.
 
 \section{\label{section:neat-details}Implementação do NEAT}
 
