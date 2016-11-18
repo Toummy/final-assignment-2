@@ -9,9 +9,8 @@ impostas pelo \textit{framework SpelunkBots} que encontramos ao longo do
 desenvolvimento deste trabalho. Em seguida, nas seções
 \ref{section:modelling-vision} e \ref{section:modelling-outputs}, destacamos as
 restrições de visão e ações disponíveis que escolhemos para facilitar o
-treinamento dos agentes.
-
-%Após, na seção \ref{section:modelling-network}, 
+treinamento dos agentes. Após, na seção \ref{section:modelling-network},
+descrevemos as configurações das redes neurais utilizadas.
 
 %\ref{section:modelling-genetic},
 %\ref{section:modelling-fitness},
@@ -244,14 +243,86 @@ neurônios na camada de saída conforme necessidade, ou seja, caso algum cenári
 de teste exija do agente alguma ação a mais, esta ação será inserida na rede
 inicial.
 
-É importante lembrar que o processo de treinamento destas redes neurais, através
+É importante lembrar que o processo de treinamento destas redes neurais,
+explicado na seção \ref{section:modelling-genetic}, é feito através da aplicação
+do algoritmo genético do \textit{NEAT}.
+
+, através
 da mutação de pesos, adição de neurônios e conexões e cruzamento entre redes é
 feito através da aplicação do algoritmo genético do \textit{NEAT}.
 
 
 %----------
 \section{\label{section:modelling-genetic}Configurações do Algoritmo Genético}
-\todo[inline]{Escrever seção de configurações do algoritmo genético}
+A técnica \textit{NEAT}, de acordo com a literatura explorada na seção
+\ref{section:neat}, se baseia na neuroevolução para treinar as redes neurais
+artificiais. Como ela evolui tanto os pesos das conexões quanto a topologia da
+rede, as redes neurais são classificadas como \textit{TWEANNs}. O algoritmo
+evolutivo do \textit{NEAT} é muito promissor pois resolve três problemas
+extremamente comuns da neuroevolução: a permutação, a proteção da inovação e
+população inicial. Listamos, a seguir, as características definidas como mais
+importantes de um algoritmo genético, definido em
+\ref{section:evolutionary-algorithms}, e como a técnica os resolve:
+
+\begin{description}
+	\item[Representação]
+		A representação é feita de maneira direta, de acordo com a Figura
+		\ref{fig:neat-encoding-example}.
+
+	\item[Função de Aptidão]
+		Esta função não é fornecida pelo \textit{NEAT} pois depende do domínio
+		do problema. Portanto, deve ser fornecida por nós para o algoritmo. As
+		descrições das funções de aptidão que desenvolvemos estão localizadas na
+		seção \ref{section:modelling-fitness}.
+
+	\item[População]
+		O tamanho da população deve ser grande o suficiente para permitir que a
+		especiação ocorra e que haja diferenciação genética suficiente entre os
+		organismos. Contudo, devido à incapacidade de acelerar a execução do
+		\textit{SpelunkBots}, o tamanho da população não pode ser muito elevado,
+		pois se não nossos testes levariam tempo demais para concluir. Portanto,
+		escolhemos um número de população de \textbf{100} organismos.
+
+	\item[Seleção de Pais] A seleção de pais no \textit{NEAT} é feita de forma
+		aleatória. Ou seja, a cada época, o algoritmo seleciona um ou dois pais
+		para fazer mutações ou cruzamentos, respectivamente.
+
+	\item[Variação] As probabilidades de realizar mutações e cruzamentos na
+		biblioteca escolhida são definidas através de um arquivo externo que
+		mapeia uma característica para uma probabilidade de acontecimento. As
+		principais características que modificamos foram:
+		\begin{itemize}
+				\item força de mutação de pesos: $2.5$
+				\item probabilidade de mutação de peso: $90\%$
+				\item probabilidade de adição de nodo: $3\%$
+				\item probabilidade de adição de conexão: $5\%$
+				\item tamanho da população: $100$
+		\end{itemize}
+
+	\item[Seleção de Sobreviventes]
+		A cada iteração, a geração anterior é substituida completamente por uma
+		geração nova, baseada na mutação e cruzamento dos organismos anteriores.
+		Para criar os novos organismos, o algoritmo organiza as espécies por
+		ordem de maior aptidão e, então, distribui um pedaço da população para
+		cada uma.
+
+\end{description}
+
+Também selecionamos os valores dos coeficientes de similaridade entre
+organismos, integrantes da fórmula \ref{eq:neat-species}:
+
+\begin{itemize}
+	\item \textbf{$c_1$ (excess genes):} 1
+	\item \textbf{$c_2$ (dijoint genes):} 1
+	\item \textbf{$c_3$ (matching genes):} 0.4
+\end{itemize}
+
+O valor máximo estipulado para dois organismos pertencerem a mesma espécie é de
+$\delta = 3$
+
+Para inicializar as redes neurais, o algoritmo conecta todos os neurônios da
+camada de entrada com todos os neurônios da camada de saída e cada ligação
+possui um peso inicial aleatório.
 % organismo: uma execução de agente
 
 % componentes do algoritmo evolutivo:
@@ -264,8 +335,6 @@ feito através da aplicação do algoritmo genético do \textit{NEAT}.
 
 % inicialização: input conectado a output com pesos aleatórios (NEAT)
 % condições de parada: varia de acordo com o cenário de teste
-
-% evoluir pesos e topologia das redes
 
 
 %----------
