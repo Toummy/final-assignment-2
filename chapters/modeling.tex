@@ -269,9 +269,9 @@ importantes de um algoritmo genético, definido em
 
 	\item[Função de Aptidão]
 		Esta função não é fornecida pelo \textit{NEAT} pois depende do domínio
-		do problema. Portanto, deve ser fornecida por nós para o algoritmo. As
-		descrições das funções de aptidão que desenvolvemos estão localizadas na
-		seção \ref{section:modelling-fitness}.
+		do problema. Portanto, deve ser disponibilizada por nós para o
+		algoritmo. As descrições das funções de aptidão que desenvolvemos estão
+		localizadas na seção \ref{section:modelling-fitness}.
 
 	\item[População]
 		O tamanho da população deve ser grande o suficiente para permitir que a
@@ -328,6 +328,18 @@ máximo de iterações e um tempo máximo de teste.
 %----------
 \section{\label{section:modelling-fitness}Funções de Aptidão}
 \todo[inline]{Escrever seção de funções de aptidão}
+Um dos pontos mais importantes para a aplicação de um algoritmo genético é a
+criação de uma função de aptidão que mapeie corretamente os requisitos que um
+organismo deve respeitar para ser bem sucedido. Esta medida deve nos fornecer
+uma maneira quantitativa para identificar e filtrar organismos bons e ruins.
+
+A tarefa de criar uma função de aptidão é uma das partes mais difíceis da
+aplicação de um algoritmo genético para resolver um problema computacional. Isto
+porque o desenvolvedor de selecionar e experimentar com características do
+domínio para encontrar uma função de aptidão que mapeie corretamente os
+requisitos que deseja alcançar dentro do domínio. Se a função não mapear
+eficientemente os objetivos desejados, é possível que o algoritmo genético tenha
+dificuldades de convergir ou até mesmo convirja para uma solução inapropriada.
 
 
 \todoin[caption={Modelagem}] {
