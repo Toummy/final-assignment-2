@@ -201,6 +201,44 @@ diversidade genética.
 
 
 %----------
+\section{MCTS \textit{Spelunky}: A comparison on the use of Forward-Facing
+Artificial Intelligence Algorithms with Artificial Intelligence Bots in
+\textit{Spelunky}}
+O objetivo deste trabalho era investigar a viabilidade de se criar um agente
+inteligente para o jogo \textit{Spelunky} utilizando o algoritmo de busca
+\textit{Monte-Carlo Tree Search}, que já foi utilizado em jogos como \textit{Go}
+e \textit{StarCraft} \cite{spelunky_mcts}. Para tal, o autor fez uso da
+ferramenta \textit{SpelunkBots}.
+
+O algoritmo \textit{MCTS} utiliza diversas simulações estocásticas de partidas
+de jogo para executar ações e reproduzir possíveis cenários futuros onde o jogo
+pode se encontrar, até o fim da partida. Assim, constrói-se uma árvore de busca
+e busca-se pela melhor opção disponível para o agente. O resultado final de cada
+iteração (partida jogada) é utilizado para ajustar os pesos das ações na árvore,
+fazendo com que a seleção de nodos mais promissores (jogadas melhores) ocorra
+mais frequentemente. Um dos desafios deste algoritmo é fazer um balanceamento
+entre \textit{exploration} (selecionar estados aleatórios ou menos promissores
+para analisar os resultados futuros) e \textit{exploitation} (abusar de
+conhecimento prévio e selecionar ações conhecidas que possuem bons resultados).
+Ao utilizar \textit{MCTS}, o agente não precisa possuir um comportamento fixo.
+
+O autor desenvolveu 3 cenários de teste para identificar limitações da
+aplicabilidade da técnica. Após, utilizou os \textit{bots} padrões inclusos na
+ferramenta \textit{SpelunkBots} a fim de comparar os resultados obtidos. 
+
+Um ponto importante a ser ressaltado deste trabalho é que os cenários de teste
+desenvolvidos eram extremamente simplistas e que a comparação entre o agente do
+autor com os \textit{bots} padrões da ferramenta era injusta, pois o propósito
+de muitos destes \textit{bots} é apenas ilustrar o uso da \textit{API} para
+novos desenvolvedores. Estes \textit{bots}, inclusive, possuem comportamentos
+fixos e em alguns testes nem chegaram a executar de fato. Mesmo assim, o agente
+desenvolvido pelo autor também foi incapaz de superar 2 dos 3 cenários de teste,
+pois o programa tornava-se irresponsivo após alguns segundos de execução, o que
+é atribuido ao autor como uma falha de implementação, e não uma escolha ruim de
+algoritmo.
+
+
+%----------
 \section{MarI/O}
 Em junho de 2015, o canal do \textit{YouTube}
 SethBling\footnote{https://www.youtube.com/user/sethbling/about} -- conhecido
