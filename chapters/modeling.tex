@@ -10,12 +10,10 @@ desenvolvimento deste trabalho. Em seguida, nas seções
 \ref{section:modelling-vision} e \ref{section:modelling-outputs}, destacamos as
 restrições de visão e ações disponíveis que escolhemos para facilitar o
 treinamento dos agentes. Após, na seção \ref{section:modelling-network},
-descrevemos as configurações das redes neurais utilizadas.
-
-%\ref{section:modelling-genetic},
-%\ref{section:modelling-fitness},
-
-\todo[inline]{Listar conteúdo das seções}
+descrevemos as configurações das redes neurais utilizadas. Por fim, nas seções
+\ref{section:modelling-genetic} e \ref{section:modelling-fitness}, detalhamos as
+configurações utilizadas para o algoritmo genético do \textit{NEAT} e as funções
+de aptidão utilizadas para realizar o treinamento dos agentes.
 
 
 %----------
@@ -322,19 +320,9 @@ $\delta = 3$
 
 Para inicializar as redes neurais, o algoritmo conecta todos os neurônios da
 camada de entrada com todos os neurônios da camada de saída e cada ligação
-possui um peso inicial aleatório.
-% organismo: uma execução de agente
-
-% componentes do algoritmo evolutivo:
-%	representação (NEAT: direta)
-%	seleção de pais (NEAT)
-%	operadores de variação (NEAT)
-%	seleção de sobreviventes (NEAT)
-%	população: 100
-%	função de aptidão (próxima seção)
-
-% inicialização: input conectado a output com pesos aleatórios (NEAT)
-% condições de parada: varia de acordo com o cenário de teste
+possui um peso inicial aleatório. A condição de parada do algoritmo varia de
+acordo com o cenário de teste executado, mas sempre será estabelecido um número
+máximo de iterações e um tempo máximo de teste.
 
 
 %----------
