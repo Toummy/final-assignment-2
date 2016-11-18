@@ -5,11 +5,12 @@ color=red!70] {
     Alterar a imagem do cenário extra2, já que mudamos ele.
 }
 
-Através da leitura do capítulo \ref{chap:spelunky}, temos mais detalhes de
-muitos cenários interessantes para este trabalho. Com isso, escolhemos alguns
-desafios que julgamos interessantes para um agente inteligente que joga
-\textit{Spelunky}, explorando alguns cenários encontrados em muitos dos níveis
-do jogo.
+Através da leitura do Capítulo \ref{chap:spelunky} é possível identificar
+cenários interessantes para treinar e testar os agentes deste trabalho. Após
+análise do domínio a ser solucionado, desenvolvemos alguns cenários com desafios
+que julgamos pertinentes para o problema apresentado no domínio de navegação.
+Muitas das características destes cenários de teste estão presentes em níveis
+gerados proceduralmente pelo jogo.
 
 \section{Cenários Convencionais}
 
@@ -22,20 +23,20 @@ convencionais, categorizados por seu nível de dificuldade.
 
 O nível \textbf{fácil} explora o deslocamento \textbf{horizontal}, em conjunto
 com a necessidade de \textbf{saltar} sobre espinhos e blocos. A figura
-\ref{fig:level1} demonstra o nível fácil, onde o jogador parte da porta de
-entrada -- localizada na esquerda --, saltando sobre alguns blocos, pulando
-sobre alguns espinhos e chegando até a porta de saída. Esse nível é
-interessante pois, além de explorar deslocamento e saltos, também conta com
-espinhos nas extremidades -- à esquerda da entrada e à direita da saída --, o
-que faz com que o jogador tenha que evitar entrar em contato com essas áreas.
+\ref{fig:level1} demonstra o nível fácil, onde o jogador deve partir da porta de
+entrada -- localizada na esquerda --, saltar sobre alguns blocos, pular sobre
+alguns espinhos e caminhar até a porta de saída. Este nível é interessante pois,
+além de explorar deslocamento e saltos, também conta com espinhos nas
+extremidades -- à esquerda da entrada e à direita da saída --, o que faz com que
+o jogador tenha que evitar entrar em contato com essas áreas.
 
 Como este é um nível pouco desafiador, estabelecemos como \textbf{critério de
 parada} as seguintes condições:
 
-\begin{description}
-    \item [Número de execuções] no máximo \textbf{10000} execuções.
-    \item [Tempo máximo de execução] no máximo \textbf{10 segundos} executando.
-\end{description}
+\begin{itemize}
+	\item \textbf{Número de execuções:} no máximo \textbf{10000} execuções.
+	\item \textbf{Tempo de execução:} no máximo \textbf{10 segundos}.
+\end{itemize}
 
 \begin{figure}[H]
 \centering
@@ -62,32 +63,31 @@ esquerda e chegar até a saída que se encontra no canto direito e abaixo.
 Para o nível médio, que conta com mais alguns desafios, estabelecemos os
 seguintes \textbf{critérios de parada}:
 
-\begin{description}
-    \item [Número de execuções] no máximo \textbf{10000} execuções.
-    \item [Tempo máximo de execução] no máximo \textbf{20 segundos} executando.
-\end{description}
+\begin{itemize}
+	\item \textbf{Número de execuções:} no máximo \textbf{10000} execuções.
+	\item \textbf{Tempo de execução:} no máximo \textbf{20 segundos}.
+\end{itemize}
 
-O nível \textbf{difícil} é um nível gerado aleatóriamente pelo jogo. Mesmo
-sendo gerado, é possível -- conforme a seção
-\ref{section:spelunky-procgen-path} -- atravessá-lo sem a necessidade de usar
-bombas, cordas ou outros equipamentos. Esse o desafio mais interessante desse
-trabalho.
+O nível \textbf{difícil} é um nível gerado aleatóriamente pelo jogo. Mesmo sendo
+gerado, é possível -- conforme a seção \ref{section:spelunky-procgen-path} --
+atravessá-lo sem a necessidade de usar bombas, cordas ou outros equipamentos.
+Este é o cenário mais interessante e desafiados deste trablaho.
 
 Por ser o cenário mais desafiador, estabelecemos os seguintes \textbf{critérios
 de parada}:
 
-\begin{description}
-    \item [Número de execuções] no máximo \textbf{20000} execuções.
-    \item [Tempo máximo de execução] no máximo \textbf{90 segundos} executando.
-\end{description}
+\begin{itemize}
+	\item \textbf{Número de execuções:} no máximo \textbf{20000} execuções.
+	\item \textbf{Tempo de execução:} no máximo \textbf{90 segundos}.
+\end{itemize}
+
 
 \section{Cenários Específicos}
 
-Além dos desafios expostos nos níveis convencionais, existem alguns outros que
-estão presentes em muitos níveis do jogo. Muitos deles requerem que alguns
-botões sejam combinados ou pressionados em alguma sequência específica. Visando
-explorar esses elementos, elaboramos alguns cenários para testes de situações
-específicas.
+Existem alguns desafios presentes em muitos níveis do jogo que não aparecem nos
+cenários de testes convencionais. Estes desafios requerem a combinação de botões
+em algum conjunto ou ordem específica. Visando explorar estes elementos,
+elaboramos alguns cenários para testes de situações específicas.
 
 Por serem cenários simplificados, elaboramos os seguintes \textbf{critérios de
 parada} para todos eles:
@@ -100,7 +100,7 @@ parada} para todos eles:
 O cenário \textbf{extra 1}, exibido na figura \ref{fig:extra1}, conta com uma
 escada que liga a plataforma inferior do jogo à plataforma superior. Portanto,
 o jogador que deseja chegar até a porta de saída localizada na plataforma
-superior deve fazer o uso dessa escada.
+superior deve fazer uso desta escada.
 
 \begin{figure}[H]
 \centering
@@ -109,9 +109,9 @@ superior deve fazer o uso dessa escada.
 \label{fig:extra1}
 \end{figure}
 
-Em alguns momentos, é necessário que o jogador se agarre à parede para poder
-chegar até locais muito altos. Esse é um problema interessante, pois é
-necessário a combinação das ações de movimentação e de salto. O nível
+Em alguns momentos, é necessário que o jogador se agarre à parede para atingir
+locais mais elevados. Este é um problema interessante, pois é necessário que o
+agente realize a combinação de ações de movimentação e salto. O nível
 \textbf{extra 2} -- mostrado na figura \ref{fig:extra2} -- só pode ser vencido
 caso o jogador salte, se agarre na parede e salte novamente, alcançando a
 plataforma mais alta.
@@ -124,10 +124,10 @@ plataforma mais alta.
 \label{fig:extra2}
 \end{figure}
 
-O jogo também conta com a possibilidade de \textbf{correr}, fazendo com que o
-jogador se desloque mais rápido pelo nível. Além disso, quando o jogador corre,
-é possível que este tenha uma impulsão maior no momento de saltar, podendo
-passar por um número maior de obstáculos. De forma a explorar a corrida do
+O jogador também conta com a ação de \textbf{correr}, fazendo com que seu
+deslocamento pelo nível seja mais rápido. Além disso, quando o jogador corre, é
+possível que este tenha uma impulsão maior no momento de saltar, sendo capaz de
+superar buracos ou obstáculos mais compridos. De forma a explorar a corrida do
 jogador, o nível \textbf{extra 3} -- representado na figura \ref{fig:extra3} --
 só pode ser vencido caso o jogador pule os espinhos enquanto estiver correndo.
 
