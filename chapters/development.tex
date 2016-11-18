@@ -274,6 +274,44 @@ interface gráfica virtual também nos permitiu realizar conexões remotas para 
 servidor, concedendo-nos a capacidade de acompanhar o processo de treinamento em
 tempo real.
 
+\subsection{\label{sub:spelunkbots-gui}Interface de Acompanhamento do
+SpelunkBots}
+
+O \textit{SpelunkBots} conta com uma interface de acompanhamento da execução do
+jogo. Além de possibilitar ver o personagem explorando a caverna, ela também
+mostra alguns controles específicos do \textit{SpelunkyBots}, tais como os
+botões que o jogador está apertando, além de algumas informações de direção.
+
+Embora essa interface contenha muitas informações, muitas delas não são
+relevantes no nosso caso. Além disso, implementamos alguns controles para o
+jogo -- tal como o tempo máximo de execução -- que são interessantes de
+acompanharmos. Portanto, modificamos essa tela de acompanhamento, deixando
+apenas as informações que consideramos relevantes. Nesse caso, a direção para
+onde o jogador está se movimentando e se ele está apertando o botão de pular.
+Além disso, também queremos saber o tempo restante de execução. Assim, criamos
+um contador que inicia com o tempo máximo estipulado vai sendo decrementado ao
+longo do tempo. Também adicionamos um quadrado vermelho em volta do jogador,
+indicando o campo de visão dele. A Figura \ref{fig:spelunkbots-gui} compara a
+interface antes e depois das modificações.
+
+\begin{figure}[H]
+\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{fig/spelunkbots-gui-before.pdf}
+        \caption{Interface do \textit{SpelunkBots} antes das modificações realizadas.}
+		\label{fig:spelunkbots-gui-before}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{fig/spelunkbots-gui-after.pdf}
+        \caption{Interface do \textit{SpelunkBots} após as modificações realizadas.}
+		\label{fig:spelunkbots-gui-after}
+	\end{subfigure}
+
+    \caption{Comparação entre a interface do \textit{SpelunkBots} antes e
+    depois das modificações realizadas.}
+	\label{fig:spelunkbots-gui}
+\end{figure}
+
 \section{\label{section:neat-details}Implementação do NEAT}
 
 \todoin[caption={Implementação do NEAT}] {
