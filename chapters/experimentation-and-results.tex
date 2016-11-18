@@ -95,7 +95,7 @@ de aptidão para descobrirmos qual o que se encaixa melhor no nosso problema.
 Assim, fizemos a execução do \textit{bot} no cenário \textbf{fácil} (Figura
 \ref{fig:level1}, Capítulo \ref{chap:scenarios}) com três diferentes funções de
 aptidão: \textbf{média aritmética}, \textbf{média aritmética ponderada} e
-\textbf{média harmônica}. Obtivemos os resultados apresentados na figura
+\textbf{média harmônica}. Obtivemos os resultados apresentados na Figura
 \ref{fig:fitness-experiment}.
 
 \begin{figure}[H]
@@ -128,6 +128,56 @@ penalizando os outros. Isso pode fazer com que algumas aptidões apresentem
 valores muito baixos, podendo dificultar alguns treinamentos futuros.
 
 \subsection{Adição de \textit{Input} de Obstáculo}
+
+Com a função de aptidão escolhida, o próximo passo foi executar o \textit{bot}
+em um nível mais desafiador que o nível \textbf{fácil}, portanto, executamos
+ele no nível \textbf{médio}. Porém, percebemos que o jogador nunca chegava até
+o final do nível. Acompanhando a execução, vimos que em muitas gerações o
+\textit{bot} ia, no máximo, até o local indicado pela Figura
+\ref{fig:experiment-medium-stuck}.
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=.5\textwidth]{fig/experiment-medium-stuck.pdf}
+\caption{Experimento mostrando o local onde o \textit{bot} fica parado ao
+    executar no mapa médio com a média aritmética ponderada como função de
+    aptidão.}
+\label{fig:experiment-medium-stuck}
+\end{figure}
+
+Analisamos esse comportamento e percebemos que o \textit{bot} estava em um
+local onde, naquele momento, ele considerava como \textit{ótimo}. Identificamos
+isso pois nossa função de aptidão produz valores mais altos quanto maior for o
+deslocamento horizontal e vertical do \textit{bot}. Dessa forma, caso ele fosse
+para a esquerda, o valor de aptidão seria pior do que se ele ficasse parado
+nesse local \textit{ótimo}. Um outro ponto importante é que é possível que as
+mutações ou não estivessem ocorrendo ou não fossem suficientes para fazer com
+que o \textit{bot} explorasse mais o mapa, de forma a fazer com que ele
+entendesse que chegar na área inferior do mapa é mais vantajoso do que ficar
+parado nesse local \textit{ótimo}.
+
+\todoin[caption={Citar capítulo de modelagem}] {
+    Citar capítulo de modelagem.
+}
+
+Embora o \textit{bot} não tenha vencido, é possível que, dado um número grande
+de execuções, ele consiga chegar até o fim do nível. Porém, não é possível --
+devido à probabilidade de ocorrer uma mutação -- prever esse número de
+execuções. Portanto, visando fazer com que ele aprendesse mais rápido,
+adicionamos a entrada de \textit{obstáculo} na rede. O resultado dessa
+modificação pode ser vista na Figura \ref{fig:obstacle-input-wam-experiment}.
+
+\begin{figure}[H]
+\missingfigure{Figura}
+\caption{Número de vencedores em função do número de gerações para a
+entrada de \textit{obstáculo}.}
+\label{fig:obstacle-input-wam-experiment}
+\end{figure}
+
+O resultado é satisfatório, afinal, o \textit{bot} agora consegue ganhar a
+partida. Porém, o número de organismos vencedores é bastante baixo -- girando
+em torno de $10\%$ da quantidade da população --. Portanto, ainda é possível
+tentarmos melhorar essa configuração.
 
 \subsection{Função de Aptidão com Valor de Exploração}
 
