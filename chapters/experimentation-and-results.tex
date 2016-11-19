@@ -114,23 +114,25 @@ aptidão: \textbf{média aritmética}, \textbf{média aritmética ponderada} e
 	\label{fig:fitness-experiment}
 \end{figure}
 
-Através da análise dos resultados, podemos ver que a \textbf{média harmônica} e
-a \textbf{média aritmética ponderada} têm um comportamento muito semelhante,
-além de serem melhores do que a função de \textbf{média aritmética}. Escolhemos
-então a \textbf{média aritmética ponderada} por ser uma função que nos dá
-bastante controle sobre os valores que a compõem. Não escolhemos a média
-harmônica pois ela tem a característica de produzir valores muito baixos quando
-algum dos seus termos apresenta um valor pequeno, ou seja, esse valor acaba
-penalizando os outros. Isso pode fazer com que algumas aptidões apresentem
-valores muito baixos, podendo dificultar alguns treinamentos futuros.
+Através da análise dos resultados, podemos ver que a \textbf{média
+artimética} e a \textbf{média aritmética ponderada} têm um comportamento
+muito semelhante, além de serem melhores do que a função de \textbf{média
+harmônica}. Escolhemos então a \textbf{média aritmética ponderada} por ser
+uma função que nos dá bastante controle sobre os valores que a compõem.
+Embora a média harmônica tenha apresentado um comportamento bastante
+estável, não a escolhemos  pois ela tem a característica de produzir
+valores muito baixos quando algum dos seus termos apresenta um valor
+pequeno, ou seja, esse valor acaba penalizando os outros. Isso pode fazer
+com que algumas aptidões apresentem valores muito baixos, podendo
+dificultar alguns treinamentos futuros.
 
 \subsection{Adição de \textit{Input} de Obstáculo}
 
 Com a função de aptidão escolhida, o próximo passo foi executar o \textit{bot}
 em um nível mais desafiador que o nível \textbf{fácil}, portanto, executamos
-ele no nível \textbf{médio}. Porém, percebemos que o jogador nunca chegava até
-o final do nível. Acompanhando a execução, vimos que em muitas gerações o
-\textit{bot} ia, no máximo, até o local indicado pela Figura
+ele no nível \textbf{médio}. Porém, percebemos que o jogador demorava muito
+tempo para chegar até o final do nível. Acompanhando a execução, vimos que em
+muitas gerações o \textit{bot} ia, no máximo, até o local indicado pela Figura
 \ref{fig:experiment-medium-stuck}.
 
 \begin{figure}[htb!]
@@ -151,30 +153,59 @@ nesse local \textit{ótimo}. Um outro ponto importante é que é possível que a
 mutações ou não estivessem ocorrendo ou não fossem suficientes para fazer com
 que o \textit{bot} explorasse mais o mapa, de forma a fazer com que ele
 entendesse que chegar na área inferior do mapa é mais vantajoso do que ficar
-parado nesse local \textit{ótimo}.
+parado nesse local \textit{ótimo} por muitas gerações. O resultado dessa
+execução pode ser visto na Figura \ref{fig:medium-wam-experiment}.
+
+\begin{figure}[H]
+\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{fig/medium-wam-fitness-experiment.pdf}
+        \caption{Valor de aptidão em função do número de gerações para a média
+        aritmética ponderada no mapa médio.}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{fig/medium-wam-winners-experiment.pdf}
+        \caption{Número de organismos vencedores por geração para a média
+        aritmética ponderada no mapa médio.}
+	\end{subfigure}
+
+    \caption{Resultado da execução do cenário médio com a média aritmética
+    ponderada.}
+	\label{fig:medium-wam-experiment}
+\end{figure}
 
 \todoin[caption={Citar capítulo de modelagem}] {
     Citar capítulo de modelagem.
 }
 
-Embora o \textit{bot} não tenha vencido, é possível que, dado um número grande
-de execuções, ele consiga chegar até o fim do nível. Porém, não é possível --
-devido à probabilidade de ocorrer uma mutação -- prever esse número de
-execuções. Portanto, visando fazer com que ele aprendesse mais rápido,
-adicionamos a entrada de \textit{obstáculo} na rede. O resultado dessa
-modificação pode ser vista na Figura \ref{fig:obstacle-input-wam-winners}.
+Embora o \textit{bot} tenha vencido, ele demorou muito para isso -- após a
+geração de número 40. Portanto, visando fazer com que ele aprendesse mais
+rápido, adicionamos a entrada de \textit{obstáculo} na rede. O resultado dessa
+modificação pode ser vista na Figura \ref{fig:medium-wam-obs-fitness-experiment}.
 
 \begin{figure}[H]
-\missingfigure{Figura}
-\caption{Número de vencedores em função do número de gerações para a
-entrada de \textit{obstáculo}.}
-\label{fig:obstacle-input-wam-winners}
+\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{fig/medium-wam-obs-fitness-experiment.pdf}
+        \caption{Valor de aptidão em função do número de gerações para a média
+        aritmética ponderada, com o \textit{input} de obstáculo, no mapa
+        médio.}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{fig/medium-wam-obs-winners-experiment.pdf}
+        \caption{Número de organismos vencedores por geração para a média
+        aritmética ponderada, com o \textit{input} de obstáculo, no mapa
+        médio.}
+	\end{subfigure}
+
+    \caption{Resultado da execução do cenário médio com a média aritmética
+    ponderada.}
+	\label{fig:medium-wam-obs-fitness-experiment}
 \end{figure}
 
-O resultado é satisfatório, afinal, o \textit{bot} agora consegue ganhar a
-partida. Porém, o número de organismos vencedores é bastante baixo -- girando
-em torno de $10\%$ da quantidade da população --. Portanto, ainda é possível
-tentarmos melhorar essa configuração.
+\todoin[caption={Melhorar análise dos resultados}, color=red!80] {
+    Melhorar análise dos resultados.
+}
 
 \subsection{Função de Aptidão com Valor de Exploração}
 
