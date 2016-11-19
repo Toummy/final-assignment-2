@@ -150,8 +150,8 @@ Optamos, portanto, por limitar a visão do agente em dois aspectos:
 Não é possível identificar qual tamanho de visão será o mais adequado para o
 agente sem realizar algum tipo de experimentação para realizar uma validação
 empírica. Portanto, durante o treinamento dos agentes, realizaremos um
-experimento para testar alguns tamanhos de janela de visão.
-\todo[inline]{Colocar referência da seção aqui}
+experimento para testar alguns tamanhos de área de visão (seção
+\ref{section:experiment-vision}).
 
 
 %----------
@@ -288,8 +288,8 @@ neural utilizada neste trabalho.
     \node[annot] at (0, 1) {Camada de Entrada};
     \node[annot] at (4.65cm, 1) {Camada de Saída};
 \end{tikzpicture}
-\caption {\label{fig:modelling-network-example}Ilustração dos nodos que o
-agente é capaz de enxergar.}
+\caption {\label{fig:modelling-network-example}Exemplo de configuração de rede
+	neural inicial com campo de visão 5 por 5.}
 \end{figure}
 
 Conforme mencionado na seção \ref{section:modelling-outputs}, adicionaremos
@@ -300,10 +300,6 @@ inicial.
 É importante lembrar que o processo de treinamento destas redes neurais,
 explicado na seção \ref{section:modelling-genetic}, é feito através da aplicação
 do algoritmo genético do \textit{NEAT}.
-
-, através
-da mutação de pesos, adição de neurônios e conexões e cruzamento entre redes é
-feito através da aplicação do algoritmo genético do \textit{NEAT}.
 
 
 %----------
