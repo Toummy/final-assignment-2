@@ -123,38 +123,29 @@ Optamos, portanto, por limitar a visão do agente em dois aspectos:
 
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
-    \def\layersep{4cm}
-    \tikzstyle{every node}=[font=\footnotesize]
-    \tikzstyle{every pin edge}=[<-,shorten <=1pt]
-    \tikzstyle{neuron}=[circle,fill=black!25,minimum size=17pt,inner sep=0pt]
-    \tikzstyle{input neuron}=[neuron, fill=gray!50];
-    \tikzstyle{output neuron}=[neuron, fill=gray!50];
-    \tikzstyle{hidden neuron}=[neuron, fill=gray!50];
-    \tikzstyle{annot} = [text width=10em]
+	\begin{subfigure}[b]{0.3\textwidth}
+        \missingfigure{Figura}
+		\caption{Espaço vazio.}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+        \missingfigure{Figura}
+		\caption{Terreno.}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+        \missingfigure{Figura}
+		\caption{Saída.}
+	\end{subfigure}
 
-    \node[input neuron, pin=left:1]        (I-0) at (0, 0)  {};
-    \node[input neuron, pin=left:2]        (I-1) at (0, -1) {};
-    \node[input neuron, pin=left:$\cdots$] (I-2) at (0, -2) {};
-    \node[input neuron, pin=left:25]       (I-3) at (0, -3) {};
-    \node[input neuron, pin=left:Bias]     (I-4) at (0, -4) {};
-
-    \draw[decoration={brace,mirror,amplitude=10pt},decorate, style={-}]
-      (-1.75,0.25) -- node[midway, left=10pt] {Visão} (-1.75, -3.25);
-
-    \node at (\layersep, -0.35) {Movimentação};
-    \node[hidden neuron] (O-0) at (\layersep, -1) {};
-    \node at (\layersep, -2.35) {Pulo};
-    \node[hidden neuron] (O-1) at (\layersep, -3) {};
-
-    \foreach \source in {0,...,4}
-        \foreach \dest in {0,...,1}
-            \path (I-\source) edge (O-\dest);
-    \node[annot] at (0, 1) {Camada de Entrada};
-    \node[annot] at (4.65cm, 1) {Camada de Saída};
-\end{tikzpicture}
-\caption {\label{fig:vision-nodes}Ilustração dos nodos que o agente é capaz de
-enxergar.}
+	\begin{subfigure}[b]{0.4\textwidth}
+        \missingfigure{Figura}
+		\caption{Escada.}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.4\textwidth}
+        \missingfigure{Figura}
+		\caption{Espinho}
+	\end{subfigure}
+	\caption{Exemplos dos nodos que o agente é capaz de enxergar.}
+	\label{fig:vision-nodes}
 \end{figure}
 
 Não é possível identificar qual tamanho de visão será o mais adequado para o
@@ -267,13 +258,40 @@ iniciais pode ter um impacto significante com o passar do tempo. A Figura
 \ref{fig:modelling-network-example} ilustra uma configuração inicial de rede
 neural utilizada neste trabalho.
 
-\todo[inline]{Colocar figura aqui}
-\begin{figure}[htb!]
-	\centering
-	\missingfigure{Figura}
-	\caption{Exemplo de configuração inical de uma rede neural com campo de
-	visão $5x5$, um nodo de \textit{bias} e duas ações na camada de saída.}
-	\label{fig:modelling-network-example}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
+    \def\layersep{4cm}
+    \tikzstyle{every node}=[font=\footnotesize]
+    \tikzstyle{every pin edge}=[<-,shorten <=1pt]
+    \tikzstyle{neuron}=[circle,fill=black!25,minimum size=17pt,inner sep=0pt]
+    \tikzstyle{input neuron}=[neuron, fill=gray!50];
+    \tikzstyle{output neuron}=[neuron, fill=gray!50];
+    \tikzstyle{hidden neuron}=[neuron, fill=gray!50];
+    \tikzstyle{annot} = [text width=10em]
+
+    \node[input neuron, pin=left:1]        (I-0) at (0, 0)  {};
+    \node[input neuron, pin=left:2]        (I-1) at (0, -1) {};
+    \node[input neuron, pin=left:$\cdots$] (I-2) at (0, -2) {};
+    \node[input neuron, pin=left:25]       (I-3) at (0, -3) {};
+    \node[input neuron, pin=left:Bias]     (I-4) at (0, -4) {};
+
+    \draw[decoration={brace,mirror,amplitude=10pt},decorate, style={-}]
+      (-1.75,0.25) -- node[midway, left=10pt] {Visão} (-1.75, -3.25);
+
+    \node at (\layersep, -0.35) {Movimentação};
+    \node[hidden neuron] (O-0) at (\layersep, -1) {};
+    \node at (\layersep, -2.35) {Pulo};
+    \node[hidden neuron] (O-1) at (\layersep, -3) {};
+
+    \foreach \source in {0,...,4}
+        \foreach \dest in {0,...,1}
+            \path (I-\source) edge (O-\dest);
+    \node[annot] at (0, 1) {Camada de Entrada};
+    \node[annot] at (4.65cm, 1) {Camada de Saída};
+\end{tikzpicture}
+\caption {\label{fig:modelling-network-example}Ilustração dos nodos que o
+agente é capaz de enxergar.}
 \end{figure}
 
 Conforme mencionado na seção \ref{section:modelling-outputs}, adicionaremos
