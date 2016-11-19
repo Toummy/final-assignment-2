@@ -33,17 +33,16 @@ causam um impacto significativo de performance de execução:
 		realizamos alguns testes iniciais na ferramenta.
 
 	\item[Contagem de Tempo]
-		A contagem do tempo de execução de um nível é feito no nível do sistema
-		operacional, através de chamadas da função \textit{GetTickCount} do
-		\textit{Windows}. Isto resulta em pelo menos dois efeitos colaterais. O
-		primeiro é que se, por exemplo, pausarmos a execução do jogo e
-		retormarmos a execução após um tempo, este intervalo de tempo será
-		contabilizado como tempo de execução. O segundo é que se, por qualquer
-		motivo, o jogo sofrer uma queda de desempenho momentânea (mais
-		processamento de CPU, por exemplo), a contabilização do tempo continuará
-		igual, o que significa que máquinas com capacidade de processamento
-		inferiores não possuem, realisticamente falando, o mesmo tempo de
-		execução que máquinas mais potentes.
+		A contagem do tempo de execução de um nível é feito por fora do jogo,
+		através de chamadas da função \textit{GetTickCount} do \textit{Windows}.
+		Isto resulta em pelo menos dois efeitos colaterais. O primeiro é que se,
+		por exemplo, pausarmos a execução do jogo e retormarmos a execução após
+		um tempo, este intervalo de tempo será contabilizado como tempo de
+		execução. O segundo é que se, por qualquer motivo, o jogo sofrer uma
+		queda de desempenho momentânea (mais processamento de CPU, por exemplo),
+		a contabilização do tempo continuará igual, o que significa que máquinas
+		com capacidade de processamento inferiores não possuem, realisticamente
+		falando, o mesmo tempo de execução que máquinas mais potentes.
 
 	\item[Chamadas de DLL]
 		Devido às limitações de programação externa oferecidas pelo
@@ -59,15 +58,14 @@ causam um impacto significativo de performance de execução:
 		significa que, a cada certo período de tempo, é preciso renderizar o
 		jogo. Durante o o treinamento dos agentes, essa função é desnecessária,
 		ou seja, gasta-se tempo e capacidade de processamento para uma
-		funcionalidade que não será utilizada.
+		funcionalidade que não é utilizada.
 
 	\item[Sistema Operacional]
-		A ferramenta \textit{SpelunkBots} foi desenvolvido inicialmente somente
-		para a plataforma \textit{Windows}, o que significa que, para executá-la
-		em outras plataformas (no nosso caso, \textit{Linux}), é preciso
-		utilizar programas adicionais para realizar a compilação e execução do
-		jogo. Este \textit{overhead} adicional prejudica o desempenho da
-		aplicação.
+		A ferramenta \textit{SpelunkBots} foi desenvolvida somente para a
+		plataforma \textit{Windows}, o que significa que, para executá-la em
+		outras plataformas (no nosso caso, \textit{Linux}), é preciso utilizar
+		programas adicionais para realizar a compilação e execução do jogo. Este
+		\textit{overhead} adicional prejudica o desempenho da aplicação.
 \end{description}
 
 
@@ -89,7 +87,7 @@ resultaria em uma rede com muitas ligações, o que implicaria em uma necessidad
 maior de tempo de processamento. O terceiro e último motivo é que, dadas as
 limitações da ferramenta \textit{SpelunkBots} apresentadas na seção
 \ref{section:spelunkbots-limitations}, identificamos que devemos buscar pela
-simplicidade, pois se não a performance dos agentes será afetada.
+simplicidade, pois caso contrário a performance dos agentes será afetada.
 
 Outra questão importante é identificar quais são os tipos de nodos que são
 interessantes para o domínio da navegação. Nodos como, por exemplo, o altar de
@@ -108,10 +106,10 @@ Optamos, portanto, por limitar a visão do agente em dois aspectos:
 
 	\item \textbf{Tipos de Nodo:} limitamos os tipos de nodo que o agente é
 		capaz de visualizar, permitindo somente nodos dos tipos: vazio, terreno
-		normal, saída, escada e espinho. Caso o agente visualize qualquer outro
-		tipo de nodo durante a execução, ele o interpretará como um nodo do tipo
-		terreno normal. A Figura \ref{fig:vision-nodes} ilustra os nodos que o
-		agente é capaz de enxergar.
+		, saída, escada e espinho. Caso o agente visualize qualquer outro tipo
+		de nodo durante a execução, ele o interpretará como um nodo do tipo
+		terreno. A Figura \ref{fig:vision-nodes} ilustra os nodos que o agente é
+		capaz de enxergar.
 \end{itemize}
 
 \begin{figure}[htb!]
@@ -147,9 +145,9 @@ Optamos, portanto, por limitar a visão do agente em dois aspectos:
 	\label{fig:vision-nodes}
 \end{figure}
 
-Não é possível identificar qual tamanho de visão será o mais adequado para o
-agente sem realizar algum tipo de experimentação para realizar uma validação
-empírica. Portanto, durante o treinamento dos agentes, realizaremos um
+Não é possível identificar de antemão qual tamanho de visão será o mais adequado
+para o agente sem realizar algum tipo de experimentação para realizar uma
+validação empírica. Portanto, durante o treinamento dos agentes, realizaremos um
 experimento para testar alguns tamanhos de área de visão (seção
 \ref{section:experiment-vision}).
 
@@ -191,15 +189,15 @@ fundamentais de nossas redes neurais que devem ser inspecionadas: os
 \textbf{neurônios} e a \textbf{topologia}.
 
 Existem três pontos significativos de configuração dos neurônios da rede neural,
-que são os intervalos de pesos de conexões, encarregados de informar aos
-neurônios o quao importante é a informação, a função de integração, responsável
-por unificar os dados que estão entrando no neurônio, e a função de ativação,
-cujo papel é processar o resultado da função de integração. Como estamos
-utilizando uma biblioteca de \textit{NEAT}, estas configurações estão
-pré-estabelecidas, e são as seguintes: o intervalo de valores de pesos é entre
-$-8$ e $8$; a função de integração é uma simples adição; a função de ativação é
-do tipo sigmóide, mais especificamente, a função logística, que mantém os
-valores normalizados no intervalo $[0,1]$:
+que são os \textbf{intervalos de pesos de conexões}, encarregados de informar
+aos neurônios o quao importante é a informação, a \textbf{função de integração},
+responsável por unificar os dados que estão entrando no neurônio, e a
+\textbf{função de ativação}, cujo papel é processar o resultado da função de
+integração. Como estamos utilizando uma biblioteca de \textit{NEAT}, estas
+configurações estão pré-estabelecidas, e são as seguintes: o intervalo de
+valores de pesos é entre $-8$ e $8$; a função de integração é uma simples
+adição; a função de ativação é do tipo sigmóide, mais especificamente, a função
+logística, que mantém os valores normalizados no intervalo $[0,1]$:
 
 \begin{equation}
 	\label{eq:neat-activation}
@@ -223,7 +221,7 @@ visão de um agente for de uma área de 5 por 5, a rede teria 25 nodos de visão
 escondidas na rede, para que a evolução possa acontecer somente conforme
 necessidade. Portanto, nossas redes neurais não possuem, inicialmente, nenhuma
 camada escondida. Nas saídas da rede, fizemos o mapeamento, um para um, das
-ações que desejamos executar (listadas na seção \ref{section:modelling-outputs}.
+ações que desejamos executar (listadas na seção \ref{section:modelling-outputs}).
 Ou seja, se um agente pode executar duas ações, existirão dois nodos de saída na
 rede.
 
@@ -297,10 +295,6 @@ neurônios na camada de saída conforme necessidade, ou seja, caso algum cenári
 de teste exija do agente alguma ação a mais, esta ação será inserida na rede
 inicial.
 
-É importante lembrar que o processo de treinamento destas redes neurais,
-explicado na seção \ref{section:modelling-genetic}, é feito através da aplicação
-do algoritmo genético do \textit{NEAT}.
-
 
 %----------
 \section{\label{section:modelling-genetic}Configurações do Algoritmo Genético}
@@ -334,13 +328,14 @@ importantes de um algoritmo genético, definido em
 		escolhemos um número de população de \textbf{100} organismos.
 
 	\item[Seleção de Pais] A seleção de pais no \textit{NEAT} é feita de forma
-		aleatória. Ou seja, a cada época, o algoritmo seleciona um ou dois pais
-		para fazer mutações ou cruzamentos, respectivamente.
+		aleatória. Ou seja, a cada iteração, o algoritmo seleciona um ou dois
+		pais para fazer mutações ou cruzamentos, respectivamente.
 
 	\item[Variação] As probabilidades de realizar mutações e cruzamentos na
-		biblioteca escolhida são definidas através de um arquivo externo que
-		mapeia uma característica para uma probabilidade de acontecimento. As
-		principais características que modificamos foram:
+		biblioteca escolhida (detalhada na seção \ref{section:neat-details}) são
+		definidas através de um arquivo externo que mapeia uma característica
+		para uma probabilidade de acontecimento. As principais características
+		que modificamos foram:
 		\begin{itemize}
 				\item força de mutação de pesos: $2.5$
 				\item probabilidade de mutação de peso: $90\%$
@@ -367,8 +362,8 @@ organismos, integrantes da fórmula \ref{eq:neat-species}:
 	\item \textbf{$c_3$ (matching genes):} 0.4
 \end{itemize}
 
-O valor máximo estipulado para dois organismos pertencerem a mesma espécie é de
-$\delta = 3$
+O valor máximo estipulado para dois organismos pertencerem a mesma espécie,
+calculado através da equação \ref{eq:neat-species}, é de $\delta = 3$.
 
 Para inicializar as redes neurais, o algoritmo conecta todos os neurônios da
 camada de entrada com todos os neurônios da camada de saída e cada ligação
@@ -387,13 +382,23 @@ deseja que seus agentes alcancem dentro do domínio. Se a função não mapear
 eficientemente os objetivos desejados, é possível que o algoritmo genético tenha
 dificuldades de convergir ou até mesmo convirja para uma solução inapropriada.
 
-Ao analisarmos o domínio de navegação e as características de \textit{Spelunky},
-identificamos que nossas funções de aptidão deveriam se basear em duas
-características fundamentais: \textbf{distância percorrida} e \textbf{tempo para
-conclusão}. O raciocínio por trás da seleção destes parâmetros é simples: se o
-agente cobrir uma quantidade maior de terreno, é provável que encontre,
-eventualmente, a saída; paralelamente, quanto mais rápido o fizer, mais
-eficiente o agente será.
+Poderiamos definir, por exemplo, uma função de aptidão de maneira extremamente
+simplista: se o agente vencer, receberá um valor de aptidão de $1$; caso
+contrário, receberá $0$. É possível que esta função funcione eventualmente mas,
+dada a complexidade do cenário trabalhado, isto é extremamente improvável. Além
+disso, somente o sucesso e o fracasso estão mapeados. Logo, não existe uma
+maneira quantitativa de o algoritmo evolutivo identificar resultados
+intermediários bons e ruins (retardando o aprendizado), além de ser impossível
+identificar quais agentes, entre os bem-sucedidos, são mais eficientes.
+
+Por conseguinte, devemos buscar características do domínio que auxiliem o
+algoritmo evolutivo a acelerar o processo de aprendizado. Ao analisarmos o
+domínio de navegação e as características de \textit{Spelunky}, identificamos
+que nossas funções de aptidão deveriam se basear em duas características
+fundamentais: \textbf{distância percorrida} e \textbf{tempo para conclusão}. O
+raciocínio por trás da seleção destes parâmetros é simples: se o agente cobrir
+uma quantidade maior de terreno, é provável que encontre, eventualmente, a
+saída; paralelamente, quanto mais rápido o fizer, mais eficiente o agente será.
 
 É interessante normalizar os valores obtidos de distância e tempo para que
 possamos efetuar um balanceamento de importância destes parâmetros. Portanto,
@@ -458,26 +463,125 @@ jogador, respectivamente.
 
 \subsection{Tempo para Conclusão}
 A ferramenta \textit{SpelunkBots} nos permite estabelecer um tempo máximo de
-teste para uma execução.
+teste para uma execução ($T_{max}$), bem como detectar o tempo total utilizado
+pelo agente durante o teste ($T_{elapsed}$). Com estas duas informações em mãos,
+é simples de calcular uma aptião de tempo normalizada entre o intervalo $[0,1]$
+através da seguinte fórmula:
 
-\todoin[caption={Modelagem}] {
+\begin{equation}
+	\label{eq:time-fitness-wrong}
+	T_{n} = (T_{max} - T_{elapsed}) / T_{max}
+\end{equation}
+
+Contudo, calcular desta forma a aptidão do parâmetro de tempo resultaria em uma
+anomalia indesejada: todos os agentes, independente do resultado da execução,
+seriam recompensados (ou penalizados) com uma função de aptidão de tempo igual.
+Destacamos, a seguir, alguns dos resultados específicos que encontramos ao
+experimentar com este cálculo simples:
 
 \begin{itemize}
-	\item Função de fitness
-		\begin{itemize}
-			\item Avaliar distância percorrida e tempo
-			\item Normalização de valores
-			\item Ideias de funções
-				\begin {itemize}
-					\item Fitness ``bobinha'': 1 caso perca, 1000 caso ganhe
-					\item Fitness média aritmética
-					\item Penalização para ``morte rápida'' e ``bot idle''
-					\item Fitness de relação entre D e T (D/T)
-					\item Fitness média harmônica
-					\item Fitness média aritmética ponderada
-				\end {itemize}
-		\end{itemize}
+	\item Os agentes descobriram que deveriam se matar o mais rápido possível,
+		pois assim gastariam pouco tempo durante o teste e sua aptidão de tempo
+		seria elevada.
 
-	\item Critério de parada para a execução (exemplo: número de iterações, percentual de vitórias)
+	\item Os agentes que estavam explorando ativamente quando o tempo se
+		esgotava eram penalizados da mesma forma que os agentes que morriam, que
+		ficavam ociosos e que perambulavam por uma pequena área (não obtendo
+		nenhum progresso real).
+
+	\item Todos os agentes que não fossem bem-sucedidos receberiam a mesma
+		penalidade: o valor mínimo da função de aptidão de tempo ($0$). Isto
+		retarda o processo de aprendizado dos agentes, pois eles só poderão
+		depender do parâmetro de distância percorrida para detectar seu
+		progresso.
 \end{itemize}
-}
+
+Analisando mais à fundo estes resultados, fica claro que existe uma falha na
+concepção da função de aptidão de tempo: ela não limita suficientemente o
+agente. Na verdade, o agente está fazendo exatamente aquilo que a função de
+aptidão de tempo o pede, como fica evidenciado no primeiro resultado citado.
+Portanto, decidimos criar um conjunto de regras para a função de aptidão de
+tempo, baseada no resultado final da execução:
+
+\begin{description}
+	\item[Vitória]
+		O agente atingiu a porta de saída. Neste caso sua aptidão de tempo deve
+		ser relativa a quanto tempo levou até atingir a porta de saída. Logo,
+		utilizamos a fórmula padrão de aptidão de tempo, ilustrada na equação
+		\ref{eq:time-fitness-wrong}.
+
+	\item[Exploração]
+		O agente estava explorando ativamente quando o tempo se esgotou. É
+		possível que, dado mais tempo, o agente seja capaz de ser bem-sucedido.
+		Neste caso, o valor de aptidão de tempo do agente será $0.01$, ou $1\%$
+		de $T_{max}$.
+
+	\item[Ocioso]
+		O agente estava ocioso por muito tempo. É extremamente provável que
+		nunca mais voltasse a se mexer. Neste caso, o valor de aptidão de tempo
+		do agente será $0.001$, ou $0.1\%$ de $T_{max}$.
+
+	\item[Repetição de Estados]
+		O agente estava explorando apenas uma pequena área do mapa, repetindo
+		excessivamente posições que já havia visitado antes. É extremamente
+		provável que permaneca desta forma até o fim da execução. Neste caso, o
+		valor de aptidão de tempo do agente será $0.001$, ou $0.1\%$ de
+		$T_{max}$.
+
+
+	\item[Morte]
+		O agente se matou em um espinho (única forma de se matar atualmente em
+		nossos cenários de teste), o que, evidentemente, é um resultado ruim.
+		Neste caso, o valor de aptidão de tempo do agente será $0.001$, ou
+		$0.1\%$ de $T_{max}$.
+\end{description}
+
+
+\subsection{Fórmulas Escolhidas}
+Com os parâmetros de aptidão selecionados, o próximo passo é identificar uma
+forma de combiná-los em uma fórmula única de aptidão. Esta parte também é
+experimentativa, portanto, escolhemos algumas fórmulas candidatas: \textbf{média
+aritmética}, \textbf{média ponderada} e \textbf{média harmônica}. Optamos por
+realizar uma média entre os valores porque, apesar de não ser um requisito,
+queremos continuar com os valores de aptidão normalizados.
+
+A média aritmética, representada pela equação \ref{eq:fitness-mean}, é a forma
+mais simples de combinarmos os dois parâmetros escolhidos, pois ambos terão a
+mesma importância. É possível que o algoritmo evolutivo possua informações
+suficientes através desta fórmula.
+
+\begin{equation}
+	\label{eq:fitness-mean}
+	M_{a} = \frac{D_{n} + T_{n}}{2}
+\end{equation}
+
+Já a média aritmética ponderada, representada pela equação
+\ref{eq:fitness-weighted-mean}, busca combinar os parâmetros priorizando de
+forma diferente cada parâmetro de aptidão.  Aqui, queremos enfatizar a
+importância da navegação, portanto seu peso será maior que o do tempo
+necessário. Os valores de peso devem ser entre 0 e 1 e sua soma deve resultar 1.
+Os pesos selecionados para distância ($W_{d}$) e tempo ($W_{t}$) serão de
+\textbf{0.6} e \textbf{0.4}, respectivamente.
+
+\begin{equation}
+	\label{eq:fitness-weighted-mean}
+	M_{w} = W_{d}*D_{n} + W_{t}*T_{n}
+\end{equation}
+
+Por fim, a média harmônica, representada pela equação
+\ref{eq:fitness-harmonic-mean}, busca combinar os parâmetros enquanto tende a
+diminuir o valor da média obtida caso a diferença entre os valores seja muito
+elevada. Neste caso, queremos identificar se os melhores resultados de aptidão
+ocorrem quando existe um balanceamento entre os parâmetros de distância e tempo.
+Caso haja um desbalanceamento, a função tenderá a diminuir a aptidão total dos
+agentes.
+
+\begin{equation}
+	\label{eq:fitness-harmonic-mean}
+	M_{h} = \frac{2}{\frac{1}{D_{n}} + \frac{1}{T_{n}}}
+\end{equation}
+
+A escolha de como combinar valores de aptidão baseados em mais de um parâmetro
+também é experimentativa. Por isso, executamos testes com todas as funções aqui
+citadas para analisar os resultados obtidos com cada uma delas. Tais testes
+estão localizados na seção \ref{section:fitness-experiment}.
