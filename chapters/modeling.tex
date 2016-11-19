@@ -363,7 +363,7 @@ organismos, integrantes da fórmula \ref{eq:neat-species}:
 \end{itemize}
 
 O valor máximo estipulado para dois organismos pertencerem a mesma espécie,
-calculado através da equação \ref{eq:neat-species}, é de $\delta = 3$.
+calculado através da Equação \ref{eq:neat-species}, é de $\delta = 3$.
 
 Para inicializar as redes neurais, o algoritmo conecta todos os neurônios da
 camada de entrada com todos os neurônios da camada de saída e cada ligação
@@ -507,7 +507,7 @@ tempo, baseada no resultado final da execução:
 	\item[Vitória]
 		O agente atingiu a porta de saída. Neste caso sua aptidão de tempo deve
 		ser relativa a quanto tempo levou até atingir a porta de saída. Logo,
-		utilizamos a fórmula padrão de aptidão de tempo, ilustrada na equação
+		utilizamos a fórmula padrão de aptidão de tempo, ilustrada na Equação
 		\ref{eq:time-fitness-wrong}.
 
 	\item[Exploração]
@@ -545,7 +545,7 @@ aritmética}, \textbf{média ponderada} e \textbf{média harmônica}. Optamos po
 realizar uma média entre os valores porque, apesar de não ser um requisito,
 queremos continuar com os valores de aptidão normalizados.
 
-A média aritmética, representada pela equação \ref{eq:fitness-mean}, é a forma
+A média aritmética, representada pela Equação \ref{eq:fitness-mean}, é a forma
 mais simples de combinarmos os dois parâmetros escolhidos, pois ambos terão a
 mesma importância. É possível que o algoritmo evolutivo possua informações
 suficientes através desta fórmula.
@@ -555,7 +555,7 @@ suficientes através desta fórmula.
 	M_{a} = \frac{D_{n} + T_{n}}{2}
 \end{equation}
 
-Já a média aritmética ponderada, representada pela equação
+Já a média aritmética ponderada, representada pela Equação
 \ref{eq:fitness-weighted-mean}, busca combinar os parâmetros priorizando de
 forma diferente cada parâmetro de aptidão.  Aqui, queremos enfatizar a
 importância da navegação, portanto seu peso será maior que o do tempo
@@ -568,7 +568,7 @@ Os pesos selecionados para distância ($W_{d}$) e tempo ($W_{t}$) serão de
 	M_{w} = W_{d}*D_{n} + W_{t}*T_{n}
 \end{equation}
 
-Por fim, a média harmônica, representada pela equação
+Por fim, a média harmônica, representada pela Equação
 \ref{eq:fitness-harmonic-mean}, busca combinar os parâmetros enquanto tende a
 diminuir o valor da média obtida caso a diferença entre os valores seja muito
 elevada. Neste caso, queremos identificar se os melhores resultados de aptidão
