@@ -207,61 +207,6 @@ modificação pode ser vista na Figura \ref{fig:medium-wam-obs-fitness-experimen
     Melhorar análise dos resultados.
 }
 
-\subsection{Função de Aptidão com Valor de Exploração}
-
-Como vimos, a configuração escolhida anteriormente não produz muitos organismos
-vencedores de uma forma rápida, o que é ruim, pois precisaremos esperar muito
-tempo para produzir bons resultados. Analisando o resultado da função de
-aptidão em função do número de gerações -- exposto na Figura
-\ref{fig:obstacle-input-wam-fitness} -- podemos ver que o valor médio de
-aptidão é muito baixo, além de apontar um crescimento muito pequeno em função
-do número de gerações.
-
-\begin{figure}[H]
-\missingfigure{Figura}
-\caption{Valor de aptidão em função do número de gerações para a média
-aritmética ponderada no mapa médio.}
-\label{fig:obstacle-input-wam-fitness}
-\end{figure}
-
-\todoin[caption={Citar capítulo de modelagem}] {
-    Citar capítulo de modelagem.
-}
-Com isso, experimentamos utilizar uma outra função de aptidão que, além de
-considerar o deslocamento, também considera o quanto o \textit{bot} explorou do
-mapa. Essa função estimula o \textit{bot} a explorar mais áreas do mapa,
-fazendo com que, no mapa médio, ele chegue até a plataforma inferior de forma
-mais rápida, produzindo então resultados melhores mais rapidamente. O resultado
-da execução dessa nova função de aptidão é apresentado na Figura
-\ref{fig:obstacle-input-ex-fitness}.
-
-\begin{figure}[H]
-\centering
-	\begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=\textwidth]{fig/medium-ex-fitness-experiment.pdf}
-        \caption{Valor de aptidão em função do número de gerações para a função
-        de aptidão com valor de exploração.}
-		\label{fig:tbd1}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=\textwidth]{fig/medium-ex-winners-experiment.pdf}
-        \caption{Número de organismos vencedores por geração para função de
-        aptidão com valor de exploração.}
-		\label{fig:tbd1}
-	\end{subfigure}
-
-    \caption{Resultado da execução do cenário médio com a função de aptidão que
-    considera o valor de exploração.}
-    \label{fig:obstacle-input-ex-fitness}
-\end{figure}
-
-Podemos perceber que essa função de aptidão é melhor do que a que estávamos
-utilizando anteriormente. Assim, decidimos utilizar essa nova função, que
-considera valores de exploração do mapa, nos próximos mapas, visto que ela
-apresentou resultados bem satisfatórios -- quase metade dos organismos da
-população são vencedores --, além de ter se mostrado mais eficiente que a
-anterior em mapas mais complexos.
-
 \subsection{\label{section:experiment-vision}Tamanho da Janela de Visão}
 
 \todoin[caption={Janela de Visão: Aguardando Resultados}, color=red!80] {
