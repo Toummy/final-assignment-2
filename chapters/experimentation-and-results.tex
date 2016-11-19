@@ -83,21 +83,17 @@ configurar uma nova máquina capaz de executar o treinamento dos agentes.
 \section{\label{section:experiments}Experimentos Realizados}
 
 \subsection{\label{section:fitness-experiment}Escolha da Função de Aptidão}
-
-\todoin[caption={Citar capítulo de modelagem}] {
-    Citar capítulo de modelagem.
-}
-
-Conforme vimos no capítulo XYZ. A função de aptidão é o que determina a
-\textbf{qualidade} da execução de um agente inteligente que utiliza algoritmos
-genéticos. Portanto, é de extrema relevância experimentarmos diferentes valores
-de aptidão para descobrirmos qual o que se encaixa melhor no nosso problema.
-
-Assim, fizemos a execução do \textit{bot} no cenário \textbf{fácil} (Figura
-\ref{fig:level1}, Capítulo \ref{chap:scenarios}) com três diferentes funções de
-aptidão: \textbf{média aritmética}, \textbf{média aritmética ponderada} e
-\textbf{média harmônica}. Obtivemos os resultados apresentados na Figura
-\ref{fig:fitness-experiment}.
+Conforme vimos na seção \ref{section:modelling-fitness}, A função de aptidão é o
+que determina a \textbf{qualidade} da execução de um agente inteligente que
+utiliza algoritmos genéticos. Portanto, é de extrema relevância experimentarmos
+diferentes valores de aptidão para descobrirmos qual o que se encaixa melhor no
+nosso problema. Assim, fizemos a execução do \textit{bot} no cenário
+\textbf{fácil} (Figura \ref{fig:level1}, Capítulo \ref{chap:scenarios}) com três
+diferentes funções de aptidão: \textbf{média aritmética}, \textbf{média
+aritmética ponderada} e \textbf{média harmônica}, representadas pelas Equações
+\ref{eq:fitness-mean}, \ref{eq:fitness-weighted-mean} e
+\ref{eq:fitness-harmonic-mean}, respectivamente . Obtivemos os resultados
+apresentados na Figura \ref{fig:fitness-experiment}.
 
 \begin{figure}[H]
 \centering
@@ -177,14 +173,11 @@ execução pode ser visto na Figura \ref{fig:medium-wam-experiment}.
 	\label{fig:medium-wam-experiment}
 \end{figure}
 
-\todoin[caption={Citar capítulo de modelagem}] {
-    Citar capítulo de modelagem.
-}
-
 Embora o \textit{bot} tenha vencido, ele demorou muito para isso -- após a
 geração de número 40. Portanto, visando fazer com que ele aprendesse mais
-rápido, adicionamos a entrada de \textit{obstáculo} na rede. O resultado dessa
-modificação pode ser vista na Figura \ref{fig:medium-wam-obs-fitness-experiment}.
+rápido, adicionamos a entrada de \textit{obstáculo} na rede, explicada na seção
+\ref{section:obstacle-input}. O resultado dessa modificação pode ser vista na
+Figura \ref{fig:medium-wam-obs-fitness-experiment}.
 
 \begin{figure}[H]
 \centering
