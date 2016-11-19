@@ -200,7 +200,7 @@ utilizando uma biblioteca de \textit{NEAT}, estas configurações estão
 pré-estabelecidas, e são as seguintes: o intervalo de valores de pesos é entre
 $-8$ e $8$; a função de integração é uma simples adição; a função de ativação é
 do tipo sigmóide, mais especificamente, a função logística, que mantém os
-valores normalizados entre $0$ e $1$:
+valores normalizados no intervalo $[0,1]$:
 
 \begin{equation}
 	\label{eq:neat-activation}
@@ -232,11 +232,10 @@ Durante o início do desenvolvimento deste trabalho, a ação de movimentação
 estava separada em dois nodos, um para esquerda e outro para a direita. Contudo,
 como desejávamos diminuir ao máximo o tamanho da rede para diminuir o
 processamento necessário, decidimos unir estes dois nodos em um só. Caso o valor
-de saída do nodo de movimentação esteja entre $0$ e $0.4$, o agente ativará a
-ação de caminhar para a esquerda. Se o valor estiver entre $0.4$ e $0.6$, o
-agente não executará nenhuma ação de movimentação (zona morta). Por fim, caso o
-valor esteja entre $0.6$ e $1$, o agente executará a ação de caminhar para a
-direita.
+de saída do nodo de movimentação esteja entre $[0,0.4]$, o agente ativará a ação
+de caminhar para a esquerda. Se o valor estiver entre $(0.4,0.6)$, o agente não
+executará nenhuma ação de movimentação (zona morta). Por fim, caso o valor
+esteja entre $[0.6,1]$, o agente executará a ação de caminhar para a direita.
 
 Na primeira etapa de execução, os neurônios da camada de entrada estão ligados,
 todos para todos, com os neurônios da camada de saída. Portanto, para calcular o
@@ -385,20 +384,86 @@ máximo de iterações e um tempo máximo de teste.
 
 %----------
 \section{\label{section:modelling-fitness}Funções de Aptidão}
-\todo[inline]{Escrever seção de funções de aptidão}
-Um dos pontos mais importantes para a aplicação de um algoritmo genético é a
-criação de uma função de aptidão que mapeie corretamente os requisitos que um
-organismo deve respeitar para ser bem sucedido. Esta medida deve nos fornecer
-uma maneira quantitativa para identificar e filtrar organismos bons e ruins.
-
 A tarefa de criar uma função de aptidão é uma das partes mais difíceis da
 aplicação de um algoritmo genético para resolver um problema computacional. Isto
-porque o desenvolvedor de selecionar e experimentar com características do
-domínio para encontrar uma função de aptidão que mapeie corretamente os
-requisitos que deseja alcançar dentro do domínio. Se a função não mapear
+porque o desenvolvedor deve selecionar e experimentar com características do
+domínio para encontrar parâmetros que mapeiem corretamente os requisitos que
+deseja que seus agentes alcancem dentro do domínio. Se a função não mapear
 eficientemente os objetivos desejados, é possível que o algoritmo genético tenha
 dificuldades de convergir ou até mesmo convirja para uma solução inapropriada.
 
+Ao analisarmos o domínio de navegação e as características de \textit{Spelunky},
+identificamos que nossas funções de aptidão deveriam se basear em duas
+características fundamentais: \textbf{distância percorrida} e \textbf{tempo para
+conclusão}. O raciocínio por trás da seleção destes parâmetros é simples: se o
+agente cobrir uma quantidade maior de terreno, é provável que encontre,
+eventualmente, a saída; paralelamente, quanto mais rápido o fizer, mais
+eficiente o agente será.
+
+É interessante normalizar os valores obtidos de distância e tempo para que
+possamos efetuar um balanceamento de importância destes parâmetros. Portanto,
+devemos encontrar uma maneira de calculá-los fazendo com que fiquem dentro de
+uma determinada região de valores. Um dos requisitos do algoritmo \textit{NEAT}
+é que \textbf{os valores de aptidão devem ser positivos}, portanto optamos por
+normalizá-los entre o intervalo $[0, 1]$.
+
+\subsection{Distância Percorrida}
+Ao iniciar um nível, o personagem é colocado na porta de entrada e deve navegar
+pelo mapa e chegar na porta de saída. Um possível cálculo de distância
+percorrida é a distância entre a posição final do jogador comparada com a
+posição da porta de saída. Contudo, devido ao sistema de \textit{fog of war} do
+\textit{SpelunkBots} (ilustrado na Figura \ref{fig:spelunkbots-fow}), não
+sabemos qual é a localização exata da porta de saída, a não ser que a
+visualizemos durante a execução. Além disso, caso nos baseássemos na distância
+do jogador até a porta, nossos agentes obteriam uma vantagem significativa sobre
+jogadores humanos, pois mesmo ao ser derrotado, é possível que um humano jamais
+saiba a localização exata da porta de saída do mapa que acabou de tentar
+superar. Portanto, utilizaremos como \textbf{valor base} a distância entre a
+\textbf{posição final do jogador} e a \textbf{posição da porta de entrada}. Este
+cálculo de distância se baseará na \textbf{Distância de Manhattan}:
+
+\begin{equation}
+	\label{eq:manhattan-distance}
+	MD(p_1,p_2) = |p_1.x - p_2.x| + |p_1.y - p_2.y|
+\end{equation}
+
+onde $p_1$ e $p_2$ representam as coordenadas $(x,y)$ da porta de entrada e do
+jogador, respectivamente. 
+
+Para calcular o parâmetro de distância percorrida de forma normalizada, devemos
+encontrar uma forma de estipular um valor máximo aproximado de distância que o
+agente pode percorrer. Para tal, nos baseamos nas seguintes características
+físicas que todo nível de \textit{Spelunky} apresenta:
+
+\begin{itemize}
+	\item os mapas sempre possuem um tamanho fixo de 42 por 34, mas o tamanho de
+		área navegável é de 40 por 32 (existe uma borda indestrutível ao redor
+		da região do mapa).
+	\item o jogador sempre inicia no topo do mapa e a saída sempre se encontra
+		na parte inferior do mapa.
+\end{itemize}
+
+No pior dos casos, a porta de entrada do mapa estaria localizada na posição
+$(1,1)$ e a saída na posição $(40,32)$. Sabendo que o jogador sempre iniciará na
+posição da porta de entrada do nível e utilizando a fórmula para distância de
+Manhattan, obtemos $D_{max} = 70$, que corresponde ao máximo de distância que o
+jogador deverá percorrer.
+
+Agora, com os valores de base e máximo estipulados, é possível utilizar a
+seguinte fórmula para calular a aptidão de distância percorrida, normalizada
+entre o intervalo $[0,1]$:
+
+\begin{equation}
+	\label{eq:distance-fitness}
+	D_{n}(p_{1},p_{2}) = MD(p_{1},p_{2}) / D_{max}
+\end{equation}
+
+onde $p_1$ e $p_2$ representam as coordenadas $(x,y)$ da porta de entrada e do
+jogador, respectivamente. 
+
+\subsection{Tempo para Conclusão}
+A ferramenta \textit{SpelunkBots} nos permite estabelecer um tempo máximo de
+teste para uma execução.
 
 \todoin[caption={Modelagem}] {
 
