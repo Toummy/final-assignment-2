@@ -1,9 +1,23 @@
 \chapter{\label{chap:experimentation-and-results}Experimentação e Resultados Obtidos}
-
 \todo[inline]{Introdução do capítulo de experimentos}
 
+Neste capítulo, detalhamos os experimentos que executamos para testar a eficácia
+da técnica \textit{NEAT} para navegação em \textit{Spelunky}. Na seção
+\ref{section:test-rig}, descrevemos as configurações relevantes de
+\textit{hardware} e \textit{software} das máquinas que utilizamos para rodar os
+experimentos. Na seção \ref{section:fitness-experiment} apresentamos os
+resultados dos testes de funções de aptidão iniciais que escolhemos. Na seção
+\ref{section:obstacle-experiment} expomos os resultados após a adição do
+neurônio de obstáculo. Nas seções \ref{section:experiment-vision} e
+\ref{section:experiment-mutation} indicamos os resultados obtidos ao
+modificarmos o tamanho de área de visão e configurações de mutação,
+respectivamente. Nas seções \ref{section:experiment-extra1},
+\ref{section:experiment-extra2} e \ref{section:experiment-extra3}, exibimos os
+resultados dos cenários de testes específicos, descritos previamente na seção
+\ref{section:scenarios-specific}.
+
 %----------
-\section{\label{section:environment}Ambiente de Execução}
+\section{\label{section:test-rig}Ambiente de Execução}
 O capítulo \ref{chap:development} explica que faremos a execução do jogo em um
 ambiente dedicado, utilizando o sistema operacional \textit{Linux}. Para isso,
 utilizamos a plataforma \textit{Digital
@@ -176,14 +190,15 @@ volta de 25 gerações já foi possível encontrar um organismo vencedor.
 \label{fig:experiment-medium-stuck}
 \end{figure}
 
-\subsection{Configurações de Mutação}
+\subsection{\label{section:experiment-mutation}Configurações de Mutação}
 
 \todoin[caption={Configurações de Mutação: Aguardando Resultados},
 color=red!80] {
     Aguardando resultados.
 }
 
-\subsection{Execução no Cenário \textit{extra 1}}
+\subsection{\label{section:experiment-extra1}Execução no Cenário \textit{extra
+1}}
 
 O cenário \textbf{extra 1} conta com uma escada, que é uma funcionalidade não
 explorada até então. Para subir a escada, o jogador deve pressionar o botão de
@@ -216,7 +231,8 @@ cabe ressaltar que, caso fosse necessário descer a escada, devemos adicionar
 uma nova saída na rede. Porém, esse teste prova que o jogador consegue lidar
 facilmente com a adição de mais uma saída na rede.
 
-\subsection{Execução no Cenário \textit{extra 2}}
+\subsection{\label{section:experiment-extra2}Execução no Cenário \textit{extra
+2}}
 
 O cenário \textbf{extra 2} conta com duas paredes que só podem ser cruzadas
 caso o jogador consiga escalá-las. Assim, esse cenário explora a habilidade do
@@ -247,7 +263,8 @@ vencer o nível logo nas primeiras execuções. Além disso, podemos ver que, ap
 concluímos que nosso \textit{bot} é capaz de combinar botões, sendo isso
 bastante interessante para níveis mais complexos.  
 
-\subsection{Execução no Cenário \textit{extra 3}}
+\subsection{\label{section:experiment-extra3}Execução no Cenário \textit{extra
+3}}
 
 O cenário \textbf{extra 3} explora que o \textit{bot} aperte o botão de
 \textbf{correr}, de forma a ganhar impulso para poder saltar sobre uma região
