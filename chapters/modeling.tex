@@ -319,8 +319,42 @@ adicional na camada de entrada que seria responsável por informar ao agente
 sobre a existência de um obstáculo intransponível na sua frente. Esta
 configuração inicial de rede é ilustrada pela Figura \ref{fig:network-obstacle}.
 
-% figura da rede neural com o nodo de obstaculo
-\todo[inline]{Figura de rede neural com nodo de obstáculo}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
+    \def\layersep{4cm}
+    \tikzstyle{every node}=[font=\footnotesize]
+    \tikzstyle{every pin edge}=[<-,shorten <=1pt]
+    \tikzstyle{neuron}=[circle,fill=black!25,minimum size=17pt,inner sep=0pt]
+    \tikzstyle{input neuron}=[neuron, fill=gray!50];
+    \tikzstyle{output neuron}=[neuron, fill=gray!50];
+    \tikzstyle{hidden neuron}=[neuron, fill=gray!50];
+    \tikzstyle{annot} = [text width=10em]
+
+    \node[input neuron, pin=left:1]         (I-0) at (0, 0)  {};
+    \node[input neuron, pin=left:2]         (I-1) at (0, -1) {};
+    \node[input neuron, pin=left:$\cdots$]  (I-2) at (0, -2) {};
+    \node[input neuron, pin=left:25]        (I-3) at (0, -3) {};
+    \node[input neuron, pin=left:Bias]      (I-4) at (0, -4) {};
+    \node[input neuron, pin=left:Obstáculo] (I-5) at (0, -5) {};
+
+    \draw[decoration={brace,mirror,amplitude=10pt},decorate, style={-}]
+      (-1.75,0.25) -- node[midway, left=10pt] {Visão} (-1.75, -3.25);
+
+    \node at (\layersep, -0.85) {Movimentação};
+    \node[hidden neuron] (O-0) at (\layersep, -1.5) {};
+    \node at (\layersep, -2.85) {Pulo};
+    \node[hidden neuron] (O-1) at (\layersep, -3.5) {};
+
+    \foreach \source in {0,...,5}
+        \foreach \dest in {0,...,1}
+            \path (I-\source) edge (O-\dest);
+    \node[annot] at (0, 1) {Camada de Entrada};
+    \node[annot] at (4.65cm, 1) {Camada de Saída};
+\end{tikzpicture}
+\caption {\label{fig:network-obstacle}Configuração da rede neural com
+a entrada de obstáculo.}
+\end{figure}
 
 Inicialmente, este neurônio podia ter dois valores distintos: $0$ para passagem
 livre e $1$ para obstrução. A Figura \ref{fig:obstacle-input-wrong} ilustra a
