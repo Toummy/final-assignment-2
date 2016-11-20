@@ -321,19 +321,56 @@ interface antes e depois das modificações.
 \end{figure}
 
 \section{\label{section:neat-details}Implementação do NEAT}
+Com o objetivo de poupar tempo na parte do desenvolvimento, optamos por utilizar
+a biblioteca que implementa o algoritmo \textit{NEAT} disponibilizada pelo autor
+da técnica\footnote{http://nn.cs.utexas.edu/?neat-c}. Antes de executar qualquer
+treinamento, é necessário entender como configurar os parâmetros de execução da
+biblioteca:
 
-\todoin[caption={Implementação do NEAT}] {
-    Explicar itens como:
+\begin{description}
+	\item[Valor de Semente]
+		A biblioteca utiliza um gerador de números pseudo-aleatórios para
+		realizar a decisão de eventos randômicos como, por exemplo, decidir se
+		vai mutacionar ou cruzar organismos, selecionar pais para cruzamento,
+		entre outros. Portanto, é necessário abastecer este gerador com um valor
+		de semente.
 
-    \begin{itemize}
-		\item Lib utilizada
-        \item Rede neural inicial
-            \item Ferramenta para geração da rede inicial
-        \item Parâmetros do NEAT
-        \item Armazenamento dos resultados obtidos
-        \item Explicação de cada um dos arquivos do NEAT (NEATBot.h, NEATOutput.h, NEATBotViewer, etc.)
-    \end{itemize}
-}
+	\item[Configurações de Mutação]
+		O desenvolvedor deve fornecer um arquivo de texto para a biblioteca com
+		as configurações de mutação que deseja utilizar. O Algoritmo
+		\ref{alg:neat-parameters-example}, localizado dentro do Apêndice
+		\ref{appendix:neat-configs}, possui um exemplo de arquivo de
+		configuração de valores de mutação.
+
+	\item[Rede Neural Inicial]
+		Outro requisito da biblioteca é que o desenvolvedor forneça um arquivo
+		de texto contendo uma configuração de rede neural artificial. A
+		biblioteca irá se basear neste arquivo para criar as redes neurais dos
+		organismos pertencentes à população inicial. O Algoritmo
+		\ref{alg:neat-network-example}, localizado dentro do Apêndice
+		\ref{appendix:neat-configs}, possui um  exemplo de arquivo de
+		configuração de rede neural inicial.
+\end{description}
+
+Para tentar garantir a reprodutibilidade de nossos testes, utilizamos a mesma
+semente para popular o gerador de números pseudo-aleatórios em todas as
+execuções: \textbf{12345}. Com estes parâmetros iniciais, a biblioteca é capaz
+de gerar uma população inicial que respeite as estrutura de rede neural inicial
+e evoluí-la de acordo com as configurações de mutação desejadas. Como o arquivo
+de rede neural inicial é trabalhoso de se elaborar, desenvolvemos um programa em
+C++ que gera automaticamente um arquivo de rede inicial dadas as especificações
+desejadas\footnote{https://github.com/famw/neat-startgene-generator}.
+
+Simplificando, o laço de execução do programa do agente, depois do carregamento
+dos parâmetros de configuração, ocorre da seguinte maneira: primeiro, coletamos
+as informações do jogo utilizando o \textit{SpelunkBots}. Em seguida, carregamos
+estas informações nas entradas da rede neural do agente. Após, utilizamos a
+função de ativação da rede neural para realizar o processamento dos dados.
+Então, coletamos os valores dos neurônios da camada de saída da rede e
+selecionamos, de acordo com os valores, quais ações o agente deseja executar.
+Por fim, enviamos os comandos de ação ao \textit{SpelunkBots}, que executa-os
+para nós.
+
 
 \section{\label{section:analytics}Análise dos Dados}
 
