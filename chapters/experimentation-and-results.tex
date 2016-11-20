@@ -179,9 +179,12 @@ color=red!80] {
 
 \subsection{Execução no Cenário \textit{extra 1}}
 
-\todoin[caption={Cenários Extra 1: Aguardando Resultados}, color=red!80] {
-    Aguardando resultados.
-}
+O cenário \textbf{extra 1} conta com uma escada, que é uma funcionalidade não
+explorada até então. Para subir a escada, o jogador deve pressionar o botão de
+olhar para cima quando encontrar uma escada, subindo-a enquanto esse botão
+estiver pressionado. Para isso, adicionamos a ação de \textbf{olhar para cima}
+na rede neural. A Figura \ref{fig:extra1-results} apresenta o resultado da
+execução deste cenário.
 
 \begin{figure}[H]
 \centering
@@ -200,11 +203,17 @@ color=red!80] {
 	\label{fig:extra1-results}
 \end{figure}
 
-\subsection{Execução no Cenário \textit{extra 2}}
-
-\todoin[caption={Cenários Extra 2: Aguardando Resultados}, color=red!80] {
+\todoin[caption={Cenários Extra 1: Aguardando Resultados}, color=red!80] {
     Aguardando resultados.
 }
+
+\subsection{Execução no Cenário \textit{extra 2}}
+
+O cenário \textbf{extra 2} conta com duas paredes que só podem ser cruzadas
+caso o jogador consiga escalá-las. Assim, esse cenário explora a habilidade do
+jogador em pressionar os botões de \textbf{agarrar-se contra a parede} e de
+\textbf{pular} ao mesmo tempo. O resultado da execução desse nível é
+apresentado na Figura \ref{fig:extra2-results}.
 
 \begin{figure}[H]
 \centering
@@ -223,11 +232,19 @@ color=red!80] {
 	\label{fig:extra2-results}
 \end{figure}
 
+O resultado da execução é bastante satisfatório. O \textit{bot} conseguiu
+vencer o nível logo nas primeiras execuções. Além disso, podemos ver que, após
+30 gerações, mais da metade dos organismos foram vencedores. Por fim,
+concluímos que nosso \textit{bot} é capaz de combinar botões, sendo isso
+bastante interessante para níveis mais complexos.  
+
 \subsection{Execução no Cenário \textit{extra 3}}
 
-\todoin[caption={Cenários Extra 3: Aguardando Resultados}, color=red!80] {
-    Aguardando resultados.
-}
+O cenário \textbf{extra 3} explora que o \textit{bot} aperte o botão de
+\textbf{correr}, de forma a ganhar impulso para poder saltar sobre uma região
+com espinhos. Para isso, adicionamos a ação de \textbf{correr} na rede neural.
+A Figura \ref{fig:extra3-results} apresenta os resultados da execução deste
+cenário.
 
 \begin{figure}[H]
 \centering
@@ -245,3 +262,7 @@ color=red!80] {
     \caption{Resultado da execução do cenário \textit{extra 3}.}
 	\label{fig:extra3-results}
 \end{figure}
+
+\todoin[caption={Cenários Extra 3: Aguardando Resultados}, color=red!80] {
+    Aguardando resultados.
+}
