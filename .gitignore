@@ -40,7 +40,7 @@
 img/*eps-converted-to.pdf
 pdf/
 *.pdf
-!fig/*.pdf
+!fig/**/*.pdf
 *.loa
 *.los
 
