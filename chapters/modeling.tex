@@ -367,8 +367,19 @@ uma parede, o valor do neurônio era alterado para $1$ mas, logo em seguida,
 quando o agente mudava de direção, o valor retornava para $0$. Isto fazia com
 que o agente permanecesse ``travado'' na mesma posição.
 
-% figura do nodo de 0 ou 1
-\todo[inline]{Figura explicando o nodo de obstáculo antigo}
+\begin{figure}[H]
+\centering
+	\begin{subfigure}[b]{0.2\textwidth}
+        \includegraphics[width=\textwidth]{fig/obstacle-3.pdf}
+        \caption{Livre: \textit{0}.}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.2\textwidth}
+        \includegraphics[width=\textwidth]{fig/obstacle.pdf}
+        \caption{Obstrução: \textit{1}.}
+	\end{subfigure}
+    \caption{Configuração de valores de acordo com a presença de obstáculo.}
+	\label{fig:obstacle-input-wrong}
+\end{figure}
 
 Com esta informação em mente, decidimos trabalhar com a informação de obstáculo
 de uma maneira diferente. Agora, existem três possíveis configurações,
@@ -391,8 +402,23 @@ ilustradas pela Figura \ref{fig:obstacle-input-correct}:
 		com este valor até que o agente encontre um obstáculo à esquerda.
 \end{description}
 
-% figura do -1 e 1
-\todo[inline]{Figura explicando o nodo de obstáculo atual}
+\begin{figure}[H]
+\centering
+	\begin{subfigure}[b]{0.2\textwidth}
+        \includegraphics[width=\textwidth]{fig/obstacle-2.pdf}
+        \caption{Esquerda: \textit{1}.}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.2\textwidth}
+        \includegraphics[width=\textwidth]{fig/obstacle-3.pdf}
+        \caption{Livre: \textit{0}.}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.2\textwidth}
+        \includegraphics[width=\textwidth]{fig/obstacle.pdf}
+        \caption{Direita: \textit{-1}.}
+	\end{subfigure}
+    \caption{Possíveis configurações de obstáculo.}
+	\label{fig:obstacle-input-correct}
+\end{figure}
 
 Escolhemos estes valores pelo seguinte motivo: o neurônio de saída de
 movimentação decide para qual direção o agente irá caminhar baseado em
