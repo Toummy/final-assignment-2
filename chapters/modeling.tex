@@ -296,8 +296,82 @@ de teste exija do agente alguma ação a mais, esta ação será inserida na red
 inicial.
 
 \subsection{\label{section:obstacle-input}Detecção de Obstáculos}
-\todo[inline]{Escrever sobre detecção de obstáculos}
+Durante a execução dos experimentos, listados no Capítulo
+\ref{chap:experimentation-and-results}, pensamos em uma maneira de auxiliar o
+agente a aprender mais rapidamente a superar alguns níveis. Esta ideia consistia
+em informar para o agente, de alguma maneira, que ele havia esbarrado em uma
+parede que não seria capaz de transpor com as ações disponíveis (movimentação e
+pulo). Como o agente não consegue transpor uma parede com mais de 2 
+\textit{tiles} de altura (exemplo ilustrado pela Figura \ref{fig:obstacle}),
+qualquer parede com 3 ou mais blocos de altura seria considerada um obstáculo
+intransponível. Assim, esperávamos que o agente, ao identificar tal obstáculo,
+alterasse de alguma maneira sua rota, para que houvesse uma ``desubstruição''.
 
+% figura de exemplo de obstaculo aqui
+\todo[inline]{Figura de exemplo de obstáculo}
+
+Uma maneira de transferir este conhecimento para o agente é através de sua rede
+neural. Como todos os neurônios da camada de entrada estão, inicialmente,
+conectados à camada de saída, esta informação seria transportada para o neurônio
+de movimentação, ajustando seu valor de acordo com a presença de um obstáculo.
+Desta forma, optamos por incluir, em alguns cenários de teste, um neurônio
+adicional na camada de entrada que seria responsável por informar ao agente
+sobre a existência de um obstáculo intransponível na sua frente. Esta
+configuração inicial de rede é ilustrada pela Figura \ref{fig:network-obstacle}.
+
+% figura da rede neural com o nodo de obstaculo
+\todo[inline]{Figura de rede neural com nodo de obstáculo}
+
+Inicialmente, este neurônio podia ter dois valores distintos: $0$ para passagem
+livre e $1$ para obstrução. A Figura \ref{fig:obstacle-input-wrong} ilustra a
+configuração de valores de acordo com a presença de obstáculo. Contudo, esta
+informação não era suficiente para ajudar o agente porque, quando esbarrava em
+uma parede, o valor do neurônio era alterado para $1$ mas, logo em seguida,
+quando o agente mudava de direção, o valor retornava para $0$. Isto fazia com
+que o agente permanecesse ``travado'' na mesma posição.
+
+% figura do nodo de 0 ou 1
+\todo[inline]{Figura explicando o nodo de obstáculo antigo}
+
+Com esta informação em mente, decidimos trabalhar com a informação de obstáculo
+de uma maneira diferente. Agora, existem três possíveis configurações,
+ilustradas pela Figura \ref{fig:obstacle-input-correct}:
+
+\begin{description}
+	\item[Início]
+		No momento inicial de execução, o valor do neurônio de obstáculo será
+		$0$. Assim, o agente não será tendencioso em relação a em qual direção
+		navegar inicialmente.
+
+	\item[Obstáculo à Esquerda]
+		Se o agente estiver caminhando para a esquerda e encontrar um obstáculo,
+		o valor do neurônio de obstáculo será alterado para $1$ e permanecerá
+		com este valor até que o agente encontre um obstáculo à direita.
+
+	\item[Obstáculo à Direita]
+		Se o agente estiver caminhando para a direita e encontrar um obstáculo,
+		o valor do neurônio de obstáculo será alterado para $-1$. e permanecerá
+		com este valor até que o agente encontre um obstáculo à esquerda.
+\end{description}
+
+% figura do -1 e 1
+\todo[inline]{Figura explicando o nodo de obstáculo atual}
+
+Escolhemos estes valores pelo seguinte motivo: o neurônio de saída de
+movimentação decide para qual direção o agente irá caminhar baseado em
+intervalos de valor. Caso o valor caia no intervalo de valores mais a esquerda
+(até $0.4$), o agente se deslocará para a esquerda. Caso o valor caia no
+intervalo de valores mais a direita (de $0.6$ em diante), o agente se deslocará
+para a direita. Se o agente estiver caminhando para a esquerda e encontrar um
+obstáculo, o valor $1$ do neurônio de obstáculo elevará o valor de saída de
+movimentação, forçando-o para um intervalo mais à direita. Do mesmo modo, caso o
+agente esteja caminhando para a direita e encontrar um obstáculo, o valor $-1$
+reduzirá o valor de saída de movimentação, empurrando-o para um intervalo mais à
+esquerda.
+
+Para testar se este neurônio adicional acelerava o aprendizado dos agentes,
+preparamos um experimento (seção \ref{section:obstacle-experiment}) com e sem
+este neurônio para identificar seu impacto.
 
 %----------
 \section{\label{section:modelling-genetic}Configurações do Algoritmo Genético}
