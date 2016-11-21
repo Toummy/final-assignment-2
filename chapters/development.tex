@@ -45,7 +45,11 @@ sistema operacional \textit{Windows}. Como nosso servidor é baseado em
 compilação e execução. Assim, utilizaremos os \textit{softwares}
 \textit{MinGW}\footnote{http://www.mingw.org} e
 \textit{Wine}\footnote{https://winehq.org}, que nos permitirão, respectivamente,
-compilar o código C++ e gerar a \textit{DLL} e executar programas da plataforma
+realizar uma compilação cruzada\footnote{Um compilador cruzado, ou
+	\textit{cross-compiler}, é uma ferramenta de compilação capaz de produzir
+código executável em uma plataforma diferente da qual o compilador está sendo
+executado.} do código C++ para da plataforma \textit{Linux} para a plataforma
+\textit{Windows}, gerando uma \textit{DLL}, e executar programas da plataforma
 \textit{Windows} dentro do sistema operacional \textit{Linux}.
 
 O próximo passo é escolher a biblioteca de inteligência artificial da técnica
