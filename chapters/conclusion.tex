@@ -73,13 +73,15 @@ que optem por utilizar esta ferramenta.
 
 %limitacoes
 Infelizmente, devido a uma restrição de tempo, não foi possível realizar a
-execução de todos os experimentos previstos neste trabalho, mais especificamente
-o experimento no cenário difícil.  Apesar de todas as limitações de modelagem
-que impusemos e as melhorias que fizemos na ferramenta \textit{SpelunkBots}, a
-velocidade de execução dos testes continuou sendo o maior problema a se
-enfrentar durante a elaboração deste trabalho. Como a execução dos testes se dá
-praticamente em tempo real de execução do jogo, torna-se inviável realizar
-experimentos que demorem muito tempo para concluir.
+execução de todos os experimentos previstos neste trabalho. Mais
+especificamente, faltaram dois experimentos que gostaríamos de ter realizado: o
+impacto de diferentes configurações de mutação e a execução no cenário difícil.
+Apesar de todas as limitações de modelagem que impusemos e as melhorias que
+fizemos na ferramenta \textit{SpelunkBots}, a velocidade de execução dos testes
+continuou sendo o maior problema a se enfrentar durante a elaboração deste
+trabalho. Como a execução dos testes se dá praticamente em tempo real de
+execução do jogo, tornou-se inviável realizar todos os experimentos previstos,
+pois não havia tempo suficiente para concluí-los.
 
 Uma das consequências das limitações de performance do \textit{SpelunkBots},
 conforme mencionada no Capítulo \ref{chap:modeling}, é que caso ocorra qualquer
@@ -118,6 +120,12 @@ navegação e, mesmo assim, impusemos diversas outras limitações. Uma possíve
 continuidade é, portanto, utilizar a técnica \textit{NEAT} e considerar outros
 elementos do jogo, como inimigos, armas, tesouros, entre outros, enquanto
 busca-se uma solução para a navegação.
+
+Um dos experimentos que não tivemos tempo de executar foi o do impacto de
+diferentes configurações de mutação do algoritmo genético do \textit{NEAT}.
+Utilizamos um valor fixo para todos os cenários de teste, mas é possível que,
+com futuras experimentações, seja possível encontrar uma configuração superior a
+que utilizamos. Desta forma, este experimento segue pendente.
 
 Utilizamos a distância de Manhattan para calcular a aptidão de distância
 percorrida, tomando como posição inicial e final a porta de entrada e a última
