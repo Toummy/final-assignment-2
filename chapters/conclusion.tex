@@ -108,6 +108,18 @@ continuidade é, portanto, utilizar a técnica \textit{NEAT} e considerar outros
 elementos do jogo, como inimigos, armas, tesouros, entre outros, enquanto
 busca-se uma solução para a navegação.
 
+Utilizamos a distância de Manhattan para calcular a aptidão de distância
+percorrida, tomando como posição inicial e final a porta de entrada e a última
+posição do jogador, respectivamente. Esta aproximação, como observamos em alguns
+dos experimentos, pode ter como impacto a demora de aprendizado dos agentes,
+pois muitas vezes os mapas possuem deslocamento em formato zigue-zague. É
+possível que existam outras maneiras mais eficientes de se aproximar esta função
+de aptidão. Uma sugestão seria tentar utilizar o algoritmo \textit{A*} para
+calcular a distância entre os mesmos dois pontos. Esta nova aproximação aparenta
+ser um pouco mais refinada e, pelo menos teoricamente, aponta uma possível
+melhoria deste cálculo, o que poderia ser traduzido como uma aceleração da
+velocidade de aprendizado e treinamento.
+
 Até agora, todos os trabalhos de Inteligência Artificial aplicada a
 \textit{Spelunky} buscaram resolver o problema de navegação. Outra opção de
 trabalho futuro é abordar um problema diferente dentro do universo do jogo como,
