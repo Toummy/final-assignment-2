@@ -43,15 +43,7 @@ artificial que facilita a criação de agentes inteligentes para o jogo.
 Muitos dos jogos de carta, jogos de tabuleiro e jogos digitais são interessantes
 por causa da dificuldade que apresentam para os jogadores, pois normalmente isto
 está diretamente relacionado a inteligência necessária para jogá-los
-eficientemente.  Estabelecer a complexidade computacional destes jogos auxilia
-na identificação de quais são as características de um jogo que o tornam mais ou
-menos difícil em relação aos outros. Esta prática é muito comum no meio
-científico e a comprovação disso é a vasta quantidade de trabalhos que já se
-propuseram a definir a complexidade computacional de diversos jogos como, por
-exemplo, franquias clássicas da Nintendo (Mario, Donkey Kong, Legend of Zelda,
-entre outras) \cite{classic_nintendo_games_hard}, Tetris e Sokoban (e muitos
-outros) \cite{playing_games_algorithms} e jogos do gênero \textit{platformer}
-\cite{computational_complexity_platformers}. Dadas as características e desafios
+eficientemente. Dadas as características e desafios
 presentes em \textit{Spelunky} -- as quais exploramos no Capítulo
 \ref{chap:spelunky} --, Thompson \cite{SPELUNKYHARD} concluiu que,
 computacionalmente falando, o jogo pertence ao conjunto de problemas
@@ -88,12 +80,12 @@ permitiriam um ajuste refinado do comportamento dos agentes, pois todas as açõ
 que o agente pode executar devem ser descritas previamente. A ideia era, então,
 comparar o processo de criação e os resultados obtidos entre uma técnica
 ``automática'' e uma ``manual''. Porém, durante o desenvolvimento deste
-trabalho, percebemos que existe um universo gigantesco de possibilidades e
-experimentos que deveríamos realizar ao desenvolver os agentes com a técnica
-\textit{NEAT}. Desta forma, decidimos redirecionar o foco do trabalho e
-ocuparmo-nos com a implementação e experimentação de apenas uma técnica. Para
-suprir a falta de mecanismo comparativo, buscamos outras implementações de
-agentes inteligentes para \textit{Spelunky} para mensurar nossos resultados.
+trabalho, percebemos que existiam muitos experimentos que poderíamos realizar ao
+desenvolver os agentes com a técnica \textit{NEAT}. Desta forma, decidimos
+redirecionar o foco do trabalho e ocuparmo-nos com a implementação e
+experimentação de apenas uma técnica. Para suprir a falta de mecanismo
+comparativo, buscamos outras implementações de agentes inteligentes para
+\textit{Spelunky} para mensurar nossos resultados.
 
 Tendo isto em mente, este trabalho apresenta o desenvolvimento de um agente
 inteligente capaz de jogar de maneira autônoma o jogo de computador
@@ -108,24 +100,23 @@ a outras implementações de agentes inteligentes em \textit{Spelunky} a fim de
 atestar a eficácia da técnica escolhida para resolver o problema selecionado.
 
 No Capítulo \ref{chap:introduction}, apresentamos uma breve contextualização da
-relação entre jogos digitais e inteligência artificial, nossas motivações para
-o surgimento deste projeto, uma descrição resumida de nossos objetivos e um
+relação entre jogos digitais e inteligência artificial, nossas motivações para o
+surgimento deste projeto, uma descrição resumida de nossos objetivos e um
 detalhamento da estrutura deste documento. No Capítulo \ref{chap:spelunky},
 examinamos o universo do jogo \textit{Spelunky}. No Capítulo
-\ref{chap:spelunkbots}, explicamos a relação entre jogos digitais e
-inteligência artifical, explorando como estas duas áreas evoluíram através da
-interação, e, depois disso, fornecemos uma breve explicação do funcionamento do
+\ref{chap:spelunkbots}, explicamos a relação entre jogos digitais e inteligência
+artifical, explorando como estas duas áreas evoluíram através da interação, e,
+depois disso, fornecemos uma breve explicação do funcionamento do
 \textit{framework} \textit{SpelunkBots}. No Capítulo \ref{chap:theory},
 estabelecemos a base teórica necessária para compreender a técnica de
-inteligência artificial escolhida para o desenvolvimento dos \textit{bots}. No
-Capítulo \ref{chap:related-work}, trazemos alguns trabalhos relacionados, que
-também fazem a criação de agentes inteligentes para jogar um jogo digital. No
+inteligência artificial escolhida para o desenvolvimento dos \textit{bots}.No
 Capítulo \ref{chap:modeling} apresentamos as decisões de modelagem que
 viabilizam a construção desse trabalho. No Capítulo \ref{chap:development}
 apresentamos detalhes sobre o desenvolvimento realizado.  No Capítulo
 \ref{chap:scenarios} detalhamos os cenários os quais serão executados,
-apresentando seus resultados no Capítulo
-\ref{chap:experimentation-and-results}. No Capítulo \ref{chap:conclusion}
-apresentamos nossas conclusões, explorando nossas contribuições, limitações
-envolvidas, dificuldades encontradas e apresentando ideias para trabalhos
-futuros.
+apresentando seus resultados no Capítulo \ref{chap:experimentation-and-results}.
+No Capítulo \ref{chap:related-work}, trazemos alguns trabalhos relacionados, que
+também fazem a criação de agentes inteligentes para jogar um jogo digital. No
+Capítulo \ref{chap:conclusion} apresentamos nossas conclusões, explorando nossas
+contribuições, limitações envolvidas, dificuldades encontradas e apresentando
+ideias para trabalhos futuros.
