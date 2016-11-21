@@ -81,6 +81,17 @@ enfrentar durante a elaboração deste trabalho. Como a execução dos testes se
 praticamente em tempo real de execução do jogo, torna-se inviável realizar
 experimentos que demorem muito tempo para concluir.
 
+Uma das consequências das limitações de performance do \textit{SpelunkBots},
+conforme mencionada no Capítulo \ref{chap:modeling}, é que caso ocorra qualquer
+queda de desempenho momentânea, a contabilização de tempo continuará igual. Isto
+imediatamente aponta para dois problemas. O primeiro é que máquinas com
+capacidade de processamento inferiores não possuem, realisticamente falando, o
+mesmo tempo de execução que máquinas mais potentes. O segundo é que não é
+possível garantir, com 100\% de fidelidade, a reprodutibilidade de nossos
+experimentos, pois qualquer alteração em partes do sistema que o programador não
+possui controle, como o escalonamento ou priorização de processos, causaria um
+impacto nos resultados dos testes.
+
 A aplicação de \textit{Behavior Trees} para a criação de agentes inteligentes
 estava prevista para este trabalho, mas não houve tempo hábil para explorar uma
 segunda possibilidade algorítmica devido à limitação de tempo para a realização
@@ -145,6 +156,16 @@ não é possível acelerar a execução do programa. De certa forma, isto não �
 dos criadores da ferramenta, pois o desenvolvimento de \textit{SpelunkBots}
 ocorreu em torno do código-fonte de \textit{Spelunky} que, por sua vez, está
 atrelado ao motor de desenvolvimento de jogos \textit{GameMaker}. 
+
+Ressaltamos, como uma das limitações de nosso trabalho, a incapacidade de
+garantir completamente a reprodutibilidade dos experimentos. Isto porque
+atualmente o cálculo de tempo decorrido é problemático. Uma possível melhoria é
+encontrar uma forma alternativa de calcular o tempo decorrido, para corrigir
+esta falha. Idealmente, este cálculo deve ser feito alterando o código-fonte de
+\textit{Spelunky} e \textit{SpelunkBots} dentro do motor de desenvolvimento de
+jogos \textit{GameMaker}. Esta mudança nos permitiria calcular exatamente quanto
+tempo de execução o programa obteve, se o jogo está pausado, qual o estado do
+jogador, entre outros.
 
 É extremamente improvável que modificações no código do \textit{SpelunkBots}
 resultem em melhorias significativas para a aplicação de algoritmos que
