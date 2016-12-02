@@ -197,15 +197,20 @@ integração. Como estamos utilizando uma biblioteca de \textit{NEAT}, estas
 configurações estão pré-estabelecidas, e são as seguintes: o intervalo de
 valores de pesos é entre $-8$ e $8$; a função de integração é uma simples
 adição; a função de ativação é do tipo sigmóide, mais especificamente, a função
-logística, que mantém os valores normalizados no intervalo $[0,1]$:
+logística:
 
 \begin{equation}
 	\label{eq:neat-activation}
-	f(x) = \frac{1}{1+e^{-k*m}}
+	f(x) = \frac{L}{1+e^{-k(x-x_{0})}}
 \end{equation}
 
-onde $e$ é o número de \textit{Euler} (2.71828), $k$ é a inclinatura da curva
-(4.924273) e $m$ é o valor de soma atual dentro do neurônio.
+onde $e$ é o número de \textit{Euler} (2.71828), $x_{0}$ é o valor de $x$ no
+ponto médio da função (0), $L$ é o valor máximo da curva (1), $k$ é a
+inclinatura da curva (4.924273) e $x$ é o valor de soma atual dentro do
+neurônio. Como $L=1$, os valores da função permanecem normalizados no intervalo
+$[0,1]$. Geralmente, o valor de $k$ é $1$, mas como utilizamos um valor maior,
+nossa curva apresenta um crescimento mais acentuado que a função logística
+tradicional.
 
 As especificações de topologia inicial também são determinadas pelo
 \textit{NEAT}, conforme vimos na seção \ref{section:neat}. Apear de possuirmos a
