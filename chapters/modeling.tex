@@ -147,7 +147,7 @@ Optamos, portanto, por limitar a visão do agente em dois aspectos:
 
 Não é possível identificar de antemão qual tamanho de visão será o mais adequado
 para o agente sem realizar algum tipo de experimentação para realizar uma
-validação empírica. Portanto, durante o treinamento dos agentes, realizaremos um
+validação empírica. Portanto, durante o treinamento dos agentes, realizamos um
 experimento para testar alguns tamanhos de área de visão (seção
 \ref{section:experiment-vision}).
 
@@ -174,10 +174,9 @@ interessante eliminar a possibilidade de execução de todas as ações que não
 trarão benefício para a navegação.
 
 Assim, limitamos as ações que os agentes podem executar a \textbf{Movimentação}
-(Esquerda e Direita) e \textbf{Pulo}. Caso algum dos cenários de teste
-desenvolvidos requira ações adicionais, incluiremos conforme necessidade. Desta
-forma, manteremos um controle ainda maior sobre cada caso de teste.
-
+(Esquerda e Direita) e \textbf{Pulo}. Nos cenários de teste que requiriam ações
+adicionais, as incluímos conforme necessidade. Desta forma, mantivemos um
+controle ainda maior sobre cada caso de teste.
 
 %----------
 \section{\label{section:modelling-network}Configurações da Rede Neural}
@@ -295,7 +294,7 @@ neural utilizada neste trabalho.
 	neural inicial com campo de visão 5 por 5.}
 \end{figure}
 
-Conforme mencionado na seção \ref{section:modelling-outputs}, adicionaremos
+Conforme mencionado na seção \ref{section:modelling-outputs}, adicionamos
 neurônios na camada de saída conforme necessidade, ou seja, caso algum cenário
 de teste exija do agente alguma ação a mais, esta ação será inserida na rede
 inicial.
@@ -565,9 +564,9 @@ visualizemos durante a execução. Além disso, caso nos baseássemos na distân
 do jogador até a porta, nossos agentes obteriam uma vantagem significativa sobre
 jogadores humanos, pois mesmo ao ser derrotado, é possível que um humano jamais
 saiba a localização exata da porta de saída do mapa que acabou de tentar
-superar. Portanto, utilizaremos como \textbf{valor base} a distância entre a
-\textbf{posição final do jogador} e a \textbf{posição da porta de entrada}. Este
-cálculo de distância se baseará na \textbf{Distância de Manhattan}:
+superar. Portanto, utilizamos como \textbf{valor base} a distância entre a
+\textbf{posição final do jogador} e a \textbf{posição da porta de entrada}.
+Este cálculo de distância se baseará na \textbf{Distância de Manhattan}:
 
 \begin{equation}
 	\label{eq:manhattan-distance}
