@@ -1,14 +1,14 @@
 \chapter{\label{chap:theory}Fundamentação Teórica}
 Neste capítulo, apresentaremos a base teórica necessária para compreender o
 funcionamento das técnicas de inteligência artificial escolhidas para realizar o
-desenvolvimento dos agentes inteligentes de \textit{Spelunky}. Nas seções
+desenvolvimento dos agentes inteligentes de \textit{Spelunky}. Nas Seções
 \ref{section:environment} e \ref{section:agents}, definimos as características
 dos ambientes e os tipos de agentes em inteligência artificial. Em seguida, nas
-seções \ref{section:machine-learning}, \ref{section:neural-networks} e
+Seções \ref{section:machine-learning}, \ref{section:neural-networks} e
 \ref{section:evolutionary-algorithms}, descrevemos os conceitos básicos de
 aprendizado de máquina, redes neurais artificiais e algoritmos evolutivos,
 conteúdos necessários para se ter um entendimento da técnica \textit{NEAT}
-(explicada na seção \ref{section:neat}). Depois disso, investigamos a teoria por
+(explicada na Seção \ref{section:neat}). Depois disso, investigamos a teoria por
 trás das \textit{Behavior Trees}, outra técnica de inteligência artificial
 utilizada para construção de agentes inteligentes.
 
@@ -20,7 +20,7 @@ Todas as percepções e ações executadas por agentes racionais ocorrem no
 ambientes encontrados é vasta, mas é possível identificar dimensões (ou
 características) de classificação para realizar uma categorização destes
 ambientes. Estas características irão determinar que tipos de agentes --
-enumerados na seção \ref{section:agents} -- são apropriados para cada ambiente.
+enumerados na Seção \ref{section:agents} -- são apropriados para cada ambiente.
 Para Russell \& Norvig \cite{RussellNorvig200912}, as dimensões utilizadas para
 categorizar ambiente são:
 
@@ -79,7 +79,7 @@ categorizar ambiente são:
 Um exemplo de ambiente é uma partida de \textit{poker}. O jogador sabe quais
 cartas possui em sua mão, mas não sabe quais as cartas dos demais jogadores
 (parcialmente observável, multi-agente); é impossível dizer, de antemão, qual
-será o resultado de uma ação do jogador (estocástico); O resultado de cada
+será o resultado de uma ação do jogador (estocástico); o resultado de cada
 rodada do jogo influencia nas decisões futuras do jogador (sequencial); o jogo
 não avança enquanto o jogador não fizer sua jogada (estático); existe um número
 finito de ações em uma partida do jogo (discreto).
@@ -87,9 +87,9 @@ finito de ações em uma partida do jogo (discreto).
 
 %----------
 \section{\label{section:agents}Agentes Racionais}
-De acordo com \cite{RussellNorvig200912}, um \textbf{agente} é uma entidade que
-utiliza seus \textbf{sensores} para perceber o ambiente no qual está inserido e
-interage com o ambiente através de \textbf{atuadores}. A Figura
+De acordo com Russell \& Norvig \cite{RussellNorvig200912}, um \textbf{agente} é
+uma entidade que utiliza seus \textbf{sensores} para perceber o ambiente no qual
+está inserido e interage com o ambiente através de \textbf{atuadores}. A Figura
 \ref{fig:agent-interaction} ilustra a arquitetura básica de um agente. Um ser
 humano é um exemplo de agente, pois percebe o ambiente através de seus sentidos
 (visão, audição, etc.) e executa ações com seu corpo (braços, pernas, entre
@@ -132,7 +132,8 @@ percebeu.
     \draw[->,>=latex] (sen.south) -- (?.north);
     \draw[->,>=latex] (?.south) -- (acs.north);
 \end{tikzpicture}
-\caption{Fluxo de interação entre os componentes de um agente.}
+\caption{Fluxo de interação entre os componentes de um agente, conforme descrito
+	por Russell \& Norvig \cite{RussellNorvig200912}.}
 \label{fig:agent-interaction}
 \end{figure}
 
@@ -297,7 +298,7 @@ computacionalmente (através de aproximações de funções) as capacidades de
 processamento de informações de sistemas nervosos biológicos \cite[Cap.
 1]{Rojas:1996:NNS:235222}. É uma técnica de aprendizado de máquina que
 recentemente vem recebendo uma atenção especial, mas que teve suas origens no
-início da década de 40 \cite[Cap. 18]{RussellNorvig200912}. Esta seção apresenta
+início da década de 40 \cite[Cap. 18]{RussellNorvig200912}. Esta Seção apresenta
 apenas um resumo geral de redes neurais artificiais, pois o assunto é muito
 complexo e um entendimento superficial do funcionamento desta técnica é
 suficiente para este trabalho.
@@ -409,7 +410,7 @@ redes sem realimentação, como o próprio nome sugere, possui conexões em some
 um sentido (para frente), ou seja, os neurônios processam as informações apenas
 uma vez. Já nas redes recorrentes, um neurônio pode processar informações mais
 de uma vez (realimentação de informações processadas anteriormentes pela rede).
-Por fins de simplificação, a explicação desta seção se concentrará em redes sem
+Por fins de simplificação, a explicação desta Seção se concentrará em redes sem
 realimentação.
 
 As redes neurais artificiais sem realimentação geralmente estão estruturadas em
@@ -482,10 +483,10 @@ de uma rede neural artificial sem realimentação.}
 O objetivo das redes neurais artificiais, então, é gerar uma \textbf{função de
 rede}, que recebe informações na camada de entrada, realiza processamentos com
 seus neurônios e envia informações através de um ou mais neurônios na camada de
-saída. Esta função de rede deve ser uma aproximação (pois nem sempre atinge
-100\% de precisão) da função que queremos descobrir. A rede neural deve passar,
-portanto, por um processo de \textbf{treinamento}, que tentará ajustar os pesos
-das conexões dos neurônios até encontrar valores adequados. Aqui, o tipo de
+saída. Esta função de rede é uma aproximação (pois nem sempre atinge 100\% de
+precisão) da função que queremos descobrir. A rede neural deve passar, portanto,
+por um processo de \textbf{treinamento}, que tentará ajustar os pesos das
+conexões dos neurônios até encontrar valores adequados. Aqui, o tipo de
 treinamento que a rede recebe depende do tipo de aprendizado que está sendo
 empregado (supervisionado, não-supervisionado ou por reforço). Um exemplo de
 algoritmo de treinamento é o da \textbf{retropropagação}
@@ -550,7 +551,7 @@ são:
 	\item Mecanismo de seleção de sobreviventes (substituição de indivíduos)
 \end{itemize}
 
-O primeiro passo para definir um algoritmo genético é estabelecer uma forma de
+O primeiro passo para definir um algoritmo evolutivo é estabelecer uma forma de
 conexão entre o contexto do problema original e o espaço de resolução de
 problemas onde a evolução irá atuar. Esta \textbf{representacão} define o
 mapeamento entre os fenótipos (possíveis soluções dentro do contexto do
@@ -606,7 +607,7 @@ parada de um algoritmo evolutivo. Se o valor ótimo de aptidão do problema é
 conhecido, a condição de parada ideal é a descoberta de uma solução com esta
 aptidão. Contudo, algoritmos genéticos contém muitos elementos estocásticos e,
 portanto, nunca se tem garantia total de que a condição de parada ideal será
-atingida. Portanto, é necessário extender esta condição de parada para que ela
+atingida. Portanto, é necessário estender esta condição de parada para que ela
 com certeza seja atingida. As opções mais comuns são limitar o tempo de
 execução, o número de iterações, o número de avaliações de aptidão, entre
 outros. O algoritmo \ref{alg:evolutionary-algorithm-skeleton} exemplifica o
@@ -620,13 +621,14 @@ esqueleto de um ciclo de execução de um algoritmo evolutivo.
 		\REPEAT
 			\STATE{SELECIONAR pais adequados}
 			\STATE{RECOMBINAR genomas dos pais}
-			\STATE{MUTACIONAR os descendentes}
+			\STATE{MUTAR os descendentes obtidos}
 			\STATE{AVALIAR cada novo candidato}
 			\STATE{SELECIONAR indivíduos para a próxima geração}
 		\UNTIL{CRITÉRIO DE PARADA ATINGIDO}
     \end{algorithmic}
 \end{center}
-\caption{Ciclo de execução de um algoritmo evolutivo.}
+\caption{Ciclo de execução de um algoritmo evolutivo, confome descrito por Eiben
+\& Smith \cite{IntroEvolComputing}.}
 \label{alg:evolutionary-algorithm-skeleton}
 \end{algorithm}
 
@@ -866,7 +868,7 @@ utilizada na indústria em jogos como \textit{Halo 2} \cite[Cap.
 \textit{Spore}\footnote{http://chrishecker.com/My\_liner\_notes\_for\_spore},
 por exemplo.
 
-Uma \textit{Behavior Tree} é uma estrutura de dados baseada em árvore que contém
+Uma \textit{Behavior Tree} é uma estrutura de dados baseada em árvore que contêm
 um nodo \textbf{raíz} (geralmente utilizada para controlar o fluxo inicial de
 execução) e vários nodos filhos que representam os \textbf{comportamentos}. Cada
 comportamento deve possuir uma \textbf{pré-condição} e uma \textbf{ação}. Caso a

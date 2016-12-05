@@ -72,7 +72,7 @@ causam um impacto significativo de performance de execução:
 %----------
 \section{\label{section:modelling-vision}Visão do Agente}
 Conforme detalhado anteriormente na Seção \ref{section:spelunkbots-information},
-É possível receber informações de nodos do mapa, inimigos e objetos durante a
+é possível receber informações de nodos do mapa, inimigos e objetos durante a
 execução do jogo. Como nosso objetivo é tratar somente o domínio de navegação,
 estamos interessados apenas nas informações de nodos do mapa. Devido ao sistema
 de \textit{fog of war} (Figura \ref{fig:spelunkbots-fow}), não temos acesso
@@ -248,15 +248,16 @@ número inicial de conexões da rede, basta utiliarmos a fórmula:
 \end{equation}
 
 onde $N_e$ é o número de neurônios na camada de entrada e $N_s$ corresponde ao
-número de neurônios na camada de saída. Sem a modificação citada acima, um
-neurônio de \textit{bias} e um tamanho de área de visão de 5 por 5, nossa rede
-neural possuiria $78$ conexões.  Com esta pequena modificação, o número de
-conexões cai para $52$. A diferença parece ser insignificante, mas este é apenas
-o número de conexões na primeira etapa de execução. Conforme o algoritmo
-executa, mais nodos e conexões surgirão, portanto diminuir o número de conexões
-iniciais pode ter um impacto significante com o passar do tempo. A Figura
-\ref{fig:modelling-network-example} ilustra uma configuração inicial de rede
-neural utilizada neste trabalho.
+número de neurônios na camada de saída. Sem a modificação de combinação das
+saídas de movimentação, ou seja, um neurônio de \textit{bias}, um tamanho de
+área de visão de 5 por 5 e 3 saídas (esquerda, direita e pulo), nossa rede
+neural possuiria $78$ conexões.  Com esta pequena modificação de combinação das
+saídas de movimentação, o número de conexões cai para $52$. A diferença parece
+ser insignificante, mas este é apenas o número de conexões na primeira etapa de
+execução. Conforme o algoritmo executa, mais nodos e conexões surgirão, portanto
+diminuir o número de conexões iniciais pode ter um impacto significante com o
+passar do tempo. A Figura \ref{fig:modelling-network-example} ilustra uma
+configuração inicial de rede neural utilizada neste trabalho.
 
 \begin{figure}[H]
 \centering
@@ -470,7 +471,7 @@ importantes de um algoritmo genético, definido em
 		especiação ocorra e que haja diferenciação genética suficiente entre os
 		organismos. Contudo, devido à incapacidade de acelerar a execução do
 		\textit{SpelunkBots}, o tamanho da população não pode ser muito elevado,
-		pois se não nossos testes levariam tempo demais para concluir. Portanto,
+		pois senão nossos testes levariam tempo demais para concluir. Portanto,
 		escolhemos um número de população de \textbf{100} organismos.
 
 	\item[Seleção de Pais] A seleção de pais no \textit{NEAT} é feita de forma
@@ -481,7 +482,7 @@ importantes de um algoritmo genético, definido em
 		biblioteca escolhida (detalhada na seção \ref{section:neat-details}) são
 		definidas através de um arquivo externo que mapeia uma característica
 		para uma probabilidade de acontecimento. As principais características
-		que modificamos foram:
+		que modificamos (e seus respectivos valores) foram:
 		\begin{itemize}
 				\item força de mutação de pesos: $2.5$
 				\item probabilidade de mutação de peso: $90\%$
