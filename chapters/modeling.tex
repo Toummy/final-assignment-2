@@ -216,17 +216,22 @@ As especificações de topologia inicial também são determinadas pelo
 opção de incluir recorrência na rede, optamos por deixar a rede o mais simples
 possível (sem realimentação), porque este processamento extra poderia levar a um
 gargalo de execução, afetando a pontuação dos agentes devido a uma perda de
-tempo. Na camada de entrada, colocamos um nodo de \textit{bias} e  fizemos a
-conexão dos dados de visão recebidos pelo \textit{SpelunkBots}, conforme citado
-na seção \ref{section:modelling-vision}. Ou seja, caso o tamanho do campo de
-visão de um agente for de uma área de 5 por 5, a rede teria 25 nodos de visão e
-1 nodo de \textit{bias}, totalizando em 26 nodos de entrada. A técnica
-\textit{NEAT} também especifica que, inicialmente, não devem existir camadas
-escondidas na rede, para que a evolução possa acontecer somente conforme
-necessidade. Portanto, nossas redes neurais não possuem, inicialmente, nenhuma
-camada escondida. Nas saídas da rede, fizemos o mapeamento, um para um, das
-ações que desejamos executar (listadas na seção \ref{section:modelling-outputs}).
-Ou seja, se um agente pode executar duas ações, existirão dois nodos de saída na
+tempo. Na camada de entrada, colocamos um nodo de \textit{bias}\footnote{O nodo
+de \textit{bias} em uma rede neural é um nodo com valor sempre ``ligado'',
+ou seja, seu valor sempre está configurado para $1$ independente dos demais
+dados.  O valor constante do nodo de \textit{bias} permite o deslocamento do
+ponto inicial da função de ativação para a esquerda ou direita, o que pode
+beneficiar a rede no aprendizado.} e  fizemos a conexão dos dados de visão
+recebidos pelo \textit{SpelunkBots}, conforme citado na seção
+\ref{section:modelling-vision}. Ou seja, caso o tamanho do campo de visão de um
+agente for de uma área de 5 por 5, a rede teria 25 nodos de visão e 1 nodo de
+\textit{bias}, totalizando em 26 nodos de entrada. A técnica \textit{NEAT}
+também especifica que, inicialmente, não devem existir camadas escondidas na
+rede, para que a evolução possa acontecer somente conforme necessidade.
+Portanto, nossas redes neurais não possuem, inicialmente, nenhuma camada
+escondida. Nas saídas da rede, fizemos o mapeamento, um para um, das ações que
+desejamos executar (listadas na seção \ref{section:modelling-outputs}).  Ou
+seja, se um agente pode executar duas ações, existirão dois nodos de saída na
 rede.
 
 Durante o início do desenvolvimento deste trabalho, a ação de movimentação
