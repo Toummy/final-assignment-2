@@ -481,8 +481,11 @@ importantes de um algoritmo genético, definido em
 	\item[Variação] As probabilidades de realizar mutações e cruzamentos na
 		biblioteca escolhida (detalhada na seção \ref{section:neat-details}) são
 		definidas através de um arquivo externo que mapeia uma característica
-		para uma probabilidade de acontecimento. As principais características
-		que modificamos (e seus respectivos valores) foram:
+		para uma probabilidade de acontecimento. Depois de realizar alguns
+		testes de verificação empírica do impacto dos parâmetros de variação,
+		escolhemos os valores que apresentaram os resultados mais satisfatórios.
+		As principais características que modificamos (e seus respectivos
+		valores) foram:
 		\begin{itemize}
 				\item força de mutação de pesos: $2.5$
 				\item probabilidade de mutação de peso: $90\%$
@@ -497,7 +500,6 @@ importantes de um algoritmo genético, definido em
 		Para criar os novos organismos, o algoritmo organiza as espécies por
 		ordem de maior aptidão e, então, distribui um pedaço da população para
 		cada uma.
-
 \end{description}
 
 Também selecionamos os valores dos coeficientes de similaridade entre
